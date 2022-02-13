@@ -2,17 +2,33 @@ const { makeRouter } = require('../../utils/templateRoutes')
 const { driveDatabase: Database } = require('../../utils/driveDatabase')
 
 const router = makeRouter('resources/scenes/database.json', {
-  validateCreate: ({ name }, scenes) => {
+  validateCreate: (body, scenes) => {
     for(let i = 0; i < scenes.length; i+=1) {
-      if(scenes[i].name === name) return false
+      if(scenes[i].name === body.name) return {
+        status: false,
+        message: `Name ${body.name} já está cadastrado!`,
+        bodyValidate: body
+      }
     }
-    return true
+    return {
+      status: true,
+      message: 'Sucesso',
+      bodyValidate: body
+    }
   },
-  validateUpdate: (id, { name }, scenes) => {
+  validateUpdate: (id, body, scenes) => {
     for(let i = 0; i < scenes.length; i+=1) {
-      if(scenes[i].name === name && scenes[i].id !== id) return false
+      if(scenes[i].name === body.name && scenes[i].id !== id) return {
+        status: false,
+        message: `Name ${body.name} já está cadastrado!`,
+        bodyValidate: body
+      }
     }
-    return true
+    return {
+      status: true,
+      message: 'Sucesso',
+      bodyValidate: body
+    }
   }
 })
 
@@ -24,14 +40,45 @@ router.get('/:id/items', async (req, res) => {
   const scene = await databaseScene.getResources({ id: scene_id });
 
   if(scene.length === 0) {
-    return null
+    res.json({
+      status: false,
+      message: "Id não encontrado",
+      data: null
+    })
+  } else {
+    const itens = await databaseItems.getResources({ scene_id });
+    res.json({
+      status: true,
+      message: "Senha incorreta!",
+      data: {
+        ...scene[0],
+        itens
+      }
+    })
   }
 
-  const itens = await databaseItems.getResources({ scene_id });
+})
+
+router.get('/all/with_items', async (req, res) => {
+  const databaseScene = new Database('resources/scenes/database.json')
+  const databaseItems = new Database('resources/items/database.json')
+
+  const scenes = await databaseScene.getResources();
+
+  const scenesResponse = []
+
+  for(let i = 0; i < scenes.length ; i+=1) {
+    const items = await databaseItems.getResources({ scene_id: scenes[i].id });
+    scenesResponse.push({
+      ...scenes[i],
+      items
+    })
+  }
 
   res.json({
-    ...scene[0],
-    itens
+    status: true,
+    message: "Sucesso",
+    data: scenesResponse
   })
 
 })

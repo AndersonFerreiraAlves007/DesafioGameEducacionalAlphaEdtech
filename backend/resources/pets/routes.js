@@ -16,6 +16,20 @@ const router = makeRouter('resources/pets/database.json',
         xp_hygiene: xp_hygiene_initial,
       }
     },
+    validateCreate: (body, pets) => {
+      return {
+        status: true,
+        message: 'Sucesso',
+        bodyValidate: body
+      }
+    },
+    validateUpdate: (id, body, pets) => {
+      return {
+        status: true,
+        message: 'Sucesso',
+        bodyValidate: body
+      }
+    }
   }
 )
 

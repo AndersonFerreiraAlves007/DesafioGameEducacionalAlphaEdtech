@@ -11,12 +11,20 @@ async function writeDatabase(database, pathDatabase) {
   await fsPromises.writeFile(pathDatabase, data);
 }
 
-function validateCreate() {
-  return true
+function validateCreate(body) {
+  return {
+    status: true,
+    message: '',
+    bodyValidate: body
+  }
 }
 
-function validateUpdate() {
-  return true
+function validateUpdate(id, body) {
+  return {
+    status: true,
+    message: '',
+    bodyValidate: body
+  }
 }
 
 function middlewareAdd(resourceAdd) {
@@ -38,7 +46,7 @@ class driveDatabase {
     this.validateUpdate = validateUpdate
   }
 
-  async getResources(filters) {
+  async getResources(filters = {}) {
     const database = await readDatabase(this.pathDatabase)
     const filterArray = Object.entries(filters)
 
@@ -54,9 +62,10 @@ class driveDatabase {
 
   async addResource(body) {
     const database = await readDatabase(this.pathDatabase)
-    if(this.validateCreate(body, database.rows)) {
+    const { status, message, bodyValidate } = this.validateCreate(body, database.rows)
+    if(status) {
       const resourceNew = this.middlewareAdd({
-        ...body,
+        ...bodyValidate,
         id: database.autoIncrement + 1
       })
 
@@ -68,15 +77,22 @@ class driveDatabase {
         ]
       }, this.pathDatabase);
 
-      return resourceNew
+      return {
+        resource: resourceNew,
+        message: 'Sucesso'
+      }
 
     }
-    return null
+    return {
+      resource: null,
+      message: message
+    }
   }
   
   async updateResource(id, body) {
     const database = await readDatabase(this.pathDatabase)
-    if(this.validateUpdate(id, body, database.rows)) {
+    const { status, message, bodyValidate } = this.validateUpdate(id, body, database.rows)
+    if(status) {
       let itemUpdated = null
 
       const rows = database.rows.map(item => {
@@ -84,7 +100,7 @@ class driveDatabase {
         itemUpdated = item
         return {
           ...item,
-          ...body
+          ...bodyValidate
         }
       })
 
@@ -95,15 +111,24 @@ class driveDatabase {
 
       if(itemUpdated) {
         return {
-          ...itemUpdated,
-          ...body
+          resource: {
+            ...itemUpdated,
+            ...bodyValidate
+          },
+          message: 'Sucesso'
         }
       }
 
-      return null
+      return {
+        resource: null,
+        message: 'Id não encontrado!'
+      }
 
     }
-    return null
+    return {
+      resource: null,
+      message: message
+    }
   }
 
   async deleteResource(id) {
@@ -111,9 +136,9 @@ class driveDatabase {
     let itemDeleted = null
 
     const rows = database.rows.filter(item => {
-     if(item.id !== id ) return true
-     itemDeleted = item
-     return false
+      if(item.id !== id ) return true
+      itemDeleted = item
+      return false
     })
 
     await writeDatabase({
