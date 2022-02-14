@@ -30,4 +30,123 @@ function updateBody(){
     },350)
 }
 
-export {updateBody};
+//CHANGE DIRT STATUS (0 = clean, 1 = a bit dirty)
+function setDirtLevel(){
+    
+    const statusRenderingArea = document.getElementById('status-changes');
+
+    const dirtData = [
+        `
+        <g id="slime-dirt-spots">
+        <path
+            id="path8713-6"
+            style="display:inline;fill:none;stroke:#535353;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="M 0.471335,6.5589043 -0.85158187,7.2203626 Z M 1.000501,6.691196 -1.1161649,7.7495293 Z m 0.529167,0.2645833 -2.6458329,1.3229166 z m 0,0.5291667 -2.11666687,1.0583333 z M 1.265085,8.0141126 -0.0578319,8.6755709 Z"
+            inkscape:label="slime-dirt-left-01" 
+        />
+        
+        <path
+            id="path8713-7-0"
+            style="display:inline;fill:none;stroke:#535353;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 12.906752,6.6911957 1.322916,0.661458 z m -0.529167,0.132292 2.116667,1.058333 z m -0.529167,0.264583 2.645834,1.322917 z m 0,0.529167 2.116667,1.058333 z m 0.264584,0.529166 1.322916,0.661459 z"
+            inkscape:label="slime-dirt-right-01" 
+        />
+        </g>
+        `,
+        `
+        <g id="slime-stink-1">
+        <path
+            style="fill:none;stroke:#3e3e3e;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 1.529668,-9.7129701 c -1.3229166,3.9687495 0,5.2916662 0,5.2916662 0,0 1.3229167,1.3229166 0,3.9687499"
+            id="path2699"
+            inkscape:label="slime-stink-01" 
+        />
+
+        <path
+            style="fill:none;stroke:#3e3e3e;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 6.8213347,-12.358804 c -1.322917,3.96875 0,5.291666 0,5.291666 0,0 1.322916,1.322917 0,3.96875"
+            id="path2699-7"
+            inkscape:label="slime-stink-02" 
+        />
+
+        <path
+            style="fill:none;stroke:#3e3e3e;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 12.113001,-9.71297 c -1.322917,3.96875 0,5.291666 0,5.291666 0,0 1.322916,1.322917 0,3.96875"
+            id="path2699-7-5"
+            inkscape:label="slime-stink-03" 
+        />
+        </g>
+        `,
+        `
+        <g id="slime-stink-2">
+        <path
+            style="fill:none;stroke:#3e3e3e;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 12.112497,-9.7129701 c 1.322917,3.9687495 0,5.2916662 0,5.2916662 0,0 -1.322916,1.3229166 0,3.9687499"
+            id="path2699"
+            inkscape:label="slime-stink-01" 
+        />
+
+        <path
+            style="fill:none;stroke:#3e3e3e;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 6.8208308,-12.358804 c 1.322917,3.96875 0,5.291666 0,5.291666 0,0 -1.322916,1.322917 0,3.96875"
+            id="path2699-7"
+            inkscape:label="slime-stink-02" 
+        />
+
+        <path
+            style="fill:none;stroke:#3e3e3e;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 1.5291645,-9.71297 c 1.322917,3.96875 0,5.291666 0,5.291666 0,0 -1.322916,1.322917 0,3.96875"
+            id="path2699-7-5"
+            inkscape:label="slime-stink-03" 
+        />
+        </g>
+        `
+
+    ]
+
+    let intervalId;
+    let flag = true;
+
+    return ((dirtValue)=>{
+        if(dirtValue === 0){
+            clearInterval(intervalId);
+
+            statusRenderingArea.innerHTML = "";
+
+        } else if(dirtValue === 1){
+
+            clearInterval(intervalId);
+
+            if(document.contains(document.getElementById(`slime-stink-${flag?1:2}`))){
+                document.getElementById(`slime-stink-${flag?1:2}`).remove()
+            };
+
+            statusRenderingArea.insertAdjacentHTML('afterbegin', dirtData[0]);
+
+        } else {
+
+            if(!document.contains(document.getElementById(`slime-dirt-spots`))){
+                statusRenderingArea.insertAdjacentHTML('afterbegin', dirtData[0]);
+            };
+
+            statusRenderingArea.insertAdjacentHTML('afterbegin', dirtData[1])
+    
+            intervalId = setInterval(()=>{
+                
+                document.getElementById(`slime-stink-${flag?1:2}`).remove();
+    
+                let index = 1;
+                
+                if(flag){index = 2};
+                
+                statusRenderingArea.insertAdjacentHTML('afterbegin', dirtData[index]);
+                
+                flag = !flag;
+            },1000)
+            
+        }
+    })
+
+}
+
+export {updateBody, setDirtLevel};
