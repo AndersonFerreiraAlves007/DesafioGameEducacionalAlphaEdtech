@@ -6,4 +6,6 @@ const app = express()
 
 app.use(express.static('src'))
 
-app.listen(PORT)
+app.listen(PORT, () => {
+    console.log(`escutando em http://localhost:${PORT}`);
+})

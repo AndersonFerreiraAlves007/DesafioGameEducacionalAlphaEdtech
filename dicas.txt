@@ -1,0 +1,23 @@
+- talvez separar em varios scripts, para esscrever melhor o codigo
+
+- es6, modules client side
+
+- assim divide  as  funções do codigo e quem  vai fazer
+
+- code review no git, pr
+
+- nome das branchs (por funcionalidade e nome de quem via fazer)
+
+- back log, in progeress, review, closed
+
+- adcionais opcionais: block, provisore
+
+- reuniões por temas (olhar scrum);
+
+css:
+position fixed;
+top 0;
+left 0;
+altura 100vh
+largura 100vh
+z-index: 3000;

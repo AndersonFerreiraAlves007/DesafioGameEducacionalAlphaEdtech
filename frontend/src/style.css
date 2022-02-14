@@ -1,0 +1,91 @@
+:root{
+    --background-main: coral;
+    
+    --poo-color: blue;
+    --poo-diametro: 40vh;
+    
+    --size-low: 14px;
+    --size-median: 21px;
+    --size-high: 38px;
+    --color-black: #222222;
+    --color-white: #dddddd;
+
+    --background-black: #333333;
+    --background-white: #dddddd;
+
+    --background-banho: #add8e6;
+    --background-jogo: #ff6961;
+    --background-comida: #FFF600;
+}
+
+#low{
+    font-size: var(--size-low);
+}
+
+#median{
+    font-size: var(--size-median);
+}
+
+#high{
+    font-size: var(--size-high);
+}
+
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: var(--background-main);
+    font-size: var(--size-median);
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.container-poo{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+.poo-temporario{
+    
+    width: var(--poo-diametro);
+    height: var(--poo-diametro);
+    border-radius: 50%;
+    background-color: var(--poo-color);
+}
+
+.botao-home{
+    width: 20vh;
+    height: 10vh;
+    margin: 3vh;
+
+    font-size: var(--size-median);
+    color: var(--color-black)
+}
+
+.banho{
+    background-color: var(--background-banho);
+}
+
+.jogo{
+    background-color: var(--background-jogo);
+}
+
+.comida{
+    background-color: var(--background-comida);
+}
+
+.section-jokenpo{
+    display: none;
+}
+
+/* {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vh;
+    z-index: 3000;
+} */
