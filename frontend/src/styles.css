@@ -1,18 +1,29 @@
 main {
-    background-image: url(../assets/background-images/cartoon-set-of-kitchen-counter-with-appliances-fridge-microwave-oven-kettle-blender/1819.jpg);
     background-size: cover;
     opacity: 0.5;
     height: 97vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 
-#environment-text {
+#environment-text , #item-text{
     font-size: 60px;
 }
 
-div#environment  {
+div#environment , div#items {
     display: flex;
     align-items: center;
+}
+
+div#pou {
+    background-color: blue;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.yellow {
+    background-color: yellow;
 }

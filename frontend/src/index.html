@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kitchen</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -17,33 +19,115 @@
             <span id="environment-text">AMBIENTE</span>
             <img id="next-button" src="../assets/button-icons/next-arrow-button.png" alt="">
         </div>
+        <div id="pou"></div>
+        <div id="items">
+            <img id="previous-item" src="../assets/button-icons/previous-arrow-button.png" alt="">
+            <span id="item-text">AMBIENTE</span>
+            <img id="next-item" src="../assets/button-icons/next-arrow-button.png" alt="">
+        </div>
         <script>
-            const arrayAmbientes = ['casa', 'fazenda', 'banheiro']
+            const sceneswithitems = [
+                {
+                    "name": "cozinha",
+                    "url_image": "../assets/background-images/cartoon-set-of-kitchen-counter-with-appliances-fridge-microwave-oven-kettle-blender/1819.jpg",
+                    "id": 1,
+                    "items": [
+                        {
+                            "name": 'uva',
+                            "url": "haushau"
+                        },
+                        {
+                            "name": 'torradas',
+                            "url": "haushau"
+                        },
+                    ]
+                },
+                {
+                    "name": "banheiro",
+                    "url_image": "../assets/background-images/modern-bathroom-interior-with-furniture-cartoon/304.jpg",
+                    "id": 2,
+                    "items": [
+                        {
+                            "name": 'shampoo',
+                            "url": "haushau"
+                        },
+                        {
+                            "name": 'sabonete',
+                            "url": "haushau"
+                        },
+                    ]
+                }]
+            // const arrayAmbientes = ['casa', 'fazenda', 'banheiro']
+            const arrayAmbientes = sceneswithitems
+            $('#item-text').draggable({ revert: "invalid" })
+            $('#pou').droppable({
+                classes: {
+                    "ui-droppable-active": "ui-state-active",
+                    "ui-droppable-hover": "ui-state-hover"
+                },
+                drop: function () {
+                    $(this)
+                        .addClass('yellow')
+                }
+            })
+
             let thisAmbiente = arrayAmbientes[0]
             let count = 0
-            $('#environment-text').html(thisAmbiente)
+            let countItem = 0
+            $('#environment-text').html(thisAmbiente.name)
+            $('main').css('background-image', `url( ${thisAmbiente.url_image})`)
+            $('#item-text').html(thisAmbiente.items[0].name)
 
+            function updateView() {
+                thisAmbiente = arrayAmbientes[count]
+                $('#environment-text').html(thisAmbiente.name)
+                $('main').css('background-image', `url( ${thisAmbiente.url_image})`)
+                $('#item-text').html(thisAmbiente.items[0].name)
+                countItem = 0
+            }
+
+            // Select environment buttons
             $('#next-button').on('click', () => {
                 if (thisAmbiente == arrayAmbientes[arrayAmbientes.length - 1]) {
                     count = 0
                 } else {
                     count += 1
                 }
-                thisAmbiente = arrayAmbientes[count]
-                $('#environment-text').html(thisAmbiente)
+                updateView()
             })
-            
+
             $('#previous-button').on('click', () => {
                 if (count == 0) {
                     count = arrayAmbientes.length - 1
                 } else {
                     count -= 1
                 }
-                thisAmbiente = arrayAmbientes[count]
-                $('#environment-text').html(thisAmbiente)
+                updateView()
             })
-            
 
+
+            // Select item buttons
+            $('#previous-item').on('click', () => {
+                if (countItem == 0) {
+                    countItem = thisAmbiente.items.length - 1
+                } else {
+                    countItem -= 1
+                }
+                thisItem = thisAmbiente.items[countItem]
+                $('#item-text').html(thisItem.name)
+                // $('main').css('background-image', `url( ${thisAmbiente.url_image})`)
+            })
+
+            $('#next-item').on('click', () => {
+                if (countItem == thisAmbiente.items.length - 1) {
+                    countItem = 0
+                } else {
+                    countItem += 1
+                }
+                thisItem = thisAmbiente.items[countItem]
+                $('#item-text').html(thisItem.name)
+                // $('main').css('background-image', `url( ${thisAmbiente.url_image})`)
+            })
         </script>
     </main>
 </body>
