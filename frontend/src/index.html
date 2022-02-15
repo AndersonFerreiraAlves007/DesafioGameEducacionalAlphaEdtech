@@ -30,6 +30,7 @@
             <div id="item-box"><img id="current-item" src="" alt=""></div>
             <img id="next-item" src="../assets/button-icons/next-arrow-button.png" alt="">
         </div>
+
         <script>
             const sceneswithitems = [
                 {
@@ -113,7 +114,12 @@
                 $('main').css('background-image', `url( ${currentScene.url_image})`)
                 $('#current-item').attr('src', currentScene.items[0].url)
                 indexItem = 0
-                // reset position of item after changing scene
+                            
+                // reset position of item after altering the scene or the item itself
+                resetItemPosition()       
+            }
+            
+            function resetItemPosition() {
                 $("#item-box").animate({
                     top: "0px",
                     left: "0px"
@@ -139,7 +145,6 @@
                 updateViewScene()
             })
 
-
             // Select item buttons
             $('#previous-item').on('click', () => {
                 if (indexItem == 0) {
@@ -150,6 +155,7 @@
                 currentItem = currentScene.items[indexItem]
                 // $('#item-box').html(currentItem.name)
                 $('#current-item').attr('src', currentItem.url)
+                resetItemPosition()       
             })
 
             $('#next-item').on('click', () => {
@@ -161,9 +167,11 @@
                 currentItem = currentScene.items[indexItem]
                 // $('#item-box').html(currentItem.name)
                 $('#current-item').attr('src', currentItem.url)
+                resetItemPosition()       
             })
 
         </script>
+    </main>
     </main>
 </body>
 
