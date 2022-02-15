@@ -1,13 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kitchen</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    
+    <main>
+        <div id="environment">
+            <img id="previous-button" src="../assets/button-icons/previous-arrow-button.png" alt="">
+            <span id="environment-text">AMBIENTE</span>
+            <img id="next-button" src="../assets/button-icons/next-arrow-button.png" alt="">
+        </div>
+        <script>
+            const arrayAmbientes = ['casa', 'fazenda', 'banheiro']
+            let thisAmbiente = arrayAmbientes[0]
+            let count = 0
+            $('#environment-text').html(thisAmbiente)
+
+            $('#next-button').on('click', () => {
+                if (thisAmbiente == arrayAmbientes[arrayAmbientes.length - 1]) {
+                    count = 0
+                } else {
+                    count += 1
+                }
+                thisAmbiente = arrayAmbientes[count]
+                $('#environment-text').html(thisAmbiente)
+            })
+            
+            $('#previous-button').on('click', () => {
+                if (count == 0) {
+                    count = arrayAmbientes.length - 1
+                } else {
+                    count -= 1
+                }
+                thisAmbiente = arrayAmbientes[count]
+                $('#environment-text').html(thisAmbiente)
+            })
+            
+
+        </script>
+    </main>
 </body>
+
 </html>
