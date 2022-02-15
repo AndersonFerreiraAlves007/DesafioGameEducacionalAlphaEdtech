@@ -1,32 +1,42 @@
 :root{
-    --background-main: coral;
+    --background-main: #ff7f50;
     
-    --poo-color: blue;
-    --poo-diametro: 40vh;
+    --slime-color: #0000ff;
+    --slime-diameter: 40vh;
     
+    /* size text */
     --size-low: 14px;
     --size-median: 21px;
     --size-high: 38px;
+    --novo-tamanho-de-letra: 50px;
+
+    /* color text */
     --color-black: #222222;
     --color-white: #dddddd;
 
     --background-black: #333333;
     --background-white: #dddddd;
 
-    --background-banho: #add8e6;
-    --background-jogo: #ff6961;
-    --background-comida: #FFF600;
+    /* buttons in  home */
+    --background-shower: #add8e6;
+    --background-game: #ff6961;
+    --background-food: #FFF600;
 }
 
-#low{
+/* @font-face {
+    font-family: nome-font;
+    src: url("./assents/fonts/nome-fonte.ttf");
+} */
+
+.low{
     font-size: var(--size-low);
 }
 
-#median{
-    font-size: var(--size-median);
+.median{
+    font-size: var(--size-median)
 }
 
-#high{
+.high{
     font-size: var(--size-high);
 }
 
@@ -42,21 +52,21 @@ body{
     align-items: center;
 }
 
-.container-poo{
+.slime{
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
 }
-.poo-temporario{
+.slime__image{
     
-    width: var(--poo-diametro);
-    height: var(--poo-diametro);
+    width: var(--slime-diameter);
+    height: var(--slime-diameter);
     border-radius: 50%;
-    background-color: var(--poo-color);
+    background-color: var(--slime-color);
 }
 
-.botao-home{
+button{
     width: 20vh;
     height: 10vh;
     margin: 3vh;
@@ -65,27 +75,35 @@ body{
     color: var(--color-black)
 }
 
-.banho{
-    background-color: var(--background-banho);
+.container-button__shower{
+    background-color: var(--background-shower);
 }
 
-.jogo{
-    background-color: var(--background-jogo);
+.container-button__game{
+    background-color: var(--background-game);
 }
 
-.comida{
-    background-color: var(--background-comida);
+.container-button__food{
+    background-color: var(--background-food);
 }
 
-.section-jokenpo{
-    display: none;
-}
-
-/* {
+.game{
     position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
-    width: 100vh;
+    width: 100vw;
     z-index: 3000;
-} */
+    background-color: var(--background-game);
+}
+
+
+.jokenpo{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 3000;
+    background-color: var(--background-game);
+}

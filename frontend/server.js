@@ -7,5 +7,5 @@ const app = express()
 app.use(express.static('src'))
 
 app.listen(PORT, () => {
-    console.log(`escutando em http://localhost:${PORT}`);
+    console.log(`linten => http://localhost:${PORT}`);
 })

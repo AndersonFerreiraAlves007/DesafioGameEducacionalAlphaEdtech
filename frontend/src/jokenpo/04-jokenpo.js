@@ -1,41 +1,49 @@
 $(document).ready(function () {
-    // recebe um valor (pedra, papel, tesoura).
-    // sorteia um valor concorrente (pedra, papel, tesoura).
-    // retorna o vencedor da rodada.
+    // hiden they sections game end jokenpo
+    gameClosed();
+    jokenpoClosed();
 
-    // detectar que o botão jokenpo foi clicado
-    $(".botao-jokenpo").on("click", mostrarJokenpo);
-    function mostrarJokenpo() {
-        // $(".section-jokenpo").css("display", "block");
-        alert("funcionou");
-        console.log("funcionou");
+    $(".container-button__game").on("click", gameOpem);
+    function gameOpem() {
+        $(".game").show();
     }
 
-    // função principal
-    // valor de entrada: numeo inteiro entre 1 e 3.
+    $(".game__closed").on("click", gameClosed);
+    function gameClosed() {
+        $(".game").hide();
+    }
+
+    $(".game__jokenpo").on("click", jokenpoOpem);
+    function jokenpoOpem() {
+        $(".jokenpo").show();
+    }
+
+    $(".jokenpo__closed").on("click", jokenpoClosed);
+    function jokenpoClosed() {
+        $(".jokenpo").hide();
+    }
+
+    // main function
+    // input value between 1 to 3
     function jokenpo(_num) {
-        // definição dos valores:
-        // pedra = 1
-        // papel = 2
-        // tesoura = 3
+        // definition of values:
+        // rock = 1
+        // paper = 2
+        // scissors = 3
 
-        // escolha do Jogador
-        const ej = _num;
+        const playerChoice = _num;
 
-        // escolha da maquina
-        const em = parseInt(Math.random() * 3 + 1);
+        const machineChoice = parseInt(Math.random() * 3 + 1);
 
-        // texto que informa quem venceu
         let result = "";
 
-        // estrutura lójica
-        if (ej == em) {
+        if (playerChoice == machineChoice) {
             result = "empate";
         }
         else {
-            // jogador = pedra
-            if (ej == 1) {
-                switch (em) {
+            // player = rock
+            if (playerChoice == 1) {
+                switch (machineChoice) {
                     case 2:
                         result = "maquina vence";
                         break;
@@ -46,9 +54,9 @@ $(document).ready(function () {
                         result = "erro no switch para ej == 1";
                 }
             }
-            // jogador = papel
-            else if (ej == 2) {
-                switch (em) {
+            // player = paper
+            else if (playerChoice == 2) {
+                switch (machineChoice) {
                     case 1:
                         result = "jogador vence";
                         break;
@@ -59,9 +67,9 @@ $(document).ready(function () {
                         result = "erro no switch para ej == 2";
                 }
             }
-            // jogador == tesoura;
-            else if (ej == 3) {
-                switch (em) {
+            // player = scissors
+            else if (playerChoice == 3) {
+                switch (machineChoice) {
                     case 1:
                         result = "maquina vence";
                         break;
@@ -73,43 +81,40 @@ $(document).ready(function () {
                 }
             }
         }
-
-        let ejTexto = "";
-        let emTexto = "";
-        switch (ej) {
+        // return in text form
+        let playerChoiceText = "";
+        let machineChoiceText = "";
+        switch (playerChoice) {
             case 1:
-                ejTexto = "pedra";
+                playerChoiceText = "pedra";
                 break;
             case 2:
-                ejTexto = "papel";
+                playerChoiceText = "papel";
                 break;
             case 3:
-                ejTexto = "tesoura";
+                playerChoiceText = "tesoura";
                 break;
             default:
-                "erro no switch de ejTexto";
+                "erro in switch the clientChoiceText";
         }
-        switch (em) {
+        switch (machineChoice) {
             case 1:
-                emTexto = "pedra";
+                machineChoiceText = "pedra";
                 break;
             case 2:
-                emTexto = "papel";
+                machineChoiceText = "papel";
                 break;
             case 3:
-                emTexto = "tesoura";
+                machineChoiceText = "tesoura";
                 break;
             default:
-                "erro no switch de emTexto";
+                "erro no switch de machineChoiceTexto";
         }
 
         return {
-            "escolha-jogador": ejTexto,
-            "escolha-maquina": emTexto,
-            "resultado-do-jogo": result
+            "playerChoice": playerChoiceText,
+            "machineChoice": machineChoiceText,
+            "result": result
         }
     }
-
 });
-
-// console.log("04-jokenpo.js está linkado");

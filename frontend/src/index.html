@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -15,36 +15,39 @@
 <body>
     <header>
         <h2>status bar</h2>
-        <section>
-            <button class="botao-home banho"></button>
-            <button class="botao-home jogo botao-jokenpo">jogos</button>
-            <button class="botao-home comida">></button>
-        </section>
     </header>
 
     <main>
-        <section class="container-poo">
+        <section class="slime">
             <h2>foto do poo</h2>
-            <div class="poo-temporario"></div>
+            <div class="slime__image"></div>
         </section>
     </main>
 
-    <!--
-        <p id="low">testes de tamanho da letra</p>
-        <p id="median">testes de tamanho da letra</p>
-        <p id="high">testes de tamanho da letra</p>
-     -->
-
     <footer>
-        <section>
-            <button class="botao-home banho"></button>
-            <button class="botao-home jogo botao-jokenpo">jogos</button>
-            <button class="botao-home comida">></button>
+        <section class="container-button">
+            <button class="container-button__shower">banho</button>
+            <button class="container-button__game">jogos</button>
+            <button class="container-button__food">comida</button>
         </section>
     </footer>
 
-    <section class="section-jokenpo">
-        <h2>jogo jokenpo</h2>
+    <section class="game">
+        <ul>
+            <li><button class="game__jokenpo">jokenpo</button></li>
+            <li><button class="game__color-items">colorir</button></li>
+            <li><button class="game__write-words">palavras</button></li>
+        </ul>
+        <button class="game__closed">fechar</button>
+    </section>
+
+    <section class="jokenpo">
+        <ul>
+            <li><button class="jokenpo__rock">pedra</button></li>
+            <li><button class="jokenpo__paper">papel</button></li>
+            <li><button class="jokenpo__scissors">tesoura</button></li>
+        </ul>
+        <button class="jokenpo__closed">fechar</button>
     </section>
 
     <script src="../jokenpo/04-jokenpo.js" defer></script>

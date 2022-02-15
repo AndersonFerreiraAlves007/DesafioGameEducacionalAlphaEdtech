@@ -1,0 +1,6 @@
+- interface com opções
+
+- jquearyUI
+
+- fluxo de telas:
+	- home => games => jokenpo
