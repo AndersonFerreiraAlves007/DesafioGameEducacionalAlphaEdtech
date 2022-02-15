@@ -19,10 +19,12 @@
             <span id="environment-text">AMBIENTE</span>
             <img id="next-button" src="../assets/button-icons/next-arrow-button.png" alt="">
         </div>
+
         <div id="pou"></div>
+
         <div id="items">
             <img id="previous-item" src="../assets/button-icons/previous-arrow-button.png" alt="">
-            <span id="item-text">AMBIENTE</span>
+            <div id="item-box"><img id="current-item" src="" alt=""></div>
             <img id="next-item" src="../assets/button-icons/next-arrow-button.png" alt="">
         </div>
         <script>
@@ -33,101 +35,126 @@
                     "id": 1,
                     "items": [
                         {
-                            "name": 'uva',
-                            "url": "haushau"
+                            "name": 'uvas',
+                            "url": "../assets/food-icons/cherries.png"
                         },
                         {
                             "name": 'torradas',
-                            "url": "haushau"
+                            "url": "../assets/food-icons/bread-egg.png"
+                        },
+                        {
+                            "name": 'cenoura',
+                            "url": "../assets/food-icons/carrot.png"
+                        },
+                        {
+                            "name": 'rosquinha',
+                            "url": "../assets/food-icons/donut.png"
+                        },
+                        {
+                            "name": 'batata',
+                            "url": "../assets/food-icons/french-fries.png"
                         },
                     ]
                 },
                 {
-                    "name": "banheiro",
+                    "name": "jogos",
+                    "url_image": "../assets/background-images/vector-cartoon-illustration-of-empty-kindergarten-room-with-furniture-and-toys-for-young-children-n/1926.jpg",
+                    "id": 2,
+                    "items": [
+                        {
+                            "name": 'shampoo',
+                            "url": "../assets/game-icons/joystick.png"
+                        },
+                        {
+                            "name": 'sabonete',
+                            "url": "../assets/food-icons/french-fries.png"
+                        },
+                    ]
+                },
+                {
+                    "name": "churras",
                     "url_image": "../assets/background-images/modern-bathroom-interior-with-furniture-cartoon/304.jpg",
                     "id": 2,
                     "items": [
                         {
                             "name": 'shampoo',
-                            "url": "haushau"
+                            "url": "../assets/game-icons/joystick.png"
                         },
                         {
                             "name": 'sabonete',
-                            "url": "haushau"
+                            "url": "../assets/food-icons/french-fries.png"
                         },
                     ]
                 }]
-            // const arrayAmbientes = ['casa', 'fazenda', 'banheiro']
+            
             const arrayAmbientes = sceneswithitems
-            $('#item-text').draggable({ revert: "invalid" })
+            
+            // Justing testing drag and drop functionality
+            $('#item-box').draggable({ revert: "valid" })
             $('#pou').droppable({
-                classes: {
-                    "ui-droppable-active": "ui-state-active",
-                    "ui-droppable-hover": "ui-state-hover"
-                },
-                drop: function () {
-                    $(this)
+                drop: function (event, ui) {
+                    $( this )
                         .addClass('yellow')
                 }
             })
 
-            let thisAmbiente = arrayAmbientes[0]
-            let count = 0
-            let countItem = 0
-            $('#environment-text').html(thisAmbiente.name)
-            $('main').css('background-image', `url( ${thisAmbiente.url_image})`)
-            $('#item-text').html(thisAmbiente.items[0].name)
+            // Onload scene initial status
+            let currentScene
+            let indexScene = 0
+            let indexItem = 0
+            updateViewScene()
 
-            function updateView() {
-                thisAmbiente = arrayAmbientes[count]
-                $('#environment-text').html(thisAmbiente.name)
-                $('main').css('background-image', `url( ${thisAmbiente.url_image})`)
-                $('#item-text').html(thisAmbiente.items[0].name)
-                countItem = 0
+            function updateViewScene() {
+                currentScene = arrayAmbientes[indexScene]
+                $('#environment-text').html(currentScene.name)
+                $('main').css('background-image', `url( ${currentScene.url_image})`)
+                $('#current-item').attr('src', currentScene.items[0].url )
+                indexItem = 0
             }
 
             // Select environment buttons
             $('#next-button').on('click', () => {
-                if (thisAmbiente == arrayAmbientes[arrayAmbientes.length - 1]) {
-                    count = 0
+                if (currentScene == arrayAmbientes[arrayAmbientes.length - 1]) {
+                    indexScene = 0
                 } else {
-                    count += 1
+                    indexScene += 1
                 }
-                updateView()
+                updateViewScene()
             })
 
             $('#previous-button').on('click', () => {
-                if (count == 0) {
-                    count = arrayAmbientes.length - 1
+                if (indexScene == 0) {
+                    indexScene = arrayAmbientes.length - 1
                 } else {
-                    count -= 1
+                    indexScene -= 1
                 }
-                updateView()
+                updateViewScene()
             })
 
 
             // Select item buttons
             $('#previous-item').on('click', () => {
-                if (countItem == 0) {
-                    countItem = thisAmbiente.items.length - 1
+                if (indexItem == 0) {
+                    indexItem = currentScene.items.length - 1
                 } else {
-                    countItem -= 1
+                    indexItem -= 1
                 }
-                thisItem = thisAmbiente.items[countItem]
-                $('#item-text').html(thisItem.name)
-                // $('main').css('background-image', `url( ${thisAmbiente.url_image})`)
+                currentItem = currentScene.items[indexItem]
+                // $('#item-box').html(currentItem.name)
+                $('#current-item').attr('src', currentItem.url )
             })
 
             $('#next-item').on('click', () => {
-                if (countItem == thisAmbiente.items.length - 1) {
-                    countItem = 0
+                if (indexItem == currentScene.items.length - 1) {
+                    indexItem = 0
                 } else {
-                    countItem += 1
+                    indexItem += 1
                 }
-                thisItem = thisAmbiente.items[countItem]
-                $('#item-text').html(thisItem.name)
-                // $('main').css('background-image', `url( ${thisAmbiente.url_image})`)
+                currentItem = currentScene.items[indexItem]
+                // $('#item-box').html(currentItem.name)
+                $('#current-item').attr('src', currentItem.url )
             })
+
         </script>
     </main>
 </body>

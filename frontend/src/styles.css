@@ -1,6 +1,6 @@
 main {
     background-size: cover;
-    opacity: 0.5;
+    /* opacity: 0.5; */
     height: 97vh;
     display: flex;
     flex-direction: column;
@@ -8,13 +8,18 @@ main {
     justify-content: space-between;
 }
 
-#environment-text , #item-text{
+#environment-text , #item-box{
     font-size: 60px;
 }
 
-div#environment , div#items {
+div#environment, div#items {
     display: flex;
     align-items: center;
+}
+
+span {
+    width: 200px;
+    text-align: center;
 }
 
 div#pou {
@@ -25,5 +30,9 @@ div#pou {
 }
 
 .yellow {
-    background-color: yellow;
+    background-color: yellow !important;
+}
+
+#current-item {
+    height: 100px;
 }
