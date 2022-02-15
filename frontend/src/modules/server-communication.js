@@ -78,4 +78,4 @@ class BancoDados {
 
 }
 
-  export {BancoDados};
+export {BancoDados};

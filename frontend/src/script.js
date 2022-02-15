@@ -1,8 +1,6 @@
-function request(url, method = 'GET', body = null) {
+async function request(url, method = 'GET', body = null) {
   try {
-
     let options = {}
-
     if(method === 'POST' || method === 'PUT') {
       options = {
         method,
@@ -17,19 +15,15 @@ function request(url, method = 'GET', body = null) {
         method,
       }
     }
-
     const data = await fetch(url, options)
-
     const dados = await data.json()
-
     if(dados.status) {
       return dados.data
     } else {
       throw dados.message
     }
-
   } catch(e) {
-    throw 'Erro na rede!'
+    throw e
   }
 }
 
@@ -39,29 +33,46 @@ class BancoDados {
   }
 
   async login(username, password) {
-    return await request(`${this.host}/login`, {
+    const { user_id } = await request(`${this.host}/login`, {
       username,
       password
     })
+    const { pets, ...user } = await request(`${this.host}/users/${user_id}/pets`, 'GET')
+    return {
+      user,
+      pet: pets[0]
+    }
   }
 
   async register(username, password, namePet) {
-    const user = await request(`${this.host}/login`, 'POST', {
+    const user = await request(`${this.host}/users`, 'POST', {
       username,
       password
     })
-
-    await request(`${this.host}/login`, 'POST', {
+    const pet = await request(`${this.host}/pets`, 'POST', {
       user_id: user.id,
       name: namePet
     })
+    return {
+      user,
+      pet
+    }
+  }
 
-    return await request(`${this.host}/users/${user.id}/pets`, 'GET')
+  async getUser(id) {
+    return await request(`${this.host}/users/${id}`, 'GET')
+  }
 
+  async getPet(id) {
+    return await request(`${this.host}/pets/${id}`, 'GET')
   }
 
   async getUserWithPets(id) {
-    return await request(`${this.host}/users/${id}/pets`, 'GET')
+    const { pets, ...user } = await request(`${this.host}/users/${id}/pets`, 'GET')
+    return {
+      user,
+      pet: pets[0]
+    }
   }
 
   async updateUser(id, body) {
@@ -76,4 +87,4 @@ class BancoDados {
     return await request(`${this.host}/scenes/all/with_items`, 'GET')
   }
 
-}
+} 

@@ -4,9 +4,9 @@ const { driveDatabase: Database } = require('../../utils/driveDatabase')
 const router = makeRouter('resources/users/database.json', {
   validateCreate: (body, users) => {
     for(let i = 0; i < users.length; i+=1) {
-      if(users[i].username === username) return {
+      if(users[i].username === body.username) return {
         status: false,
-        message: `Username ${username} já está cadastrado!`,
+        message: `Username ${body.username} já está cadastrado!`,
         bodyValidate: body
       }
     }
@@ -43,20 +43,26 @@ router.post('/login', async (req, res) => {
     res.json({
       status: false,
       message: "Usuário não cadastrado!",
-      data: null
+      data: {
+        user_id: -1
+      }
     })
   } else {
     if(users[0].password === password) {
       res.json({
         status: true,
         message: "Logado com sucesso!",
-        data: null
+        data: {
+          user_id: users[0].id
+        }
       })
     } else {
       res.json({
         status: false,
         message: "Senha incorreta!",
-        data: null
+        data: {
+          user_id: -1
+        }
       })
     }
   }
