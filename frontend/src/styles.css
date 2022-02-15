@@ -1,7 +1,10 @@
+header {
+    background-color: coral;
+}
 main {
     background-size: cover;
     /* opacity: 0.5; */
-    height: 97vh;
+    height: 85vh;
     display: flex;
     flex-direction: column;
     align-items: center;

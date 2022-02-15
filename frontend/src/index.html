@@ -13,6 +13,9 @@
 </head>
 
 <body>
+    <header>
+        <h1>STATUS BAR</h1>
+    </header>
     <main>
         <div id="environment">
             <img id="previous-button" src="../assets/button-icons/previous-arrow-button.png" alt="">
@@ -86,14 +89,14 @@
                         },
                     ]
                 }]
-            
+
             const arrayAmbientes = sceneswithitems
-            
+
             // Justing testing drag and drop functionality
             $('#item-box').draggable({ revert: "valid" })
             $('#pou').droppable({
                 drop: function (event, ui) {
-                    $( this )
+                    $(this)
                         .addClass('yellow')
                 }
             })
@@ -108,8 +111,13 @@
                 currentScene = arrayAmbientes[indexScene]
                 $('#environment-text').html(currentScene.name)
                 $('main').css('background-image', `url( ${currentScene.url_image})`)
-                $('#current-item').attr('src', currentScene.items[0].url )
+                $('#current-item').attr('src', currentScene.items[0].url)
                 indexItem = 0
+                // reset position of item after changing scene
+                $("#item-box").animate({
+                    top: "0px",
+                    left: "0px"
+                });
             }
 
             // Select environment buttons
@@ -141,7 +149,7 @@
                 }
                 currentItem = currentScene.items[indexItem]
                 // $('#item-box').html(currentItem.name)
-                $('#current-item').attr('src', currentItem.url )
+                $('#current-item').attr('src', currentItem.url)
             })
 
             $('#next-item').on('click', () => {
@@ -152,7 +160,7 @@
                 }
                 currentItem = currentScene.items[indexItem]
                 // $('#item-box').html(currentItem.name)
-                $('#current-item').attr('src', currentItem.url )
+                $('#current-item').attr('src', currentItem.url)
             })
 
         </script>
