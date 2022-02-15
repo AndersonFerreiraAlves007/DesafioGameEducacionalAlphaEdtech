@@ -108,22 +108,43 @@ function setDirtLevel(){
     let flag = true;
 
     return ((dirtValue)=>{
-        if(dirtValue === 0){
+        
+        let dirtLevel;
+
+        if(dirtValue >= 80){
+            dirtLevel = 0;
+        }else if(dirtValue >= 60){
+            dirtLevel = 1;
+        } else {
+            dirtLevel = 2;
+        }
+
+        if(dirtLevel === 0){
             clearInterval(intervalId);
 
             statusRenderingArea.innerHTML = "";
 
-        } else if(dirtValue === 1){
+        } else if(dirtLevel === 1){
 
             clearInterval(intervalId);
 
-            if(document.contains(document.getElementById(`slime-stink-${flag?1:2}`))){
-                document.getElementById(`slime-stink-${flag?1:2}`).remove()
-            };
+            if(document.contains(document.getElementById(`slime-stink-1`))){
+                document.getElementById(`slime-stink-1`).remove()
+            }else if(document.contains(document.getElementById(`slime-stink-2`))){
+                document.getElementById(`slime-stink-2`).remove()
+            }
 
             statusRenderingArea.insertAdjacentHTML('afterbegin', dirtData[0]);
 
         } else {
+
+            clearInterval(intervalId);
+
+            if(document.contains(document.getElementById(`slime-stink-1`))){
+                document.getElementById(`slime-stink-1`).remove()
+            }else if(document.contains(document.getElementById(`slime-stink-2`))){
+                document.getElementById(`slime-stink-2`).remove()
+            }
 
             if(!document.contains(document.getElementById(`slime-dirt-spots`))){
                 statusRenderingArea.insertAdjacentHTML('afterbegin', dirtData[0]);
@@ -133,7 +154,11 @@ function setDirtLevel(){
     
             intervalId = setInterval(()=>{
                 
-                document.getElementById(`slime-stink-${flag?1:2}`).remove();
+                if(document.contains(document.getElementById(`slime-stink-1`))){
+                    document.getElementById(`slime-stink-1`).remove()
+                }else if(document.contains(document.getElementById(`slime-stink-2`))){
+                    document.getElementById(`slime-stink-2`).remove()
+                }
     
                 let index = 1;
                 

@@ -1,1 +1,1 @@
-{"autoIncrement":3,"rows":[{"name":"bob","user_id":1,"id":1,"xp_food":20,"xp_fun":20,"xp_hygiene":20},{"name":"bob","user_id":1,"id":2,"xp_food":20,"xp_fun":20,"xp_hygiene":20},{"name":"bob","user_id":1,"id":3,"xp_food":20,"xp_fun":20,"xp_hygiene":20}]}
+{"autoIncrement":3,"rows":[{"name":"bob","user_id":1,"id":1,"xp_food":61,"xp_fun":0,"xp_hygiene":60},{"name":"bob","user_id":1,"id":2,"xp_food":0,"xp_fun":0,"xp_hygiene":0},{"name":"bob","user_id":1,"id":3,"xp_food":0,"xp_fun":0,"xp_hygiene":0}]}
