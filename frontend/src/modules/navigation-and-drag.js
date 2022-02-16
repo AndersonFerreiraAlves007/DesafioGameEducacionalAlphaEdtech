@@ -6,24 +6,22 @@ async function navigationButtonsAndDragEvents() {
     // Justing testing drag and drop functionality
     $('#item-box').draggable({ revert: "valid" })
 
-    //updateViewScene()
 
-    //if( currentScene === 1){
-        $('#pou').droppable({
-            drop: async function (event, ui) {
-                $(this)
-                const currentPet = await serverConnection.getPet(1)
-                const newStatus = {
-                    xp_food: ((currentPet.xp_food + currentItem.xp_food_change) < 100)?(currentPet.xp_food + currentItem.xp_food_change):100,
-                    xp_hygiene: ((currentPet.xp_hygiene + currentItem.xp_hygiene_change) < 100)?(currentPet.xp_hygiene + currentItem.xp_hygiene_change):100,
-                    xp_fun: ((currentPet.xp_fun + currentItem.xp_fun_change) < 100)?(currentPet.xp_fun + currentItem.xp_fun_change):100
-                }
-                serverConnection.updatePet(1, newStatus)
-                const audio = new Audio(allAudios[indexScene])
-                audio.play()
+    $('#pou').droppable({
+        drop: async function (event, ui) {
+            $(this)
+            const currentPet = await serverConnection.getPet(1)
+            const newStatus = {
+                xp_food: ((currentPet.xp_food + currentItem.xp_food_change) < 100)?(currentPet.xp_food + currentItem.xp_food_change):100,
+                xp_hygiene: ((currentPet.xp_hygiene + currentItem.xp_hygiene_change) < 100)?(currentPet.xp_hygiene + currentItem.xp_hygiene_change):100,
+                xp_fun: ((currentPet.xp_fun + currentItem.xp_fun_change) < 100)?(currentPet.xp_fun + currentItem.xp_fun_change):100
             }
-        })
-    //}
+            serverConnection.updatePet(1, newStatus)
+            const audio = new Audio(allAudios[indexScene])
+            audio.play()
+        }
+    })
+
 
 
     // descomente isso passe o mouse algumas vezes sobre o slime e veja o som meio horripilante
@@ -48,7 +46,7 @@ async function navigationButtonsAndDragEvents() {
         currentScene = arrayAmbientes[indexScene]
         currentItem = currentScene.items[indexItem]
         $('#environment-text').html(currentScene.name)
-        $('main').css('background-image', `url( ${currentScene.url_image})`)
+        $('body').css('background-image', `url( ${currentScene.url_image})`)
 
         // set currentIitem to inital whenever the scene is changed
         $('#current-item').attr('src', currentScene.items[0].url_image)
