@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  text-decoration: none;
+  list-style: none;
+  font-family: 'Bubblegum Sans', cursive;
+}
+:root{
+  --body-bg-color:#dfdfdf;
+  --left-bg-color:#FFB100;
+  --right-bg-color:#fff;
+  --h3-color:#fff;
+  --li-bg-color:#00A1CC;
+  --btn-bg-color:#00A1CC;
+  --input-bg-color:#ecebeb;
+  --a-color:#fff;
+}
+body{
+  background: var(--body-bg-color);
+}
+.wrapper{
+  display: flex;
+  max-width: 560px;
+  width: 100%;
+  height: 350px;
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+.wrapper .left,
+.wrapper .right{
+  width: 50%;
+  height: 100%;
+  padding: 30px;
+}
+.wrapper .left{
+  background: var(--left-bg-color);
+}
+.wrapper .left h3{
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--h3-color);
+  font-size: 20px;
+}
+.wrapper .left img{
+  display: block;
+  width: 220px;
+  margin: 25px auto 0;
+}
+.wrapper .right{
+  background: var(--right-bg-color);
+}
+.wrapper .right .tabs ul{
+  text-align: center;
+}
+.wrapper .right .tabs ul li{
+  display: inline-block;
+  margin: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+  color: var(--li-bg-color);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+.wrapper .right .tabs ul li.active{
+  border-bottom: 2px solid var(--li-bg-color);
+}
+.wrapper .right .register,
+.wrapper .right .login{
+  margin-top: 20px;
+}
+.wrapper .right .input_field{
+  margin-bottom: 15px;
+}
+.wrapper .right .input_field .input{
+  width: 100%;
+  padding: 10px 15px;
+  border: 0;
+  font-size: 12px;
+  background: var(--input-bg-color);
+}
+.wrapper .right .btn{
+  margin-top: 20px;
+  background: var(--btn-bg-color);
+  padding: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+.wrapper .right .btn a{
+  color:var(--a-color);
+  display: block;
+  font-size: 14px;
+}

@@ -4,7 +4,20 @@ import { serverConnection } from './modules/server-communication.js';
 import { foodComplain } from './modules/slime-speech.js';
 import { updateStatusBarView } from './modules/status-bar.js';
 import { navigationButtonsAndDragEvents } from './modules/navigation-and-drag.js';
+const user_id = localStorage.getItem('user_id');
+let pet;
+let user;
+async function getUser(){
+    const dataUsers = await serverConnection.getUserWithPets(Number(user_id));
+    pet =  dataUsers.pet;
+    user = dataUsers.user;
+}
 
+if(user_id){
+    getUser();
+}else{
+    window.location.replace('/login');
+}
 
 eyeMover('path3810-5-6-8', 'path3832-6-8-9', 'path3810-1-7-1-1', 'path3832-7-1-9-8');
 

@@ -33,7 +33,7 @@ class BancoDados {
   }
 
   async login(username, password) {
-    const { user_id } = await request(`${this.host}/login`, {
+    const { user_id } = await request(`${this.host}/users/login`, 'POST',{
       username,
       password
     })
