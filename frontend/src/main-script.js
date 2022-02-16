@@ -63,9 +63,9 @@ async function navigationButtonsAndDragEvents() {
             $(this)
             const currentPet = await serverConnection.getPet(1)
             const newStatus = {
-                xp_food: currentPet.xp_food + currentItem.xp_food_change,
-                xp_hygiene: currentPet.xp_hygiene + currentItem.xp_hygiene_change,
-                xp_fun: currentPet.xp_fun + currentItem.xp_fun_change
+                xp_food: ((currentPet.xp_food + currentItem.xp_food_change) < 100)?(currentPet.xp_food + currentItem.xp_food_change):100,
+                xp_hygiene: ((currentPet.xp_hygiene + currentItem.xp_hygiene_change) < 100)?(currentPet.xp_hygiene + currentItem.xp_hygiene_change):100,
+                xp_fun: ((currentPet.xp_fun + currentItem.xp_fun_change) < 100)?(currentPet.xp_fun + currentItem.xp_fun_change):100
             }
             serverConnection.updatePet(1, newStatus)
             const audio = new Audio(allAudios[indexScene])
