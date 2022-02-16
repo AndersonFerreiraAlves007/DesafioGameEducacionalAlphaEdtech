@@ -38,7 +38,7 @@ async function navigationButtonsAndDragEvents() {
     const allAudios = [
         "/assets/audios/that-nice-bite.mp3",
         "/assets/audios/469163__hawkeye-sprout__child-hum-02.wav",
-        "/assets/audios/535255__yetcop__shower-bath-bucket-being-dragged.wav"
+        "/assets/audios/535255__yetcop__shower-bath-bucket-being-dragged-cut.wav"
     ]
     updateViewScene()
 

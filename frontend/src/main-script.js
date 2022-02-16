@@ -46,5 +46,4 @@ const statusIntervalId = setInterval(() => {
 }, 1000)
 
 
-
 navigationButtonsAndDragEvents()
