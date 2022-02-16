@@ -41,68 +41,6 @@ const statusIntervalId = setInterval(() => {
     });
 }, 1000)
 
-
-
-
-// const sceneswithitems = [
-//     {
-//         "name": "cozinha",
-//         "url_image": "./assets/background-images/cartoon-set-of-kitchen-counter-with-appliances-fridge-microwave-oven-kettle-blender/1819.jpg",
-//         "id": 1,
-//         "items": [
-//             {
-//                 "name": 'uvas',
-//                 "url": "./assets/food-icons/cherries.png"
-//             },
-//             {
-//                 "name": 'torradas',
-//                 "url": "./assets/food-icons/bread-egg.png"
-//             },
-//             {
-//                 "name": 'cenoura',
-//                 "url": "./assets/food-icons/carrot.png"
-//             },
-//             {
-//                 "name": 'rosquinha',
-//                 "url": "./assets/food-icons/donut.png"
-//             },
-//             {
-//                 "name": 'batata',
-//                 "url": "./assets/food-icons/french-fries.png"
-//             },
-//         ]
-//     },
-//     {
-//         "name": "jogos",
-//         "url_image": "./assets/background-images/vector-cartoon-illustration-of-empty-kindergarten-room-with-furniture-and-toys-for-young-children-n/1926.jpg",
-//         "id": 2,
-//         "items": [
-//             {
-//                 "name": 'shampoo',
-//                 "url": "./assets/game-icons/joystick.png"
-//             },
-//             {
-//                 "name": 'sabonete',
-//                 "url": "./assets/food-icons/french-fries.png"
-//             },
-//         ]
-//     },
-//     {
-//         "name": "churras",
-//         "url_image": "./assets/background-images/modern-bathroom-interior-with-furniture-cartoon/304.jpg",
-//         "id": 2,
-//         "items": [
-//             {
-//                 "name": 'shampoo',
-//                 "url": "./assets/game-icons/joystick.png"
-//             },
-//             {
-//                 "name": 'sabonete',
-//                 "url": "./assets/food-icons/french-fries.png"
-//             },
-//         ]
-//     }]
-
 function updateStatusBarView(foodLevel, hygieneLevel) {
     $("#progressbar").progressbar({
         value: foodLevel
@@ -115,7 +53,7 @@ function updateStatusBarView(foodLevel, hygieneLevel) {
     $('#hygienebar-number').html(hygieneLevel)
 }
 
-async function foo() {
+async function navigationButtonsAndDragEvents() {
     const arrayAmbientes = await serverConnection.listSceneWithItems()
 
     // Justing testing drag and drop functionality
@@ -219,4 +157,4 @@ async function foo() {
     })
 }
 
-foo()
+navigationButtonsAndDragEvents()
