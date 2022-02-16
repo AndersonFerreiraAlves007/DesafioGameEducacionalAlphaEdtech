@@ -25,7 +25,7 @@ span {
     text-align: center;
 }
 
-div#pou {
+/* div#pou {
     background-color: blue;
     border-radius: 50%;
     width: 150px;
@@ -34,7 +34,7 @@ div#pou {
 
 .yellow {
     background-color: yellow !important;
-}
+} */
 
 #current-item {
     height: 100px;
