@@ -1,7 +1,8 @@
-import { eyeMover } from "./modules/slime-eyes.js";
-import { updateBody, setDirtLevel } from "./modules/slime-body.js";
-import { BancoDados } from "./modules/server-communication.js";
-import { foodComplain } from "./modules/slime-speech.js";
+import { eyeMover } from './modules/slime-eyes.js';
+import { updateBody, setDirtLevel } from './modules/slime-body.js';
+import { BancoDados } from './modules/server-communication.js';
+import { foodComplain } from './modules/slime-speech.js';
+import { updateStatusBarView } from './modules/status-bar.js';
 
 eyeMover('path3810-5-6-8', 'path3832-6-8-9', 'path3810-1-7-1-1', 'path3832-7-1-9-8');
 
@@ -23,8 +24,9 @@ const statusIntervalId = setInterval(() => {
 
         const currentHygieneLevel = data.pet.xp_hygiene;
         const currentFoodLevel = data.pet.xp_food;
+        const currentFunLevel = data.pet.xp_fun;
 
-        updateStatusBarView(currentFoodLevel, currentHygieneLevel)
+        updateStatusBarView(currentFoodLevel, currentHygieneLevel, currentFunLevel)
 
         console.log(hygieneLevel + ' x ' + currentHygieneLevel);
 
@@ -41,17 +43,6 @@ const statusIntervalId = setInterval(() => {
     });
 }, 1000)
 
-function updateStatusBarView(foodLevel, hygieneLevel) {
-    $("#progressbar").progressbar({
-        value: foodLevel
-    })
-    $('#progressbar-number').html(foodLevel)
-
-    $("#hygienebar").progressbar({
-        value: hygieneLevel
-    })
-    $('#hygienebar-number').html(hygieneLevel)
-}
 
 async function navigationButtonsAndDragEvents() {
     const arrayAmbientes = await serverConnection.listSceneWithItems()
