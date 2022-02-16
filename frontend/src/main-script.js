@@ -24,6 +24,8 @@ const statusIntervalId = setInterval(() => {
         const currentHygieneLevel = data.pet.xp_hygiene;
         const currentFoodLevel = data.pet.xp_food;
 
+        updateStatusBarView(currentFoodLevel, currentHygieneLevel)
+
         console.log(hygieneLevel + ' x ' + currentHygieneLevel);
 
         if (currentHygieneLevel !== hygieneLevel) {
@@ -101,6 +103,18 @@ const statusIntervalId = setInterval(() => {
 //         ]
 //     }]
 
+function updateStatusBarView(foodLevel, hygieneLevel) {
+    $("#progressbar").progressbar({
+        value: foodLevel
+    })
+    $('#progressbar-number').html(foodLevel)
+
+    $("#hygienebar").progressbar({
+        value: hygieneLevel
+    })
+    $('#hygienebar-number').html(hygieneLevel)
+}
+
 async function foo() {
     const arrayAmbientes = await serverConnection.listSceneWithItems()
 
@@ -115,15 +129,28 @@ async function foo() {
                 xp_hygiene: currentPet.xp_hygiene + currentItem.xp_hygiene_change,
                 xp_fun: currentPet.xp_fun + currentItem.xp_fun_change
             }
-            serverConnection.updatePet(1, newStatus )
+            serverConnection.updatePet(1, newStatus)
+            const audio = new Audio(allAudios[indexScene])
+            audio.play()
         }
     })
+
+    // descomente isso passe o mouse algumas vezes sobre o slime e veja o som meio horripilante
+    // $('#pou').mouseover( () => {
+    //         const audio = new Audio(allAudios[2]) 
+    //         audio.play()
+    // })
 
     // Onload scene initial status
     let currentScene
     let currentItem
     let indexScene = 0
     let indexItem = 0
+    const allAudios = [
+        "/assets/audios/that-nice-bite.mp3",
+        "/assets/audios/469163__hawkeye-sprout__child-hum-02.wav",
+        "/assets/audios/535255__yetcop__shower-bath-bucket-being-dragged.wav"
+    ]
     updateViewScene()
 
     function updateViewScene() {
@@ -131,6 +158,8 @@ async function foo() {
         currentItem = currentScene.items[indexItem]
         $('#environment-text').html(currentScene.name)
         $('main').css('background-image', `url( ${currentScene.url_image})`)
+
+        // set currentIitem to inital whenever the scene is changed
         $('#current-item').attr('src', currentScene.items[0].url_image)
         indexItem = 0
 

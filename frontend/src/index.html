@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slime</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- the reference below allows the status bar style to load properly -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
 
@@ -18,7 +21,9 @@
 
 <body>
     <header>
-        <h1>STATUS BAR</h1>
+        <!-- STATUS BAR -->
+        <div id="progressbar"></div><span id="progressbar-number"></span>
+        <div id="hygienebar"></div><span id="hygienebar-number"></span>
     </header>
     <main>
         <div id="environment">

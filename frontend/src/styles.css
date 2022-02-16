@@ -1,9 +1,8 @@
 header {
-    background-color: coral;
+    background-color: aliceblue;
 }
 main {
     background-size: cover;
-    /* opacity: 0.5; */
     height: 85vh;
     display: flex;
     flex-direction: column;
@@ -28,14 +27,17 @@ span {
 /* div#pou {
     background-color: blue;
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
-}
-
+} */
+/* 
 .yellow {
     background-color: yellow !important;
 } */
 
 #current-item {
     height: 100px;
+}
+
+#progressbar, #hygienebar {
+    width: 300px;
+    height: 20px;
 }
