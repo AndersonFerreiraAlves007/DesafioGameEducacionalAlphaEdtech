@@ -1,27 +1,40 @@
 import { serverConnection } from './server-communication.js';
+import { loggedUserId } from '../main-script.js';
 
 async function navigationButtonsAndDragEvents() {
-    const arrayAmbientes = await serverConnection.listSceneWithItems()
+    const allScenesWithItems = await serverConnection.listSceneWithItems()
 
-    // Justing testing drag and drop functionality
     $('#item-box').draggable({ revert: "valid" })
 
 
     $('#pou').droppable({
         drop: async function (event, ui) {
             $(this)
-            const currentPet = await serverConnection.getPet(1)
+            const currentPet = await serverConnection.getPet(loggedUserId)
             const newStatus = {
                 xp_food: ((currentPet.xp_food + currentItem.xp_food_change) < 100) ? (currentPet.xp_food + currentItem.xp_food_change) : 100,
                 xp_hygiene: ((currentPet.xp_hygiene + currentItem.xp_hygiene_change) < 100) ? (currentPet.xp_hygiene + currentItem.xp_hygiene_change) : 100,
                 xp_fun: ((currentPet.xp_fun + currentItem.xp_fun_change) < 100) ? (currentPet.xp_fun + currentItem.xp_fun_change) : 100
             }
-            serverConnection.updatePet(1, newStatus)
-            const audio = new Audio(allAudios[indexScene])
+            serverConnection.updatePet(loggedUserId, newStatus)
+            
+            // Get adequate audio for the scene and play it
+            audio.src = allAudios[indexScene]
             audio.play()
+
+            if(indexScene === 0){
+                ui.draggable.remove();
+
+                $('<div id="item-box"><img id="current-item" src="" alt=""></div>').insertAfter('#previous-item');
+                $('#item-box').draggable({ revert: "valid" })
+    
+                setTimeout(()=>{
+                    $('#current-item').attr('src', allScenesWithItems[indexScene].items[indexItem].url_image)
+                },250);
+            }
+
         }
     })
-
 
 
     // descomente isso passe o mouse algumas vezes sobre o slime e veja o som meio horripilante
@@ -40,15 +53,17 @@ async function navigationButtonsAndDragEvents() {
         "/assets/audios/469163__hawkeye-sprout__child-hum-02.wav",
         "/assets/audios/535255__yetcop__shower-bath-bucket-being-dragged-cut.wav"
     ]
+    const audio = new Audio()
+    
     updateViewScene()
 
     function updateViewScene() {
-        currentScene = arrayAmbientes[indexScene]
+        currentScene = allScenesWithItems[indexScene]
         currentItem = currentScene.items[indexItem]
         $('#environment-text').html(currentScene.name)
-        $('body').css('background-image', `url( ${currentScene.url_image})`)
+        $('#game-body').css({'background-image': `url( ${currentScene.url_image})`})
 
-        // set currentIitem to inital whenever the scene is changed
+        // set currentItem to inital whenever the scene is changed
         $('#current-item').attr('src', currentScene.items[0].url_image)
         indexItem = 0
 
@@ -65,7 +80,7 @@ async function navigationButtonsAndDragEvents() {
 
     // Select environment buttons
     $('#next-button').on('click', () => {
-        if (currentScene == arrayAmbientes[arrayAmbientes.length - 1]) {
+        if (currentScene == allScenesWithItems[allScenesWithItems.length - 1]) {
             indexScene = 0
         } else {
             indexScene += 1
@@ -75,7 +90,7 @@ async function navigationButtonsAndDragEvents() {
 
     $('#previous-button').on('click', () => {
         if (indexScene == 0) {
-            indexScene = arrayAmbientes.length - 1
+            indexScene = allScenesWithItems.length - 1
         } else {
             indexScene -= 1
         }
