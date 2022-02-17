@@ -29,10 +29,10 @@
     --button-height: 50px;
 }
 
-@font-face {
+/* @font-face {
     font-family: Oleander-Cakes;
     src: url("./assets/fonts/oleander_cakes/Oleander-Cakes.ttf") format("truetype");
-}
+} */
 
 .low{
     font-size: var(--size-low);
@@ -46,7 +46,9 @@
     font-size: var(--size-high);
 }
 
-body{
+
+
+/* body{
     font-family: var(--font-main);
     color: var(--color-black);
 
@@ -59,7 +61,7 @@ body{
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
-}
+} */
 
 button {
     width: var(--button-width);
@@ -78,9 +80,10 @@ ul li div{
     margin: 10px;
 
     font-size: var(--size-median);
-    /* color: var(--color-white); */
+    color: var(--color-white);
     font-family: var(--font-main);
 }
+/*
 
 .header {
     display: flex;
@@ -129,7 +132,7 @@ ul li div{
     padding: 0px;
     list-style-type: none;
 }
-
+*/
 .home-button__shower{
     background-color: var(--background-shower);
 }
@@ -140,21 +143,6 @@ ul li div{
 
 .home-button__food{
     background-color: var(--background-food);
-}
-
-.game{
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    z-index: 3000;
-    background-color: var(--background-game);
-
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: center;
 }
 
 .jokenpo{

@@ -1,33 +1,10 @@
-// version on draglle drop
-$(document).ready(function () {
-    // hiden they sections game end jokenpo
-    gameClosed();
-    jokenpoClosed();
-
-    $(".home-button__game").on("click", gameOpem);
-    function gameOpem() {
-        $(".game").show();
-    }
-
-    $(".game__closed").on("click", gameClosed);
-    function gameClosed() {
-        $(".game").hide();
-    }
-
-    $(".game__jokenpo").on("click", jokenpoOpem);
-    function jokenpoOpem() {
-        $(".jokenpo").show();
-    }
+import { serverConnection } from '../../modules/server-communication.js';
+export function agoraVai() {
+    $(".jokenpo").show();
 
     $(".jokenpo__closed").on("click", jokenpoClosed);
     function jokenpoClosed() {
         $(".jokenpo").hide();
-    }
-
-    // new tests
-    $("#item-box").on("click", testFunction);
-    function testFunction() {
-        alert("ok");
     }
 
 
@@ -40,12 +17,11 @@ $(document).ready(function () {
         classes: {
             "ui-droppable-active": "ui-state-active",
         },
-        drop: function (event, ui) {
+        drop: async function (event, ui) {
             $(this)
             // .addClass("ui-state-highlight")
             let valueChoice = ui.draggable.attr("value");
-            console.log(valueChoice);
-            choicePlayer(valueChoice);
+            await choicePlayer(valueChoice);
         }
     });
 
@@ -54,12 +30,29 @@ $(document).ready(function () {
     // $(".jokenpo__paper").on("click", choice);
     // $(".jokenpo__scissors").on("click", choice);
 
-    const imageRock = "./assets/images/game/jokenpo/rock.png";
-    const imagePaper = "./assets/images/game/jokenpo/paper.png";
-    const imageScissors = "./assets/images/game/jokenpo/scissors.png";
+    // organizar caminhos
+    const imageRock = "../../assets/images/game/jokenpo/rock.png";
+    const imagePaper = "../../../assets/images/game/jokenpo/paper.png";
+    const imageScissors = "../assets/images/game/jokenpo/scissors.png";
 
     // call the function jokenpo, change background of div ("jokenpo__player-choice")
-    function choicePlayer(number) {
+    async function choicePlayer(number) {
+        const petId = parseInt(localStorage.getItem("pet_id"), 10);
+        const currentPet = await serverConnection.getPet(petId);
+
+        const xp_fun_change = 10;
+        const xp_hygiene_change = -10;
+        const xp_food_change = -10;
+
+        const objectPet = {
+            xp_food: ((currentPet.xp_food + xp_food_change) > 0) ? (currentPet.xp_food + xp_food_change) : 0,
+            xp_hygiene: ((currentPet.xp_hygiene + xp_hygiene_change) > 0) ? (currentPet.xp_hygiene + xp_hygiene_change) : 0,
+
+
+            xp_fun: ((currentPet.xp_fun + xp_fun_change) < 100) ? (currentPet.xp_fun + xp_fun_change) : 100
+        }
+        await serverConnection.updatePet(petId, objectPet);
+
         const choicePlayer = parseInt(number);
         const result = jokenpo(choicePlayer);
 
@@ -209,4 +202,6 @@ $(document).ready(function () {
             "result": result
         }
     }
-});
+
+}
+
