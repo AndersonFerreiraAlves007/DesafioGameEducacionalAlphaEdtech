@@ -4,7 +4,7 @@ REST API para um game educacional.
 
 # Truncate
 
-## Resetar todos os bancos de dados
+## Resetar todo o banco de dados
 
 ### Request
 

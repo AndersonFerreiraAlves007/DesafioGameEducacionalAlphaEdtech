@@ -1,0 +1,118 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+}
+
+header {
+    backdrop-filter: blur(50px);
+    width: 70vw;
+    min-height: 12vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+main {
+    background-size: cover;
+    height: 95vh;
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+@media (max-width: 1420px){
+    main {
+
+        width: 100%;
+    }
+    header{
+        width: 100%;
+    }
+}
+@media (max-width: 950px){
+    header {
+        flex-direction: column;
+        align-items: stretch;
+
+    }
+}
+
+#environment-text , #item-box{
+    font-size: 60px;
+}
+
+div#environment, div#items {
+    display: flex;
+    align-items: center;
+}
+
+span {
+    width: 200px;
+    text-align: center;
+}
+
+/* div#pou {
+    background-color: blue;
+    border-radius: 50%;
+} */
+/* 
+.yellow {
+    background-color: yellow !important;
+} */
+
+#current-item {
+    height: 100px;
+}
+
+#progressbar, #hygienebar, #funbar {
+    width: 300px;
+    height: 20px;
+}
+@media (max-width: 950px){
+    #progressbar, #hygienebar, #funbar {
+        width: 100%;
+    }
+}
+
+/* progress bar empty color */
+#progressbar {
+    background: rgb(250, 216, 221);
+}
+
+#hygienebar {
+    background: lightcyan;
+}
+
+#funbar {
+    background: lightgoldenrodyellow;
+}
+
+/* progress bar full color */
+#progressbar > div {
+    background: lightcoral;
+}
+
+#hygienebar > div {
+    background: cyan;
+}
+
+#funbar > div {
+    background: rgb(255, 255, 110);
+}
