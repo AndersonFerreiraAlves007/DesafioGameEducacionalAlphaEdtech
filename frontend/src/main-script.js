@@ -66,3 +66,5 @@ const statusIntervalId = setInterval(() => {
 
 
 navigationButtonsAndDragEvents()
+
+export {loggedUserId};
