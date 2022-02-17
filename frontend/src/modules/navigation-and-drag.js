@@ -1,9 +1,8 @@
 import { serverConnection } from './server-communication.js';
 
 async function navigationButtonsAndDragEvents() {
-    const arrayAmbientes = await serverConnection.listSceneWithItems()
+    const allScenesWithItems = await serverConnection.listSceneWithItems()
 
-    // Justing testing drag and drop functionality
     $('#item-box').draggable({ revert: "valid" })
 
 
@@ -23,7 +22,6 @@ async function navigationButtonsAndDragEvents() {
             audio.play()
         }
     })
-
 
 
     // descomente isso passe o mouse algumas vezes sobre o slime e veja o som meio horripilante
@@ -47,7 +45,7 @@ async function navigationButtonsAndDragEvents() {
     updateViewScene()
 
     function updateViewScene() {
-        currentScene = arrayAmbientes[indexScene]
+        currentScene = allScenesWithItems[indexScene]
         currentItem = currentScene.items[indexItem]
         $('#environment-text').html(currentScene.name)
         $('body').css('background-image', `url( ${currentScene.url_image})`)
@@ -69,7 +67,7 @@ async function navigationButtonsAndDragEvents() {
 
     // Select environment buttons
     $('#next-button').on('click', () => {
-        if (currentScene == arrayAmbientes[arrayAmbientes.length - 1]) {
+        if (currentScene == allScenesWithItems[allScenesWithItems.length - 1]) {
             indexScene = 0
         } else {
             indexScene += 1
@@ -79,7 +77,7 @@ async function navigationButtonsAndDragEvents() {
 
     $('#previous-button').on('click', () => {
         if (indexScene == 0) {
-            indexScene = arrayAmbientes.length - 1
+            indexScene = allScenesWithItems.length - 1
         } else {
             indexScene -= 1
         }
