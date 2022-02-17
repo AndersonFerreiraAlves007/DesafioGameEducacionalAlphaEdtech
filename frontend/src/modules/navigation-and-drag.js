@@ -12,12 +12,14 @@ async function navigationButtonsAndDragEvents() {
             $(this)
             const currentPet = await serverConnection.getPet(1)
             const newStatus = {
-                xp_food: ((currentPet.xp_food + currentItem.xp_food_change) < 100)?(currentPet.xp_food + currentItem.xp_food_change):100,
-                xp_hygiene: ((currentPet.xp_hygiene + currentItem.xp_hygiene_change) < 100)?(currentPet.xp_hygiene + currentItem.xp_hygiene_change):100,
-                xp_fun: ((currentPet.xp_fun + currentItem.xp_fun_change) < 100)?(currentPet.xp_fun + currentItem.xp_fun_change):100
+                xp_food: ((currentPet.xp_food + currentItem.xp_food_change) < 100) ? (currentPet.xp_food + currentItem.xp_food_change) : 100,
+                xp_hygiene: ((currentPet.xp_hygiene + currentItem.xp_hygiene_change) < 100) ? (currentPet.xp_hygiene + currentItem.xp_hygiene_change) : 100,
+                xp_fun: ((currentPet.xp_fun + currentItem.xp_fun_change) < 100) ? (currentPet.xp_fun + currentItem.xp_fun_change) : 100
             }
             serverConnection.updatePet(1, newStatus)
-            const audio = new Audio(allAudios[indexScene])
+            
+            // Get adequate audio for the scene and play it
+            audio.src = allAudios[indexScene]
             audio.play()
         }
     })
@@ -40,6 +42,8 @@ async function navigationButtonsAndDragEvents() {
         "/assets/audios/469163__hawkeye-sprout__child-hum-02.wav",
         "/assets/audios/535255__yetcop__shower-bath-bucket-being-dragged-cut.wav"
     ]
+    const audio = new Audio()
+    
     updateViewScene()
 
     function updateViewScene() {
@@ -48,7 +52,7 @@ async function navigationButtonsAndDragEvents() {
         $('#environment-text').html(currentScene.name)
         $('body').css('background-image', `url( ${currentScene.url_image})`)
 
-        // set currentIitem to inital whenever the scene is changed
+        // set currentItem to inital whenever the scene is changed
         $('#current-item').attr('src', currentScene.items[0].url_image)
         indexItem = 0
 
@@ -108,4 +112,4 @@ async function navigationButtonsAndDragEvents() {
     })
 }
 
-export {navigationButtonsAndDragEvents};
+export { navigationButtonsAndDragEvents };
