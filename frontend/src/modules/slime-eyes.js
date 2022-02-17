@@ -56,15 +56,14 @@ function eyeMover(leftEyeId, leftEyeGlowId, rightEyeId, rightEyeGlowId){
             eyeXIncrement = ((mouseX - slimePosition.x) * increment) * -1;
         }
     
-        if ((slimePosition.y + 91) - mouseY > 0){
-            const increment = 2 / (slimePosition.y + 91);
-            eyeYIncrement = (((slimePosition.y + 91) - mouseY) * increment) * -1;
+        if ((eyeStartValues[0].y) - mouseY > 0){
+            const increment = 3 / (eyeStartValues[0].y);
+            eyeYIncrement = (((eyeStartValues[0].y) - mouseY) * increment) * -1;
         }else{
-            const heightInterval = (window.innerHeight - (slimePosition.y + 91));
-            const increment = 2 / heightInterval;
+            const heightInterval = (window.innerHeight - (eyeStartValues[0].y));
+            const increment = 3 / heightInterval;
             eyeYIncrement = ((mouseY) * increment) ;
         }
-    
     
         // Eye components
         const eyeLeft = document.getElementById('path3810-5-6-8');
