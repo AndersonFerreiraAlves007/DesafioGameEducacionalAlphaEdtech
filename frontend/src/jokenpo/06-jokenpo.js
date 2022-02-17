@@ -1,3 +1,4 @@
+// version on draglle drop
 $(document).ready(function () {
     // hiden they sections game end jokenpo
     gameClosed();
@@ -22,29 +23,89 @@ $(document).ready(function () {
     function jokenpoClosed() {
         $(".jokenpo").hide();
     }
-    const rock = $("jokenpo");
-    $(".jokenpo__rock").on("click", teste);
-    $(".jokenpo__paper").on("click", teste);
-    $(".jokenpo__scissors").on("click", teste);
 
-    function teste() {
-        $(this).click(function () {
-            console.log($(this).attr("value"));
 
-            const choicePlayer = $(this).attr("value");
-            const result = jokenpo(choicePlayer);
+    // move buttons in screan
+    $("#jokenpo__rock").draggable({ revert: "valid" });
+    $(".jokenpo__paper").draggable({ revert: "valid" });
+    $(".jokenpo__scissors").draggable({ revert: "valid" });
 
-            $(".jokenpo__slime-choice").html(`
-            <p> ${result.machineChoice} </p>
-            `);
-            $(".jokenpo__player-choice").html(`
-            <p> ${result.playerChoice} </p>
-            `);
-            // alert(`resultado = ${result.result}`);
-            $(".jokenpo__result").html(`
+    $(".jokenpo__player-choice").droppable({
+        classes: {
+            "ui-droppable-active": "ui-state-active",
+        },
+        drop: function (event, ui) {
+            $(this)
+            // .addClass("ui-state-highlight")
+            let valueChoice = ui.draggable.attr("value");
+            console.log(valueChoice);
+            choicePlayer(valueChoice);
+        }
+    });
+
+    // will be replaced by the drag and drop code
+    // $(".jokenpo__rock").on("click", choice);
+    // $(".jokenpo__paper").on("click", choice);
+    // $(".jokenpo__scissors").on("click", choice);
+
+    const imageRock = "./assets/images/game/jokenpo/rock.png";
+    const imagePaper = "./assets/images/game/jokenpo/paper.png";
+    const imageScissors = "./assets/images/game/jokenpo/scissors.png";
+
+    // call the function jokenpo, change background of div ("jokenpo__player-choice")
+    function choicePlayer(number) {
+        const choicePlayer = parseInt(number);
+        const result = jokenpo(choicePlayer);
+
+        let imageSlimeChoice = "";
+        switch (result.machineChoice) {
+            case "pedra":
+                imageSlimeChoice = imageRock;
+                break;
+            case "papel":
+                imageSlimeChoice = imagePaper;
+                break;
+            case "tesoura":
+                imageSlimeChoice = imageScissors;
+                break;
+            default:
+                "erro in siwtch of result.machineChoice"
+        }
+
+        $(".jokenpo__slime-choice").css({
+            "background-image": `url(${imageSlimeChoice})`,
+            "background-size": "contain",
+            "background-repeat": "no-repeat",
+            "background-position": "center",
+            "background-color": "#ffffff",
+        });
+
+        let imagePlayerChoice = "";
+        switch (result.playerChoice) {
+            case "pedra":
+                imagePlayerChoice = imageRock;
+                break;
+            case "papel":
+                imagePlayerChoice = imagePaper;
+                break;
+            case "tesoura":
+                imagePlayerChoice = imageScissors;
+                break;
+            default:
+                "erro in siwtch of result.machineChoice"
+        }
+
+        $(".jokenpo__player-choice").css({
+            "background-image": `url(${imagePlayerChoice})`,
+            "background-size": "contain",
+            "background-repeat": "no-repeat",
+            "background-position": "center",
+            "background-color": "#ffffff",
+        });
+
+        $(".jokenpo__result").html(`
             <div> <p> ${result.result} </p> </div>
             `);
-        })
     }
 
     // main function
@@ -55,7 +116,8 @@ $(document).ready(function () {
         // paper = 2
         // scissors = 3
 
-        const playerChoice = parseInt(_num);
+        // the value is already treated as an integer number
+        const playerChoice = _num;
 
         const machineChoice = parseInt(Math.random() * 3 + 1);
 

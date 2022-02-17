@@ -1,3 +1,4 @@
+// version on draglle drop
 $(document).ready(function () {
     // hiden they sections game end jokenpo
     gameClosed();
@@ -22,25 +23,67 @@ $(document).ready(function () {
     function jokenpoClosed() {
         $(".jokenpo").hide();
     }
-    const rock = $("jokenpo");
-    $(".jokenpo__rock").on("click", teste);
-    $(".jokenpo__paper").on("click", teste);
-    $(".jokenpo__scissors").on("click", teste);
 
-    function teste() {
+    // will be replaced by the drag and drop code
+    $(".jokenpo__rock").on("click", choice);
+    $(".jokenpo__paper").on("click", choice);
+    $(".jokenpo__scissors").on("click", choice);
+
+    const imageRock = "./assets/images/game/jokenpo/rock.png";
+    const imagePaper = "./assets/images/game/jokenpo/paper.png";
+    const imageScissors = "./assets/images/game/jokenpo/scissors.png";
+
+    function choice() {
         $(this).click(function () {
-            console.log($(this).attr("value"));
-
             const choicePlayer = $(this).attr("value");
             const result = jokenpo(choicePlayer);
 
-            $(".jokenpo__slime-choice").html(`
-            <p> ${result.machineChoice} </p>
-            `);
-            $(".jokenpo__player-choice").html(`
-            <p> ${result.playerChoice} </p>
-            `);
-            // alert(`resultado = ${result.result}`);
+            let imageSlimeChoice = "";
+            switch (result.machineChoice) {
+                case "pedra":
+                    imageSlimeChoice = imageRock;
+                    break;
+                case "papel":
+                    imageSlimeChoice = imagePaper;
+                    break;
+                case "tesoura":
+                    imageSlimeChoice = imageScissors;
+                    break;
+                default:
+                    "erro in siwtch of result.machineChoice"
+            }
+
+            $(".jokenpo__slime-choice").css({
+                "background-image": `url(${imageSlimeChoice})`,
+                "background-size": "contain",
+                "background-repeat": "no-repeat",
+                "background-position": "center",
+                "background-color": "#ffffff",
+            });
+
+            let imagePlayerChoice = "";
+            switch (result.playerChoice) {
+                case "pedra":
+                    imagePlayerChoice = imageRock;
+                    break;
+                case "papel":
+                    imagePlayerChoice = imagePaper;
+                    break;
+                case "tesoura":
+                    imagePlayerChoice = imageScissors;
+                    break;
+                default:
+                    "erro in siwtch of result.machineChoice"
+            }
+
+            $(".jokenpo__player-choice").css({
+                "background-image": `url(${imagePlayerChoice})`,
+                "background-size": "contain",
+                "background-repeat": "no-repeat",
+                "background-position": "center",
+                "background-color": "#ffffff",
+            });
+
             $(".jokenpo__result").html(`
             <div> <p> ${result.result} </p> </div>
             `);
