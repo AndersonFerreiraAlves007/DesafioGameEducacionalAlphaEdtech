@@ -48,7 +48,7 @@ async function navigationButtonsAndDragEvents() {
         currentScene = allScenesWithItems[indexScene]
         currentItem = currentScene.items[indexItem]
         $('#environment-text').html(currentScene.name)
-        $('body').css('background-image', `url( ${currentScene.url_image})`)
+        $('#game-body').css({'background-image': `url( ${currentScene.url_image})`})
 
         // set currentItem to inital whenever the scene is changed
         $('#current-item').attr('src', currentScene.items[0].url_image)
