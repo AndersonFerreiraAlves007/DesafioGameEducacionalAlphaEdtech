@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Slime</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- the reference below allows the status bar style to load properly -->
@@ -120,59 +121,58 @@
             <div id="item-box"><img id="current-item" src="" alt=""></div>
             <img id="next-item" src="../assets/button-icons/next-arrow-button.png" alt="">
         </div>
-
-        <section class="game">
-            <section class="header">
-                <div class="status-bar">status</div>
-                <button class="game__closed close">fechar</button>
-            </section>
-            <div class="slime__image"></div>
-
-            <ul class="game__buttons list-button">
-                <li><button class="game__jokenpo">jokenpo</button></li>
-                <li><button class="game__color-items">colorir</button></li>
-                <li><button class="game__write-words">palavras</button></li>
-            </ul>
-        </section>
-
-        <section class="jokenpo">
-            <section class="header">
-                <div class="status-bar">status</div>
-                <button class="jokenpo__closed close">fechar</button>
-            </section>
-
-            <div class="slime__image"></div>
-
-            <div class="jokenpo__result"></div>
-
-            <div class="jokenpo__slime-choice"></div>
-
-            <div class="jokenpo__player-choice"></div>
-
-            <ul class="jokenpo__list list-button">
-                <li>
-                    <div id="jokenpo__rock" value="1" class="jokenpo__rock"></div>
-                    <label for="jokenpo__rock">pedra</label>
-                </li>
-
-
-                <li>
-                    <div id="jokenpo__paper" value="2" class="jokenpo__paper"></div>
-                    <label for="jokenpo__paper">papel</label>
-                </li>
-
-
-                <li>
-                    <div id="jokenpo__scissors" value="3" class="jokenpo__scissors"></div>
-                    <label for="jokenpo__scissors">tesoura</label>
-                </li>
-
-            </ul>
-        </section>
-
-        <script src="./jokenpo/06-jokenpo.js" defer></script>
-
     </main>
+
+    <section class="game">
+        <section class="header">
+            <div class="status-bar">status</div>
+            <button class="game__closed close">fechar</button>
+        </section>
+        <div class="slime__image"></div>
+
+        <ul class="game__buttons list-button">
+            <li><button class="game__jokenpo">jokenpo</button></li>
+            <li><button class="game__color-items">colorir</button></li>
+            <li><button class="game__write-words">palavras</button></li>
+        </ul>
+    </section>
+
+    <section class="jokenpo">
+        <section class="header">
+            <div class="status-bar">status</div>
+            <button class="jokenpo__closed close">fechar</button>
+        </section>
+
+        <div class="slime__image"></div>
+
+        <div class="jokenpo__result"></div>
+
+        <div class="jokenpo__slime-choice"></div>
+
+        <div class="jokenpo__player-choice"></div>
+
+        <ul class="jokenpo__list list-button">
+            <li>
+                <div id="jokenpo__rock" value="1" class="jokenpo__rock"></div>
+                <label for="jokenpo__rock">pedra</label>
+            </li>
+
+
+            <li>
+                <div id="jokenpo__paper" value="2" class="jokenpo__paper"></div>
+                <label for="jokenpo__paper">papel</label>
+            </li>
+
+
+            <li>
+                <div id="jokenpo__scissors" value="3" class="jokenpo__scissors"></div>
+                <label for="jokenpo__scissors">tesoura</label>
+            </li>
+
+        </ul>
+    </section>
+
+    <script src="./games/jokenpo/jokenpo.js" defer></script>
 </body>
 
 </html>

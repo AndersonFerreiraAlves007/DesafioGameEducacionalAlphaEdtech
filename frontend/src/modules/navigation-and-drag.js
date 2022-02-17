@@ -12,9 +12,9 @@ async function navigationButtonsAndDragEvents() {
             $(this)
             const currentPet = await serverConnection.getPet(1)
             const newStatus = {
-                xp_food: ((currentPet.xp_food + currentItem.xp_food_change) < 100)?(currentPet.xp_food + currentItem.xp_food_change):100,
-                xp_hygiene: ((currentPet.xp_hygiene + currentItem.xp_hygiene_change) < 100)?(currentPet.xp_hygiene + currentItem.xp_hygiene_change):100,
-                xp_fun: ((currentPet.xp_fun + currentItem.xp_fun_change) < 100)?(currentPet.xp_fun + currentItem.xp_fun_change):100
+                xp_food: ((currentPet.xp_food + currentItem.xp_food_change) < 100) ? (currentPet.xp_food + currentItem.xp_food_change) : 100,
+                xp_hygiene: ((currentPet.xp_hygiene + currentItem.xp_hygiene_change) < 100) ? (currentPet.xp_hygiene + currentItem.xp_hygiene_change) : 100,
+                xp_fun: ((currentPet.xp_fun + currentItem.xp_fun_change) < 100) ? (currentPet.xp_fun + currentItem.xp_fun_change) : 100
             }
             serverConnection.updatePet(1, newStatus)
             const audio = new Audio(allAudios[indexScene])
@@ -25,9 +25,9 @@ async function navigationButtonsAndDragEvents() {
 
 
     // descomente isso passe o mouse algumas vezes sobre o slime e veja o som meio horripilante
-    // $('#pou').mouseover( () => {
-    //         const audio = new Audio(allAudios[2]) 
-    //         audio.play()
+    // $('#pou').mouseover(() => {
+    //     const audio = new Audio(allAudios[2])
+    //     audio.play()
     // })
 
     // Onload scene initial status
@@ -108,4 +108,4 @@ async function navigationButtonsAndDragEvents() {
     })
 }
 
-export {navigationButtonsAndDragEvents};
+export { navigationButtonsAndDragEvents };

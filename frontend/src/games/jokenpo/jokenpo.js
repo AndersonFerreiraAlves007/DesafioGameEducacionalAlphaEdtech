@@ -24,6 +24,12 @@ $(document).ready(function () {
         $(".jokenpo").hide();
     }
 
+    // new tests
+    $("#item-box").on("click", testFunction);
+    function testFunction() {
+        alert("ok");
+    }
+
 
     // move buttons in screan
     $("#jokenpo__rock").draggable({ revert: "valid" });
