@@ -84,13 +84,6 @@ async function navigationButtonsAndDragEvents() {
         
     })
 
-
-    // descomente isso passe o mouse algumas vezes sobre o slime e veja o som meio horripilante
-    // $('#pou').mouseover(() => {
-    //     const audio = new Audio(allAudios[2])
-    //     audio.play()
-    // })
-
     // Onload scene initial status
     let currentScene
     let currentItem
