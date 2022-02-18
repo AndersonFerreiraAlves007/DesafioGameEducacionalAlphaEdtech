@@ -32,8 +32,6 @@ updateBody();
 const changeDirtyLevel = setDirtLevel();
 
 
-
-
 // STATUS WATCH
 
 let hygieneLevel;
@@ -41,7 +39,7 @@ let foodLevel;
 
 const statusIntervalId = setInterval(() => {
     serverConnection.getUserWithPets(loggedUserId).then((data) => {
-        console.log(data);
+        //console.log(data);
 
         const currentHygieneLevel = data.pet.xp_hygiene;
         const currentFoodLevel = data.pet.xp_food;
@@ -49,7 +47,7 @@ const statusIntervalId = setInterval(() => {
 
         updateStatusBarView(currentFoodLevel, currentHygieneLevel, currentFunLevel)
 
-        console.log(hygieneLevel + ' x ' + currentHygieneLevel);
+        //console.log(hygieneLevel + ' x ' + currentHygieneLevel);
 
         if (currentHygieneLevel !== hygieneLevel) {
             hygieneLevel = currentHygieneLevel;
