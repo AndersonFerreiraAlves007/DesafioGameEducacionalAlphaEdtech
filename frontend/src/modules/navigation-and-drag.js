@@ -84,13 +84,6 @@ async function navigationButtonsAndDragEvents() {
         
     })
 
-
-    // descomente isso passe o mouse algumas vezes sobre o slime e veja o som meio horripilante
-    // $('#pou').mouseover(() => {
-    //     const audio = new Audio(allAudios[2])
-    //     audio.play()
-    // })
-
     // Onload scene initial status
     let currentScene
     let currentItem
@@ -102,6 +95,8 @@ async function navigationButtonsAndDragEvents() {
         "/assets/audios/535255__yetcop__shower-bath-bucket-being-dragged-cut.wav"
     ]
     const audio = new Audio()
+    const transitionAudio = new Audio('./assets/audios/door-front-opening-shorter.mp3')
+    const itemSelectorAudio = new Audio('./assets/audios/washing-machine-selector-switch-one.mp3')
 
     updateViewScene()
 
@@ -116,6 +111,7 @@ async function navigationButtonsAndDragEvents() {
         indexItem = 0
 
         // reset position of item after altering the scene or the item itself
+        transitionAudio.play()
         resetItemPosition()
     }
 
@@ -155,6 +151,7 @@ async function navigationButtonsAndDragEvents() {
         currentItem = currentScene.items[indexItem]
         // $('#item-box').html(currentItem.name)
         $('#current-item').attr('src', currentItem.url_image)
+        itemSelectorAudio.play()
         resetItemPosition()
     })
 
@@ -167,6 +164,7 @@ async function navigationButtonsAndDragEvents() {
         currentItem = currentScene.items[indexItem]
         // $('#item-box').html(currentItem.name)
         $('#current-item').attr('src', currentItem.url_image)
+        itemSelectorAudio.play()
         resetItemPosition()
     })
 }

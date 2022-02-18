@@ -122,7 +122,17 @@ function setDirtLevel(){
         if(dirtLevel === 0){
             clearInterval(intervalId);
 
-            statusRenderingArea.innerHTML = "";
+            //statusRenderingArea.innerHTML = "";
+            
+            if(document.contains(document.getElementById(`slime-dirt-spots`))){
+                document.getElementById('slime-dirt-spots').remove();
+            }
+            
+            if(document.contains(document.getElementById(`slime-stink-1`))){
+                document.getElementById(`slime-stink-1`).remove()
+            }else if(document.contains(document.getElementById(`slime-stink-2`))){
+                document.getElementById(`slime-stink-2`).remove()
+            }
 
         } else if(dirtLevel === 1){
 
@@ -132,6 +142,10 @@ function setDirtLevel(){
                 document.getElementById(`slime-stink-1`).remove()
             }else if(document.contains(document.getElementById(`slime-stink-2`))){
                 document.getElementById(`slime-stink-2`).remove()
+            }
+
+            if(document.contains(document.getElementById(`slime-dirt-spots`))){
+                document.getElementById('slime-dirt-spots').remove();
             }
 
             statusRenderingArea.insertAdjacentHTML('afterbegin', dirtData[0]);
@@ -146,9 +160,17 @@ function setDirtLevel(){
                 document.getElementById(`slime-stink-2`).remove()
             }
 
+            if(document.contains(document.getElementById(`slime-dirt-spots`))){
+                document.getElementById('slime-dirt-spots').remove();
+            }
+
+            statusRenderingArea.insertAdjacentHTML('afterbegin', dirtData[0]);
+
+            /*
             if(!document.contains(document.getElementById(`slime-dirt-spots`))){
                 statusRenderingArea.insertAdjacentHTML('afterbegin', dirtData[0]);
             };
+            */
 
             statusRenderingArea.insertAdjacentHTML('afterbegin', dirtData[1])
     
