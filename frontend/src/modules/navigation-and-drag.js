@@ -96,6 +96,7 @@ async function navigationButtonsAndDragEvents() {
     ]
     const audio = new Audio()
     const transitionAudio = new Audio('./assets/audios/door-front-opening-shorter.mp3')
+    const itemSelectorAudio = new Audio('./assets/audios/washing-machine-selector-switch-one.mp3')
 
     updateViewScene()
 
@@ -150,6 +151,7 @@ async function navigationButtonsAndDragEvents() {
         currentItem = currentScene.items[indexItem]
         // $('#item-box').html(currentItem.name)
         $('#current-item').attr('src', currentItem.url_image)
+        itemSelectorAudio.play()
         resetItemPosition()
     })
 
@@ -162,6 +164,7 @@ async function navigationButtonsAndDragEvents() {
         currentItem = currentScene.items[indexItem]
         // $('#item-box').html(currentItem.name)
         $('#current-item').attr('src', currentItem.url_image)
+        itemSelectorAudio.play()
         resetItemPosition()
     })
 }
