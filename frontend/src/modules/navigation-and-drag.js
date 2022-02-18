@@ -95,7 +95,7 @@ async function navigationButtonsAndDragEvents() {
         "/assets/audios/535255__yetcop__shower-bath-bucket-being-dragged-cut.wav"
     ]
     const audio = new Audio()
-    const transitionAudio = new Audio('./assets/audios/door-front-opening.wav')
+    const transitionAudio = new Audio('./assets/audios/door-front-opening-shorter.mp3')
 
     updateViewScene()
 
