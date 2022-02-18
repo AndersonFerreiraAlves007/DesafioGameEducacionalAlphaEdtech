@@ -144,6 +144,10 @@ function setDirtLevel(){
                 document.getElementById(`slime-stink-2`).remove()
             }
 
+            if(document.contains(document.getElementById(`slime-dirt-spots`))){
+                document.getElementById('slime-dirt-spots').remove();
+            }
+
             statusRenderingArea.insertAdjacentHTML('afterbegin', dirtData[0]);
 
         } else {
@@ -156,9 +160,17 @@ function setDirtLevel(){
                 document.getElementById(`slime-stink-2`).remove()
             }
 
+            if(document.contains(document.getElementById(`slime-dirt-spots`))){
+                document.getElementById('slime-dirt-spots').remove();
+            }
+
+            statusRenderingArea.insertAdjacentHTML('afterbegin', dirtData[0]);
+
+            /*
             if(!document.contains(document.getElementById(`slime-dirt-spots`))){
                 statusRenderingArea.insertAdjacentHTML('afterbegin', dirtData[0]);
             };
+            */
 
             statusRenderingArea.insertAdjacentHTML('afterbegin', dirtData[1])
     
