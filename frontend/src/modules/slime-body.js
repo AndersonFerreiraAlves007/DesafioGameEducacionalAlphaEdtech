@@ -122,7 +122,17 @@ function setDirtLevel(){
         if(dirtLevel === 0){
             clearInterval(intervalId);
 
-            statusRenderingArea.innerHTML = "";
+            //statusRenderingArea.innerHTML = "";
+            
+            if(document.contains(document.getElementById(`slime-dirt-spots`))){
+                document.getElementById('slime-dirt-spots').remove();
+            }
+            
+            if(document.contains(document.getElementById(`slime-stink-1`))){
+                document.getElementById(`slime-stink-1`).remove()
+            }else if(document.contains(document.getElementById(`slime-stink-2`))){
+                document.getElementById(`slime-stink-2`).remove()
+            }
 
         } else if(dirtLevel === 1){
 
