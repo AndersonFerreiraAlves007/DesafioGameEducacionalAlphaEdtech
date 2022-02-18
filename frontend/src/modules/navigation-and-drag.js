@@ -23,28 +23,33 @@ async function navigationButtonsAndDragEvents() {
 
     $('#pou').droppable({
         drop: async function (event, ui) {
-            // $(this)
-            await updatePetStatus(loggedUserId, currentItem)
+            
+            if(indexScene !== 2){
+                // $(this)
+                await updatePetStatus(loggedUserId, currentItem)
 
-            // Get adequate audio for the scene and play it
-            audio.src = allAudios[indexScene]
-            audio.play()
+                // Get adequate audio for the scene and play it
+                audio.src = allAudios[indexScene]
+                audio.play()
 
-            if (indexScene === 0) {
-                ui.draggable.remove();
+                if (indexScene === 0) {
+                    ui.draggable.remove();
 
-                $('<div id="item-box"><img id="current-item" src="" alt=""></div>').insertAfter('#previous-item');
-                $('#item-box').draggable({ revert: "valid" })
+                    $('<div id="item-box"><img id="current-item" src="" alt=""></div>').insertAfter('#previous-item');
+                    $('#item-box').draggable({ revert: "valid" })
 
-                setTimeout(() => {
-                    $('#current-item').attr('src', allScenesWithItems[indexScene].items[indexItem].url_image)
-                }, 250);
+                    setTimeout(() => {
+                        $('#current-item').attr('src', allScenesWithItems[indexScene].items[indexItem].url_image)
+                    }, 250);
+                }
+            
+                if (indexScene === 1) {
+                    // code jokenpo.js
+                    console.log("deu certo");
+                    agoraVai();
+                }
             }
-            if (indexScene === 1) {
-                // code jokenpo.js
-                console.log("deu certo");
-                agoraVai();
-            }
+
         },
         over: async function(event, ui){
 
