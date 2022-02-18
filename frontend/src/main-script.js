@@ -11,16 +11,17 @@ const loggedUserId = localStorage.getItem('user_id');
 let currentPet;
 let currentUser;
 
-async function getUser(){
+async function getUser() {
 
     const dataUsers = await serverConnection.getUserWithPets(Number(loggedUserId));
-    currentPet =  dataUsers.pet;
+    currentPet = dataUsers.pet;
     currentUser = dataUsers.user;
+    localStorage.setItem("pet_id", String(dataUsers.pet.id));
 }
 
-if(loggedUserId){
+if (loggedUserId) {
     getUser();
-}else{
+} else {
     window.location.replace('/login');
 }
 
@@ -65,4 +66,4 @@ const statusIntervalId = setInterval(() => {
 
 navigationButtonsAndDragEvents()
 
-export {loggedUserId};
+export { loggedUserId };

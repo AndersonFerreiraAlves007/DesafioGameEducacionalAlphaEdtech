@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Slime</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- the reference below allows the status bar style to load properly -->
@@ -17,6 +18,7 @@
     <script type="module" src="./main-script.js" charset="utf-8"></script>
 
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="jokenpo-style.css">
 </head>
 
 <body>
@@ -37,7 +39,7 @@
                 <div id="funbar"></div>
             </div>
         </header>
-        
+
         <main>
             <div id="environment">
                 <img id="previous-button" src="../assets/button-icons/previous-arrow-button.png" alt="">
@@ -100,12 +102,14 @@
                                     inkscape:label="slime-right-eye" 
                                 />
 
-                                <circle style="display:inline;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.324489"
+                                <circle
+                                    style="display:inline;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.324489"
                                     id="path3832-6-8-9" transform="scale(-1,1)" cx="-3.6363509" cy="4.8091598"
                                     r="0.64897799" inkscape:label="slime-left-eye-glow" 
                                 />
 
-                                <circle style="display:inline;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.324489"
+                                <circle
+                                    style="display:inline;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.324489"
                                     id="path3832-7-1-9-8" transform="scale(-1,1)" cx="-8.1791954" cy="4.8091598"
                                     r="0.64897799" inkscape:label="slime-right-eye-glow" 
                                 />
@@ -129,6 +133,55 @@
                 <img id="next-item" src="../assets/button-icons/next-arrow-button.png" alt="">
             </div>
         </main>
+
+        <!-- <section class="game">
+            <section class="header">
+                <div class="status-bar">status</div>
+                <button class="game__closed close">fechar</button>
+            </section>
+            <div class="slime__image"></div>
+
+            <ul class="game__buttons list-button">
+                <li><button class="game__jokenpo">jokenpo</button></li>
+                <li><button class="game__color-items">colorir</button></li>
+                <li><button class="game__write-words">palavras</button></li>
+            </ul>
+        </section> -->
+
+        <section class="jokenpo" style="display: none;">
+            <section class="header">
+                <div class="status-bar">status</div>
+                <button class="jokenpo__closed close">fechar</button>
+            </section>
+
+            <div class="slime__image"></div>
+
+            <div class="jokenpo__result"></div>
+
+            <div class="jokenpo__slime-choice"></div>
+
+            <div class="jokenpo__player-choice"></div>
+
+            <ul class="jokenpo__list list-button">
+                <li>
+                    <div value="1" class="jokenpo__rock"></div>
+                    <label for="jokenpo__rock">pedra</label>
+                </li>
+
+
+                <li>
+                    <div value="2" class="jokenpo__paper"></div>
+                    <label for="jokenpo__paper">papel</label>
+                </li>
+
+
+                <li>
+                    <div value="3" class="jokenpo__scissors"></div>
+                    <label for="jokenpo__scissors">tesoura</label>
+                </li>
+
+            </ul>
+        </section>
     </div>
 </body>
 
