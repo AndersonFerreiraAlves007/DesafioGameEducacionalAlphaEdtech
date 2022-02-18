@@ -95,6 +95,7 @@ async function navigationButtonsAndDragEvents() {
         "/assets/audios/535255__yetcop__shower-bath-bucket-being-dragged-cut.wav"
     ]
     const audio = new Audio()
+    const transitionAudio = new Audio('./assets/audios/door-front-opening.wav')
 
     updateViewScene()
 
@@ -109,6 +110,7 @@ async function navigationButtonsAndDragEvents() {
         indexItem = 0
 
         // reset position of item after altering the scene or the item itself
+        transitionAudio.play()
         resetItemPosition()
     }
 
