@@ -23,8 +23,9 @@ $(document).ready(function(){
     });
     $("#btn_login").click(async function(){
         try{
-            const {user} = await serverConnection.login($("#username_log").val(), $("#password_log").val());
+            const {user, pet} = await serverConnection.login($("#username_log").val(), $("#password_log").val());
             localStorage.setItem('user_id', String(user.id));
+            localStorage.setItem('pet_id', String(pet.id));
             window.location.replace('/');
         }catch(e){
             alert(e);
