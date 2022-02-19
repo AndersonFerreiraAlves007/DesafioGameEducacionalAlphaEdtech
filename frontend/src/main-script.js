@@ -7,6 +7,7 @@ import { navigationButtonsAndDragEvents } from './modules/navigation-and-drag.js
 
 // current session data and validations
 const loggedUserId = localStorage.getItem('user_id');
+const loggedPetId = parseInt(localStorage.getItem('pet_id'), 10);
 
 let currentPet;
 let currentUser;
@@ -66,4 +67,4 @@ const statusIntervalId = setInterval(() => {
 
 navigationButtonsAndDragEvents()
 
-export { loggedUserId };
+export { loggedUserId, loggedPetId };

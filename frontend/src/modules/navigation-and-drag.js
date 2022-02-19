@@ -1,16 +1,16 @@
 import { serverConnection } from './server-communication.js';
-import { loggedUserId } from '../main-script.js';
+import { loggedUserId, loggedPetId } from '../main-script.js';
 import { addBubbles } from './bath-bubbles.js'
 import { agoraVai } from '../games/jokenpo/jokenpo.js';
 
-export async function updatePetStatus(loggedUserId, currentItem) {
-    const currentPet = await serverConnection.getPet(loggedUserId)
+export async function updatePetStatus(loggedPetId, currentItem) {
+    const currentPet = await serverConnection.getPet(loggedPetId)
     const newStatus = {
         xp_food: ((currentPet.xp_food + currentItem.xp_food_change) < 100) ? (currentPet.xp_food + currentItem.xp_food_change) : 100,
         xp_hygiene: ((currentPet.xp_hygiene + currentItem.xp_hygiene_change) < 100) ? (currentPet.xp_hygiene + currentItem.xp_hygiene_change) : 100,
         xp_fun: ((currentPet.xp_fun + currentItem.xp_fun_change) < 100) ? (currentPet.xp_fun + currentItem.xp_fun_change) : 100
     }
-    await serverConnection.updatePet(loggedUserId, newStatus)
+    await serverConnection.updatePet(loggedPetId, newStatus)
 }
 
 async function navigationButtonsAndDragEvents() {
@@ -26,7 +26,7 @@ async function navigationButtonsAndDragEvents() {
             
             if(indexScene !== 2){
                 // $(this)
-                await updatePetStatus(loggedUserId, currentItem)
+                await updatePetStatus(loggedPetId, currentItem)
 
                 // Get adequate audio for the scene and play it
                 audio.src = allAudios[indexScene]
@@ -53,7 +53,7 @@ async function navigationButtonsAndDragEvents() {
         },
         over: async function(event, ui){
 
-            const currentPet = await serverConnection.getPet(loggedUserId)
+            const currentPet = await serverConnection.getPet(loggedPetId)
 
             if(indexScene === 2){
                 console.log(ui)
@@ -72,7 +72,7 @@ async function navigationButtonsAndDragEvents() {
                         xp_hygiene: ((currentPet.xp_hygiene + (soapLevel*15)) < 100) ? (currentPet.xp_hygiene + (soapLevel*15)) : 100
                     }
                     
-                    serverConnection.updatePet(loggedUserId, newStatus)
+                    serverConnection.updatePet(loggedPetId, newStatus)
 
                     soapLevel = 0;
 

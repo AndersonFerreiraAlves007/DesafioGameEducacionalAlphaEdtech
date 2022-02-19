@@ -1,1 +1,1 @@
-{"autoIncrement":3,"rows":[{"name":"aline","user_id":1,"id":1,"xp_food":80,"xp_fun":10,"xp_hygiene":80},{"user_id":2,"name":"","id":2,"xp_food":0,"xp_fun":0,"xp_hygiene":0},{"user_id":3,"name":"bob","id":3,"xp_food":0,"xp_fun":0,"xp_hygiene":0}]}
+{"autoIncrement":4,"rows":[{"name":"aline","user_id":1,"id":1,"xp_food":0,"xp_fun":0,"xp_hygiene":0},{"user_id":2,"name":"","id":2,"xp_food":0,"xp_fun":0,"xp_hygiene":0},{"user_id":3,"name":"bob","id":3,"xp_food":0,"xp_fun":0,"xp_hygiene":0},{"user_id":5,"name":"lala","id":4,"xp_food":30,"xp_fun":20,"xp_hygiene":100}]}
