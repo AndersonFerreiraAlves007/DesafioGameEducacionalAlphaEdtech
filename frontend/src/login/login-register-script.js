@@ -1,4 +1,6 @@
 import {serverConnection} from '../modules/server-communication.js';
+import { dadosGlobais } from '../modules/global-data.js'
+
 $(document).ready(function(){
     $(".login").hide();
     $(".register_li").addClass("active");
@@ -26,6 +28,8 @@ $(document).ready(function(){
             const {user, pet} = await serverConnection.login($("#username_log").val(), $("#password_log").val());
             localStorage.setItem('user_id', String(user.id));
             localStorage.setItem('pet_id', String(pet.id));
+            dadosGlobais.setCurrentPet(pet)
+            dadosGlobais.setCurrentUser(user)
             window.location.replace('/');
         }catch(e){
             alert(e);
