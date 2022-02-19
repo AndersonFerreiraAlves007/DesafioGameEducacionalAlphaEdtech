@@ -1,5 +1,6 @@
 import { serverConnection } from '../../modules/server-communication.js';
 import { dadosGlobais } from '../../modules/global-data.js'
+
 export function agoraVai() {
     $(".jokenpo").show();
 
