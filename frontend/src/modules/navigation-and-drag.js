@@ -94,6 +94,9 @@ async function navigationButtonsAndDragEvents() {
                     
                     dadosGlobais.setCurrentPet(await serverConnection.updatePet(loggedPetId, newStatus))
 
+                    audio.src = allAudios[indexScene]
+                    audio.play()
+
                     soapLevel = 0;
 
                     addBubbles(soapLevel);
