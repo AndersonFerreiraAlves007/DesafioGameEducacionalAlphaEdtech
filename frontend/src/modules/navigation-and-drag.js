@@ -4,9 +4,11 @@ import { addBubbles } from './bath-bubbles.js'
 import { agoraVai } from '../games/jokenpo/jokenpo.js';
 import { dadosGlobais } from './global-data.js'
 
+
 export async function updatePetStatus(loggedPetId, currentItem) {
     /* const currentPet = await serverConnection.getPet(loggedPetId) */
     const currentPet = dadosGlobais.getCurrentPet()
+
     const newStatus = {
         xp_food: ((currentPet.xp_food + currentItem.xp_food_change) < 100) ? (currentPet.xp_food + currentItem.xp_food_change) : 100,
         xp_hygiene: ((currentPet.xp_hygiene + currentItem.xp_hygiene_change) < 100) ? (currentPet.xp_hygiene + currentItem.xp_hygiene_change) : 100,
@@ -28,6 +30,8 @@ async function navigationButtonsAndDragEvents() {
         drop: async function (event, ui) {
             
             if(indexScene !== 2){
+
+                const currentItem = dadosGlobais.getCurrentItem();
                 await updatePetStatus(loggedPetId, currentItem)
 
                 // Get adequate audio for the scene and play it
@@ -147,6 +151,7 @@ async function navigationButtonsAndDragEvents() {
             indexScene += 1
         }
         updateViewScene()
+        dadosGlobais.setCurrentItem(0)
     })
 
     $('#previous-button').on('click', () => {
@@ -156,6 +161,7 @@ async function navigationButtonsAndDragEvents() {
             indexScene -= 1
         }
         updateViewScene()
+        dadosGlobais.setCurrentItem(0)
     })
 
     // Select item buttons
