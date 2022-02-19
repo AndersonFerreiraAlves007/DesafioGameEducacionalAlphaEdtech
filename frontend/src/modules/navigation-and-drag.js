@@ -2,15 +2,17 @@ import { serverConnection } from './server-communication.js';
 import { loggedUserId, loggedPetId } from '../main-script.js';
 import { addBubbles } from './bath-bubbles.js'
 import { agoraVai } from '../games/jokenpo/jokenpo.js';
+import { dadosGlobais } from './global-data.js'
 
 export async function updatePetStatus(loggedPetId, currentItem) {
-    const currentPet = await serverConnection.getPet(loggedPetId)
+    /* const currentPet = await serverConnection.getPet(loggedPetId) */
+    const currentPet = dadosGlobais.getCurrentPet()
     const newStatus = {
         xp_food: ((currentPet.xp_food + currentItem.xp_food_change) < 100) ? (currentPet.xp_food + currentItem.xp_food_change) : 100,
         xp_hygiene: ((currentPet.xp_hygiene + currentItem.xp_hygiene_change) < 100) ? (currentPet.xp_hygiene + currentItem.xp_hygiene_change) : 100,
         xp_fun: ((currentPet.xp_fun + currentItem.xp_fun_change) < 100) ? (currentPet.xp_fun + currentItem.xp_fun_change) : 100
     }
-    await serverConnection.updatePet(loggedPetId, newStatus)
+    dadosGlobais.setCurrentPet(await serverConnection.updatePet(currentPet.id, newStatus))
 }
 
 async function navigationButtonsAndDragEvents() {
@@ -26,7 +28,7 @@ async function navigationButtonsAndDragEvents() {
             
             if(indexScene !== 2){
                 // $(this)
-                await updatePetStatus(loggedPetId, currentItem)
+                await updatePetStatus(loggedPetId, dadosGlobais.getCurrentItem())
 
                 // Get adequate audio for the scene and play it
                 audio.src = allAudios[indexScene]
@@ -53,7 +55,9 @@ async function navigationButtonsAndDragEvents() {
         },
         over: async function(event, ui){
 
-            const currentPet = await serverConnection.getPet(loggedPetId)
+            /* const currentPet = await serverConnection.getPet(loggedPetId) */
+
+            const currentPet = dadosGlobais.getCurrentPet()
 
             if(indexScene === 2){
                 console.log(ui)
@@ -72,7 +76,7 @@ async function navigationButtonsAndDragEvents() {
                         xp_hygiene: ((currentPet.xp_hygiene + (soapLevel*15)) < 100) ? (currentPet.xp_hygiene + (soapLevel*15)) : 100
                     }
                     
-                    serverConnection.updatePet(loggedPetId, newStatus)
+                    dadosGlobais.setCurrentPet(await serverConnection.updatePet(loggedPetId, newStatus))
 
                     soapLevel = 0;
 
@@ -85,8 +89,8 @@ async function navigationButtonsAndDragEvents() {
     })
 
     // Onload scene initial status
-    let currentScene
-    let currentItem
+/*     let currentScene
+    let currentItem */
     let indexScene = 0
     let indexItem = 0
     const allAudios = [
@@ -101,8 +105,9 @@ async function navigationButtonsAndDragEvents() {
     updateViewScene()
 
     function updateViewScene() {
-        currentScene = allScenesWithItems[indexScene]
-        currentItem = currentScene.items[indexItem]
+        dadosGlobais.setCurrentScene(allScenesWithItems[indexScene])
+        const currentScene = dadosGlobais.getCurrentScene()
+        dadosGlobais.setCurrentItem(currentScene.items[indexItem])
         $('#environment-text').html(currentScene.name)
         $('#game-body').css({ 'background-image': `url( ${currentScene.url_image})` })
 
@@ -124,6 +129,7 @@ async function navigationButtonsAndDragEvents() {
 
     // Select environment buttons
     $('#next-button').on('click', () => {
+        const currentScene = dadosGlobais.getCurrentScene()
         if (currentScene == allScenesWithItems[allScenesWithItems.length - 1]) {
             indexScene = 0
         } else {
@@ -143,12 +149,14 @@ async function navigationButtonsAndDragEvents() {
 
     // Select item buttons
     $('#previous-item').on('click', () => {
+        const currentScene = dadosGlobais.getCurrentScene()
         if (indexItem == 0) {
             indexItem = currentScene.items.length - 1
         } else {
             indexItem -= 1
         }
-        currentItem = currentScene.items[indexItem]
+        dadosGlobais.setCurrentItem(currentScene.items[indexItem])
+        const currentItem = dadosGlobais.getCurrentItem()
         // $('#item-box').html(currentItem.name)
         $('#current-item').attr('src', currentItem.url_image)
         itemSelectorAudio.play()
@@ -156,12 +164,14 @@ async function navigationButtonsAndDragEvents() {
     })
 
     $('#next-item').on('click', () => {
+        const currentScene = dadosGlobais.getCurrentScene()
         if (indexItem == currentScene.items.length - 1) {
             indexItem = 0
         } else {
             indexItem += 1
         }
-        currentItem = currentScene.items[indexItem]
+        dadosGlobais.setCurrentItem(currentScene.items[indexItem])
+        const currentItem = dadosGlobais.getCurrentItem()
         // $('#item-box').html(currentItem.name)
         $('#current-item').attr('src', currentItem.url_image)
         itemSelectorAudio.play()

@@ -4,6 +4,7 @@ import { serverConnection } from './modules/server-communication.js';
 import { foodComplain } from './modules/slime-speech.js';
 import { updateStatusBarView } from './modules/status-bar.js';
 import { navigationButtonsAndDragEvents } from './modules/navigation-and-drag.js';
+import { dadosGlobais } from './modules/global-data.js'
 
 // current session data and validations
 const loggedUserId = localStorage.getItem('user_id');
@@ -17,6 +18,8 @@ async function getUser() {
     const dataUsers = await serverConnection.getUserWithPets(Number(loggedUserId));
     currentPet = dataUsers.pet;
     currentUser = dataUsers.user;
+    dadosGlobais.setCurrentPet(currentPet)
+    dadosGlobais.setCurrentUser(currentUser)
     localStorage.setItem("pet_id", String(dataUsers.pet.id));
 }
 
