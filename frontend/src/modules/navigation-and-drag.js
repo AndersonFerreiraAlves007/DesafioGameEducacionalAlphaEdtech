@@ -18,6 +18,7 @@ async function navigationButtonsAndDragEvents() {
     let soapLevel = 0;
     
     $('#item-box').draggable({ 
+        containment: $('body'), // prevents page from scrolling when something is dragged to the edge of the screen
         revert: "valid"
     })
 
@@ -25,7 +26,6 @@ async function navigationButtonsAndDragEvents() {
         drop: async function (event, ui) {
             
             if(indexScene !== 2){
-                // $(this)
                 await updatePetStatus(loggedPetId, currentItem)
 
                 // Get adequate audio for the scene and play it
@@ -33,14 +33,25 @@ async function navigationButtonsAndDragEvents() {
                 audio.play()
 
                 if (indexScene === 0) {
-                    ui.draggable.remove();
+                    // smother animation bite in this 2 lines below
+                    $('#current-item').animate({width: 0, height: 0}, 100)
+                    setTimeout(() => ui.draggable.remove(), 100)
+                    // ui.draggable.remove()
 
                     $('<div id="item-box"><img id="current-item" src="" alt=""></div>').insertAfter('#previous-item');
-                    $('#item-box').draggable({ revert: "valid" })
+                    $('#item-box').draggable({ 
+                        containment: $('body'), // prevents page from scrolling when something is dragged to the edge of the screen
+                        revert: "valid"
+                    })
 
                     setTimeout(() => {
                         $('#current-item').attr('src', allScenesWithItems[indexScene].items[indexItem].url_image)
                     }, 250);
+
+                    // diferent animation solution
+                    // $('#item-box').width(100)
+                    // $('#current-item').animate({width: 0, height: 0}, 100)
+                    // $('#current-item').animate({width: '100px', height: '100px'}, 300)
                 }
             
                 if (indexScene === 1) {
