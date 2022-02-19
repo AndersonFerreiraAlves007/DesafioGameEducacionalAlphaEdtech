@@ -1,11 +1,14 @@
 const express = require('express')
+const http = require('http');
 const cors = require('cors')
+const { Server } = require("socket.io");
 const itemsRouter = require('./resources/items/routes')
 const petsRouter = require('./resources/pets/routes')    
 const scenesRouter = require('./resources/scenes/routes')    
 const usersRouter = require('./resources/users/routes')  
 const tasks = require('./tasks')
 const { driveDatabase: Database  } = require('./utils/driveDatabase')
+const { dadosGlobais } = require('./dados-globais')
 
 const PORT = 3333
 
@@ -16,6 +19,12 @@ tasksExecute.forEach(({ task, time }) => {
 })
 
 const app = express()
+
+const server = http.createServer(app);
+
+const io = new Server(server);
+
+dadosGlobais.io = io
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -43,4 +52,5 @@ app.put('/truncate', async (req, res) => {
   })
 })
 
-app.listen(PORT)
+server.listen(PORT)
+

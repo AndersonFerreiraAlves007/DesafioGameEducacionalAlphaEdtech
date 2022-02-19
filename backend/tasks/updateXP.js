@@ -4,6 +4,7 @@ const {
   xp_fun_reduce,
   xp_hygiene_reduce
 } = require('../utils/constants')
+const { dadosGlobais } = require('../dados-globais')
 
 async function updateXP() {
   const pathDatabase = 'resources/pets/database.json'
@@ -20,6 +21,8 @@ async function updateXP() {
     autoIncrement: database.autoIncrement,
     rows: pets
   }, pathDatabase)
+
+  dadosGlobais.io.emit('update pets', '')
 }
 
 module.exports = updateXP

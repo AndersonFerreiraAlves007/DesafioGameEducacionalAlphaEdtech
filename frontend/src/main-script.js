@@ -5,6 +5,17 @@ import { foodComplain } from './modules/slime-speech.js';
 import { updateStatusBarView } from './modules/status-bar.js';
 import { navigationButtonsAndDragEvents } from './modules/navigation-and-drag.js';
 import { dadosGlobais } from './modules/global-data.js'
+//import { realTime } from './modules/real-time.js'
+
+const socket = io('http://127.0.0.1:3333', { transports : ['websocket'] });
+
+socket.on("connect", () => {
+  console.log(socket.connected); // true
+});
+
+socket.on('update pets', function(msg) {
+    updateInfoPet()
+});
 
 // current session data and validations
 const loggedUserId = localStorage.getItem('user_id');
@@ -42,17 +53,14 @@ const changeDirtyLevel = setDirtLevel();
 let hygieneLevel;
 let foodLevel;
 
-const statusIntervalId = setInterval(() => {
+/* const statusIntervalId = setInterval(() => {
     serverConnection.getUserWithPets(loggedUserId).then((data) => {
-        //console.log(data);
 
         const currentHygieneLevel = data.pet.xp_hygiene;
         const currentFoodLevel = data.pet.xp_food;
         const currentFunLevel = data.pet.xp_fun;
 
         updateStatusBarView(currentFoodLevel, currentHygieneLevel, currentFunLevel)
-
-        //console.log(hygieneLevel + ' x ' + currentHygieneLevel);
 
         if (currentHygieneLevel !== hygieneLevel) {
             hygieneLevel = currentHygieneLevel;
@@ -65,7 +73,30 @@ const statusIntervalId = setInterval(() => {
         }
 
     });
-}, 1000)
+}, 1000) */
+
+const updateInfoPet = async () => {
+    const data = await serverConnection.getUserWithPets(loggedUserId)
+    const currentHygieneLevel = data.pet.xp_hygiene;
+    const currentFoodLevel = data.pet.xp_food;
+    const currentFunLevel = data.pet.xp_fun;
+
+    updateStatusBarView(currentFoodLevel, currentHygieneLevel, currentFunLevel)
+
+    if (currentHygieneLevel !== hygieneLevel) {
+        hygieneLevel = currentHygieneLevel;
+        changeDirtyLevel(hygieneLevel);
+    }
+
+    if (currentFoodLevel !== foodLevel) {
+        foodLevel = currentFoodLevel;
+        foodComplain(foodLevel);
+    }
+}
+
+//realTime.addListenerUpdateXpServer(updateInfoPet)
+
+updateInfoPet()
 
 
 navigationButtonsAndDragEvents()

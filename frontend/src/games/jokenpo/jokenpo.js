@@ -1,5 +1,30 @@
 import { serverConnection } from '../../modules/server-communication.js';
 import { dadosGlobais } from '../../modules/global-data.js'
+import { updateStatusBarView } from '../../modules/status-bar.js';
+import { setDirtLevel } from '../../modules/slime-body.js';
+import { foodComplain } from '../../modules/slime-speech.js';
+
+const changeDirtyLevel = setDirtLevel();
+
+const updateInfoPet = async () => {
+    const data = await serverConnection.getUserWithPets(loggedUserId)
+    const currentHygieneLevel = data.pet.xp_hygiene;
+    const currentFoodLevel = data.pet.xp_food;
+    const currentFunLevel = data.pet.xp_fun;
+
+    updateStatusBarView(currentFoodLevel, currentHygieneLevel, currentFunLevel)
+
+    if (currentHygieneLevel !== hygieneLevel) {
+        hygieneLevel = currentHygieneLevel;
+        changeDirtyLevel(hygieneLevel);
+    }
+
+    if (currentFoodLevel !== foodLevel) {
+        foodLevel = currentFoodLevel;
+        foodComplain(foodLevel);
+    }
+}
+
 export function agoraVai() {
     $(".jokenpo").show();
 
@@ -54,6 +79,8 @@ export function agoraVai() {
             xp_fun: ((currentPet.xp_fun + xp_fun_change) < 100) ? (currentPet.xp_fun + xp_fun_change) : 100
         }
         dadosGlobais.setCurrentPet(await serverConnection.updatePet(currentPet.id, objectPet));
+
+        await updateInfoPet()
 
         const choicePlayer = parseInt(number);
         const result = jokenpo(choicePlayer);

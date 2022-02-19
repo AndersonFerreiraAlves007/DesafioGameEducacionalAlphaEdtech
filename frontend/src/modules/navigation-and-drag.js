@@ -3,9 +3,34 @@ import { loggedUserId, loggedPetId } from '../main-script.js';
 import { addBubbles } from './bath-bubbles.js'
 import { agoraVai } from '../games/jokenpo/jokenpo.js';
 import { dadosGlobais } from './global-data.js'
+import { updateStatusBarView } from './status-bar.js';
+import { setDirtLevel } from './slime-body.js';
+import { foodComplain } from './slime-speech.js';
+
+const changeDirtyLevel = setDirtLevel();
+
+const updateInfoPet = async () => {
+    const data = await serverConnection.getUserWithPets(loggedUserId)
+    const currentHygieneLevel = data.pet.xp_hygiene;
+    const currentFoodLevel = data.pet.xp_food;
+    const currentFunLevel = data.pet.xp_fun;
+
+    updateStatusBarView(currentFoodLevel, currentHygieneLevel, currentFunLevel)
+
+    if (currentHygieneLevel !== hygieneLevel) {
+        hygieneLevel = currentHygieneLevel;
+        changeDirtyLevel(hygieneLevel);
+    }
+
+    if (currentFoodLevel !== foodLevel) {
+        foodLevel = currentFoodLevel;
+        foodComplain(foodLevel);
+    }
+}
 
 export async function updatePetStatus(loggedPetId, currentItem) {
     /* const currentPet = await serverConnection.getPet(loggedPetId) */
+    console.log(currentItem)
     const currentPet = dadosGlobais.getCurrentPet()
     const newStatus = {
         xp_food: ((currentPet.xp_food + currentItem.xp_food_change) < 100) ? (currentPet.xp_food + currentItem.xp_food_change) : 100,
@@ -13,6 +38,7 @@ export async function updatePetStatus(loggedPetId, currentItem) {
         xp_fun: ((currentPet.xp_fun + currentItem.xp_fun_change) < 100) ? (currentPet.xp_fun + currentItem.xp_fun_change) : 100
     }
     dadosGlobais.setCurrentPet(await serverConnection.updatePet(currentPet.id, newStatus))
+    await updateInfoPet()
 }
 
 async function navigationButtonsAndDragEvents() {
@@ -28,7 +54,7 @@ async function navigationButtonsAndDragEvents() {
         drop: async function (event, ui) {
             
             if(indexScene !== 2){
-                await updatePetStatus(loggedPetId, currentItem)
+                await updatePetStatus(loggedPetId, dadosGlobais.getCurrentItem())
 
                 // Get adequate audio for the scene and play it
                 audio.src = allAudios[indexScene]
