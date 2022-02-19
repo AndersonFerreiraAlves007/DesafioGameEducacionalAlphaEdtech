@@ -37,6 +37,7 @@
                 Diversão: <span id="fun-number"></span>
                 <div id="funbar"></div>
             </div>
+            <button type="button" id="btn-edit-pet">Editar Pet</button>
         </header>
 
         <main>
@@ -181,7 +182,41 @@
 
             </ul>
         </section>
+
+
     </div>
+
+    <section id="dialog-edit-pet" style="display: none;" >
+        <div id="container-colors">
+          <h2>Informações Pet</h2>
+          <input type="text" id="name-pet-input" placeholder="Nome do pet">
+          <div id="content-dialog-edit-pet-select"></div>
+          <div id="content-dialog-edit-pet"></div>
+          <div id="container-buttons-dialog-edit-pet">
+            <button type="button" id="btn-cancel-dialog-edit-pet">Cancelar</button>
+            <button type="button" id="btn-confirm-dialog-edit-pet">Salvar</button>
+          </div>
+        </div>
+      </section>
+      <script>
+          const dialogEditPetSelect = document.getElementById('content-dialog-edit-pet-select')
+          function selectColor(colorSelect) {
+        dialogEditPetSelect.innerHTML = ''
+        dialogEditPetSelect.innerHTML += makeOptionColor(colorSelect, 1)
+        
+    }
+    
+    function makeOptionColor(color, opacity = 0.8) {
+        return (
+        `
+            <div class="container-color-option">
+            <div style="background-color: ${color}; opacity: ${opacity}" class="colorOption" onclick="selectColor('${color}')"></div>
+            </div>
+        `
+        )
+    }
+
+      </script>
 </body>
 
 </html>

@@ -14,6 +14,7 @@ const router = makeRouter('resources/pets/database.json',
         xp_food: xp_food_initial,
         xp_fun: xp_fun_initial,
         xp_hygiene: xp_hygiene_initial,
+        color: '#00a1cc'
       }
     },
     validateCreate: (body, pets) => {

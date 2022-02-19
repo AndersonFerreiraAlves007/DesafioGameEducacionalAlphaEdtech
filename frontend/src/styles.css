@@ -142,3 +142,196 @@ span {
     margin-right: auto;
 
 }
+
+
+
+
+
+.colorOption {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    cursor: pointer;
+    opacity: 0.5;
+  }
+  
+  #content-dialog-edit-pet {
+    display: flex;
+    width: 300px;
+    background-color: aquamarine;
+    flex-wrap: wrap;
+    /* border: 2px solid red; */
+    border-radius: 10px;
+   /*  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+    padding: 10px;
+    overflow-y: auto;
+    max-height: 300px;
+  }
+  
+  .container-color-option {
+    width: 25%;
+    aspect-ratio: 1/1;
+    padding: 5px;
+  }
+  
+  #dialog-edit-pet {
+    /* height: 300px; */
+    background-color: aquamarine;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 10000;
+  }
+  
+  #container-colors {
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
+  
+  #name-pet-input {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 2px;
+  }
+  
+  ::placeholder {
+    padding: 10px;
+  }
+  
+  #container-buttons-dialog-edit-pet {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  #container-buttons-dialog-edit-pet button{
+    width: 40%;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: brown;
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 0.;
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  
+  #container-buttons-dialog-edit-pet button:hover{
+    opacity: 1;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  
+  #content-dialog-edit-pet-select {
+    margin-bottom: 20px;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 7px;
+   }
+   ::-webkit-scrollbar-thumb {
+    background: linear-gradient(13deg, crimson 14%,crimson 64%);
+    border-radius: 7px;
+   }
+   ::-webkit-scrollbar-thumb:hover{
+    background: linear-gradient(13deg, crimson 14%,crimson 64%);
+    /* background: linear-gradient(13deg, #c7ceff 14%,#f9d4ff 64%); */
+   }
+   ::-webkit-scrollbar-track{
+    background: linear-gradient(13deg, transparent  14%, transparent  0%);
+    border-radius: 7px;
+   }
+  
+   h2 {
+     text-align: center;
+   }
+  
+   .slime-item {
+     display: flex;
+     flex-direction: column;
+    width: 25%;
+    cursor: pointer;
+   }
+  
+   .slime-item:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    transform: scale(1.2);
+   }
+  
+   .slime-item span{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 12px ;
+    font-weight: bold;
+    text-transform: capitalize;
+   }
+  
+   .line-user-logados {
+     display: flex;
+     align-items: center;
+     /* margin: 10px; */
+     /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+     padding: 10px;
+   }
+  
+   .line-user-logados:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+   }
+  
+   #content-users {
+      width: 250px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      padding: 20px;
+      border-radius: 10px;
+   }
+  
+   .avatar-user {
+     height: 30px;
+     width: 30px;
+     border-radius: 50%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background-color: aqua;
+   }
+  
+   .username-user-line {
+     margin-left: 10px;
+     font-weight: bold;
+     font-size: 20px;
+   }
+  
+   #list-users{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 100vw;
+     height: 100vh;
+     position: fixed;
+     
+   }
+  
+   #content-dialog-edit-users {
+     margin: 20px 0px;
+     /* border-top: 1px solid black;
+     border-bottom: 1px solid black; */
+     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+     border-radius: 10px;
+     padding: 10px;
+     max-height: 300px;
+     overflow-y: auto;
+   }

@@ -27,6 +27,10 @@ async function request(url, method = 'GET', body = null) {
   }
 }
 
+function changeColorId(color = '#00a1cc') {
+  $('#path2999-17-9-8-5-3-4').css('fill', color)
+}
+
 class BancoDados {
   constructor(host) {
     this.host = host
@@ -38,6 +42,11 @@ class BancoDados {
       password
     })
     const { pets, ...user } = await request(`${this.host}/users/${user_id}/pets`, 'GET')
+
+    //////
+    changeColorId(pets[0].color ? pets[0].color : '#00a1cc')
+    ///////
+
     return {
       user,
       pet: pets[0]
@@ -64,11 +73,20 @@ class BancoDados {
   }
 
   async getPet(id) {
-    return await request(`${this.host}/pets/${id}`, 'GET')
+    const pet = await request(`${this.host}/pets/${id}`, 'GET')
+    //////
+    changeColorId(pet.color ? pet.color : '#00a1cc')
+    ///////
+    return pet
   }
 
   async getUserWithPets(id) {
     const { pets, ...user } = await request(`${this.host}/users/${id}/pets`, 'GET')
+    
+     //////
+     changeColorId(pets[0].color ? pets[0].color : '#00a1cc')
+     ///////
+
     return {
       user,
       pet: pets[0]
@@ -80,7 +98,13 @@ class BancoDados {
   }
 
   async updatePet(id, body) {
-    return await request(`${this.host}/pets/${id}`, 'PUT', body)
+    const pet = await request(`${this.host}/pets/${id}`, 'PUT', body)
+
+     //////
+     changeColorId(pet.color ? pet.color : '#00a1cc')
+     ///////
+
+     return pet
   }
 
   async listSceneWithItems() {
