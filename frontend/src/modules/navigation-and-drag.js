@@ -31,14 +31,15 @@ async function navigationButtonsAndDragEvents() {
             
             if(indexScene !== 2){
 
-                const currentItem = dadosGlobais.getCurrentItem();
-                await updatePetStatus(loggedPetId, currentItem)
-
-                // Get adequate audio for the scene and play it
-                audio.src = allAudios[indexScene]
-                audio.play()
-
                 if (indexScene === 0) {
+                    const currentItem = dadosGlobais.getCurrentItem();
+                    await updatePetStatus(loggedPetId, currentItem)
+
+                    // Get adequate audio for the scene and play it
+                    audio.src = allAudios[indexScene]
+                    audio.play()
+
+                
                     // smother animation bite in this 2 lines below
                     $('#current-item').animate({width: 0, height: 0}, 100)
                     setTimeout(() => ui.draggable.remove(), 100)
@@ -133,6 +134,7 @@ async function navigationButtonsAndDragEvents() {
         // reset position of item after altering the scene or the item itself
         transitionAudio.play()
         resetItemPosition()
+        
     }
 
     function resetItemPosition() {
@@ -151,7 +153,7 @@ async function navigationButtonsAndDragEvents() {
             indexScene += 1
         }
         updateViewScene()
-        dadosGlobais.setCurrentItem(0)
+        dadosGlobais.setCurrentItem(currentScene.items[0])
     })
 
     $('#previous-button').on('click', () => {
@@ -161,7 +163,7 @@ async function navigationButtonsAndDragEvents() {
             indexScene -= 1
         }
         updateViewScene()
-        dadosGlobais.setCurrentItem(0)
+        dadosGlobais.setCurrentItem(currentScene.items[0])
     })
 
     // Select item buttons
