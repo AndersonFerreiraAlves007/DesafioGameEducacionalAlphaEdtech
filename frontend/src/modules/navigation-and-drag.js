@@ -63,7 +63,7 @@ async function navigationButtonsAndDragEvents() {
             
                 if (indexScene === 1) {
                     // code jokenpo.js
-                    console.log("deu certo");
+                    //console.log("deu certo");
                     agoraVai();
                 }
             }
@@ -76,17 +76,17 @@ async function navigationButtonsAndDragEvents() {
             const currentPet = dadosGlobais.getCurrentPet()
 
             if(indexScene === 2){
-                console.log(ui)
-                console.log(ui.draggable[0])
+                //console.log(ui)
+                //console.log(ui.draggable[0])
                 let internalItem = $('img', ui.draggable[0]).attr('src')
-                console.log(internalItem)
+                //console.log(internalItem)
 
                 if(internalItem.includes('soap')){
                     soapLevel++;
                     addBubbles(soapLevel);
                 }else if(soapLevel > 0){
-                    console.log('lavando');
-                    console.log(soapLevel)
+                    //console.log('lavando');
+                    //console.log(soapLevel)
 
                     const newStatus = {
                         xp_hygiene: ((currentPet.xp_hygiene + (soapLevel*15)) < 100) ? (currentPet.xp_hygiene + (soapLevel*15)) : 100

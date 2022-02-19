@@ -122,7 +122,7 @@ const colorOptions = [
     })
 
     buttonCancelDialogEditPet.addEventListener('click', () => {
-        console.log('AKKAKAKAKKAKAKAK')
+        //console.log('AKKAKAKAKKAKAKAK')
         $('#dialog-edit-pet').hide()
     })
 
