@@ -9,7 +9,7 @@ export function agoraVai() {
 
 
     // move buttons in screan
-    $("#jokenpo__rock").draggable({ revert: "valid" });
+    $(".jokenpo__rock").draggable({ revert: "valid" });
     $(".jokenpo__paper").draggable({ revert: "valid" });
     $(".jokenpo__scissors").draggable({ revert: "valid" });
 
