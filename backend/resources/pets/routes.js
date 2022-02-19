@@ -18,6 +18,7 @@ const router = makeRouter('resources/pets/database.json',
       }
     },
     validateCreate: (body, pets) => {
+      
       return {
         status: true,
         message: 'Sucesso',
@@ -25,6 +26,9 @@ const router = makeRouter('resources/pets/database.json',
       }
     },
     validateUpdate: (id, body, pets) => {
+      console.log('UIUIU 1')
+      console.log(body)
+      console.log('UIUIU 2')
       return {
         status: true,
         message: 'Sucesso',

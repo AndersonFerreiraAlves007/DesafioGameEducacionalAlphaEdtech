@@ -3,30 +3,7 @@ import { loggedUserId, loggedPetId } from '../main-script.js';
 import { addBubbles } from './bath-bubbles.js'
 import { agoraVai } from '../games/jokenpo/jokenpo.js';
 import { dadosGlobais } from './global-data.js'
-import { updateStatusBarView } from './status-bar.js';
-import { setDirtLevel } from './slime-body.js';
-import { foodComplain } from './slime-speech.js';
-
-const changeDirtyLevel = setDirtLevel();
-
-const updateInfoPet = async () => {
-    const data = await serverConnection.getUserWithPets(loggedUserId)
-    const currentHygieneLevel = data.pet.xp_hygiene;
-    const currentFoodLevel = data.pet.xp_food;
-    const currentFunLevel = data.pet.xp_fun;
-
-    updateStatusBarView(currentFoodLevel, currentHygieneLevel, currentFunLevel)
-
-    if (currentHygieneLevel !== hygieneLevel) {
-        hygieneLevel = currentHygieneLevel;
-        changeDirtyLevel(hygieneLevel);
-    }
-
-    if (currentFoodLevel !== foodLevel) {
-        foodLevel = currentFoodLevel;
-        foodComplain(foodLevel);
-    }
-}
+import { statusBar } from '../modules/update-status-bar.js'
 
 
 export async function updatePetStatus(loggedPetId, currentItem) {
@@ -40,7 +17,7 @@ export async function updatePetStatus(loggedPetId, currentItem) {
         xp_fun: ((currentPet.xp_fun + currentItem.xp_fun_change) < 100) ? (currentPet.xp_fun + currentItem.xp_fun_change) : 100
     }
     dadosGlobais.setCurrentPet(await serverConnection.updatePet(currentPet.id, newStatus))
-    await updateInfoPet()
+    await statusBar.updateInfoPet()
 }
 
 async function navigationButtonsAndDragEvents() {

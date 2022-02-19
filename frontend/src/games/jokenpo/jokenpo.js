@@ -1,29 +1,7 @@
 import { serverConnection } from '../../modules/server-communication.js';
 import { dadosGlobais } from '../../modules/global-data.js'
-import { updateStatusBarView } from '../../modules/status-bar.js';
-import { setDirtLevel } from '../../modules/slime-body.js';
-import { foodComplain } from '../../modules/slime-speech.js';
+import { statusBar } from '../../modules/update-status-bar.js'
 
-const changeDirtyLevel = setDirtLevel();
-
-const updateInfoPet = async () => {
-    const data = await serverConnection.getUserWithPets(loggedUserId)
-    const currentHygieneLevel = data.pet.xp_hygiene;
-    const currentFoodLevel = data.pet.xp_food;
-    const currentFunLevel = data.pet.xp_fun;
-
-    updateStatusBarView(currentFoodLevel, currentHygieneLevel, currentFunLevel)
-
-    if (currentHygieneLevel !== hygieneLevel) {
-        hygieneLevel = currentHygieneLevel;
-        changeDirtyLevel(hygieneLevel);
-    }
-
-    if (currentFoodLevel !== foodLevel) {
-        foodLevel = currentFoodLevel;
-        foodComplain(foodLevel);
-    }
-}
 
 export function agoraVai() {
     $(".jokenpo").show();
@@ -74,13 +52,11 @@ export function agoraVai() {
         const objectPet = {
             xp_food: ((currentPet.xp_food + xp_food_change) > 0) ? (currentPet.xp_food + xp_food_change) : 0,
             xp_hygiene: ((currentPet.xp_hygiene + xp_hygiene_change) > 0) ? (currentPet.xp_hygiene + xp_hygiene_change) : 0,
-
-
             xp_fun: ((currentPet.xp_fun + xp_fun_change) < 100) ? (currentPet.xp_fun + xp_fun_change) : 100
         }
         dadosGlobais.setCurrentPet(await serverConnection.updatePet(currentPet.id, objectPet));
 
-        await updateInfoPet()
+        await statusBar.updateInfoPet()
 
         const choicePlayer = parseInt(number);
         const result = jokenpo(choicePlayer);
