@@ -21,26 +21,39 @@
 }
 body{
   background: var(--body-bg-color);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .wrapper{
   display: flex;
   max-width: 560px;
   width: 100%;
   height: 350px;
-  position: absolute;
-  top: 50%;
-  left:50%;
-  transform: translate(-50%,-50%);
 }
+
 .wrapper .left,
 .wrapper .right{
-  width: 50%;
+  width: 280px;
   height: 100%;
   padding: 30px;
 }
 .wrapper .left{
   background: var(--left-bg-color);
 }
+@media (max-width: 570px){
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .wrapper .left {
+    height: 200px;
+  }
+}
+
+
 .wrapper .left h3{
   text-align: center;
   text-transform: uppercase;
@@ -99,4 +112,8 @@ body{
   color:var(--a-color);
   display: block;
   font-size: 14px;
+}
+
+.btn {
+  cursor: pointer;
 }

@@ -28,10 +28,12 @@ const updateInfoPet = async () => {
     }
 }
 
+
 export async function updatePetStatus(loggedPetId, currentItem) {
     /* const currentPet = await serverConnection.getPet(loggedPetId) */
     console.log(currentItem)
     const currentPet = dadosGlobais.getCurrentPet()
+
     const newStatus = {
         xp_food: ((currentPet.xp_food + currentItem.xp_food_change) < 100) ? (currentPet.xp_food + currentItem.xp_food_change) : 100,
         xp_hygiene: ((currentPet.xp_hygiene + currentItem.xp_hygiene_change) < 100) ? (currentPet.xp_hygiene + currentItem.xp_hygiene_change) : 100,
@@ -61,6 +63,14 @@ async function navigationButtonsAndDragEvents() {
                 audio.play()
 
                 if (indexScene === 0) {
+                    const currentItem = dadosGlobais.getCurrentItem();
+                    await updatePetStatus(loggedPetId, currentItem)
+
+                    // Get adequate audio for the scene and play it
+                    audio.src = allAudios[indexScene]
+                    audio.play()
+
+                
                     // smother animation bite in this 2 lines below
                     $('#current-item').animate({width: 0, height: 0}, 100)
                     setTimeout(() => ui.draggable.remove(), 100)
@@ -84,7 +94,7 @@ async function navigationButtonsAndDragEvents() {
             
                 if (indexScene === 1) {
                     // code jokenpo.js
-                    console.log("deu certo");
+                    //console.log("deu certo");
                     agoraVai();
                 }
             }
@@ -97,23 +107,26 @@ async function navigationButtonsAndDragEvents() {
             const currentPet = dadosGlobais.getCurrentPet()
 
             if(indexScene === 2){
-                console.log(ui)
-                console.log(ui.draggable[0])
+                //console.log(ui)
+                //console.log(ui.draggable[0])
                 let internalItem = $('img', ui.draggable[0]).attr('src')
-                console.log(internalItem)
+                //console.log(internalItem)
 
                 if(internalItem.includes('soap')){
                     soapLevel++;
                     addBubbles(soapLevel);
                 }else if(soapLevel > 0){
-                    console.log('lavando');
-                    console.log(soapLevel)
+                    //console.log('lavando');
+                    //console.log(soapLevel)
 
                     const newStatus = {
                         xp_hygiene: ((currentPet.xp_hygiene + (soapLevel*15)) < 100) ? (currentPet.xp_hygiene + (soapLevel*15)) : 100
                     }
                     
                     dadosGlobais.setCurrentPet(await serverConnection.updatePet(loggedPetId, newStatus))
+
+                    audio.src = allAudios[indexScene]
+                    audio.play()
 
                     soapLevel = 0;
 
@@ -153,8 +166,12 @@ async function navigationButtonsAndDragEvents() {
         indexItem = 0
 
         // reset position of item after altering the scene or the item itself
-        transitionAudio.play()
         resetItemPosition()
+       
+        // catch autoplay error on page load
+        const playOnPageChange = transitionAudio.play();
+        playOnPageChange.then(()=>{}).catch(error=>{})
+        
     }
 
     function resetItemPosition() {
@@ -173,6 +190,7 @@ async function navigationButtonsAndDragEvents() {
             indexScene += 1
         }
         updateViewScene()
+
     })
 
     $('#previous-button').on('click', () => {
@@ -182,6 +200,7 @@ async function navigationButtonsAndDragEvents() {
             indexScene -= 1
         }
         updateViewScene()
+
     })
 
     // Select item buttons
