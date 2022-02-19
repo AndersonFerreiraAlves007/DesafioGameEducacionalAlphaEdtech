@@ -135,8 +135,11 @@ async function navigationButtonsAndDragEvents() {
         indexItem = 0
 
         // reset position of item after altering the scene or the item itself
-        transitionAudio.play()
         resetItemPosition()
+       
+        // catch autoplay error on page load
+        const playOnPageChange = transitionAudio.play();
+        playOnPageChange.then(()=>{}).catch(error=>{})
         
     }
 
