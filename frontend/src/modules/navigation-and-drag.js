@@ -153,7 +153,7 @@ async function navigationButtonsAndDragEvents() {
             indexScene += 1
         }
         updateViewScene()
-        dadosGlobais.setCurrentItem(currentScene.items[0])
+
     })
 
     $('#previous-button').on('click', () => {
@@ -163,7 +163,7 @@ async function navigationButtonsAndDragEvents() {
             indexScene -= 1
         }
         updateViewScene()
-        dadosGlobais.setCurrentItem(currentScene.items[0])
+
     })
 
     // Select item buttons
