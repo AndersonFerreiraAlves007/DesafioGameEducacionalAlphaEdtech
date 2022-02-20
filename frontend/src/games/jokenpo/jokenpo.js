@@ -9,7 +9,7 @@ export function agoraVai() {
 
 
     // move buttons in screan
-    $("#jokenpo__rock").draggable({ revert: "valid" });
+    $(".jokenpo__rock").draggable({ revert: "valid" });
     $(".jokenpo__paper").draggable({ revert: "valid" });
     $(".jokenpo__scissors").draggable({ revert: "valid" });
 
@@ -32,8 +32,8 @@ export function agoraVai() {
 
     // organizar caminhos
     const imageRock = "../../assets/images/game/jokenpo/rock.png";
-    const imagePaper = "../../../assets/images/game/jokenpo/paper.png";
-    const imageScissors = "../assets/images/game/jokenpo/scissors.png";
+    const imagePaper = "../../assets/images/game/jokenpo/paper.png";
+    const imageScissors = "../../assets/images/game/jokenpo/scissors.png";
 
     // call the function jokenpo, change background of div ("jokenpo__player-choice")
     async function choicePlayer(number) {
@@ -47,8 +47,6 @@ export function agoraVai() {
         const objectPet = {
             xp_food: ((currentPet.xp_food + xp_food_change) > 0) ? (currentPet.xp_food + xp_food_change) : 0,
             xp_hygiene: ((currentPet.xp_hygiene + xp_hygiene_change) > 0) ? (currentPet.xp_hygiene + xp_hygiene_change) : 0,
-
-
             xp_fun: ((currentPet.xp_fun + xp_fun_change) < 100) ? (currentPet.xp_fun + xp_fun_change) : 100
         }
         await serverConnection.updatePet(petId, objectPet);

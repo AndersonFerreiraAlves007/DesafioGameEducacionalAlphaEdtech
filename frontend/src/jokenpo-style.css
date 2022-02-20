@@ -1,6 +1,7 @@
 :root{
     --font-main: Oleander-Cakes, Arial;
     --background-main: #ff7f50;
+    --background-image-game: url('./assets/background-images/vector-cartoon-illustration-of-empty-kindergarten-room-with-furniture-and-toys-for-young-children-n/1926.jpg')
     
     --slime-color: #0000ff;
     --slime-diameter: 200px;
@@ -34,70 +35,24 @@
     src: url("./assets/fonts/oleander_cakes/Oleander-Cakes.ttf") format("truetype");
 } */
 
-.low{
-    font-size: var(--size-low);
-}
-
-.median{
-    font-size: var(--size-median)
-}
-
-.high{
-    font-size: var(--size-high);
-}
-
-
-
-/* body{
-    font-family: var(--font-main);
-    color: var(--color-black);
-
-    margin: 0px;
-    padding: 0px;
-    background-color: var(--background-main);
-    font-size: var(--size-median);
+.jokenpo{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 4000;
 
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
-} */
 
-button {
-    width: var(--button-width);
-    height: var(--button-height);
-    margin: 10px;
-
-    font-size: var(--size-median);
-    /* color: var(--color-white); */
-    font-family: var(--font-main);
-}
-
-/* substituindo botões por divs */
-ul li div{
-    width: var(--button-width);
-    height: var(--button-height);
-    margin: 10px;
-
-    font-size: var(--size-median);
-    color: var(--color-white);
-    font-family: var(--font-main);
-}
-/*
-
-.header {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-around;
-    align-items: center;
-    width: 700px;
-}
-
-.status-bar{
-    background-color: #f1f15b;
-    width: 200px;
-    height: 50px;
-    align-self: center;
+    background-color: var(--background-game);
+    background-image: var(--background-image-game);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .close{
@@ -105,6 +60,7 @@ ul li div{
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    
     margin: 5px;
     padding: 0px;
 }
@@ -115,14 +71,43 @@ ul li div{
     justify-content: flex-start;
     align-items: center;
 }
-.slime__image{
+
+.jokenpo__list-button div{
+    margin: 10px;
+    padding: 0px;
+    width: var(--button-width);
+    height: var(--button-height);
+    border-radius: 50%;
+
+    font-size: var(--size-median);
+    color: var(--color-white);
+    font-family: var(--font-main);
+}
+
+
+.jokenpo__header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 700px;
+}
+
+.jokenpo__status-bar{
+    background-color: #f1f15b;
+    width: 200px;
+    height: 50px;
+    align-self: center;
+}
+
+.jokenpo__slime-image{
     width: var(--slime-diameter);
     height: var(--slime-diameter);
     border-radius: 50%;
     background-color: var(--slime-color);
 }
 
-.list-button{
+.jokenpo__list-button{
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
@@ -131,33 +116,6 @@ ul li div{
     margin: 0px;
     padding: 0px;
     list-style-type: none;
-}
-*/
-.home-button__shower{
-    background-color: var(--background-shower);
-}
-
-.home-button__game{
-    background-color: var(--background-game);
-}
-
-.home-button__food{
-    background-color: var(--background-food);
-}
-
-.jokenpo{
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    z-index: 4000;
-    background-color: var(--background-game);
-
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: center;
 }
 
 .jokenpo__slime-choice{
@@ -173,7 +131,7 @@ ul li div{
     margin: 5px;
 }
 
-.jokenpo__list li{
+.jokenpo__list-button li{
     display:flex;
     flex-flow: column nowrap;
     justify-content: center;
