@@ -1,9 +1,11 @@
 import { serverConnection } from './server-communication.js';
-import { loggedUserId, loggedPetId } from '../main-script.js';
+import { currentSlime} from '../main-script.js';
 import { addBubbles } from './bath-bubbles.js'
-import { agoraVai } from '../games/jokenpo/jokenpo.js';
+import { agoraVai } from './mini-games/jokenpo.js';
 import { dadosGlobais } from './global-data.js'
-import { statusBar } from '../modules/update-status-bar.js'
+import { statusBar } from './update-status-bar.js'
+
+let loggedPetId;
 
 
 export async function updatePetStatus(loggedPetId, currentItem) {
@@ -21,6 +23,9 @@ export async function updatePetStatus(loggedPetId, currentItem) {
 }
 
 async function navigationButtonsAndDragEvents() {
+
+    loggedPetId = await currentSlime.petFullData.id
+
     const allScenesWithItems = await serverConnection.listSceneWithItems()
     let soapLevel = 0;
     
@@ -67,6 +72,7 @@ async function navigationButtonsAndDragEvents() {
                     // $('#item-box').width(100)
                     // $('#current-item').animate({width: 0, height: 0}, 100)
                     // $('#current-item').animate({width: '100px', height: '100px'}, 300)
+
                 }
             
                 if (indexScene === 1) {
@@ -101,6 +107,7 @@ async function navigationButtonsAndDragEvents() {
                     }
                     
                     dadosGlobais.setCurrentPet(await serverConnection.updatePet(loggedPetId, newStatus))
+                    await statusBar.updateInfoPet()
 
                     audio.src = allAudios[indexScene]
                     audio.play()

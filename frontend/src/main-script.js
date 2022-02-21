@@ -1,12 +1,13 @@
-import { eyeMover } from './modules/slime-eyes.js';
-import { updateBody, setDirtLevel } from './modules/slime-body.js';
 import { serverConnection } from './modules/server-communication.js';
 import { navigationButtonsAndDragEvents } from './modules/navigation-and-drag.js';
 import { dadosGlobais } from './modules/global-data.js'
 import { statusBar } from './modules/update-status-bar.js'
 //import { realTime } from './modules/real-time.js'
+import { Slime } from './modules/slime.js';
 
 const socket = io('http://127.0.0.1:3333', { transports : ['websocket'] });
+
+let currentSlime;
 
 socket.on("connect", () => {
   console.log(socket.connected); // true
@@ -14,43 +15,42 @@ socket.on("connect", () => {
 
 socket.on('update pets', function(msg) {
     statusBar.updateInfoPet()
+    console.log('houve atualização')
 });
 
 // current session data and validations
 const loggedUserId = localStorage.getItem('user_id');
-const loggedPetId = parseInt(localStorage.getItem('pet_id'), 10);
+//const loggedPetId = parseInt(localStorage.getItem('pet_id'), 10);
 
-let currentPet;
-let currentUser;
 
 async function getUser() {
 
     const dataUsers = await serverConnection.getUserWithPets(Number(loggedUserId));
-    currentPet = dataUsers.pet;
-    currentUser = dataUsers.user;
-    dadosGlobais.setCurrentPet(currentPet)
-    dadosGlobais.setCurrentUser(currentUser)
+
+    currentSlime = new Slime(dataUsers.pet.name, dataUsers.pet.user_id, dataUsers.pet.id, dataUsers.pet.xp_food, dataUsers.pet.xp_fun, dataUsers.pet.xp_hygiene, dataUsers.pet.color);
+    console.log(currentSlime.petFullData);
+
+    dadosGlobais.setCurrentPet(dataUsers.pet)
+    dadosGlobais.setCurrentUser(dataUsers.user)
+
     localStorage.setItem("pet_id", String(dataUsers.pet.id));
+
+    statusBar.updateInfoPet()
+    navigationButtonsAndDragEvents()
 }
 
+
 if (loggedUserId) {
-    getUser();
+    getUser(); 
 } else {
     window.location.replace('/login');
 }
 
-// slime responses
-eyeMover('path3810-5-6-8', 'path3832-6-8-9', 'path3810-1-7-1-1', 'path3832-7-1-9-8');
-
-updateBody();
-
-// STATUS WATCH
 
 
-statusBar.updateInfoPet()
 
 
-navigationButtonsAndDragEvents()
+
 
 /////////////////////////
 
@@ -116,9 +116,11 @@ const colorOptions = [
             name: namePetValue,
             color: colorValue
         }))
+        currentSlime.color = colorValue
     })
 
     
   //////////////////////////
 
-export { loggedUserId, loggedPetId };
+//export { loggedUserId, loggedPetId, currentSlime };
+export { currentSlime };
