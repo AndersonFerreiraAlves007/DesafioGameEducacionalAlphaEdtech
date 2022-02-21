@@ -1,6 +1,6 @@
-import { serverConnection } from '../../modules/server-communication.js';
-import { dadosGlobais } from '../../modules/global-data.js'
-import { statusBar } from '../../modules/update-status-bar.js'
+import { serverConnection } from '../server-communication.js';
+import { dadosGlobais } from '../global-data.js'
+import { statusBar } from '../update-status-bar.js'
 
 
 export function agoraVai() {
