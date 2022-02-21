@@ -1,5 +1,5 @@
-import {serverConnection} from '../modules/server-communication.js';
-import { dadosGlobais } from '../modules/global-data.js'
+import {serverConnection} from './server-communication.js';
+import { dadosGlobais } from './global-data.js'
 
 $(document).ready(function(){
     $(".login").hide();
