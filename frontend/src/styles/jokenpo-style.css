@@ -31,7 +31,7 @@
 
 /* @font-face {
     font-family: Oleander-Cakes;
-    src: url("./assets/fonts/oleander_cakes/Oleander-Cakes.ttf") format("truetype");
+    src: url("../assets/fonts/oleander_cakes/Oleander-Cakes.ttf") format("truetype");
 } */
 
 .low{
@@ -183,7 +183,7 @@ ul li div{
 }
 
 .jokenpo__rock{
-    background-image: url("./assets/images/game/jokenpo/rock.png");
+    background-image: url("../assets/images/game/jokenpo/rock.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -191,7 +191,7 @@ ul li div{
 }
 
 .jokenpo__paper{
-    background-image: url("./assets/images/game/jokenpo/paper.png");
+    background-image: url("../assets/images/game/jokenpo/paper.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -199,7 +199,7 @@ ul li div{
 }
 
 .jokenpo__scissors{
-    background-image: url("./assets/images/game/jokenpo/scissors.png");
+    background-image: url("../assets/images/game/jokenpo/scissors.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
