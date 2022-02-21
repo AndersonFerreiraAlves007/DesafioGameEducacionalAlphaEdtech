@@ -68,11 +68,21 @@ main {
     }
 }
 @media (max-width: 1060px){
+    main {
+      height: 90vh;
+    }
     header {
         flex-direction: column;
         align-items: stretch;
-
+        padding-top: 5px;
+        height: fit-content;
     }
+    #options-menu-button{
+      align-self: flex-end;
+      width: 32px;
+      order: -1;
+    }
+
 }
 
 #environment-text {
@@ -378,3 +388,28 @@ span {
      max-height: 300px;
      overflow-y: auto;
    }
+
+/* OPTIONS MENU */
+
+#options-menu-button {
+  max-width: 64px;
+}
+
+#menu-area {
+  position: absolute;
+  z-index: 3000;
+  left: 0;
+  top: 0;
+  background-color: aquamarine;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#button-close-menu {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}

@@ -4,6 +4,7 @@ import { dadosGlobais } from './modules/global-data.js'
 import { statusBar } from './modules/update-status-bar.js'
 //import { realTime } from './modules/real-time.js'
 import { Slime } from './modules/slime.js';
+import { optionMenu } from './modules/options-menu.js';
 
 const socket = io('http://127.0.0.1:3333', { transports : ['websocket'] });
 
@@ -49,7 +50,7 @@ if (loggedUserId) {
 
 
 
-
+optionMenu();
 
 
 
