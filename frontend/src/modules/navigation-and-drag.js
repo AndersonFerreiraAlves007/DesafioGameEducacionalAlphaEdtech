@@ -101,7 +101,7 @@ async function navigationButtonsAndDragEvents() {
                     }
                     
                     dadosGlobais.setCurrentPet(await serverConnection.updatePet(loggedPetId, newStatus))
-
+                    await statusBar.updateInfoPet()
                     audio.src = allAudios[indexScene]
                     audio.play()
 
