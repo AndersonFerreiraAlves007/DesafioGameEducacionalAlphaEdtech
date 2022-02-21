@@ -33,7 +33,7 @@ async function navigationButtonsAndDragEvents() {
         drop: async function (event, ui) {
             
             if(indexScene !== 2){
-                await updatePetStatus(loggedPetId, dadosGlobais.getCurrentItem())
+                await updatePetStatus(dadosGlobais.getCurrentPet().id, dadosGlobais.getCurrentItem())
 
                 // Get adequate audio for the scene and play it
                 audio.src = allAudios[indexScene]
@@ -41,7 +41,7 @@ async function navigationButtonsAndDragEvents() {
 
                 if (indexScene === 0) {
                     const currentItem = dadosGlobais.getCurrentItem();
-                    await updatePetStatus(loggedPetId, currentItem)
+                    await updatePetStatus(dadosGlobais.getCurrentPet().id, currentItem)
 
                     // Get adequate audio for the scene and play it
                     audio.src = allAudios[indexScene]
@@ -100,7 +100,7 @@ async function navigationButtonsAndDragEvents() {
                         xp_hygiene: ((currentPet.xp_hygiene + (soapLevel*15)) < 100) ? (currentPet.xp_hygiene + (soapLevel*15)) : 100
                     }
                     
-                    dadosGlobais.setCurrentPet(await serverConnection.updatePet(loggedPetId, newStatus))
+                    dadosGlobais.setCurrentPet(await serverConnection.updatePet(dadosGlobais.getCurrentPet().id, newStatus))
                     await statusBar.updateInfoPet()
                     audio.src = allAudios[indexScene]
                     audio.play()

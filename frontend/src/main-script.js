@@ -13,6 +13,7 @@ socket.on("connect", () => {
 });
 
 socket.on('update pets', function(msg) {
+    console.log('kakakka')
     statusBar.updateInfoPet()
 });
 
@@ -118,7 +119,64 @@ const colorOptions = [
         }))
     })
 
+
+    /////////////////////////////////////////
+
+
+const buttonCancelDialogCreatePet = document.getElementById('btn-cancel-dialog-create-pet')
+const buttonConfirmDialogCreatePet = document.getElementById('btn-confirm-dialog-create-pet')
+
+const inputNamePetCreate = $('#name-pet-input-create')
+const buttonCreatePet = document.getElementById('btn-create-pet')
+
+const dialogCreatePet = document.getElementById('content-dialog-create-pet')
+const dialogCreatePetSelect = document.getElementById('content-dialog-create-pet-select')
+
+
+function selectColorCreate(colorSelect) {
+    dialogCreatePetSelect.innerHTML = ''
+    dialogCreatePetSelect.innerHTML += makeOptionColorCreate(colorSelect, 1)
     
+}
+
+function makeOptionColorCreate(color, opacity = 0.8) {
+    return (
+    `
+        <div class="container-color-option">
+        <div style="background-color: ${color}; opacity: ${opacity}" class="colorOption" onclick="selectColorCreate('${color}')"></div>
+        </div>
+    `
+    )
+}
+
+//selectColorCreate('red')
+
+colorOptions.forEach((item) => {
+    dialogCreatePet.innerHTML += makeOptionColorCreate(item, 1)
+})
+
+buttonCreatePet.addEventListener('click', () => {
+    $('#dialog-create-pet').show()
+    inputNamePetCreate.val('')
+    selectColorCreate('#00a1cc')
+})
+
+buttonCancelDialogCreatePet.addEventListener('click', () => {
+    $('#dialog-create-pet').hide()
+})
+
+buttonConfirmDialogCreatePet.addEventListener('click', async () => {
+    const user_id = dadosGlobais.getCurrentUser().id
+    const namePetValue = inputNamePetCreate.val()
+    const colorValue = document.querySelector('#content-dialog-create-pet-select .colorOption').style.backgroundColor
+    /* dadosGlobais.setCurrentPet(await serverConnection.updatePet(dadosGlobais.getCurrentPet().id, {
+        name: namePetValue,
+        color: colorValue
+    })) */
+    await serverConnection.createPet(user_id, namePetValue, colorValue)
+    $('#dialog-create-pet').hide()
+})
+
   //////////////////////////
 
 export { loggedUserId, loggedPetId };

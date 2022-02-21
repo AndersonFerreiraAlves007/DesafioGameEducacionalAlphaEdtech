@@ -2,6 +2,7 @@ import { serverConnection } from './server-communication.js';
 import { setDirtLevel } from './slime-body.js';
 import { foodComplain } from './slime-speech.js';
 import { updateStatusBarView } from './status-bar.js';
+import { dadosGlobais } from './global-data.js'
 
 const loggedUserId = localStorage.getItem('user_id');
 
@@ -14,10 +15,11 @@ class StatusBar {
   }
 
   updateInfoPet = async () => {
-    const data = await serverConnection.getUserWithPets(loggedUserId)
-    const currentHygieneLevel = data.pet.xp_hygiene;
-    const currentFoodLevel = data.pet.xp_food;
-    const currentFunLevel = data.pet.xp_fun;
+    dadosGlobais.setCurrentPet(await serverConnection.getPet(dadosGlobais.getCurrentPet().id))
+    const pet = dadosGlobais.getCurrentPet()
+    const currentHygieneLevel = pet.xp_hygiene;
+    const currentFoodLevel = pet.xp_food;
+    const currentFunLevel = pet.xp_fun;
 
     updateStatusBarView(currentFoodLevel, currentHygieneLevel, currentFunLevel)
 

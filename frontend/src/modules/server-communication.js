@@ -80,6 +80,16 @@ class BancoDados {
     return pet
   }
 
+  async createPet(user_id, name, color) {
+    const pet = await request(`${this.host}/pets`, 'POST', {
+      user_id,
+      name,
+      color
+    })
+    
+    return pet
+  }
+
   async getUserWithPets(id) {
     const { pets, ...user } = await request(`${this.host}/users/${id}/pets`, 'GET')
     
@@ -89,7 +99,8 @@ class BancoDados {
 
     return {
       user,
-      pet: pets[0]
+      pet: pets[0],
+      pets
     }
   }
 

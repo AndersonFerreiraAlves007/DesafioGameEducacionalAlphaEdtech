@@ -15,6 +15,7 @@
     <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
 
     <script type="module" src="./main-script.js" charset="utf-8"></script>
+    <script type="module" src="./modules/list-slimes.js" charset="utf-8"></script>
 
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="jokenpo-style.css">
@@ -38,6 +39,8 @@
                 <div id="funbar"></div>
             </div>
             <button type="button" id="btn-edit-pet">Editar Pet</button>
+            <button type="button" id="btn-create-pet">Criar Pet</button>
+            <button type="button" id="btn-select-pet">Seelecionar Pet</button>
         </header>
 
         <main>
@@ -198,23 +201,69 @@
           </div>
         </div>
       </section>
+
+      <section id="dialog-create-pet" style="display: none">
+        <div id="container-colors">
+          <h2>Crie um novo bichinho!</h2>
+          <input type="text" id="name-pet-input-create" placeholder="Nome do pet">
+          <div id="content-dialog-create-pet-select"></div>
+          <div id="content-dialog-create-pet"></div>
+          <div id="container-buttons-dialog-create-pet">
+            <button type="button" id="btn-cancel-dialog-create-pet">Cancelar</button>
+            <button type="button" id="btn-confirm-dialog-create-pet">Salvar</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="dialog-select-pet" style="display: none">
+        <div id="container-colors">
+          <h2>Selecione um Pet</h2>
+          <div id="content-dialog-select-pet-select"></div>
+          <div id="content-dialog-select-pet"></div>
+          <div id="container-buttons-dialog-select-pet">
+            <button type="button" id="btn-cancel-dialog-select-pet">Cancelar</button>
+          </div>
+        </div>
+      </section>
+
+
       <script>
-          const dialogEditPetSelect = document.getElementById('content-dialog-edit-pet-select')
-          function selectColor(colorSelect) {
-        dialogEditPetSelect.innerHTML = ''
-        dialogEditPetSelect.innerHTML += makeOptionColor(colorSelect, 1)
-        
-    }
-    
-    function makeOptionColor(color, opacity = 0.8) {
-        return (
-        `
-            <div class="container-color-option">
-            <div style="background-color: ${color}; opacity: ${opacity}" class="colorOption" onclick="selectColor('${color}')"></div>
-            </div>
-        `
-        )
-    }
+        const dialogEditPetSelect = document.getElementById('content-dialog-edit-pet-select')
+        function selectColor(colorSelect) {
+            dialogEditPetSelect.innerHTML = ''
+            dialogEditPetSelect.innerHTML += makeOptionColor(colorSelect, 1)
+            
+        }
+
+        function makeOptionColor(color, opacity = 0.8) {
+            return (
+            `
+                <div class="container-color-option">
+                <div style="background-color: ${color}; opacity: ${opacity}" class="colorOption" onclick="selectColor('${color}')"></div>
+                </div>
+            `
+            )
+        }
+
+
+
+
+        const dialogCreatePetSelect = document.getElementById('content-dialog-create-pet-select')
+        function selectColorCreate(colorSelect) {
+            dialogCreatePetSelect.innerHTML = ''
+            dialogCreatePetSelect.innerHTML += makeOptionColorCreate(colorSelect, 1)
+            
+        }
+
+        function makeOptionColorCreate(color, opacity = 0.8) {
+            return (
+            `
+                <div class="container-color-option">
+                <div style="background-color: ${color}; opacity: ${opacity}" class="colorOption" onclick="selectColorCreate('${color}')"></div>
+                </div>
+            `
+            )
+        }
 
       </script>
 </body>
