@@ -1,6 +1,8 @@
 import { serverConnection } from '../modules/server-communication.js';
 import { dadosGlobais } from '../modules/global-data.js'
 import { statusBar } from '../modules/update-status-bar.js'
+import { currentSlime } from '../main-script.js';
+import {Slime} from './slime.js';
 
 function makeSlime(id, nome, color, onClick) {
   const slime = document.createElement('div')
@@ -129,6 +131,7 @@ console
     dialogSelectPet.append(makeSlime(item.id, item.name, item.color, async () => {
       const pet = await serverConnection.getPet(item.id)
       dadosGlobais.setCurrentPet(pet)
+      currentSlime.updateSlime();
       await statusBar.updateInfoPet()
       dialogSelectPetMesmo.style.display = 'none'
       $('#path2999-17-9-8-5-3-4').css('fill', pet.color)

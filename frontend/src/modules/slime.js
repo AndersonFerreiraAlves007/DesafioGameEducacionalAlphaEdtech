@@ -1,3 +1,5 @@
+import {dadosGlobais} from './global-data.js';
+
 class Slime {
 
     #name;
@@ -549,6 +551,23 @@ class Slime {
             }
     
         }
+        
+    }
+
+    updateSlime(){
+        const currentPet = dadosGlobais.getCurrentPet();
+        console.log(currentPet);
+        this.#color = currentPet.color;
+        this.#name = currentPet.name;
+        this.#id = currentPet.id;
+        this.#xpFood = currentPet.xp_food;
+        this.#xpFun = currentPet.xp_fun;
+        this.#xpHygiene = currentPet.xp_hygiene;
+
+        this.renderDirtLevel(this.#xpHygiene);
+        this.foodComplain(this.#xpFood);
+
+        document.getElementById('slime-body').style.fill = this.#color;
         
     }
 }
