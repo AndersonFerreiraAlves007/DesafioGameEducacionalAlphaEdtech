@@ -53,15 +53,15 @@
             <button type="button" id="btn-create-pet">Criar Pet</button>
             <button type="button" id="btn-select-pet">Seelecionar Pet</button> -->
             <!-- <button type="button" id="btn-jogo-da-memoria">Jogo da memória</button> -->
-            <div id="menu-button-area">
+            <!-- <div id="menu-button-area">
                 <img id="options-menu-button" src="./assets/button-icons/options-menu.svg" alt="menu de opções" />
                 <p id="pet-name"></p>
-            </div>
+            </div> -->
             
-
+            <img id="options-menu-button" src="./assets/button-icons/options-menu.svg" alt="menu de opções" />
         </header>
 
-        <img id="options-menu-button" src="./assets/button-icons/options-menu.svg" alt="menu de opções" />
+
 
         <main>
             <div id="environment">
@@ -72,15 +72,9 @@
 
             <div id="pou">
 
-                <div id="screen-log">
+                <div id="screen-log"></div>
 
-                </div>
-
-                <div id="slime-root">
-
-
-
-                </div>
+                <div id="slime-root"></div>
 
             </div>
 
@@ -91,20 +85,7 @@
             </div>
         </main>
 
-        <!-- <section class="game">
-            <section class="header">
-                <div class="status-bar">status</div>
-                <button class="game__closed close">fechar</button>
-            </section>
-            <div class="slime__image"></div>
-
-            <ul class="game__buttons list-button">
-                <li><button class="game__jokenpo">jokenpo</button></li>
-                <li><button class="game__color-items">colorir</button></li>
-                <li><button class="game__write-words">palavras</button></li>
-            </ul>
-        </section> -->
-
+        <!--JOKEMPO-->
         <section class="jokenpo" style="display: none;">
             <section class="header">
                 <div class="status-bar">status</div>
@@ -140,6 +121,7 @@
             </ul>
         </section>
 
+        <!--COLOR GAME-->
         <section class="colors-game" style="display: none; z-index: 8000;">
             <span id="score">SCORE: </span>
             <div id="start"></div>
@@ -176,7 +158,7 @@
             <button type="button" id="btn-confirm-dialog-edit-pet">Salvar</button>
           </div>
         </div>
-      </section>
+    </section>
 
       <section id="dialog-create-pet" style="display: none">
         <div id="container-colors">
@@ -211,6 +193,7 @@
         <!-- <button type="button" id="btn-close-game-memoria">Fechar</button> -->
         <img id="btn-close-game-memoria" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu" />
         </section>
+
       <section id="dialog-credits" style="display: none">
         <div id="container-colors">
           <h2>Créditos</h2>
@@ -237,7 +220,7 @@
 
             <!-- <button type="button" id="btn-close-credits">Cancelar</button> -->
             <img id="btn-close-credits" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu" class="btn-close-menu-geral"/>
-          </div>
+          
         </div>
       </section>
 
