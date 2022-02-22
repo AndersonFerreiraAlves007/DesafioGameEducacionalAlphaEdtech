@@ -1,17 +1,22 @@
 // import {makeSlime} from '../list-slimes.js'
 
-function makeSlime(id, nome, color, onClick) {
-  const slime = document.createElement('div')
-  slime.addEventListener('click', onClick)
-  slime.classList.add('slime-item')
 
-  slime.innerHTML = `
+function colorGameStart() {
+    $('.colors-game').show()
+    function makeSlime(id, nome, color, onClick) {
+        const slime = document.createElement('div')
+        slime.setAttribute('id', `${id}`)
+        // slime.addEventListener('click', onClick)
+        // slime.classList.add('slime-item')
+        slime.classList.add('slime')
+
+        slime.innerHTML = `
     <svg
-      width="64"
-      height="32"
+      width="128"
+      height="64"
       viewBox="0 0 15.866666 15.866668"
       version="1.1"
-      id="${id}"
+      id="${id}-svg"
       inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
       sodipodi:docname="slime-02.svg"
       xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -109,49 +114,72 @@ function makeSlime(id, nome, color, onClick) {
       </g>
     </svg>
   `
-  slime.innerHTML += `
+        slime.innerHTML += `
     <span>${nome}</span>
   `
-  return slime
+        return slime
+    }
+
+
+    const slimy = makeSlime(1, '', 'red', () => { })
+    console.log(slimy)
+    // document.getElementById('#container').appendChild(slimy)
+    // console.log(document.getElementById('#score').getBoundingClientRect())
+    const targerin = ['option1', 'option2', 'option3']
+
+    targerin.forEach(option => {
+        const slimy = makeSlime(option, '', '', () => { })
+        $('#container').append(slimy)
+    })
+
+    $('.slime').hide()
+
+
+    $('#option1').draggable()
+    $('#option2').draggable()
+    $('#option3').draggable()
+
+    $('#droppable').droppable({
+        drop: function (event, ui) {
+            console.log(ui.draggable.hasClass(colorThisTime))
+            if (ui.draggable.hasClass(colorThisTime)) {
+                count += 1
+            }
+            $('#option1, #option2, #option3').removeClass(allColors)
+            $('.slime').hide()
+            $('#score').html(`SCORE: ${count}`)
+        }
+    })
+
+    const allColors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple']
+    let colorThisTime
+    let count = 0
+
+    $('#start').on('mouseover', function () {
+        $('#option1, #option2, #option3').removeClass(allColors)
+        const targets = ['#option1', '#option2', '#option3']
+        let thisGame = []
+        targets.forEach(option => {
+            let repeatColor = true
+            while (repeatColor) {
+                colorThisTime = allColors[Math.floor(Math.random() * allColors.length)]
+                const randomWidth = Math.ceil(Math.random() * 400)
+                const randomHeight = Math.ceil(Math.random() * 400)
+                if (thisGame.includes(colorThisTime)) {
+                    continue
+                } else {
+                    repeatColor = false
+                    thisGame.push(colorThisTime)
+                    $(option).show('fast')
+                    $(option).css('top', randomHeight)
+                    $(option).css('left', randomWidth)
+                    $(option).addClass(colorThisTime)
+                    $(`path2999-17-9-8-5-3-4-${option}`).addClass(colorThisTime)
+                }
+            }
+        });
+        $(this).html(colorThisTime)
+    })
 }
 
-
-// const slimy = makeSlime(1, '', 'red',() => {})
-// document.getElementById('#container').appendChild(slimy)
-// console.log(document.getElementById('#score').getBoundingClientRect())
-
-
-$('#option1').draggable()
-$('#option2').draggable()
-$('#option3').draggable()
-
-$('#droppable').droppable({
-    drop: function (event, ui) {
-        console.log(ui.draggable.hasClass(colorThisTime))
-        if (ui.draggable.hasClass(colorThisTime)) {
-            count += 1
-        }
-        $('#option1, #option2, #option3').removeClass(allColors)
-        $('#score').html(`SCORE: ${count}`)
-    }
-})
-
-const allColors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple']
-let colorThisTime
-let count  = 0
-
-$('#start').on('mouseover', function () {
-    $('#option1, #option2, #option3').removeClass(allColors)
-    const targets = ['#option1', '#option2', '#option3']
-    targets.forEach(option => {
-        colorThisTime = allColors[Math.floor(Math.random() * allColors.length)]
-        const randomWidth = Math.ceil(Math.random() * 400)
-        const randomHeight = Math.ceil(Math.random() * 400)
-        $(option).show('fast')
-        $(option).css('top', randomHeight)
-        $(option).css('left', randomWidth)
-        $(option).addClass(colorThisTime)
-    });
-    $(this).html(colorThisTime)
-})
-
+export { colorGameStart };

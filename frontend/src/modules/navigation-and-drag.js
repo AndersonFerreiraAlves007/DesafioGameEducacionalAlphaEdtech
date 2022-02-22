@@ -4,6 +4,7 @@ import { addBubbles } from './bath-bubbles.js'
 import { agoraVai } from './mini-games/jokenpo.js';
 import { dadosGlobais } from './global-data.js'
 import { statusBar } from './update-status-bar.js'
+import {colorGameStart} from './mini-games/colors-game.js'
 
 let loggedPetId;
 
@@ -78,7 +79,12 @@ async function navigationButtonsAndDragEvents() {
                 if (indexScene === 1) {
                     // code jokenpo.js
                     //console.log("deu certo");
-                    agoraVai();
+                    if (indexItem === 0) {
+                        agoraVai();
+                    }
+                    if (indexItem === 1) {
+                        colorGameStart()
+                    }
                 }
             }
 
