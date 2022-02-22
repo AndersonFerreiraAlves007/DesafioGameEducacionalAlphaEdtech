@@ -131,37 +131,42 @@
 
         <!-- data-backdrop="static" data-keyboard="false" -->
         <section class="jokenpo" style="display: none;">
-            <button class="jokenpo__closed"></button>
+            <div class="jokenpo__background">
+                <div class="jokenpo__main">
+                    <button class="jokenpo__closed"></button>
 
-            <div>
-                <!-- <img class="jokenpo__slime-image" src="./assets/images/game/jokenpo/slime-02.svg" alt=""> -->
-                <img class="jokenpo__slime-image" src="./assets/images/game/jokenpo/slime03.png" alt="">
+                    <div>
+                        <!-- <img class="jokenpo__slime-image" src="./assets/images/game/jokenpo/slime-02.svg" alt=""> -->
+                        <img class="jokenpo__slime-image" src="./assets/images/game/jokenpo/slime03.png" alt="">
+                    </div>
+                    <!-- colocar div do slime aqui -->
+                    <!-- </div> -->
+
+                    <div class="jokenpo__result"></div>
+
+                    <div class="jokenpo__slime-choice"></div>
+
+                    <div class="jokenpo__player-choice"></div>
+
+                    <ul class="jokenpo__list-button">
+                        <li>
+                            <div value="1" class="jokenpo__rock"></div>
+                            <label for="jokenpo__rock">pedra</label>
+                        </li>
+
+                        <li>
+                            <div value="2" class="jokenpo__paper"></div>
+                            <label for="jokenpo__paper">papel</label>
+                        </li>
+
+                        <li>
+                            <div value="3" class="jokenpo__scissors"></div>
+                            <label for="jokenpo__scissors">tesoura</label>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <!-- colocar div do slime aqui -->
-            <!-- </div> -->
 
-            <div class="jokenpo__result"></div>
-
-            <div class="jokenpo__slime-choice"></div>
-
-            <div class="jokenpo__player-choice"></div>
-
-            <ul class="jokenpo__list-button">
-                <li>
-                    <div value="1" class="jokenpo__rock"></div>
-                    <label for="jokenpo__rock">pedra</label>
-                </li>
-
-                <li>
-                    <div value="2" class="jokenpo__paper"></div>
-                    <label for="jokenpo__paper">papel</label>
-                </li>
-
-                <li>
-                    <div value="3" class="jokenpo__scissors"></div>
-                    <label for="jokenpo__scissors">tesoura</label>
-                </li>
-            </ul>
         </section>
     </div>
 </body>
