@@ -16,9 +16,11 @@
 
     <script type="module" src="./main-script.js" charset="utf-8"></script>
     <script type="module" src="./modules/list-slimes.js" charset="utf-8"></script>
+    <script type="module" src="./modules/mini-games/jogo-da-memoria.js" charset="utf-8"></script>
 
     <link rel="stylesheet" href="./main-styles.css">
     <link rel="stylesheet" href="./styles/jokenpo-style.css">
+    <link rel="stylesheet" href="./styles/jogo-da-memoria-style.css">
 </head>
 
 <body>
@@ -41,6 +43,7 @@
             <button type="button" id="btn-edit-pet">Editar Pet</button>
             <button type="button" id="btn-create-pet">Criar Pet</button>
             <button type="button" id="btn-select-pet">Seelecionar Pet</button>
+            <button type="button" id="btn-jogo-da-memoria">Jogo da memória</button>
         </header>
 
         <main>
@@ -158,6 +161,13 @@
             <button type="button" id="btn-cancel-dialog-select-pet">Cancelar</button>
           </div>
         </div>
+      </section>
+
+      <section id="minigame-remember" style="display: none">
+        <div id="content-minigame-remember">
+    
+        </div>
+        <button type="button" id="btn-close-game-memoria">Fechar</button>
       </section>
 
 

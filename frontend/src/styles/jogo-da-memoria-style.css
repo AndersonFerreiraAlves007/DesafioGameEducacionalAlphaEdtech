@@ -1,0 +1,90 @@
+#minigame-remember {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 1000000;
+  left: 0;
+  top: 0;
+  background-image: url(../assets/background-images/modern-bathroom-interior-with-furniture-cartoon/304.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#content-minigame-remember {
+  width: 80%;
+  height: 80%;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 25%;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.slime-item2 {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 10px;
+  background-color: blueviolet;
+  border-radius: 10px;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.flip-container {
+  width: 25%;
+  height: 25%;
+  perspective: 1000px;
+  padding: 10px;
+}
+
+.flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* .flip-container:hover .flipper {
+  transform: rotateY(180deg);
+} */
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.front {
+  background-color: black;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.back {
+  transform: rotateY(180deg);
+  background-color: black;
+  border-radius: 20px;
+  cursor: pointer;
+}
