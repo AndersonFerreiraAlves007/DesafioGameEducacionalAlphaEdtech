@@ -81,7 +81,7 @@ async function navigationButtonsAndDragEvents() {
                     const currentGame = dadosGlobais.getCurrentItem().name;
 
                     switch (currentGame){
-                        case 'joystick':
+                        case 'rock-paper-scissors':
                             agoraVai();
                             break;
                         case 'memory-game':

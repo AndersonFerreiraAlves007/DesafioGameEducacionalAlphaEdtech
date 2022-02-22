@@ -124,6 +124,6 @@ class BancoDados {
 
 } 
 
-const serverConnection = new BancoDados('https://apigameeducacional.andersonferreiraalves.com');
+const serverConnection = new BancoDados('http://127.0.0.1:3333');
 
 export {serverConnection};
