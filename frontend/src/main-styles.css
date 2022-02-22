@@ -413,3 +413,20 @@ span {
   right: 10px;
   top: 10px;
 }
+
+.menu-buttons {
+  width: 12.5rem;
+}
+
+#dialog-credits {
+  position: absolute;
+  z-index: 3001;
+  left: 0;
+  top: 0;
+  background-color: aquamarine;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

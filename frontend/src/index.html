@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Slime</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/images/login/slime-02.svg" />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- the reference below allows the status bar style to load properly -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
@@ -126,9 +128,10 @@
 
         <img id="button-close-menu" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu" />
     
-        <button type="button" id="btn-edit-pet">Editar Pet</button>
-        <button type="button" id="btn-create-pet">Criar Pet</button>
-        <button type="button" id="btn-select-pet">Seelecionar Pet</button>
+        <button type="button" class="menu-buttons" id="btn-edit-pet">Editar Pet</button>
+        <button type="button" class="menu-buttons" id="btn-create-pet">Criar Pet</button>
+        <button type="button" class="menu-buttons" id="btn-select-pet">Selecionar Pet</button>
+        <button type="button" class="menu-buttons" id="btn-credits">Créditos</button>
 
     </section>
 
@@ -165,6 +168,25 @@
           <div id="content-dialog-select-pet"></div>
           <div id="container-buttons-dialog-select-pet">
             <button type="button" id="btn-cancel-dialog-select-pet">Cancelar</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="dialog-credits" style="display: none">
+        <div id="container-colors">
+          <h2>Créditos</h2>
+            <dl>
+                <dd>Imagens de fundo "cozinha" e "sala de jogos"</dd>
+                <dt><a href="http://www.freepik.com">Designed by vectorpocket / Freepik</a></dt>
+                <dd>Imagem de fundo "banheiro"</dd>
+                <dt><a href="http://www.freepik.com">Designed by upklyak / Freepik</a></dt>
+                <dd>Personagem "slime"</dd>
+                <dt><a href="https://opengameart.org/content/jiggling-slime">Richard Lewis (AKA simulatoralive)</a></dt>
+                <dd>Ícones de utensílios do banheiro</dd>
+                <dt><a href="https://www.flaticon.com/free-icons/shower" title="shower icons">Shower icons created by Freepik - Flaticon</a></dt>
+            </dl>
+
+            <button type="button" id="btn-close-credits">Cancelar</button>
           </div>
         </div>
       </section>
