@@ -1,9 +1,4 @@
 section.colors-game  {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 90vh;
-
     position: fixed;
     top: 0;
     left: 0;
@@ -11,11 +6,18 @@ section.colors-game  {
     width: 100vw;
     z-index: 4000;
     background-color: beige;
+    background-image: url(../assets/game-icons/exterior-house-facade-icon/50574.jpg);
 
     display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+}
+
+#button-close-game {
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
 
 .slime {
