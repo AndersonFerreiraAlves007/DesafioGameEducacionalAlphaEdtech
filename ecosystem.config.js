@@ -1,7 +1,9 @@
 module.exports = {
    apps: [
       {
-         script: "./backend/server.js",
+         script: "server.js",
+         cwd: "./backend",
+         watch: true,
          name: "Backend Game Educacional",
          ignore_watch: [
             'backend/resources/items/database.json',
@@ -13,7 +15,9 @@ module.exports = {
          ],
       },
       {
-         script: "./frontend/server.js",
+         script: "server.js",
+         cwd: "./frontend",
+         watch: true,
          name: "Frontend Game Educacional",
          ignore_watch: ['node_modules', '.git'],
       }
