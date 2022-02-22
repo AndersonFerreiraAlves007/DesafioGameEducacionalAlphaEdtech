@@ -46,9 +46,11 @@
             <button type="button" id="btn-create-pet">Criar Pet</button>
             <button type="button" id="btn-select-pet">Seelecionar Pet</button> -->
             <!-- <button type="button" id="btn-jogo-da-memoria">Jogo da memória</button> -->
-            <img id="options-menu-button" src="./assets/button-icons/options-menu.svg" alt="menu de opções" />
+            
 
         </header>
+
+        <img id="options-menu-button" src="./assets/button-icons/options-menu.svg" alt="menu de opções" />
 
         <main>
             <div id="environment">
@@ -143,12 +145,13 @@
 
     <section id="dialog-edit-pet" style="display: none;" >
         <div id="container-colors">
-          <h2>Informações Pet</h2>
-          <input type="text" id="name-pet-input" placeholder="Nome do pet">
-          <div id="content-dialog-edit-pet-select"></div>
+          <h2>Editar bichinho!</h2>
+          <input type="text" id="name-pet-input" placeholder="Nome do pet" style="margin: 15px;">
+          <div id="content-dialog-edit-pet-select" style="padding: 10px;"></div>
           <div id="content-dialog-edit-pet"></div>
           <div id="container-buttons-dialog-edit-pet">
-            <button type="button" id="btn-cancel-dialog-edit-pet">Cancelar</button>
+            <!-- <button type="button" id="btn-cancel-dialog-edit-pet">Cancelar</button> -->
+            <img id="btn-cancel-dialog-edit-pet" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu" class="btn-close-menu-geral"/>
             <button type="button" id="btn-confirm-dialog-edit-pet">Salvar</button>
           </div>
         </div>
@@ -157,11 +160,12 @@
       <section id="dialog-create-pet" style="display: none">
         <div id="container-colors">
           <h2>Crie um novo bichinho!</h2>
-          <input type="text" id="name-pet-input-create" placeholder="Nome do pet">
-          <div id="content-dialog-create-pet-select"></div>
+          <input type="text" id="name-pet-input-create" placeholder="Nome do pet" style="margin: 15px;">
+          <div id="content-dialog-create-pet-select"  style="padding: 10px;"></div>
           <div id="content-dialog-create-pet"></div>
           <div id="container-buttons-dialog-create-pet">
-            <button type="button" id="btn-cancel-dialog-create-pet">Cancelar</button>
+            <!-- <button type="button" id="btn-cancel-dialog-create-pet">Cancelar</button> -->
+            <img id="btn-cancel-dialog-create-pet" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu" class="btn-close-menu-geral"/>
             <button type="button" id="btn-confirm-dialog-create-pet">Salvar</button>
           </div>
         </div>
@@ -173,7 +177,8 @@
           <div id="content-dialog-select-pet-select"></div>
           <div id="content-dialog-select-pet"></div>
           <div id="container-buttons-dialog-select-pet">
-            <button type="button" id="btn-cancel-dialog-select-pet">Cancelar</button>
+            <!-- <button type="button" id="btn-cancel-dialog-select-pet">Cancelar</button> -->
+            <img id="btn-cancel-dialog-select-pet" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu" class="btn-close-menu-geral"/>
           </div>
         </div>
       </section>
@@ -182,7 +187,9 @@
         <div id="content-minigame-remember">
     
         </div>
-        <button type="button" id="btn-close-game-memoria">Fechar</button>
+        <!-- <button type="button" id="btn-close-game-memoria">Fechar</button> -->
+        <img id="btn-close-game-memoria" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu" />
+        </section>
       <section id="dialog-credits" style="display: none">
         <div id="container-colors">
           <h2>Créditos</h2>
@@ -207,7 +214,8 @@
                 <dt><a href="www.jshaw.co.uk">Adaptaded from "Biting, Crunchy, A.wav" by InspectorJ (www.jshaw.co.uk) of Freesound.org</a></dt>
             </dl>
 
-            <button type="button" id="btn-close-credits">Cancelar</button>
+            <!-- <button type="button" id="btn-close-credits">Cancelar</button> -->
+            <img id="btn-close-credits" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu" class="btn-close-menu-geral"/>
           </div>
         </div>
       </section>

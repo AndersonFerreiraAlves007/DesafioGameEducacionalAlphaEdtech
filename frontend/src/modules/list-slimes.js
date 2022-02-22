@@ -126,7 +126,7 @@ async function renderPetsUser() {
 
   console.log(pets)
   dialogSelectPet.innerHTML = ''
-console
+  
   pets.forEach(item => {
     dialogSelectPet.append(makeSlime(item.id, item.name, item.color, async () => {
       const pet = await serverConnection.getPet(item.id)

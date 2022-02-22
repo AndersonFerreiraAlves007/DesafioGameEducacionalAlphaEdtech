@@ -88,3 +88,10 @@ h2 {
   border-radius: 20px;
   cursor: pointer;
 }
+
+#btn-close-game-memoria {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}

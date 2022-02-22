@@ -210,7 +210,7 @@ span {
   }
   
   #name-pet-input, #name-pet-input-create {
-    width: 100%;
+   /*  width: 100%; */
     height: 40px;
     margin-bottom: 20px;
     border: none;
@@ -231,7 +231,7 @@ span {
   }
   
   #container-buttons-dialog-edit-pet button{
-    width: 40%;
+    width: 100%;
     height: 40px;
     font-size: 18px;
     font-weight: bold;
@@ -250,7 +250,7 @@ span {
   }
 
   #container-buttons-dialog-create-pet button{
-    width: 40%;
+    width: 100%;
     height: 40px;
     font-size: 18px;
     font-weight: bold;
@@ -269,7 +269,7 @@ span {
   }
 
   #container-buttons-dialog-select-pet button{
-    width: 40%;
+    width: 100%;
     height: 40px;
     font-size: 18px;
     font-weight: bold;
@@ -289,6 +289,13 @@ span {
   
   #content-dialog-edit-pet-select, #content-dialog-select-pet-select, #container-buttons-dialog-create-pet {
     margin-bottom: 20px;
+  }
+
+  #content-dialog-select-pet {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    max-width: 300px;
   }
   
   ::-webkit-scrollbar {
@@ -317,6 +324,10 @@ span {
      flex-direction: column;
     width: 25%;
     cursor: pointer;
+    /*   */
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
    }
   
    .slime-item:hover {
@@ -394,6 +405,10 @@ span {
 
 #options-menu-button {
   max-width: 64px;
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }
 
 #menu-area {
@@ -410,18 +425,35 @@ span {
 }
 
 #button-close-menu {
-  position: absolute;
+  position: fixed;
   right: 10px;
   top: 10px;
+  cursor: pointer;
+}
+
+.btn-close-menu-geral {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
 }
 
 .menu-buttons {
   width: 12.5rem;
+  border-radius: 10px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  cursor: pointer;
+}
+
+.menu-buttons:hover {
+  box-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px;
+  background-color: rgb(176, 212, 243);
 }
 
 #dialog-credits {
   position: absolute;
-  z-index: 3001;
+  z-index: 500000000000;
   left: 0;
   top: 0;
   background-color: aquamarine;
@@ -431,3 +463,17 @@ span {
   align-items: center;
   justify-content: center;
 }
+
+/* #btn-close-game-memoria {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+} */
+
+/* #btn-confirm-dialog-edit-pet {
+  width: 100%;
+} */
