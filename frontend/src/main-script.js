@@ -6,7 +6,7 @@ import { statusBar } from './modules/update-status-bar.js'
 import { Slime } from './modules/slime.js';
 import { optionMenu } from './modules/options-menu.js';
 
-const socket = io('https://apigameeducacional.andersonferreiraalves.com', { transports : ['websocket'] });
+const socket = io('http://localhost:3333', { transports : ['websocket'] });
 
 let currentSlime;
 
