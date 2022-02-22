@@ -1,4 +1,8 @@
-import { serverConnection } from '../../modules/server-communication.js';
+import { serverConnection } from '../server-communication.js';
+import { dadosGlobais } from '../global-data.js'
+import { statusBar } from '../update-status-bar.js'
+
+
 export function agoraVai() {
     $(".jokenpo").show();
 
@@ -40,8 +44,9 @@ export function agoraVai() {
 
     // call the function jokenpo, change background of div ("jokenpo__player-choice")
     async function choicePlayer(number) {
-        const petId = parseInt(localStorage.getItem("pet_id"), 10);
-        const currentPet = await serverConnection.getPet(petId);
+        /* const petId = parseInt(localStorage.getItem("pet_id"), 10);
+        const currentPet = await serverConnection.getPet(petId); */
+        const currentPet = dadosGlobais.getCurrentPet()
 
         const xp_fun_change = 10;
         const xp_hygiene_change = -10;
@@ -52,7 +57,9 @@ export function agoraVai() {
             xp_hygiene: ((currentPet.xp_hygiene + xp_hygiene_change) > 0) ? (currentPet.xp_hygiene + xp_hygiene_change) : 0,
             xp_fun: ((currentPet.xp_fun + xp_fun_change) < 100) ? (currentPet.xp_fun + xp_fun_change) : 100
         }
-        await serverConnection.updatePet(petId, objectPet);
+        dadosGlobais.setCurrentPet(await serverConnection.updatePet(currentPet.id, objectPet));
+
+        await statusBar.updateInfoPet()
 
         const choicePlayer = parseInt(number);
         const result = jokenpo(choicePlayer);

@@ -1,0 +1,505 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+/* makes all text on page not selectable */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none; 
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(248, 202, 209);
+}
+
+#game-body {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 70vw;
+    height: 100vh;
+    background-size: cover;
+    overflow-x: hidden;
+    /* border: 4px solid darkorchid; */
+    border-radius: 8px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+
+header {
+    /* backdrop-filter: blur(50px); */
+    width: 100%;
+    min-height: 12vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 5px;
+    background-color: darkorchid;
+    border-radius: 8px 8px 0 0;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    font-family: 'Varela Round', sans-serif;
+    color: whitesmoke;
+}
+
+#btn-edit-pet{
+  min-width: 97px;
+  padding: 1px;
+}
+
+main {
+    background-size: cover;
+    height: 95vh;
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+@media (max-width: 1420px){
+    main {
+        width: 100%;
+    }
+    header{
+        width: 100%;
+    }
+    #game-body {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+@media (max-width: 1060px){
+    main {
+      height: 84vh;
+    }
+    header {
+        flex-direction: column;
+        align-items: stretch;
+        padding-top: 5px;
+        height: fit-content;
+    }
+    #options-menu-button{
+      width: 32px;
+    }
+    #menu-button-area {
+      align-self: flex-end;
+      order: -1;
+    }
+}
+
+#environment-text {
+    font-size: 60px;
+}
+
+#previous-item, #next-item, #previous-button, #next-button {
+    cursor: pointer;
+}
+
+#item-box:active {
+    cursor: grabbing !important;
+}
+
+#item-box:hover {
+    cursor: grab;
+}
+
+div#environment, div#items {
+    display: flex;
+    align-items: center;
+}
+
+span {
+    width: 200px;
+    text-align: center;
+}
+
+#current-item {
+    height: 100px;
+}
+
+#progressbar, #hygienebar, #funbar {
+    width: 300px;
+    height: 20px;
+}
+@media (max-width: 1060px){
+    #progressbar, #hygienebar, #funbar {
+        width: 100%;
+    }
+}
+
+/* progress bar empty color */
+#progressbar {
+    background: rgb(250, 216, 221);
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+    border-radius: 15px / 50%;
+}
+
+#hygienebar {
+    background: lightcyan;
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+    border-radius: 15px / 50%;
+}
+
+#funbar {
+    background: lightgoldenrodyellow;
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+    border-radius: 15px / 50%;
+}
+
+/* progress bar full color */
+#progressbar > div {
+    background: lightcoral;
+}
+
+#hygienebar > div {
+    background: cyan;
+}
+
+#funbar > div {
+    background: rgb(255, 255, 110);
+}
+
+#slime-root {
+    width: 256px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+
+
+
+.colorOption {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    cursor: pointer;
+    opacity: 0.5;
+  }
+  
+  #content-dialog-edit-pet, #content-dialog-edit-pet, #content-dialog-create-pet {
+    display: flex;
+    width: 300px;
+    background-color: aquamarine;
+    flex-wrap: wrap;
+    /* border: 2px solid red; */
+    border-radius: 10px;
+   /*  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+    padding: 10px;
+    overflow-y: auto;
+    max-height: 300px;
+  }
+  
+  .container-color-option {
+    width: 25%;
+    aspect-ratio: 1/1;
+    padding: 5px;
+  }
+  
+  #dialog-edit-pet, #dialog-create-pet, #dialog-select-pet {
+    /* height: 300px; */
+    background-color: aquamarine;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 10000;
+  }
+  
+  #container-colors {
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
+  
+  #name-pet-input, #name-pet-input-create {
+   /*  width: 100%; */
+    height: 40px;
+    margin-bottom: 20px;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 2px;
+  }
+  
+  ::placeholder {
+    padding: 10px;
+  }
+  
+  #container-buttons-dialog-edit-pet, #container-buttons-dialog-create-pet, #container-buttons-dialog-select-pet {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  #container-buttons-dialog-edit-pet button{
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: brown;
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 0.;
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  
+  #container-buttons-dialog-edit-pet button:hover{
+    opacity: 1;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  #container-buttons-dialog-create-pet button{
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: brown;
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 0.;
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  
+  #container-buttons-dialog-create-pet button:hover{
+    opacity: 1;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  #container-buttons-dialog-select-pet button{
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: brown;
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 0.;
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  
+  #container-buttons-dialog-select-pet button:hover{
+    opacity: 1;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  
+  #content-dialog-edit-pet-select, #content-dialog-select-pet-select, #container-buttons-dialog-create-pet {
+    margin-bottom: 20px;
+  }
+
+  #content-dialog-select-pet {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    max-width: 300px;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 7px;
+   }
+   ::-webkit-scrollbar-thumb {
+    background: linear-gradient(13deg, crimson 14%,crimson 64%);
+    border-radius: 7px;
+   }
+   ::-webkit-scrollbar-thumb:hover{
+    background: linear-gradient(13deg, crimson 14%,crimson 64%);
+    /* background: linear-gradient(13deg, #c7ceff 14%,#f9d4ff 64%); */
+   }
+   ::-webkit-scrollbar-track{
+    background: linear-gradient(13deg, transparent  14%, transparent  0%);
+    border-radius: 7px;
+   }
+  
+   h2 {
+     text-align: center;
+   }
+  
+   .slime-item {
+     display: flex;
+     flex-direction: column;
+    width: 25%;
+    cursor: pointer;
+    /*   */
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+   }
+  
+   .slime-item:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    transform: scale(1.2);
+   }
+  
+   .slime-item span{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 12px ;
+    font-weight: bold;
+    text-transform: capitalize;
+   }
+  
+   .line-user-logados {
+     display: flex;
+     align-items: center;
+     /* margin: 10px; */
+     /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+     padding: 10px;
+   }
+  
+   .line-user-logados:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+   }
+  
+   #content-users {
+      width: 250px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      padding: 20px;
+      border-radius: 10px;
+   }
+  
+   .avatar-user {
+     height: 30px;
+     width: 30px;
+     border-radius: 50%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background-color: aqua;
+   }
+  
+   .username-user-line {
+     margin-left: 10px;
+     font-weight: bold;
+     font-size: 20px;
+   }
+  
+   #list-users{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 100vw;
+     height: 100vh;
+     position: fixed;
+     
+   }
+  
+   #content-dialog-edit-users {
+     margin: 20px 0px;
+     /* border-top: 1px solid black;
+     border-bottom: 1px solid black; */
+     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+     border-radius: 10px;
+     padding: 10px;
+     max-height: 300px;
+     overflow-y: auto;
+   }
+
+/* OPTIONS MENU */
+
+#options-menu-button {
+  max-width: 64px;
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+@media (max-width: 550px){
+  #options-menu-button{
+    bottom: 130px;
+  }
+}
+
+#menu-button-area{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#menu-area {
+  position: absolute;
+  z-index: 3000;
+  left: 0;
+  top: 0;
+  background-color: aquamarine;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#button-close-menu {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.btn-close-menu-geral {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.menu-buttons {
+  width: 12.5rem;
+  border-radius: 10px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  cursor: pointer;
+}
+
+.menu-buttons:hover {
+  box-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px;
+  background-color: rgb(176, 212, 243);
+}
+
+#dialog-credits {
+  position: absolute;
+  z-index: 500000000000;
+  left: 0;
+  top: 0;
+  background-color: aquamarine;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* #btn-close-game-memoria {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+} */
+
+/* #btn-confirm-dialog-edit-pet {
+  width: 100%;
+} */
