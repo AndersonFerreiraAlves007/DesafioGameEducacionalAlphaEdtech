@@ -6,10 +6,18 @@ import { statusBar } from '../update-status-bar.js'
 export function agoraVai() {
     $(".jokenpo").show();
 
+    // $(".jokenpo").modal({ backdrop: "static" })
+
     $(".jokenpo__closed").on("click", jokenpoClosed);
     function jokenpoClosed() {
         $(".jokenpo").hide();
     }
+
+    // $(".jokenpo__closed").on("click", jokenpoClosed);
+    // function jokenpoClosed() {
+    //     $("./jokenpo").modal({ show: false })
+    // }
+
 
 
     // move buttons in screan
@@ -29,15 +37,10 @@ export function agoraVai() {
         }
     });
 
-    // will be replaced by the drag and drop code
-    // $(".jokenpo__rock").on("click", choice);
-    // $(".jokenpo__paper").on("click", choice);
-    // $(".jokenpo__scissors").on("click", choice);
-
-    // organizar caminhos
-    const imageRock = "../../assets/images/game/jokenpo/rock.png";
-    const imagePaper = "../../../assets/images/game/jokenpo/paper.png";
-    const imageScissors = "../assets/images/game/jokenpo/scissors.png";
+    // image path
+    const imageRock = "../../assets/images/game/jokenpo/rock-02.png";
+    const imagePaper = "../../assets/images/game/jokenpo/paper-02.png";
+    const imageScissors = "../../assets/images/game/jokenpo/scissors-02.png";
 
     // call the function jokenpo, change background of div ("jokenpo__player-choice")
     async function choicePlayer(number) {

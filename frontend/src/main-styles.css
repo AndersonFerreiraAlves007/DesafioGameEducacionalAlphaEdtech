@@ -73,6 +73,7 @@ main {
     }
     #game-body {
         width: 100%;
+        justify-content: space-between;
     }
 }
 @media (max-width: 1060px){
@@ -424,6 +425,11 @@ span {
   bottom: 20px;
   right: 20px;
 }
+@media (max-width: 550px){
+  #options-menu-button{
+    bottom: 130px;
+  }
+}
 
 #menu-button-area{
   display: flex;
@@ -460,6 +466,10 @@ span {
 
 .menu-buttons {
   width: 12.5rem;
+  /* height: 2rem;
+
+  margin: 1rem; */
+
   border-radius: 10px;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;

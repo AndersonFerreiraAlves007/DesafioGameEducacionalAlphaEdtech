@@ -79,7 +79,6 @@ async function navigationButtonsAndDragEvents() {
                 if (indexScene === 1) {
 
                     const currentGame = dadosGlobais.getCurrentItem().name;
-                    console.log(dadosGlobais)
 
                     switch (currentGame){
                         case 'joystick':

@@ -1,9 +1,12 @@
 :root{
     --font-main: Oleander-Cakes, Arial;
     --background-main: #ff7f50;
+    --background-image-game: url('./assets/background-images/vector-cartoon-illustration-of-empty-kindergarten-room-with-furniture-and-toys-for-young-children-n/1926.jpg');
+    --slime-image: url("./assets/images/game/jokenpo/slime-02.svg");
+    --background-image-close: url("./assets/images/game/jokenpo/botao-x.png");
     
     --slime-color: #0000ff;
-    --slime-diameter: 200px;
+    --slime-diameter: 150px;
     
     /* size text */
     --size-low: 14px;
@@ -25,183 +28,155 @@
     --background-food: #FFF600;
 
     /* size buttons */
-    --button-width: 100px;
+    --button-width: 50px;
     --button-height: 50px;
 }
 
 /* @font-face {
     font-family: Oleander-Cakes;
-    src: url("../assets/fonts/oleander_cakes/Oleander-Cakes.ttf") format("truetype");
+    src: url("./assets/fonts/oleander_cakes/Oleander-Cakes.ttf") format("truetype");
 } */
 
-.low{
-    font-size: var(--size-low);
+.jokenpo__background{
+    width: 100vw;
+    height: 100vh;
+
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 1000;
+    background-color: #22222255;
 }
 
-.median{
-    font-size: var(--size-median)
-}
-
-.high{
-    font-size: var(--size-high);
-}
-
-
-
-/* body{
-    font-family: var(--font-main);
-    color: var(--color-black);
-
-    margin: 0px;
-    padding: 0px;
-    background-color: var(--background-main);
-    font-size: var(--size-median);
+.jokenpo__main{
+    position: fixed;
+    top: 12vh;
+    left: 5vw;
+    /* height: 88vh; */
+    height: 78vh;
+    width: 90vw;
+    z-index: 2000;
 
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
-} */
 
-button {
-    width: var(--button-width);
-    height: var(--button-height);
-    margin: 10px;
+    background-image: var(--background-image-game);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 
-    font-size: var(--size-median);
-    /* color: var(--color-white); */
-    font-family: var(--font-main);
+    border: 5px solid blue;
+    border-radius: 20px;
+    padding: 0px;
+    /* margin: 0px 10px 100px 10px; */
 }
 
-/* substituindo botões por divs */
-ul li div{
-    width: var(--button-width);
-    height: var(--button-height);
-    margin: 10px;
-
-    font-size: var(--size-median);
-    color: var(--color-white);
-    font-family: var(--font-main);
-}
-/*
-
-.header {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-around;
-    align-items: center;
-    width: 700px;
-}
-
-.status-bar{
-    background-color: #f1f15b;
-    width: 200px;
-    height: 50px;
-    align-self: center;
-}
-
-.close{
+.jokenpo__closed{
     align-self: flex-end;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin: 5px;
+    width: 100px;
+    height: 100px;
+    /* border-radius: 50%; */
+    background-color: #ffffff00;
+    background-image: var(--background-image-close);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+
+    /* background-color: red; */
+    
+    margin: -10px -3vw 0px 0px;
     padding: 0px;
-}
+    /* display: inline; */
+} 
 
-.slime{
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: center;
-}
-.slime__image{
+.jokenpo__slime-image{
     width: var(--slime-diameter);
-    height: var(--slime-diameter);
-    border-radius: 50%;
-    background-color: var(--slime-color);
+    /* height: var(--slime-diameter); */
 }
 
-.list-button{
+.jokenpo__slime-choice{
+    width: 150px;
+    height: 150px;
+    background-color: #22222255;
+    margin: 5px;
+    border-radius: 50%;
+}
+
+.jokenpo__player-choice{
+    width: 150px;
+    height: 150px;
+    background-color: #22222255;
+    margin: 5px;
+    border-radius: 50%;
+}
+
+
+.jokenpo__list-button{
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
     align-items: flex-end;
-    background-color: #00000077;
+
+    /* background-color: #00000077; */
+
     margin: 0px;
     padding: 0px;
     list-style-type: none;
 }
-*/
-.home-button__shower{
-    background-color: var(--background-shower);
-}
 
-.home-button__game{
-    background-color: var(--background-game);
-}
-
-.home-button__food{
-    background-color: var(--background-food);
-}
-
-.jokenpo{
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    z-index: 4000;
-    background-color: var(--background-game);
-
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.jokenpo__slime-choice{
-    width: 200px;
-    height: 200px;
-    background-color: #808080;
-    margin: 5px;
-}
-.jokenpo__player-choice{
-    width: 200px;
-    height: 200px;
-    background-color: #808080;
-    margin: 5px;
-}
-
-.jokenpo__list li{
+.jokenpo__list-button li{
     display:flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+}
 
-    color: var(--color-white);
+.jokenpo__list-button div{
+    margin: 10px;
+    padding: 10px;
+    width: var(--button-width);
+    height: var(--button-height);
+    border-radius: 50%;
+}
+
+.jokenpo__list-button label{
+    margin-bottom: 10px;
+    color: var(--color-black);
+    font-size: var(--size-median);
+    font-family: var(--font-main);
 }
 
 .jokenpo__rock{
-    background-image: url("../assets/images/game/jokenpo/rock.png");
+    background-image: url("./assets/images/game/jokenpo/rock-02.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    background-color: var(--background-full-white);
+    background-color: #ff2222cc;
 }
 
 .jokenpo__paper{
-    background-image: url("../assets/images/game/jokenpo/paper.png");
+    background-image: url("./assets/images/game/jokenpo/paper-03.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    background-color: var(--background-full-white);
+    background-color: #22ff22cc;
 }
 
 .jokenpo__scissors{
-    background-image: url("../assets/images/game/jokenpo/scissors.png");
+    background-image: url("./assets/images/game/jokenpo/scissors-02.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    background-color: var(--background-full-white);
+    background-color: #2222ffcc;
+}
+button {
+    width: var(--button-width);
+    height: var(--button-height);
+    margin: 10px;
+    font-size: var(--size-median);
+    /* color: var(--color-white); */
+    font-family: var(--font-main);
 }

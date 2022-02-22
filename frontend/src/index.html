@@ -19,7 +19,9 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"
+        integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H"
+        crossorigin="anonymous"></script>
 
     <script type="module" src="./main-script.js" charset="utf-8"></script>
     <script type="module" src="./modules/list-slimes.js" charset="utf-8"></script>
@@ -36,7 +38,7 @@
 
         <header>
             <!-- STATUS BAR -->
-            
+
             <div class="status-container">
                 Fome: <span id="progressbar-number"></span>
                 <div id="progressbar"></div>
@@ -53,15 +55,15 @@
             <button type="button" id="btn-create-pet">Criar Pet</button>
             <button type="button" id="btn-select-pet">Seelecionar Pet</button> -->
             <!-- <button type="button" id="btn-jogo-da-memoria">Jogo da memória</button> -->
-            <div id="menu-button-area">
+            <!-- <div id="menu-button-area">
                 <img id="options-menu-button" src="./assets/button-icons/options-menu.svg" alt="menu de opções" />
                 <p id="pet-name"></p>
-            </div>
-            
+            </div> -->
 
+            <img id="options-menu-button" src="./assets/button-icons/options-menu.svg" alt="menu de opções" />
         </header>
 
-        <img id="options-menu-button" src="./assets/button-icons/options-menu.svg" alt="menu de opções" />
+
 
         <main>
             <div id="environment">
@@ -72,15 +74,9 @@
 
             <div id="pou">
 
-                <div id="screen-log">
+                <div id="screen-log"></div>
 
-                </div>
-
-                <div id="slime-root">
-
-
-
-                </div>
+                <div id="slime-root"></div>
 
             </div>
 
@@ -90,73 +86,63 @@
                 <img id="next-item" src="../assets/button-icons/next-arrow-button.png" alt="">
             </div>
         </main>
+        <!-- <div class="modal hide" data-backdrop="static" data-keyboard="false"></div> -->
 
-        <!-- <section class="game">
-            <section class="header">
-                <div class="status-bar">status</div>
-                <button class="game__closed close">fechar</button>
-            </section>
-            <div class="slime__image"></div>
-
-            <ul class="game__buttons list-button">
-                <li><button class="game__jokenpo">jokenpo</button></li>
-                <li><button class="game__color-items">colorir</button></li>
-                <li><button class="game__write-words">palavras</button></li>
-            </ul>
-        </section> -->
-
+        <!-- data-backdrop="static" data-keyboard="false" -->
+        <!--JOKEMPO-->
         <section class="jokenpo" style="display: none;">
-            <section class="header">
-                <div class="status-bar">status</div>
-                <button class="jokenpo__closed close">fechar</button>
-            </section>
+            <div class="jokenpo__background">
+                <div class="jokenpo__main">
+                    <button class="jokenpo__closed"></button>
 
-            <div class="slime__image"></div>
+                    <div>
+                        <!-- <img class="jokenpo__slime-image" src="./assets/images/game/jokenpo/slime-02.svg" alt=""> -->
+                        <img class="jokenpo__slime-image" src="./assets/images/game/jokenpo/slime03.png" alt="">
+                    </div>
+                    <!-- colocar div do slime aqui -->
+                    <!-- </div> -->
 
-            <div class="jokenpo__result"></div>
+                    <div class="jokenpo__result"></div>
 
-            <div class="jokenpo__slime-choice"></div>
+                    <div class="jokenpo__slime-choice"></div>
 
-            <div class="jokenpo__player-choice"></div>
+                    <div class="jokenpo__player-choice"></div>
 
-            <ul class="jokenpo__list list-button">
-                <li>
-                    <div value="1" class="jokenpo__rock"></div>
-                    <label for="jokenpo__rock">pedra</label>
-                </li>
+                    <ul class="jokenpo__list-button">
+                        <li>
+                            <div value="1" class="jokenpo__rock"></div>
+                            <label for="jokenpo__rock">pedra</label>
+                        </li>
 
+                        <li>
+                            <div value="2" class="jokenpo__paper"></div>
+                            <label for="jokenpo__paper">papel</label>
+                        </li>
 
-                <li>
-                    <div value="2" class="jokenpo__paper"></div>
-                    <label for="jokenpo__paper">papel</label>
-                </li>
+                        <li>
+                            <div value="3" class="jokenpo__scissors"></div>
+                            <label for="jokenpo__scissors">tesoura</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-
-                <li>
-                    <div value="3" class="jokenpo__scissors"></div>
-                    <label for="jokenpo__scissors">tesoura</label>
-                </li>
-
-            </ul>
         </section>
 
-        <section class="colors-game" style="display: none; z-index: 8000;">
+        <section id="colors-game" class="colors-game" style="display: none;">
+            <img id="button-close-game" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu" />
             <span id="score">SCORE: </span>
             <div id="start"></div>
-            <div id="container">
-                <!-- <div class="slime" id="option1"></div> -->
-                <!-- <div class="slime" id="option2"></div> -->
-                <!-- <div class="slime" id="option3"></div> -->
-            </div>
+            <div id="container"></div>
             <div id="droppable"></div>
         </section>
 
     </div>
 
-    <section id="menu-area" style="display: none;" >
+    <section id="menu-area" style="display: none;">
 
         <img id="button-close-menu" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu" />
-    
+
         <button type="button" class="menu-buttons" id="btn-edit-pet">Editar Pet</button>
         <button type="button" class="menu-buttons" id="btn-create-pet">Criar Pet</button>
         <button type="button" class="menu-buttons" id="btn-select-pet">Selecionar Pet</button>
@@ -164,56 +150,60 @@
 
     </section>
 
-    <section id="dialog-edit-pet" style="display: none;" >
+    <section id="dialog-edit-pet" style="display: none;">
         <div id="container-colors">
-          <h2>Editar bichinho!</h2>
-          <input type="text" id="name-pet-input" placeholder="Nome do pet" style="margin: 15px;">
-          <div id="content-dialog-edit-pet-select" style="padding: 10px;"></div>
-          <div id="content-dialog-edit-pet"></div>
-          <div id="container-buttons-dialog-edit-pet">
-            <!-- <button type="button" id="btn-cancel-dialog-edit-pet">Cancelar</button> -->
-            <img id="btn-cancel-dialog-edit-pet" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu" class="btn-close-menu-geral"/>
-            <button type="button" id="btn-confirm-dialog-edit-pet">Salvar</button>
-          </div>
+            <h2>Editar bichinho!</h2>
+            <input type="text" id="name-pet-input" placeholder="Nome do pet" style="margin: 15px;">
+            <div id="content-dialog-edit-pet-select" style="padding: 10px;"></div>
+            <div id="content-dialog-edit-pet"></div>
+            <div id="container-buttons-dialog-edit-pet">
+                <!-- <button type="button" id="btn-cancel-dialog-edit-pet">Cancelar</button> -->
+                <img id="btn-cancel-dialog-edit-pet" src="./assets/button-icons/close-button.svg"
+                    alt="fechar tela de menu" class="btn-close-menu-geral" />
+                <button type="button" id="btn-confirm-dialog-edit-pet">Salvar</button>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <section id="dialog-create-pet" style="display: none">
+    <section id="dialog-create-pet" style="display: none">
         <div id="container-colors">
-          <h2>Crie um novo bichinho!</h2>
-          <input type="text" id="name-pet-input-create" placeholder="Nome do pet" style="margin: 15px;">
-          <div id="content-dialog-create-pet-select"  style="padding: 10px;"></div>
-          <div id="content-dialog-create-pet"></div>
-          <div id="container-buttons-dialog-create-pet">
-            <!-- <button type="button" id="btn-cancel-dialog-create-pet">Cancelar</button> -->
-            <img id="btn-cancel-dialog-create-pet" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu" class="btn-close-menu-geral"/>
-            <button type="button" id="btn-confirm-dialog-create-pet">Salvar</button>
-          </div>
+            <h2>Crie um novo bichinho!</h2>
+            <input type="text" id="name-pet-input-create" placeholder="Nome do pet" style="margin: 15px;">
+            <div id="content-dialog-create-pet-select" style="padding: 10px;"></div>
+            <div id="content-dialog-create-pet"></div>
+            <div id="container-buttons-dialog-create-pet">
+                <!-- <button type="button" id="btn-cancel-dialog-create-pet">Cancelar</button> -->
+                <img id="btn-cancel-dialog-create-pet" src="./assets/button-icons/close-button.svg"
+                    alt="fechar tela de menu" class="btn-close-menu-geral" />
+                <button type="button" id="btn-confirm-dialog-create-pet">Salvar</button>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <section id="dialog-select-pet" style="display: none">
+    <section id="dialog-select-pet" style="display: none">
         <div id="container-colors">
-          <h2>Selecione um Pet</h2>
-          <div id="content-dialog-select-pet-select"></div>
-          <div id="content-dialog-select-pet"></div>
-          <div id="container-buttons-dialog-select-pet">
-            <!-- <button type="button" id="btn-cancel-dialog-select-pet">Cancelar</button> -->
-            <img id="btn-cancel-dialog-select-pet" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu" class="btn-close-menu-geral"/>
-          </div>
+            <h2>Selecione um Pet</h2>
+            <div id="content-dialog-select-pet-select"></div>
+            <div id="content-dialog-select-pet"></div>
+            <div id="container-buttons-dialog-select-pet">
+                <!-- <button type="button" id="btn-cancel-dialog-select-pet">Cancelar</button> -->
+                <img id="btn-cancel-dialog-select-pet" src="./assets/button-icons/close-button.svg"
+                    alt="fechar tela de menu" class="btn-close-menu-geral" />
+            </div>
         </div>
-      </section>
+    </section>
 
-      <section id="minigame-remember" style="display: none">
+    <section id="minigame-remember" style="display: none">
         <div id="content-minigame-remember">
-    
+
         </div>
         <!-- <button type="button" id="btn-close-game-memoria">Fechar</button> -->
         <img id="btn-close-game-memoria" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu" />
-        </section>
-      <section id="dialog-credits" style="display: none">
+    </section>
+
+    <section id="dialog-credits" style="display: none">
         <div id="container-colors">
-          <h2>Créditos</h2>
+            <h2>Créditos</h2>
             <dl>
                 <dd>Imagens de fundo "cozinha" e "sala de jogos"</dd>
                 <dt><a href="http://www.freepik.com">Designed by vectorpocket / Freepik</a></dt>
@@ -222,37 +212,43 @@
                 <dd>Personagem "slime"</dd>
                 <dt><a href="https://opengameart.org/content/jiggling-slime">Richard Lewis (AKA simulatoralive)</a></dt>
                 <dd>Ícones de utensílios do banheiro</dd>
-                <dt><a href="https://www.flaticon.com/free-icons/shower">Shower icons created by Freepik - Flaticon</a></dt>
+                <dt><a href="https://www.flaticon.com/free-icons/shower">Shower icons created by Freepik - Flaticon</a>
+                </dt>
                 <dd>Ícone jogo da memória</dd>
-                <dt><a href="https://www.flaticon.com/free-icons/memory" title="memory icons">Memory icons created by Freepik - Flaticon</a></dt>
+                <dt><a href="https://www.flaticon.com/free-icons/memory" title="memory icons">Memory icons created by
+                        Freepik - Flaticon</a></dt>
                 <dd>Som de porta do seletor de ambiente</dd>
-                <dt><a href="https://www.jshaw.co.uk">"Door, Front, Opening, A.wav" by InspectorJ adapted from (www.jshaw.co.uk) of Freesound.org</a></dt>
+                <dt><a href="https://www.jshaw.co.uk">"Door, Front, Opening, A.wav" by InspectorJ adapted from
+                        (www.jshaw.co.uk) of Freesound.org</a></dt>
                 <dd>Som do seletor de itens inferior</dd>
-                <dt><a href="https://freesound.org/people/soundspaces/sounds/182545/">whashing machine rotating-selector switch recorded by Zoom Z4 and adapted from Freesound.org</a></dt>
+                <dt><a href="https://freesound.org/people/soundspaces/sounds/182545/">whashing machine rotating-selector
+                        switch recorded by Zoom Z4 and adapted from Freesound.org</a></dt>
                 <dd>Cantalorar feliz da sala de jogos</dd>
                 <dt><a href="https://freesound.org/s/469163/">Child_hum by hawkeye_sprout of Freesound.org</a></dt>
                 <dd>Som de mordida</dd>
-                <dt><a href="www.jshaw.co.uk">Adaptaded from "Biting, Crunchy, A.wav" by InspectorJ (www.jshaw.co.uk) of Freesound.org</a></dt>
+                <dt><a href="www.jshaw.co.uk">Adaptaded from "Biting, Crunchy, A.wav" by InspectorJ (www.jshaw.co.uk) of
+                        Freesound.org</a></dt>
             </dl>
 
             <!-- <button type="button" id="btn-close-credits">Cancelar</button> -->
-            <img id="btn-close-credits" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu" class="btn-close-menu-geral"/>
-          </div>
+            <img id="btn-close-credits" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu"
+                class="btn-close-menu-geral" />
+
         </div>
-      </section>
+    </section>
 
 
-      <script>
+    <script>
         const dialogEditPetSelect = document.getElementById('content-dialog-edit-pet-select')
         function selectColor(colorSelect) {
             dialogEditPetSelect.innerHTML = ''
             dialogEditPetSelect.innerHTML += makeOptionColor(colorSelect, 1)
-            
+
         }
 
         function makeOptionColor(color, opacity = 0.8) {
             return (
-            `
+                `
                 <div class="container-color-option">
                 <div style="background-color: ${color}; opacity: ${opacity}" class="colorOption" onclick="selectColor('${color}')"></div>
                 </div>
@@ -267,12 +263,12 @@
         function selectColorCreate(colorSelect) {
             dialogCreatePetSelect.innerHTML = ''
             dialogCreatePetSelect.innerHTML += makeOptionColorCreate(colorSelect, 1)
-            
+
         }
 
         function makeOptionColorCreate(color, opacity = 0.8) {
             return (
-            `
+                `
                 <div class="container-color-option">
                 <div style="background-color: ${color}; opacity: ${opacity}" class="colorOption" onclick="selectColorCreate('${color}')"></div>
                 </div>
@@ -280,7 +276,7 @@
             )
         }
 
-      </script>
+    </script>
 </body>
 
 </html>
