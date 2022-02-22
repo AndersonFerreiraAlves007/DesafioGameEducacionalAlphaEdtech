@@ -1,0 +1,58 @@
+body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 90vh;
+}
+
+.slime {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    position:relative;
+}
+
+#start {
+    width: 100px;
+    height: 100px;
+    background-color: coral;
+}
+
+#container {
+    position: relative;
+    width: 420px;
+    height: 420px;
+    /* display: flex;
+    justify-content: space-around; */
+}
+
+#droppable {
+    width: 150px;
+    height: 150px;
+    background-image: url(../assets/game-icons/exterior-house-facade-icon/50574.jpg);
+    background-size: contain;
+}
+
+.red {
+    background-color: rgb(226, 19, 19);
+}
+
+.green {
+    background-color: green;
+}
+
+.blue {
+    background-color: rgb(22, 22, 216);
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.purple {
+    background-color: purple;
+}
