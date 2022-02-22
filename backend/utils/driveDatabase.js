@@ -2,14 +2,14 @@ const fsPromises = require("fs").promises;
 const path = require('path')
 
 async function readDatabase(pathDatabase) {
-  const data = await fsPromises.readFile(path.resolve(__dirname, pathDatabase));
+  const data = await fsPromises.readFile(path.resolve(__dirname, '..',pathDatabase));
   let database = JSON.parse(data);
   return database;
 }
 
 async function writeDatabase(database, pathDatabase) {
   const data = JSON.stringify(database);
-  await fsPromises.writeFile(path.resolve(__dirname, pathDatabase), data);
+  await fsPromises.writeFile(path.resolve(__dirname, '..', pathDatabase), data);
 }
 
 function validateCreate(body) {
