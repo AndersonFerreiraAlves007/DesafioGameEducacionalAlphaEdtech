@@ -1,10 +1,30 @@
 {
-  "autoIncrement": 5,
-  "rows": [
-    { "username": "hugo3", "password": "oi", "id": 1 },
-    { "username": "", "password": "", "id": 2 },
-    { "username": "sergio", "password": "1234", "id": 3 },
-    { "username": "gabriel", "password": "1234", "id": 4 },
-    { "username": "lala", "password": "lala", "id": 5 }
-  ]
+    "autoIncrement": 5,
+    "rows": [
+        {
+            "username": "hugo3",
+            "password": "oi",
+            "id": 1
+        },
+        {
+            "username": "",
+            "password": "",
+            "id": 2
+        },
+        {
+            "username": "sergio",
+            "password": "1234",
+            "id": 3
+        },
+        {
+            "username": "gabriel",
+            "password": "1234",
+            "id": 4
+        },
+        {
+            "username": "lala",
+            "password": "lala",
+            "id": 5
+        }
+    ]
 }
