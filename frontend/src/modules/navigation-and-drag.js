@@ -4,6 +4,7 @@ import { addBubbles } from './bath-bubbles.js'
 import { agoraVai } from './mini-games/jokenpo.js';
 import { dadosGlobais } from './global-data.js'
 import { statusBar } from './update-status-bar.js'
+import {colorGameStart} from './mini-games/colors-game.js'
 
 let loggedPetId;
 
@@ -54,9 +55,9 @@ async function navigationButtonsAndDragEvents() {
 
                 
                     // smother animation bite in this 2 lines below
-                    $('#current-item').animate({width: 0, height: 0}, 100)
-                    setTimeout(() => ui.draggable.remove(), 100)
-                    // ui.draggable.remove()
+                    // $('#current-item').animate({width: 0, height: 0}, 100)
+                    // setTimeout(() => ui.draggable.remove(), 100)
+                    ui.draggable.remove()
 
                     $('<div id="item-box"><img id="current-item" src="" alt=""></div>').insertAfter('#previous-item');
                     $('#item-box').draggable({ 
@@ -78,6 +79,7 @@ async function navigationButtonsAndDragEvents() {
                 if (indexScene === 1) {
 
                     const currentGame = dadosGlobais.getCurrentItem().name;
+                    console.log(dadosGlobais)
 
                     switch (currentGame){
                         case 'joystick':
@@ -86,9 +88,10 @@ async function navigationButtonsAndDragEvents() {
                         case 'memory-game':
                             document.getElementById('minigame-remember').style.display = 'flex'
                             break;
+                        case 'colors-game':
+                            colorGameStart()
+                            break;
                     }
-
-                    //agoraVai();
                 }
             }
 

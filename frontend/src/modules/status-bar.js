@@ -1,4 +1,4 @@
-function updateStatusBarView(foodLevel, hygieneLevel, funLevel) {
+function updateStatusBarView(foodLevel, hygieneLevel, funLevel, petName) {
     $("#progressbar").progressbar({
         value: foodLevel
     })
@@ -13,6 +13,8 @@ function updateStatusBarView(foodLevel, hygieneLevel, funLevel) {
         value: funLevel
     })
     $('#fun-number').html(funLevel)
+
+    $('#pet-name').html(petName)
 }
 
 export {updateStatusBarView};
