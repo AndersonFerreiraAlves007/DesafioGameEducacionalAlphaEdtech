@@ -338,10 +338,10 @@ function virarCards() {
 }
 
 
-document.getElementById('btn-jogo-da-memoria').addEventListener('click', () => {
-  //resetarBaralhos()
-  document.getElementById('minigame-remember').style.display = 'flex'
-})
+// document.getElementById('btn-jogo-da-memoria').addEventListener('click', () => {
+//   //resetarBaralhos()
+//   document.getElementById('minigame-remember').style.display = 'flex'
+// })
 
 document.getElementById('btn-close-game-memoria').addEventListener('click', () => {
   document.getElementById('minigame-remember').style.display = 'none'

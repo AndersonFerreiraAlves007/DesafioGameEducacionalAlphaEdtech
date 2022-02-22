@@ -8,6 +8,7 @@ class StatusBar {
     this.hygieneLevel = 0
     this.foodLevel = 0
     this.funLevel = 0
+    this.petName = '';
   }
 
   updateInfoPet = async () => {
@@ -16,8 +17,9 @@ class StatusBar {
     const currentHygieneLevel = pet.xp_hygiene;
     const currentFoodLevel = pet.xp_food;
     const currentFunLevel = pet.xp_fun;
+    const currentPetName = pet.name;
 
-    updateStatusBarView(currentFoodLevel, currentHygieneLevel, currentFunLevel)
+    updateStatusBarView(currentFoodLevel, currentHygieneLevel, currentFunLevel, currentPetName)
 
     if (currentHygieneLevel !== this.hygieneLevel) {
       this.hygieneLevel = currentHygieneLevel;
@@ -32,6 +34,11 @@ class StatusBar {
     if (currentFunLevel !== this.funLevel) {
       this.funLevel = currentFunLevel;
       currentSlime.xpFun = this.funLevel;
+    }
+
+    if (currentPetName !== this.petName){
+      this.petName = currentPetName;
+
     }
   }
 }

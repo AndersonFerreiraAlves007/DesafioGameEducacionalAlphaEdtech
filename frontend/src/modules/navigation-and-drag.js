@@ -77,13 +77,19 @@ async function navigationButtonsAndDragEvents() {
                 }
             
                 if (indexScene === 1) {
-                    // code jokenpo.js
-                    //console.log("deu certo");
-                    if (indexItem === 0) {
-                        agoraVai();
-                    }
-                    if (indexItem === 1) {
-                        colorGameStart()
+
+                    const currentGame = dadosGlobais.getCurrentItem().name;
+
+                    switch (currentGame){
+                        case 'joystick':
+                            agoraVai();
+                            break;
+                        case 'memory-game':
+                            document.getElementById('minigame-remember').style.display = 'flex'
+                            break;
+                        case 'colors-game':
+                            colorGameStart()
+                            break;
                     }
                 }
             }
