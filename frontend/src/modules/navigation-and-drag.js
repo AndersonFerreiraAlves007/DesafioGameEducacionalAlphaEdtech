@@ -76,9 +76,19 @@ async function navigationButtonsAndDragEvents() {
                 }
             
                 if (indexScene === 1) {
-                    // code jokenpo.js
-                    //console.log("deu certo");
-                    agoraVai();
+
+                    const currentGame = dadosGlobais.getCurrentItem().name;
+
+                    switch (currentGame){
+                        case 'joystick':
+                            agoraVai();
+                            break;
+                        case 'memory-game':
+                            document.getElementById('minigame-remember').style.display = 'flex'
+                            break;
+                    }
+
+                    //agoraVai();
                 }
             }
 
