@@ -1,16 +1,35 @@
-// import {makeSlime} from '../list-slimes.js'
+import { serverConnection } from '../server-communication.js';
+import { dadosGlobais } from '../global-data.js'
+import { statusBar } from '../update-status-bar.js'
 
 
 function colorGameStart() {
   $('#button-close-game').on('click', () => {
+    updateScore()
     $('.colors-game').hide()
-  } )
+  })
+
+  async function updateScore() {
+    const currentPet = dadosGlobais.getCurrentPet()
+
+    const xp_fun_change = score;
+    const xp_hygiene_change = -10;
+    const xp_food_change = -10;
+
+    const objectPet = {
+      xp_food: ((currentPet.xp_food + xp_food_change) > 0) ? (currentPet.xp_food + xp_food_change) : 0,
+      xp_hygiene: ((currentPet.xp_hygiene + xp_hygiene_change) > 0) ? (currentPet.xp_hygiene + xp_hygiene_change) : 0,
+      xp_fun: ((currentPet.xp_fun + xp_fun_change) < 100) ? (currentPet.xp_fun + xp_fun_change) : 100
+    }
+    dadosGlobais.setCurrentPet(await serverConnection.updatePet(currentPet.id, objectPet));
+
+    await statusBar.updateInfoPet()
+  }
+
   $('.colors-game').show()
   function makeSlime(id, nome, color, onClick) {
     const slime = document.createElement('div')
     slime.setAttribute('id', `${id}`)
-    // slime.addEventListener('click', onClick)
-    // slime.classList.add('slime-item')
     slime.classList.add('slime')
 
     slime.innerHTML = `
@@ -125,8 +144,6 @@ function colorGameStart() {
 
 
   const slimy = makeSlime(1, '', 'red', () => { })
-  console.log(slimy)
-  // document.getElementById('#container').appendChild(slimy)
   // console.log(document.getElementById('#score').getBoundingClientRect())
   const targerin = ['option1', 'option2', 'option3']
 
@@ -137,7 +154,6 @@ function colorGameStart() {
 
   $('.slime').hide()
 
-
   $('#option1').draggable()
   $('#option2').draggable()
   $('#option3').draggable()
@@ -146,17 +162,17 @@ function colorGameStart() {
     drop: function (event, ui) {
       console.log(ui.draggable.hasClass(colorThisTime))
       if (ui.draggable.hasClass(colorThisTime)) {
-        count += 1
+        score += 1
       }
       $('#option1, #option2, #option3').removeClass(allColors)
       $('.slime').hide()
-      $('#score').html(`SCORE: ${count}`)
+      $('#score').html(`SCORE: ${score}`)
     }
   })
 
   const allColors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple']
   let colorThisTime
-  let count = 0
+  let score = 0
 
   $('#start').on('mouseover', function () {
     $('#option1, #option2, #option3').removeClass(allColors)

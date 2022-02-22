@@ -7,6 +7,7 @@ section.colors-game  {
     z-index: 4000;
     background-color: beige;
     background-image: url(../assets/game-icons/exterior-house-facade-icon/50574.jpg);
+    background-size: contain;
 
     display: flex;
     flex-direction: row;
