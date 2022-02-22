@@ -9,6 +9,11 @@
     <title>Slime</title>
     <link rel="icon" type="image/svg+xml" href="./assets/images/login/slime-02.svg" />
 
+    <!--google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- the reference below allows the status bar style to load properly -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
@@ -30,6 +35,7 @@
 
         <header>
             <!-- STATUS BAR -->
+            
             <div class="status-container">
                 Fome: <span id="progressbar-number"></span>
                 <div id="progressbar"></div>
@@ -46,7 +52,11 @@
             <button type="button" id="btn-create-pet">Criar Pet</button>
             <button type="button" id="btn-select-pet">Seelecionar Pet</button> -->
             <!-- <button type="button" id="btn-jogo-da-memoria">Jogo da memória</button> -->
-            <img id="options-menu-button" src="./assets/button-icons/options-menu.svg" alt="menu de opções" />
+            <div id="menu-button-area">
+                <img id="options-menu-button" src="./assets/button-icons/options-menu.svg" alt="menu de opções" />
+                <p id="pet-name"></p>
+            </div>
+            
 
         </header>
 
