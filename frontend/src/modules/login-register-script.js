@@ -9,7 +9,26 @@ $(document).ready(function(){
     let namepetRegisterError = true;
 
     function validateUsernameRegister() {
-        let usernameValue = $('#username_reg').val();
+        const usernameValue = $('#username_reg').val();
+        if (usernameValue.length == '') {
+            $('#usercheckregister').show();
+            usernameRegisterError = false;
+            return false;
+        }
+        else if((usernameValue.length < 3) || (usernameValue.length > 30)) {
+            $('#usercheckregister').show();
+            $('#usercheckregister').html("**Os usuários devem ter no mínimo 3 caracteres e no máximo 30 caracteres.");
+            usernameRegisterError = false;
+            return false;
+        }
+        else {
+            usernameRegisterError = true;
+            $('#usercheckregister').hide();
+            return true;
+        }
+    }
+    function validateUsernameRegister() {
+        const usernameValue = $('#username_reg').val();
         if (usernameValue.length == '') {
             $('#usercheckregister').show();
             usernameRegisterError = false;
@@ -28,7 +47,7 @@ $(document).ready(function(){
         }
     }
     function validatePasswordRegister() {
-        let passwordValue = $('#password_reg').val();
+        const passwordValue = $('#password_reg').val();
         if (passwordValue.length == '') {
             $('#passcheckregister').show();
             passwordRegisterError = false;
@@ -47,7 +66,7 @@ $(document).ready(function(){
         }
     }
     function validateNamepetRegister() {
-        let namepetValue = $("#namepet_reg").val();
+        const namepetValue = $("#namepet_reg").val();
         if (namepetValue.length == '') {
             $('#namecheckregister').show();
             namepetRegisterError = false;
@@ -66,7 +85,7 @@ $(document).ready(function(){
         }
     }
     function validateUsernameLogin() {
-        let usernameValue = $('#username_log').val();
+        const usernameValue = $('#username_log').val();
         if (usernameValue.length == '') {
             $('#userchecklogin').show();
             usernameLoginError = false;
@@ -85,7 +104,7 @@ $(document).ready(function(){
         }
     }
     function validatePasswordLogin() {
-        let passwordValue = $('#password_log').val();
+        const passwordValue = $('#password_log').val();
         if (passwordValue.length == '') {
             $('#passchecklogin').show();
             passwordLoginError = false;
