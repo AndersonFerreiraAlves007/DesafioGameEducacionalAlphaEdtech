@@ -33,6 +33,7 @@ html {
   --main-menu-background-color: aquamarine;
   --submenus-buttons-color: brown;
   --submenus-buttons-text-color: white;
+  --menu-buttons-hover-background: rgb(176, 212, 243);
 
   --round-edge-shadow-effect: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   --round-surface-shadow-effect: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
@@ -40,6 +41,7 @@ html {
   --status-bar-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
   --submenus-main-component-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   --submenus-button-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  --menu-buttons-hover-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px;
 
   --status-bar-border-radius: 12px / 50%;
 
@@ -125,6 +127,7 @@ header {
   left: 50%;
   color: var(--pet-name-font-color);
   font-weight: bold;
+  text-transform: capitalize
 }
 
 main {
@@ -150,7 +153,7 @@ main {
 }
 @media (max-width: 1060px){
   main {
-  height: 84vh;
+  height: 80vh;
   }
   header {
     flex-direction: column;
@@ -392,34 +395,34 @@ main {
     border-radius: 7px;
    }
   
-   h2 {
-     text-align: center;
-   }
+.submenu-title {
+  text-align: center;
+}
+
+/*pet selector entries*/
+.slime-item {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
   
-   .slime-item {
-     display: flex;
-     flex-direction: column;
-    width: 25%;
-    cursor: pointer;
-    /*   */
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-   }
+.slime-item:hover {
+box-shadow: var(--submenus-button-shadow);
+border-radius: 10px;
+transform: scale(1.2);
+}
   
-   .slime-item:hover {
-    box-shadow: var(--submenus-button-shadow);
-    border-radius: 10px;
-    transform: scale(1.2);
-   }
-  
-   .slime-item span{
-    text-align: center;
-    margin-top: 10px;
-    font-size: 12px ;
-    font-weight: bold;
-    text-transform: capitalize;
-   }
+.slime-item span{
+text-align: center;
+margin-top: 10px;
+font-size: 12px ;
+font-weight: bold;
+text-transform: capitalize;
+}
   
    .line-user-logados {
      display: flex;
@@ -483,9 +486,9 @@ main {
 #options-menu-button {
   max-width: 64px;
   cursor: pointer;
-  position: fixed;
+  position: relative;
   bottom: 20px;
-  right: 20px;
+  left: 45%;
 }
 @media (max-width: 550px){
   #options-menu-button{
@@ -493,18 +496,12 @@ main {
   }
 }
 
-#menu-button-area{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 #menu-area {
   position: absolute;
   z-index: 3000;
   left: 0;
   top: 0;
-  background-color: aquamarine;
+  background-color: var(--main-menu-background-color);
   width: 100vw;
   height: 100vh;
   flex-direction: column;
@@ -512,14 +509,7 @@ main {
   justify-content: center;
 }
 
-#button-close-menu {
-  position: fixed;
-  right: 10px;
-  top: 10px;
-  cursor: pointer;
-}
-
-.btn-close-menu-geral {
+#button-close-menu, .btn-close-menu-geral {
   position: fixed;
   right: 10px;
   top: 10px;
@@ -539,8 +529,8 @@ main {
 }
 
 .menu-buttons:hover {
-  box-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px;
-  background-color: rgb(176, 212, 243);
+  box-shadow: var(--menu-buttons-hover-shadow);
+  background-color: var(--menu-buttons-hover-background);
 }
 
 #dialog-credits {
@@ -548,7 +538,7 @@ main {
   z-index: 500000000000;
   left: 0;
   top: 0;
-  background-color: aquamarine;
+  background-color: var(--main-menu-background-color);
   width: 100vw;
   height: 100vh;
   flex-direction: column;
@@ -556,16 +546,9 @@ main {
   justify-content: center;
 }
 
-/* #btn-close-game-memoria {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  border-radius: 50%;
-  height: 30px;
-  width: 30px;
-} */
-
-/* #btn-confirm-dialog-edit-pet {
-  width: 100%;
-} */
+#dialog-credits .credits-display {
+  width: 90%;
+  max-width: none;
+  max-height: 80vh;
+  overflow-y: auto;
+}
