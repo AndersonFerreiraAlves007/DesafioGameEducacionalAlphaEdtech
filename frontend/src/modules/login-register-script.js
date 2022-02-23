@@ -13,9 +13,9 @@ $(document).ready(function(){
         if (usernameValue.length == '') {
             $('#usercheckregister').show();
             usernameRegisterError = true;
-        } else if((usernameValue.length < 3) || (usernameValue.length > 30)) {
+        } else if(!(/^[a-zA-Z]\w{2,14}$/.test(usernameValue))) {
             $('#usercheckregister').show();
-            $('#usercheckregister').html("**Os usuários devem ter no mínimo 3 caracteres e no máximo 30 caracteres.");
+            $('#usercheckregister').html("**Os usuários devem ter 3 e 15 caracteres (o primeiro deve ser uma letra e os demais podem ser letras, números ou underscore).");
             usernameRegisterError = true;
         } else {
             usernameRegisterError = false;
@@ -28,9 +28,9 @@ $(document).ready(function(){
         if (passwordValue.length == '') {
             $('#passcheckregister').show();
             passwordRegisterError = true;
-        } else if ((passwordValue.length < 3) || (passwordValue.length > 30)) {
+        } else if(!(/^[a-zA-z0-9]{3,8}$/.test(passwordValue))){
             $('#passcheckregister').show();
-            $('#passcheckregister').html("**As senhas devem ter no mínimo 3 caracteres e no máximo 30 caracteres.");
+            $('#passcheckregister').html("**As senhas devem ter no mínimo 3 caracteres e no máximo 8 caracteres(letras ou números).");
             $('#passcheckregister').css("color", "red");
             passwordRegisterError = true;
         } else {
@@ -44,9 +44,9 @@ $(document).ready(function(){
         if (namepetValue.length == '') {
             $('#namecheckregister').show();
             namepetRegisterError = true;
-        } else if ((namepetValue.length < 3) || (namepetValue.length > 30)) {
+        } else if(!(/^[a-zA-Z]\w{2,14}$/.test(namepetValue))) {
             $('#namecheckregister').show();
-            $('#namecheckregister').html("**Os pets devem ter no mínimo 3 caracteres e no máximo 30 caracteres.");
+            $('#namecheckregister').html("**Os pets devem ter 3 e 15 caracteres (o primeiro deve ser uma letra e os demais podem ser letras, números ou underscore).");
             $('#namecheckregister').css("color", "red");
             namepetRegisterError = true;
         } else {
@@ -60,9 +60,9 @@ $(document).ready(function(){
         if (usernameValue.length == '') {
             $('#userchecklogin').show();
             usernameLoginError = true;
-        } else if((usernameValue.length < 3) ||(usernameValue.length > 30)) {
+        } else if(!(/^[a-zA-Z]\w{2,14}$/.test(usernameValue))) {
             $('#userchecklogin').show();
-            $('#userchecklogin').html("**Os usuários devem ter no mínimo 3 caracteres e no máximo 30 caracteres.");
+            $('#userchecklogin').html("**Os usuários devem ter 3 e 15 caracteres (o primeiro deve ser uma letra e os demais podem ser letras, números ou underscore).");
             usernameLoginError = true;
         } else {
             usernameLoginError = false;
@@ -75,9 +75,9 @@ $(document).ready(function(){
         if (passwordValue.length == '') {
             $('#passchecklogin').show();
             passwordLoginError = true;
-        } else if ((passwordValue.length < 3) || (passwordValue.length > 30)) {
+        }  else if(!(/^[a-zA-z0-9]{3,8}$/.test(passwordValue))) {
             $('#passchecklogin').show();
-            $('#passchecklogin').html("**As senhas devem ter no mínimo 3 caracteres e no máximo 30 caracteres.");
+            $('#passchecklogin').html("**As senhas devem ter no mínimo 3 caracteres e no máximo 8 caracteres(letras ou números).");
             $('#passchecklogin').css("color", "red");
             passwordLoginError = true;
         } else {
@@ -156,4 +156,5 @@ $(document).ready(function(){
         } 
     });
 });
+
 
