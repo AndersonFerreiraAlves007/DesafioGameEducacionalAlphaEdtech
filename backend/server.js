@@ -14,6 +14,12 @@ const PORT = 3333
 
 const tasksExecute = Object.values(tasks)
 
+const configCors = {
+  origin: '*',
+  credentials: true,
+  optionSuccessStatus: 200,
+}
+
 tasksExecute.forEach(({ task, time }) => {
   setInterval(task, time)
 })
@@ -27,7 +33,7 @@ app.use((req, res, next) => {
 }) 
 
 app.get('/', (req, res) => {
-  res.send('API GAME EDUCACIONA VERSÃO: 2.0.2')
+  res.send('API GAME EDUCACIONA VERSÃO: 2.0.3')
 })
 
 const server = http.createServer(app);
@@ -38,7 +44,7 @@ dadosGlobais.io = io
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(cors())
+app.use(cors(configCors))
 
 app.use('/items', itemsRouter)
 app.use('/pets', petsRouter)

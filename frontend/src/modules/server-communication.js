@@ -9,7 +9,7 @@ async function request(url, method = 'GET', body = null) {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'https://gameeducacional.andersonferreiraalves.com'
+          'Access-Control-Allow-Origin': 'https://gameeducacional.andersonferreiraalves.com',
         },
         body: JSON.stringify(body)
       }
