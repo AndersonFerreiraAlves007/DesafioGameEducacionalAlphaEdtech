@@ -15,7 +15,7 @@ socket.on("connect", () => {
 });
 
 socket.on('update pets', function(msg) {
-    console.log('kakakka')
+    //console.log('kakakka')
     statusBar.updateInfoPet()
     console.log('houve atualização')
 });

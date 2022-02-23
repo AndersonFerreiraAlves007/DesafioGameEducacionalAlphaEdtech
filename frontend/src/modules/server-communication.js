@@ -8,13 +8,11 @@ async function request(url, method = 'GET', body = null) {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(body),
-        mode: 'no-cors'
+        body: JSON.stringify(body)
       }
     } else {
       options = {
         method,
-        mode: 'no-cors'
       }
     }
     const data = await fetch(url, options)
