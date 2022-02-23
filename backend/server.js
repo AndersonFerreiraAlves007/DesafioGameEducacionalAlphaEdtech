@@ -33,7 +33,7 @@ const app = express()
 })  */
 
 app.get('/', (req, res) => {
-  res.send('API GAME EDUCACIONA VERSÃO: 2.0.7')
+  res.send('API GAME EDUCACIONA VERSÃO: 2.0.8')
 })
 
 const server = http.createServer(app);
