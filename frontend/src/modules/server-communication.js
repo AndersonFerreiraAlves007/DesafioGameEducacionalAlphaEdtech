@@ -1,3 +1,5 @@
+import { HOST_API } from '../utils/constants.js'
+
 async function request(url, method = 'GET', body = null) {
   try {
     let options = {}
@@ -124,6 +126,6 @@ class BancoDados {
 
 } 
 
-const serverConnection = new BancoDados('http://localhost:3333');
+const serverConnection = new BancoDados(HOST_API);
 
 export {serverConnection};

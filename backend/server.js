@@ -26,6 +26,10 @@ app.use((req, res, next) => {
   next();
 }) 
 
+app.get('/', (req, res) => {
+  res.send('API GAME EDUCACIONA VERSÃO: 2.0.1')
+})
+
 const server = http.createServer(app);
 
 const io = new Server(server);

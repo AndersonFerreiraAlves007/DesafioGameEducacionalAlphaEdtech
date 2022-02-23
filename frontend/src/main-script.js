@@ -5,8 +5,9 @@ import { statusBar } from './modules/update-status-bar.js'
 //import { realTime } from './modules/real-time.js'
 import { Slime } from './modules/slime.js';
 import { optionMenu } from './modules/options-menu.js';
+import { HOST_API } from './utils/constants.js'
 
-const socket = io('http://localhost:3333', { transports : ['websocket'] });
+const socket = io(HOST_API, { transports : ['websocket'] });
 
 let currentSlime;
 
