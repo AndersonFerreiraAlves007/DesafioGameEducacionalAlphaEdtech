@@ -31,12 +31,15 @@ html {
   --fun-bar-empty-color: lightgoldenrodyellow;
   --fun-bar-full-color: rgb(255, 255, 110);
   --main-menu-background-color: aquamarine;
+  --submenus-buttons-color: brown;
+  --submenus-buttons-text-color: white;
 
   --round-edge-shadow-effect: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   --round-surface-shadow-effect: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
   --border-highlight-shadow-effect: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
   --status-bar-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
   --submenus-main-component-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  --submenus-button-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
   --status-bar-border-radius: 12px / 50%;
 
@@ -201,7 +204,7 @@ main {
 }
 @media (max-width: 1060px){
   #progressbar, #hygienebar, #funbar {
-      width: 100%;
+    width: 100%;
   }
 }
 
@@ -248,26 +251,26 @@ main {
 
 
 /* MENUS */
+/*individual rendered color circle */
 .colorOption {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   cursor: pointer;
-  opacity: 0.5;
 }
 
 /*color palette*/
 #content-dialog-edit-pet, #content-dialog-edit-pet, #content-dialog-create-pet {
   display: flex;
-  width: 300px;
+  width: 85%;
   background-color: var(--main-menu-background-color);
   flex-wrap: wrap;
   padding: 10px;
   overflow-y: auto;
   max-height: 300px;
 }
-/*individual color circles*/
+/*color circles container*/
 .container-color-option {
   width: 25%;
   aspect-ratio: 1/1;
@@ -288,14 +291,19 @@ main {
 
 /*submenus main component*/
 #container-colors {
+  width: 80%;
+  max-width: 340px;
   padding: 20px;
   border-radius: 20px;
   box-shadow: var(--submenus-main-component-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /*submenus text input or display area*/
 #name-pet-input, #name-pet-input-create {
-  /*  width: 100%; */
+  width: 85%;
   height: 40px;
   margin-bottom: 20px;
   border: none;
@@ -308,80 +316,64 @@ main {
   padding: 10px;
 }
   
-  #container-buttons-dialog-edit-pet, #container-buttons-dialog-create-pet, #container-buttons-dialog-select-pet {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  #container-buttons-dialog-edit-pet button{
-    width: 100%;
-    height: 40px;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: brown;
-    color: white;
-    border: none;
-    cursor: pointer;
-    opacity: 0.;
-    border-radius: 2px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
-  
-  #container-buttons-dialog-edit-pet button:hover{
-    opacity: 1;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
+#container-buttons-dialog-edit-pet, #container-buttons-dialog-create-pet, #container-buttons-dialog-select-pet {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
 
-  #container-buttons-dialog-create-pet button{
-    width: 100%;
-    height: 40px;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: brown;
-    color: white;
-    border: none;
-    cursor: pointer;
-    opacity: 0.;
-    border-radius: 2px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
+#container-buttons-dialog-create-pet button, #container-buttons-dialog-edit-pet button{
+  justify-self: stretch;
+  width: 100%;
+  height: 40px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: var(--submenus-buttons-color);
+  color: var(--submenus-buttons-text-color);
+  border: none;
+  cursor: pointer;
+  opacity: 0.;
+  border-radius: 2px;
+  box-shadow: var(--submenus-button-shadow);
+}
   
-  #container-buttons-dialog-create-pet button:hover{
-    opacity: 1;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
+#container-buttons-dialog-create-pet button:hover, #container-buttons-dialog-edit-pet button:hover{
+  opacity: 1;
+  box-shadow: var(--submenus-button-shadow);
+}
 
-  #container-buttons-dialog-select-pet button{
-    width: 100%;
-    height: 40px;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: brown;
-    color: white;
-    border: none;
-    cursor: pointer;
-    opacity: 0.;
-    border-radius: 2px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
+#container-buttons-dialog-select-pet button{
+  width: 100%;
+  height: 40px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: brown;
+  color: white;
+  border: none;
+  cursor: pointer;
+  opacity: 0.;
+  border-radius: 2px;
+  box-shadow: var(--submenus-button-shadow);
+}
   
-  #container-buttons-dialog-select-pet button:hover{
-    opacity: 1;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
+#container-buttons-dialog-select-pet button:hover{
+  opacity: 1;
+  box-shadow: var(--submenus-button-shadow);
+}
   
-  #content-dialog-edit-pet-select, #content-dialog-select-pet-select, #container-buttons-dialog-create-pet {
-    margin-bottom: 20px;
-  }
+#content-dialog-edit-pet-select, #content-dialog-select-pet-select, #content-dialog-create-pet-select, #container-buttons-dialog-create-pet, #container-buttons-dialog-edit-pet, #container-buttons-dialog-select-pet button {
+  margin-bottom: 20px;
+  width: 85%;
+}
 
-  #content-dialog-select-pet {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    max-width: 300px;
-  }
+#content-dialog-select-pet {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  max-width: 300px;
+  justify-content: space-between;
+}
   
   ::-webkit-scrollbar {
     width: 10px;
@@ -416,7 +408,7 @@ main {
    }
   
    .slime-item:hover {
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: var(--submenus-button-shadow);
     border-radius: 10px;
     transform: scale(1.2);
    }
@@ -438,13 +430,13 @@ main {
    }
   
    .line-user-logados:hover {
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: var(--submenus-button-shadow);
     border-radius: 10px;
    }
   
    #content-users {
       width: 250px;
-      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      box-shadow: var(--submenus-button-shadow);
       padding: 20px;
       border-radius: 10px;
    }
@@ -479,7 +471,7 @@ main {
      margin: 20px 0px;
      /* border-top: 1px solid black;
      border-bottom: 1px solid black; */
-     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+     box-shadow: var(--submenus-button-shadow);
      border-radius: 10px;
      padding: 10px;
      max-height: 300px;
@@ -542,7 +534,7 @@ main {
   font-family: var(--font-options-menu);
   border-radius: 10px;
   border: none;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: var(--submenus-button-shadow);
   cursor: pointer;
 }
 
