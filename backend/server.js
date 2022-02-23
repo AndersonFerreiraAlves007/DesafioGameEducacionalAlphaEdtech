@@ -26,14 +26,14 @@ tasksExecute.forEach(({ task, time }) => {
 
 const app = express()
 
-app.use((req, res, next) => {
+/* app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', "*");
   res.header('Access-Control-Allow-Headers', "*");
   next();
-}) 
+})  */
 
 app.get('/', (req, res) => {
-  res.send('API GAME EDUCACIONA VERSÃO: 2.0.5')
+  res.send('API GAME EDUCACIONA VERSÃO: 2.0.7')
 })
 
 const server = http.createServer(app);
