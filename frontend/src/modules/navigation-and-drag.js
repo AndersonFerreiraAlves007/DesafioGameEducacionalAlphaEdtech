@@ -152,13 +152,13 @@ async function navigationButtonsAndDragEvents() {
     function updateViewScene() {
         dadosGlobais.setCurrentScene(allScenesWithItems[indexScene])
         const currentScene = dadosGlobais.getCurrentScene()
+        indexItem = 0
         dadosGlobais.setCurrentItem(currentScene.items[indexItem])
         $('#environment-text').html(currentScene.name)
         $('#game-body').css({ 'background-image': `url( ${currentScene.url_image})` })
 
         // set currentItem to inital whenever the scene is changed
         $('#current-item').attr('src', currentScene.items[0].url_image)
-        indexItem = 0
 
         // reset position of item after altering the scene or the item itself
         resetItemPosition()
