@@ -2,125 +2,89 @@ import {serverConnection} from './server-communication.js';
 import { dadosGlobais } from './global-data.js'
 
 $(document).ready(function(){
-    let usernameRegisterError = true;
-    let usernameLoginError = true;
-    let passwordRegisterError = true;
-    let passwordLoginError = true;
-    let namepetRegisterError = true;
+    let usernameRegisterError = false;
+    let usernameLoginError = false;
+    let passwordRegisterError = false;
+    let passwordLoginError = false;
+    let namepetRegisterError = false;
 
     function validateUsernameRegister() {
         const usernameValue = $('#username_reg').val();
         if (usernameValue.length == '') {
             $('#usercheckregister').show();
-            usernameRegisterError = false;
-            return false;
-        }
-        else if((usernameValue.length < 3) || (usernameValue.length > 30)) {
+            usernameRegisterError = true;
+        } else if((usernameValue.length < 3) || (usernameValue.length > 30)) {
             $('#usercheckregister').show();
             $('#usercheckregister').html("**Os usuários devem ter no mínimo 3 caracteres e no máximo 30 caracteres.");
-            usernameRegisterError = false;
-            return false;
-        }
-        else {
             usernameRegisterError = true;
-            $('#usercheckregister').hide();
-            return true;
-        }
-    }
-    function validateUsernameRegister() {
-        const usernameValue = $('#username_reg').val();
-        if (usernameValue.length == '') {
-            $('#usercheckregister').show();
+        } else {
             usernameRegisterError = false;
-            return false;
-        }
-        else if((usernameValue.length < 3) || (usernameValue.length > 30)) {
-            $('#usercheckregister').show();
-            $('#usercheckregister').html("**Os usuários devem ter no mínimo 3 caracteres e no máximo 30 caracteres.");
-            usernameRegisterError = false;
-            return false;
-        }
-        else {
-            usernameRegisterError = true;
             $('#usercheckregister').hide();
-            return true;
         }
+        return false;
     }
     function validatePasswordRegister() {
         const passwordValue = $('#password_reg').val();
         if (passwordValue.length == '') {
             $('#passcheckregister').show();
-            passwordRegisterError = false;
-            return false;
-        }
-        if ((passwordValue.length < 3) || (passwordValue.length > 30)) {
+            passwordRegisterError = true;
+        } else if ((passwordValue.length < 3) || (passwordValue.length > 30)) {
             $('#passcheckregister').show();
             $('#passcheckregister').html("**As senhas devem ter no mínimo 3 caracteres e no máximo 30 caracteres.");
             $('#passcheckregister').css("color", "red");
-            passwordRegisterError = false;
-            return false;
-        } else {
             passwordRegisterError = true;
+        } else {
+            passwordRegisterError = false;
             $('#passcheckregister').hide();
-            return true;
         }
+        return false;
     }
     function validateNamepetRegister() {
         const namepetValue = $("#namepet_reg").val();
         if (namepetValue.length == '') {
             $('#namecheckregister').show();
-            namepetRegisterError = false;
-            return false;
-        }
-        if ((namepetValue.length < 3) || (namepetValue.length > 30)) {
+            namepetRegisterError = true;
+        } else if ((namepetValue.length < 3) || (namepetValue.length > 30)) {
             $('#namecheckregister').show();
             $('#namecheckregister').html("**Os pets devem ter no mínimo 3 caracteres e no máximo 30 caracteres.");
             $('#namecheckregister').css("color", "red");
-            namepetRegisterError = false;
-            return false;
-        } else {
             namepetRegisterError = true;
+        } else {
+            namepetRegisterError = false;
             $('#namecheckregister').hide();
-            return true;
         }
+        return false;
     }
     function validateUsernameLogin() {
         const usernameValue = $('#username_log').val();
         if (usernameValue.length == '') {
             $('#userchecklogin').show();
-            usernameLoginError = false;
-            return false;
-        }
-        else if((usernameValue.length < 3) ||(usernameValue.length > 30)) {
+            usernameLoginError = true;
+        } else if((usernameValue.length < 3) ||(usernameValue.length > 30)) {
             $('#userchecklogin').show();
             $('#userchecklogin').html("**Os usuários devem ter no mínimo 3 caracteres e no máximo 30 caracteres.");
-            usernameLoginError = false;
-            return false;
-        }
-        else {
             usernameLoginError = true;
+        } else {
+            usernameLoginError = false;
             $('#userchecklogin').hide();
-            return true;
         }
+        return false;
     }
     function validatePasswordLogin() {
         const passwordValue = $('#password_log').val();
         if (passwordValue.length == '') {
             $('#passchecklogin').show();
-            passwordLoginError = false;
-            return false;
-        }
-        if ((passwordValue.length < 3) || (passwordValue.length > 30)) {
+            passwordLoginError = true;
+        } else if ((passwordValue.length < 3) || (passwordValue.length > 30)) {
             $('#passchecklogin').show();
             $('#passchecklogin').html("**As senhas devem ter no mínimo 3 caracteres e no máximo 30 caracteres.");
             $('#passchecklogin').css("color", "red");
-            passwordLoginError = false;
-            return false;
-        } else {
             passwordLoginError = true;
+        } else {
+            passwordLoginError = false;
             $('#passchecklogin').hide();
-            return true;
         }
+        return false;
     }
 
     $(".register").hide();
@@ -163,7 +127,7 @@ $(document).ready(function(){
         validateUsernameRegister();
         validatePasswordRegister();
         validateNamepetRegister();
-        if ((usernameRegisterError == true) && (passwordRegisterError == true) && (namepetRegisterError == true)){
+        if ((usernameRegisterError == false) && (passwordRegisterError == false) && (namepetRegisterError == false)){
             try{
                 await serverConnection.register($("#username_reg").val(), $("#password_reg").val(), $("#namepet_reg").val());
             }catch(e){
@@ -176,7 +140,7 @@ $(document).ready(function(){
     $("#btn_login").click(async function(){
         validateUsernameLogin();
         validatePasswordLogin();
-        if((usernameLoginError == true) && (passwordLoginError == true)){
+        if((usernameLoginError == false) && (passwordLoginError == false)){
             try{
                 const {user, pet} = await serverConnection.login($("#username_log").val(), $("#password_log").val());
                 localStorage.setItem('user_id', String(user.id));
