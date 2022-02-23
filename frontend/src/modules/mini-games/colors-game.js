@@ -186,7 +186,7 @@ function colorGameStart() {
   }, 1000);
 
 
-  $('#start').on('mouseover', function () {
+  $('#start').on('click', function () {
     $('#option1, #option2, #option3').removeClass(allColors)
     const targets = ['#option1', '#option2', '#option3']
     let thisGame = []
