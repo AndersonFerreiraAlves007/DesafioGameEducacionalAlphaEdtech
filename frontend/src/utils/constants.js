@@ -1,4 +1,4 @@
-const HOST_API = "https://apigameeducacional.andersonferreiraalves.com"
+const HOST_API = "http://apigameeducacional.andersonferreiraalves.com"
 
 export {
   HOST_API
