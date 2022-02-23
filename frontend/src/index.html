@@ -38,18 +38,17 @@
 
         <header>
             <!-- STATUS BAR -->
-            <p id="pet-name"></p>
 
             <div class="status-container">
-                Fome: <span id="progressbar-number"></span>
+                <p>Fome: <span id="progressbar-number"></span></p>
                 <div id="progressbar"></div>
             </div>
             <div class="status-container">
-                Higiene: <span id="hygienebar-number"></span>
+                <p>Higiene: <span id="hygienebar-number"></span></p>
                 <div id="hygienebar"></div>
             </div>
             <div class="status-container">
-                Diversão: <span id="fun-number"></span>
+                <p>Diversão: <span id="fun-number"></span></p>
                 <div id="funbar"></div>
             </div>
 
@@ -69,6 +68,7 @@
                 <div id="slime-root"></div>
 
             </div>
+            <p id="pet-name"></p>
 
             <div id="items">
                 <img id="previous-item" src="../assets/button-icons/previous-arrow-button.png" alt="">
@@ -123,13 +123,18 @@
                     <img id="button-close-game" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu" />
                     <div id="score">SCORE: </div>
                     <div id="color__colors-game">A COR É </div>
-                    <div id="#timer span">TEMPO: </div>
+                    <div id="timer"></div>
                 </div>
                 <div id="colors-game-main-area">
                     <div id="start"></div>
                     <div id="container"></div>
                     <div id="droppable"></div>
                 </div>
+            </div>
+            <div id="endScreen">
+                <p>Você ganhou essa rodada!</p>
+                <p>Você marcou <span id="final-score"></span> pontos!</p>
+                   
             </div>
         </section>
 
