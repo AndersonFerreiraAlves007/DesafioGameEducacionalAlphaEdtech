@@ -114,6 +114,8 @@ function makeSlime(id, nome, color, onClick) {
   return slime
 }
 
+const flipSound = new Audio('../../assets/audios/game-audios/game-remember/84322__splashdust__flipcard.wav')
+
 const cardsInit = [
   {
     color: 'red',
@@ -327,6 +329,7 @@ function makeCards() {
 makeCards()
 
 function virarCards() {
+  flipSound.play()
   cards.forEach((item, index) => {
     const flipper =  document.getElementById(`card-flipper-${index}`)
     if(item.flip || index === indexAnterior) {
