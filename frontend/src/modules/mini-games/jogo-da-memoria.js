@@ -237,6 +237,7 @@ function makeCardItem(index, cardItem) {
   flipper.id = `card-flipper-${index}`
 
   card.addEventListener('click', () => {
+    flipSound.play()
     if(index !== indexAnterior) {
       if(cont % 2 === 0) {
         indexAnterior = index
@@ -329,7 +330,6 @@ function makeCards() {
 makeCards()
 
 function virarCards() {
-  flipSound.play()
   cards.forEach((item, index) => {
     const flipper =  document.getElementById(`card-flipper-${index}`)
     if(item.flip || index === indexAnterior) {
