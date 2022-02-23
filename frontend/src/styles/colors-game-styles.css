@@ -5,19 +5,44 @@ section.colors-game  {
     height: 100vh;
     width: 100vw;
     z-index: 4000;
-    background-color: beige;
-    background-image: url(../assets/game-icons/exterior-house-facade-icon/50574.jpg);
+    background-image: url(../assets/background-images/vector-cartoon-illustration-of-empty-kindergarten-room-with-furniture-and-toys-for-young-children-n/1926.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    font-size: 30px;
+}
+    
+#content-colors-game {
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 4000;
+    background-image: url(../assets/game-icons/cartoon-landscape-vector.jpg);
+    background-size: cover;
+    background-position: bottom;
+    background-attachment: fixed;
 }
 
 #button-close-game {
     position: absolute;
     right: 10px;
     top: 10px;
+    cursor: pointer;
+}
+
+#colors__game-container-top-bar {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
 }
 
 .slime {
@@ -25,26 +50,46 @@ section.colors-game  {
     width: 50px;
     height: 50px;
     position:relative;
+    top: 0px;
+    left: 0px;
+    cursor: grab;
+}
+    
+.slime:active {
+    cursor: grabbing;
 }
 
 #start {
-    width: 100px;
-    height: 100px;
-    background-color: coral;
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
+    background-image: url(../assets/game-icons/hot-air-balloon.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#colors-game-main-area {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#color__colors-game {
+    width: 30rem;
+    text-align: center;
 }
 
 #container {
-    position: relative;
     width: 420px;
     height: 420px;
-    /* display: flex;
-    justify-content: space-around; */
 }
 
 #droppable {
     width: 150px;
     height: 150px;
-    background-image: url(../assets/game-icons/exterior-house-facade-icon/50574.jpg);
+    background-image: url(../assets/game-icons/—Pngtree—single\ cartoon\ house_5714612.png);
+    background-repeat: no-repeat;
     background-size: contain;
 }
 
@@ -57,7 +102,7 @@ section.colors-game  {
 }
 
 .blue * {
-    fill: rgb(22, 22, 216);
+    fill: rgb(15, 220, 235);
 }
 
 .yellow * {
@@ -65,7 +110,7 @@ section.colors-game  {
 }
 
 .orange * {
-    fill: orange;
+    fill: rgb(255, 165, 0);
 }
 
 .purple * {

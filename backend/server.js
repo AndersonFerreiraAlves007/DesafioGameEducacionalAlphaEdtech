@@ -20,6 +20,12 @@ tasksExecute.forEach(({ task, time }) => {
 
 const app = express()
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', "*");
+  // res.header('Access-Control-Allow-Headers', "*");
+  next();
+}) 
+
 const server = http.createServer(app);
 
 const io = new Server(server);

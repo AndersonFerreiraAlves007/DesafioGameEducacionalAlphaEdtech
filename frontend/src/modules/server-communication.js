@@ -124,6 +124,6 @@ class BancoDados {
 
 } 
 
-const serverConnection = new BancoDados('http://127.0.0.1:3333');
+const serverConnection = new BancoDados('http://localhost:3333');
 
 export {serverConnection};

@@ -12,7 +12,7 @@
     <!--google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shizuru&family=Short+Stack&family=Varela+Round&display=swap" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- the reference below allows the status bar style to load properly -->
@@ -38,6 +38,7 @@
 
         <header>
             <!-- STATUS BAR -->
+            <p id="pet-name"></p>
 
             <div class="status-container">
                 Fome: <span id="progressbar-number"></span>
@@ -51,16 +52,7 @@
                 Diversão: <span id="fun-number"></span>
                 <div id="funbar"></div>
             </div>
-            <!-- <button type="button" id="btn-edit-pet">Editar Pet</button>
-            <button type="button" id="btn-create-pet">Criar Pet</button>
-            <button type="button" id="btn-select-pet">Seelecionar Pet</button> -->
-            <!-- <button type="button" id="btn-jogo-da-memoria">Jogo da memória</button> -->
-            <!-- <div id="menu-button-area">
-                <img id="options-menu-button" src="./assets/button-icons/options-menu.svg" alt="menu de opções" />
-                <p id="pet-name"></p>
-            </div> -->
 
-            <img id="options-menu-button" src="./assets/button-icons/options-menu.svg" alt="menu de opções" />
         </header>
 
 
@@ -73,8 +65,6 @@
             </div>
 
             <div id="pou">
-
-                <div id="screen-log"></div>
 
                 <div id="slime-root"></div>
 
@@ -123,17 +113,23 @@
         </section>
 
         <section id="colors-game" class="colors-game" style="display: none;">
-            <img id="button-close-game" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu" />
-            <span id="score">SCORE: </span>
-            <div id="start"></div>
-            <div id="container">
-                <!-- <div class="slime" id="option1"></div> -->
-                <!-- <div class="slime" id="option2"></div> -->
-                <!-- <div class="slime" id="option3"></div> -->
+            <div id="content-colors-game">
+                <div id="colors__game-container-top-bar">
+                    <img id="button-close-game" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu" />
+                    <div id="score">SCORE: </div>
+                    <div id="color__colors-game">A COR É </div>
+                    <div id="#timer span">TEMPO: </div>
+                </div>
+                <div id="colors-game-main-area">
+                    <div id="start"></div>
+                    <div id="container"></div>
+                    <div id="droppable"></div>
+                </div>
             </div>
-            <div id="droppable"></div>
         </section>
 
+
+        <img id="options-menu-button" src="./assets/button-icons/options-menu.svg" alt="menu de opções" />
     </div>
 
     <section id="menu-area" style="display: none;">
@@ -144,12 +140,13 @@
         <button type="button" class="menu-buttons" id="btn-create-pet">Criar Pet</button>
         <button type="button" class="menu-buttons" id="btn-select-pet">Selecionar Pet</button>
         <button type="button" class="menu-buttons" id="btn-credits">Créditos</button>
+        <button type="button" class="menu-buttons" id="btn-logout">Sair</button>
 
     </section>
 
     <section id="dialog-edit-pet" style="display: none;">
         <div id="container-colors">
-            <h2>Editar bichinho!</h2>
+            <h2 class="submenu-title">Editar bichinho!</h2>
             <input type="text" id="name-pet-input" placeholder="Nome do pet" style="margin: 15px;">
             <div id="content-dialog-edit-pet-select" style="padding: 10px;"></div>
             <div id="content-dialog-edit-pet"></div>
@@ -164,7 +161,7 @@
 
     <section id="dialog-create-pet" style="display: none">
         <div id="container-colors">
-            <h2>Crie um novo bichinho!</h2>
+            <h2 class="submenu-title">Crie um novo bichinho!</h2>
             <input type="text" id="name-pet-input-create" placeholder="Nome do pet" style="margin: 15px;">
             <div id="content-dialog-create-pet-select" style="padding: 10px;"></div>
             <div id="content-dialog-create-pet"></div>
@@ -179,7 +176,7 @@
 
     <section id="dialog-select-pet" style="display: none">
         <div id="container-colors">
-            <h2>Selecione um Pet</h2>
+            <h2 class="submenu-title">Selecione um Pet</h2>
             <div id="content-dialog-select-pet-select"></div>
             <div id="content-dialog-select-pet"></div>
             <div id="container-buttons-dialog-select-pet">
@@ -199,8 +196,8 @@
     </section>
 
     <section id="dialog-credits" style="display: none">
-        <div id="container-colors">
-            <h2>Créditos</h2>
+        <div id="container-colors" class="credits-display">
+            <h2 class="submenu-title">Créditos</h2>
             <dl>
                 <dd>Imagens de fundo "cozinha" e "sala de jogos"</dd>
                 <dt><a href="http://www.freepik.com">Designed by vectorpocket / Freepik</a></dt>
@@ -225,6 +222,12 @@
                 <dd>Som de mordida</dd>
                 <dt><a href="www.jshaw.co.uk">Adaptaded from "Biting, Crunchy, A.wav" by InspectorJ (www.jshaw.co.uk) of
                         Freesound.org</a></dt>
+                <dd>Ícone jogo pedra tesoura papel</dd>
+                <dt><a href="https://www.flaticon.com/free-icons/rock-paper-scissors" title="rock paper scissors icons">Rock paper scissors icons created by Freepik - Flaticon</a></dt>
+                <dd>Som de acerto no jogo das cores adapted from DDmyzik SFX » Happy Harp Sound of Freesound.org</dd>
+                <dt><a href="https://freesound.org/people/DDmyzik/sounds/476713/">DDmyzik SFX » Happy Harp Sound of Freesound.org</a></dt>
+                <dd>som de erro no jogo da cores adapted from distillerystudio Error sounds by Freesound.org</dd>
+                <dt><a href="https://freesound.org/people/distillerystudio/sounds/327738/">Distillerystudio Error sounds by Freesound.org</a></dt>
             </dl>
 
             <!-- <button type="button" id="btn-close-credits">Cancelar</button> -->

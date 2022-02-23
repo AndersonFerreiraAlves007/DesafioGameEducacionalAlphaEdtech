@@ -147,11 +147,3 @@
     background-size: contain;
     background-color: #2222ffcc;
 }
-
-/* lembrar de passar para a main-style.css */
-button {
-    width: var(--button-width);
-    height: var(--button-height);
-    margin: 10px;
-    font-size: var(--text-size-median);
-}
