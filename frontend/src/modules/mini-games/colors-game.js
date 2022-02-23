@@ -200,7 +200,7 @@ function colorGameStart() {
         } else {
           repeatColor = false
           const randomWidth = Math.ceil(Math.random() * 400)
-          const randomHeight = Math.ceil(Math.random() * 400)
+          const randomHeight = Math.ceil(Math.random() * 300)
           currentRound.push(currentColor)
           $(`#${option}`).show('fast')
           $(`#${option}`).css('top', randomHeight)

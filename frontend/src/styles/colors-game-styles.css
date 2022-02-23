@@ -50,6 +50,8 @@ section.colors-game  {
     width: 50px;
     height: 50px;
     position:relative;
+    top: 0px;
+    left: 0px;
     cursor: grab;
 }
     
@@ -100,7 +102,7 @@ section.colors-game  {
 }
 
 .blue * {
-    fill: rgb(22, 22, 216);
+    fill: rgb(15, 220, 235);
 }
 
 .yellow * {
@@ -108,7 +110,7 @@ section.colors-game  {
 }
 
 .orange * {
-    fill: orange;
+    fill: rgb(255, 165, 0);
 }
 
 .purple * {
