@@ -105,14 +105,15 @@ header {
   border-radius: 8px 8px 0 0;
   box-shadow: var(--round-surface-shadow-effect);
   font-family: var(--childish-cursive-font-02);
-  font-size: 1.5rem;
+  font-size: 24px;
   color: var(--light-font-color);
   
 }
 
 .status-container{
-  line-height: 2.2rem;
+  line-height: 35.2px;
   margin-bottom: 2px;
+  font-size: inherit;
 }
 
 #pet-name {
