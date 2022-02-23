@@ -24,9 +24,21 @@ html {
   --header-background: darkorchid;
   --light-font-color: whitesmoke;
   --pet-name-font-color: #FFF600;
+  --food-bar-empty-color: rgb(250, 216, 221);
+  --food-bar-full-color: lightcoral;
+  --hygiene-bar-empty-color: lightcyan;
+  --hygiene-bar-full-color: cyan;
+  --fun-bar-empty-color: lightgoldenrodyellow;
+  --fun-bar-full-color: rgb(255, 255, 110);
+  --main-menu-background-color: aquamarine;
 
   --round-edge-shadow-effect: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   --round-surface-shadow-effect: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  --border-highlight-shadow-effect: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+  --status-bar-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+  --submenus-main-component-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+  --status-bar-border-radius: 12px / 50%;
 
   --slime-diameter: 150px;
   
@@ -152,78 +164,80 @@ main {
 }
 
 
+/* CONTEXT NAVIGATION AND ITEM CHOOSER */
+
 #environment-text {
-    font-size: 60px;
+  font-size: 60px;
 }
 
 #previous-item, #next-item, #previous-button, #next-button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #item-box:active {
-    cursor: grabbing !important;
+  cursor: grabbing !important;
 }
 
 #item-box:hover {
-    cursor: grab;
+  cursor: grab;
 }
 
-div#environment, div#items {
-    display: flex;
-    align-items: center;
-}
-
-span {
-    width: 200px;
-    text-align: center;
+#environment, #items {
+  display: flex;
+  align-items: center;
 }
 
 #current-item {
-    height: 100px;
+  height: 100px;
 }
 
+
+/* STATUS BARS */
+
 #progressbar, #hygienebar, #funbar {
-    width: 300px;
-    height: 20px;
+  width: 300px;
+  height: 20px;
 }
 @media (max-width: 1060px){
-    #progressbar, #hygienebar, #funbar {
-        width: 100%;
-    }
+  #progressbar, #hygienebar, #funbar {
+      width: 100%;
+  }
 }
 
 /* progress bar empty color */
 #progressbar {
-    background: rgb(250, 216, 221);
-    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
-    border-radius: 15px / 50%;
+  background: var(--food-bar-empty-color);
+  box-shadow: var(--status-bar-shadow);
+  border-radius: var(--status-bar-border-radius);
 }
 
 #hygienebar {
-    background: lightcyan;
-    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
-    border-radius: 15px / 50%;
+  background: var(--hygiene-bar-empty-color);
+  box-shadow: var(--status-bar-shadow);
+  border-radius: var(--status-bar-border-radius);
 }
 
 #funbar {
-    background: lightgoldenrodyellow;
-    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
-    border-radius: 15px / 50%;
+  background: var(--fun-bar-empty-color);
+  box-shadow: var(--status-bar-shadow);
+  border-radius: var(--status-bar-border-radius);
 }
 
 /* progress bar full color */
 #progressbar > div {
-    background: lightcoral;
+  background: var(--food-bar-full-color);
 }
 
 #hygienebar > div {
-    background: cyan;
+  background: var(--hygiene-bar-full-color);
 }
 
 #funbar > div {
-    background: rgb(255, 255, 110);
+  background: var(--fun-bar-full-color);
 }
 
+
+/* SLIME MAIN CONTAINER */
 #slime-root {
     width: 256px;
     margin-left: auto;
@@ -232,68 +246,66 @@ span {
 }
 
 
-
-
-
+/* MENUS */
 .colorOption {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    cursor: pointer;
-    opacity: 0.5;
-  }
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+/*color palette*/
+#content-dialog-edit-pet, #content-dialog-edit-pet, #content-dialog-create-pet {
+  display: flex;
+  width: 300px;
+  background-color: var(--main-menu-background-color);
+  flex-wrap: wrap;
+  padding: 10px;
+  overflow-y: auto;
+  max-height: 300px;
+}
+/*individual color circles*/
+.container-color-option {
+  width: 25%;
+  aspect-ratio: 1/1;
+  padding: 5px;
+}
+
+/*submenus background context*/
+#dialog-edit-pet, #dialog-create-pet, #dialog-select-pet {
+  background-color: var(--main-menu-background-color);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 10000;
+}
+
+/*submenus main component*/
+#container-colors {
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: var(--submenus-main-component-shadow);
+}
+
+/*submenus text input or display area*/
+#name-pet-input, #name-pet-input-create {
+  /*  width: 100%; */
+  height: 40px;
+  margin-bottom: 20px;
+  border: none;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 2px;
+}
   
-  #content-dialog-edit-pet, #content-dialog-edit-pet, #content-dialog-create-pet {
-    display: flex;
-    width: 300px;
-    background-color: aquamarine;
-    flex-wrap: wrap;
-    /* border: 2px solid red; */
-    border-radius: 10px;
-   /*  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
-    padding: 10px;
-    overflow-y: auto;
-    max-height: 300px;
-  }
-  
-  .container-color-option {
-    width: 25%;
-    aspect-ratio: 1/1;
-    padding: 5px;
-  }
-  
-  #dialog-edit-pet, #dialog-create-pet, #dialog-select-pet {
-    /* height: 300px; */
-    background-color: aquamarine;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    z-index: 10000;
-  }
-  
-  #container-colors {
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  }
-  
-  #name-pet-input, #name-pet-input-create {
-   /*  width: 100%; */
-    height: 40px;
-    margin-bottom: 20px;
-    border: none;
-    padding: 10px;
-    font-size: 20px;
-    border-radius: 2px;
-  }
-  
-  ::placeholder {
-    padding: 10px;
-  }
+#name-pet-input-create::placeholder, #name-pet-input::placeholder {
+  padding: 10px;
+}
   
   #container-buttons-dialog-edit-pet, #container-buttons-dialog-create-pet, #container-buttons-dialog-select-pet {
     display: flex;
