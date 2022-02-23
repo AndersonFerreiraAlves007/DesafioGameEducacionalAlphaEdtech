@@ -172,11 +172,3 @@
     background-size: contain;
     background-color: #2222ffcc;
 }
-button {
-    width: var(--button-width);
-    height: var(--button-height);
-    margin: 10px;
-    font-size: var(--size-median);
-    /* color: var(--color-white); */
-    font-family: var(--font-main);
-}
