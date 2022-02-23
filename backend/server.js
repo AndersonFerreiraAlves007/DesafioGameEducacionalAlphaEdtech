@@ -33,12 +33,17 @@ app.use((req, res, next) => {
 }) 
 
 app.get('/', (req, res) => {
-  res.send('API GAME EDUCACIONA VERSÃO: 2.0.3')
+  res.send('API GAME EDUCACIONA VERSÃO: 2.0.5')
 })
 
 const server = http.createServer(app);
 
-const io = new Server(server);
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
+});
 
 dadosGlobais.io = io
 
