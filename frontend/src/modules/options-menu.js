@@ -154,6 +154,13 @@ function optionMenu(){
         $('#dialog-create-pet').hide()
     })
 
+    const buttonLogout = document.getElementById('btn-logout')
+
+    buttonLogout.addEventListener('click', () => {
+        localStorage.clear();
+        window.location.replace('/login');
+    })
+
 }
 
 export {optionMenu}

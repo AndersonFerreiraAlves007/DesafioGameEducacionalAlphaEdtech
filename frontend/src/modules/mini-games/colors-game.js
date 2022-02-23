@@ -12,7 +12,7 @@ function colorGameStart() {
   async function updateScore() {
     const currentPet = dadosGlobais.getCurrentPet()
 
-    const xp_fun_change = score;
+    const xp_fun_change = score * 2;
     const xp_hygiene_change = -10;
     const xp_food_change = -10;
 
@@ -25,8 +25,9 @@ function colorGameStart() {
 
     await statusBar.updateInfoPet()
   }
-
+  // show game on screen
   $('.colors-game').show()
+  
   function makeSlime(id, nome, color, onClick) {
     const slime = document.createElement('div')
     slime.setAttribute('id', `${id}`)
@@ -143,15 +144,15 @@ function colorGameStart() {
   }
 
 
-  const slimy = makeSlime(1, '', 'red', () => { })
   // console.log(document.getElementById('#score').getBoundingClientRect())
-  const targerin = ['option1', 'option2', 'option3']
+  const allSlimes = ['option1', 'option2', 'option3']
 
-  targerin.forEach(option => {
+  allSlimes.forEach(option => {
     const slimy = makeSlime(option, '', '', () => { })
     $('#container').append(slimy)
   })
 
+  // no slime will appear when the game launch
   $('.slime').hide()
 
   $('#option1').draggable()
@@ -160,9 +161,14 @@ function colorGameStart() {
 
   $('#droppable').droppable({
     drop: function (event, ui) {
-      console.log(ui.draggable.hasClass(colorThisTime))
-      if (ui.draggable.hasClass(colorThisTime)) {
+      console.log(ui.draggable.hasClass(currentColor))
+      if (ui.draggable.hasClass(currentColor)) {
+        const winSound = new Audio('../../assets/audios/game-audios/476713__ddmyzik__happy-harp-sound.wav')
+        winSound.play()
         score += 1
+      } else {
+        const failSound = new Audio('../../assets/audios/game-audios/327738__distillerystudio__error-01.wav')
+        failSound.play()
       }
       $('#option1, #option2, #option3').removeClass(allColors)
       $('.slime').hide()
@@ -171,33 +177,40 @@ function colorGameStart() {
   })
 
   const allColors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple']
-  let colorThisTime
+  let currentColor
   let score = 0
+  // Initialize timer
+  let seconds
+  setInterval(function () {
+    seconds = seconds + 1;
+    $('#timer span').html(seconds);
+  }, 1000);
 
-  $('#start').on('mouseover', function () {
+
+  $('#start').on('click', function () {
     $('#option1, #option2, #option3').removeClass(allColors)
-    const targets = ['#option1', '#option2', '#option3']
-    let thisGame = []
-    targets.forEach(option => {
+
+    let currentRound = []
+    allSlimes.forEach(option => {
       let repeatColor = true
       while (repeatColor) {
-        colorThisTime = allColors[Math.floor(Math.random() * allColors.length)]
-        const randomWidth = Math.ceil(Math.random() * 400)
-        const randomHeight = Math.ceil(Math.random() * 400)
-        if (thisGame.includes(colorThisTime)) {
+        currentColor = allColors[Math.floor(Math.random() * allColors.length)]
+        if (currentRound.includes(currentColor)) {
           continue
         } else {
           repeatColor = false
-          thisGame.push(colorThisTime)
-          $(option).show('fast')
-          $(option).css('top', randomHeight)
-          $(option).css('left', randomWidth)
-          $(option).addClass(colorThisTime)
-          $(`path2999-17-9-8-5-3-4-${option}`).addClass(colorThisTime)
+          const randomWidth = Math.ceil(Math.random() * 400)
+          const randomHeight = Math.ceil(Math.random() * 300)
+          currentRound.push(currentColor)
+          $(`#${option}`).show('fast')
+          $(`#${option}`).css('top', randomHeight)
+          $(`#${option}`).css('left', randomWidth)
+          $(`#${option}`).addClass(currentColor)
+          $(`path2999-17-9-8-5-3-4-${option}`).addClass(currentColor)
         }
       }
     });
-    $(this).html(colorThisTime)
+    $('#color__colors-game').html(currentColor.toUpperCase())
   })
 }
 
