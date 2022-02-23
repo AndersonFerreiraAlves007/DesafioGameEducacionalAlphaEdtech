@@ -12,7 +12,7 @@ function colorGameStart() {
   async function updateScore() {
     const currentPet = dadosGlobais.getCurrentPet()
 
-    const xp_fun_change = score;
+    const xp_fun_change = score * 2;
     const xp_hygiene_change = -10;
     const xp_food_change = -10;
 
@@ -162,7 +162,12 @@ function colorGameStart() {
     drop: function (event, ui) {
       console.log(ui.draggable.hasClass(colorThisTime))
       if (ui.draggable.hasClass(colorThisTime)) {
+        const winSound = new Audio('../../assets/audios/game-audios/476713__ddmyzik__happy-harp-sound.wav')
+        winSound.play()
         score += 1
+      } else {
+        const failSound = new Audio('../../assets/audios/game-audios/327738__distillerystudio__error-01.wav')
+        failSound.play()
       }
       $('#option1, #option2, #option3').removeClass(allColors)
       $('.slime').hide()
@@ -173,6 +178,13 @@ function colorGameStart() {
   const allColors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple']
   let colorThisTime
   let score = 0
+  // Initialize timer
+  let seconds
+  setInterval(function () {
+    seconds = seconds + 1;
+    $('#timer span').html(seconds);
+  }, 1000);
+
 
   $('#start').on('mouseover', function () {
     $('#option1, #option2, #option3').removeClass(allColors)
@@ -197,7 +209,7 @@ function colorGameStart() {
         }
       }
     });
-    $(this).html(colorThisTime)
+    $('#color__colors-game').html(colorThisTime.toUpperCase())
   })
 }
 
