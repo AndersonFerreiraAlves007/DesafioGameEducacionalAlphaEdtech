@@ -25,9 +25,11 @@ section.colors-game  {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* flex-wrap: wrap; */
     z-index: 4000;
     background-image: url(../assets/game-icons/cartoon-landscape-vector.jpg);
+    background-size: cover;
+    background-position: bottom;
+    background-attachment: fixed;
 }
 
 #button-close-game {
@@ -85,6 +87,7 @@ section.colors-game  {
     width: 150px;
     height: 150px;
     background-image: url(../assets/game-icons/—Pngtree—single\ cartoon\ house_5714612.png);
+    background-repeat: no-repeat;
     background-size: contain;
 }
 
