@@ -8,13 +8,18 @@ async function request(url, method = 'GET', body = null) {
         method,
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'https://gameeducacional.andersonferreiraalves.com'
         },
         body: JSON.stringify(body)
       }
     } else {
       options = {
         method,
+        headers: {
+          'Accept': 'application/json',
+          'Access-Control-Allow-Origin': 'https://gameeducacional.andersonferreiraalves.com'
+        },
       }
     }
     const data = await fetch(url, options)
