@@ -25,7 +25,7 @@ function colorGameStart() {
 
     await statusBar.updateInfoPet()
   }
-  
+
   // show game on screen
   $('.colors-game').show()
 
@@ -192,6 +192,8 @@ function colorGameStart() {
         clearInterval(ticket)
         updateScore()
         seconds = 0
+        $('#option1, #option2, #option3').removeClass(allColors)
+        $('.slime').hide()
         $('#endScreen').show()
         $('#final-score').html(score)
       }
@@ -232,7 +234,7 @@ function colorGameStart() {
 
   initializeTimer()
   startRound()
-  
+
   $('#start').on('click', startRound)
 }
 
