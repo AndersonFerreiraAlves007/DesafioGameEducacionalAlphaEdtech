@@ -427,12 +427,10 @@ class Slime {
             bothEyes.forEach((element, index)=>{
                 const currentX = element.getAttribute('cx');
                 const currentY = element.getAttribute('cy');
-                //console.log(`x: ${currentX} , y: ${currentY}`)
         
                 element.setAttribute('cx', `${Number(eyeStartValues[index].x) + eyeXIncrement}`)
                 element.setAttribute('cy', `${Number(eyeStartValues[index].y) + eyeYIncrement}`)
         
-                //console.log(`final values: x:${element.getAttribute('cx')} , y: ${element.getAttribute('cy')}`)
                 
             })
         
@@ -556,7 +554,6 @@ class Slime {
 
     updateSlime(){
         const currentPet = dadosGlobais.getCurrentPet();
-        console.log(currentPet);
         this.#color = currentPet.color;
         this.#name = currentPet.name;
         this.#id = currentPet.id;

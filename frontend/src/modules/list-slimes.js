@@ -124,7 +124,6 @@ const dialogSelectPetMesmo = document.getElementById('dialog-select-pet')
 async function renderPetsUser() {
   const { pets } = await serverConnection.getUserWithPets(dadosGlobais.getCurrentUser().id)
 
-  console.log(pets)
   dialogSelectPet.innerHTML = ''
   
   pets.forEach(item => {
@@ -144,13 +143,11 @@ async function renderPetsUser() {
 const buttonSelectPet = document.getElementById('btn-select-pet')
 
 buttonSelectPet.addEventListener('click', async () => {
-  console.log('lalqlqlq')
   await renderPetsUser()
 })
 
 const buttonCancelDialogSelectPet = document.getElementById('btn-cancel-dialog-select-pet')
 
 buttonCancelDialogSelectPet.addEventListener('click', () => {
-  //console.log('AKKAKAKAKKAKAKAK')
   dialogSelectPetMesmo.style.display = 'none'
 })

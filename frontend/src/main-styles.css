@@ -173,6 +173,8 @@ main {
 
 #environment-text {
   font-size: 60px;
+  width: 180px;
+  text-align: center;
 }
 
 #previous-item, #next-item, #previous-button, #next-button {
