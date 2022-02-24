@@ -1,3 +1,5 @@
+import { HOST_API } from '../utils/constants.js'
+
 async function request(url, method = 'GET', body = null) {
   try {
     let options = {}
@@ -6,13 +8,18 @@ async function request(url, method = 'GET', body = null) {
         method,
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': HOST_API,
         },
         body: JSON.stringify(body)
       }
     } else {
       options = {
         method,
+        headers: {
+          'Accept': 'application/json',
+          'Access-Control-Allow-Origin': HOST_API
+        },
       }
     }
     const data = await fetch(url, options)
@@ -124,6 +131,6 @@ class BancoDados {
 
 } 
 
-const serverConnection = new BancoDados('http://localhost:3333');
+const serverConnection = new BancoDados(HOST_API);
 
 export {serverConnection};

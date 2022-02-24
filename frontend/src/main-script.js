@@ -4,8 +4,9 @@ import { dadosGlobais } from './modules/global-data.js'
 import { statusBar } from './modules/update-status-bar.js'
 import { Slime } from './modules/slime.js';
 import { optionMenu } from './modules/options-menu.js';
+import { HOST_API } from './utils/constants.js'
 
-const socket = io('http://localhost:3333', { transports : ['websocket'] });
+const socket = io(HOST_API, { transports : ['websocket'] });
 
 let currentSlime;
 

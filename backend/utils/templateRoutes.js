@@ -100,6 +100,17 @@ function makeRouter(pathDatabase, propsInitial = defaultProps) {
     })
   })
 
+  router.put('/truncate', middlewareId, async (req, res) => {
+    const database = new Database(pathDatabase)
+    await database.truncate()
+
+    res.json({
+      status: true,
+      data: '',
+      message: "Sucesso"
+    })
+  })
+
   router.delete('/:id', middlewareId, async (req, res) => {
     const database = new Database(pathDatabase)
     const id = parseInt(req.params.id, 10)
