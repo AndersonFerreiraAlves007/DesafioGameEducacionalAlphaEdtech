@@ -37,22 +37,17 @@ async function navigationButtonsAndDragEvents() {
         drop: async function (event, ui) {
             
             if(indexScene !== 2){
-                await updatePetStatus(dadosGlobais.getCurrentPet().id, dadosGlobais.getCurrentItem())
 
                 // Get adequate audio for the scene and play it
                 audio.src = allAudios[indexScene]
                 audio.play()
 
                 if (indexScene === 0) {
+                    $('#current-item').animate({width: 0, height: 0}, 100)
+                    setTimeout(() => ui.draggable.remove(), 50)
+                    
                     const currentItem = dadosGlobais.getCurrentItem();
                     await updatePetStatus(dadosGlobais.getCurrentPet().id, currentItem)
-
-                    // Get adequate audio for the scene and play it
-                    audio.src = allAudios[indexScene]
-                    audio.play()
-
-                
-                    ui.draggable.remove()
 
                     $('<div id="item-box"><img id="current-item" src="" alt=""></div>').insertAfter('#previous-item');
                     $('#item-box').draggable({ 
@@ -62,7 +57,7 @@ async function navigationButtonsAndDragEvents() {
 
                     setTimeout(() => {
                         $('#current-item').attr('src', allScenesWithItems[indexScene].items[indexItem].url_image)
-                    }, 250);
+                    }, 50);
 
                 }
             
@@ -82,6 +77,8 @@ async function navigationButtonsAndDragEvents() {
                             break;
                     }
                 }
+                
+                await updatePetStatus(dadosGlobais.getCurrentPet().id, dadosGlobais.getCurrentItem())
             }
 
         },
