@@ -13,6 +13,7 @@ section.colors-game  {
     justify-content: center;
     align-items: center;
     font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
 }
     
 #content-colors-game {
@@ -78,6 +79,17 @@ section.colors-game  {
 #color__colors-game {
     width: 30rem;
     text-align: center;
+}
+
+#endScreen {
+    display: none;
+    position: absolute;
+    z-index: 100000;
+    background-color: lightcoral;
+    padding: 5rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 1px 1px 5px black;
 }
 
 #container {

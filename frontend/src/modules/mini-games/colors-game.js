@@ -5,7 +5,7 @@ import { statusBar } from '../update-status-bar.js'
 
 function colorGameStart() {
   $('#button-close-game').on('click', () => {
-    updateScore()
+    clearInterval(ticket)
     $('.colors-game').hide()
   })
 
@@ -25,9 +25,10 @@ function colorGameStart() {
 
     await statusBar.updateInfoPet()
   }
+  
   // show game on screen
   $('.colors-game').show()
-  
+
   function makeSlime(id, nome, color, onClick) {
     const slime = document.createElement('div')
     slime.setAttribute('id', `${id}`)
@@ -143,8 +144,6 @@ function colorGameStart() {
     return slime
   }
 
-
-  // console.log(document.getElementById('#score').getBoundingClientRect())
   const allSlimes = ['option1', 'option2', 'option3']
 
   allSlimes.forEach(option => {
@@ -161,7 +160,6 @@ function colorGameStart() {
 
   $('#droppable').droppable({
     drop: function (event, ui) {
-      console.log(ui.draggable.hasClass(currentColor))
       if (ui.draggable.hasClass(currentColor)) {
         const winSound = new Audio('../../assets/audios/game-audios/476713__ddmyzik__happy-harp-sound.wav')
         winSound.play()
@@ -173,21 +171,40 @@ function colorGameStart() {
       $('#option1, #option2, #option3').removeClass(allColors)
       $('.slime').hide()
       $('#score').html(`SCORE: ${score}`)
+      startRound()
     }
   })
 
   const allColors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple']
   let currentColor
   let score = 0
+  let roundHasEnded = false
+  let ticket
+
   // Initialize timer
-  let seconds
-  setInterval(function () {
-    seconds = seconds + 1;
-    $('#timer span').html(seconds);
-  }, 1000);
+  function initializeTimer() {
+    let seconds = 0
+    ticket = setInterval(function () {
+      seconds += 1;
+      $('#timer').html(`TEMPO: ${seconds}`);
+      if (seconds == 25) {
+        roundHasEnded = true
+        clearInterval(ticket)
+        updateScore()
+        seconds = 0
+        $('#endScreen').show()
+        $('#final-score').html(score)
+      }
+    }, 1000);
 
+  }
 
-  $('#start').on('click', function () {
+  function startRound() {
+    $('#endScreen').hide()
+    if (roundHasEnded) {
+      roundHasEnded = false
+      initializeTimer()
+    }
     $('#option1, #option2, #option3').removeClass(allColors)
 
     let currentRound = []
@@ -211,7 +228,12 @@ function colorGameStart() {
       }
     });
     $('#color__colors-game').html(currentColor.toUpperCase())
-  })
+  }
+
+  initializeTimer()
+  startRound()
+  
+  $('#start').on('click', startRound)
 }
 
 export { colorGameStart };
