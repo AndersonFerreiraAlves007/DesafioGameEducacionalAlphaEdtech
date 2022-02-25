@@ -126,4 +126,4 @@ class BancoDados {
 
 const serverConnection = new BancoDados('http://localhost:3333');
 
-export {serverConnection};
+export {serverConnection, BancoDados};
