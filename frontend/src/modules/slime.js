@@ -1,4 +1,5 @@
 import {dadosGlobais} from './global-data.js';
+import {gameController} from './control-game.js';
 
 class Slime {
 
@@ -9,6 +10,7 @@ class Slime {
     #xpFun;
     #xpHygiene;
     #color;
+    #sound;
 
     #pulseBodyIntervalId;
 
@@ -566,6 +568,29 @@ class Slime {
 
         document.getElementById('slime-body').style.fill = this.#color;
         
+    }
+
+    feed(food){
+
+        const newStatus = {
+            xp_food: ((this.#xpFood + food.xp_food_change) < 100) ? (this.#xpFood + food.xp_food_change) : 100,
+            xp_fun: ((this.#xpFun + food.xp_fun_change) < 100) ? (this.#xpFun + food.xp_fun_change) : 100
+        }
+
+        this.xpFood = food.xp_food_change;
+        this.xpFun = food.xp_fun_change;
+
+        gameController.updatePet(this.#id, newStatus);
+
+        this.#sound = new Audio();
+        this.#sound.src = '/assets/audios/that-nice-bite.mp3';
+
+        if(this.#sound.paused){
+            this.#sound.play();
+        }else{
+            this.#sound.currentTime = 0;
+        }
+
     }
 }
 

@@ -13,42 +13,143 @@ class ControlGame {
     this.#serverConnection = new BancoDados('http://localhost:3333');
   }
 
-  async login(username, password) {
+  // async login(username, password) {
     
+  // }
+
+  // async register(username, password, namePet) {
+  //   // registar
+  //   // dados globais
+  //   // status
+  // }
+
+  // async getUser(id) {
+    
+  // }
+
+  // async getPet(id) {
+    
+  // }
+
+  // async createPet(user_id, name, color) {
+    
+  // }
+
+  // async getUserWithPets(id) {
+    
+  // }
+
+  // async updateUser(id, body) {
+    
+  // }
+
+  async updateStatusBar(foodLevel, hygieneLevel, funLevel, petName){
+    $("#progressbar").progressbar({
+      value: foodLevel
+    })
+    $('#progressbar-number').html(foodLevel)
+
+    $("#hygienebar").progressbar({
+        value: hygieneLevel
+    })
+    $('#hygienebar-number').html(hygieneLevel)
+
+    $('#funbar').progressbar({
+        value: funLevel
+    })
+    $('#fun-number').html(funLevel)
+
+    $('#pet-name').html(petName)
   }
 
-  async register(username, password, namePet) {
-    // registar
-    // dados globais
-    // status
+  async updatePet(petId, body) {
+
+    if(body){
+      this.#serverConnection.updatePet(petId, body);
+
+      //statusBar.updateInfoPet();
+      const newPetData = dadosGlobais.getCurrentPet();
+      newPetData.xp_food = body.xp_food;
+      newPetData.xp_fun = body.xp_fun;
+      dadosGlobais.setCurrentPet(newPetData);
+      this.updateStatusBar(dadosGlobais.getCurrentPet().xp_food, dadosGlobais.getCurrentPet().xp_hygiene, dadosGlobais.getCurrentPet().xp_fun, dadosGlobais.getCurrentPet().name);
+
+    }else{
+      //case no body is passed, a server side update is assumed
+      const serverBody = await this.#serverConnection.getPet(dadosGlobais.getCurrentPet().id);
+      console.log(serverBody);
+      this.updateStatusBar(serverBody.xp_food, serverBody.xp_hygiene, serverBody.xp_fun, serverBody.name);
+      dadosGlobais.setCurrentPet(serverBody);
+    }
+
   }
 
-  async getUser(id) {
+  // async listSceneWithItems() {
     
+  // }
+
+  async changeCurrentScene(_sceneIndex){
+
+    const allScenes = await this.#serverConnection.listSceneWithItems();
+    const maximumIndex = allScenes.length - 1
+
+    let sceneIndex;
+    if(_sceneIndex > maximumIndex){
+      sceneIndex = 0;
+    }else if(_sceneIndex < 0){
+      sceneIndex = maximumIndex;
+    }else{
+      sceneIndex = _sceneIndex;
+    }
+
+    
+    const currentScene = allScenes[sceneIndex];
+    //console.log(currentScene)
+    dadosGlobais.setCurrentScene(currentScene)
+    dadosGlobais.setCurrentItem(currentScene.items[0])
+
   }
 
-  async getPet(id) {
-    
-  }
+  async changeCurrentItem (currentId, operation){
+    const allScenes = await this.#serverConnection.listSceneWithItems();
+    const currentScene = allScenes[dadosGlobais.getCurrentScene().id - 1];
+    //console.log(currentScene)
+    const availableItens = currentScene.items;
+    console.log(availableItens);
 
-  async createPet(user_id, name, color) {
-    
-  }
+    let currentIndex;
 
-  async getUserWithPets(id) {
-    
-  }
+    availableItens.forEach((element, index) => {
+      if(element.id === currentId){
+        currentIndex = index;
+      }
+    });
 
-  async updateUser(id, body) {
-    
-  }
+    if(operation === 'next'){
 
-  async updatePet(id, body) {
-    
-  }
+      if((currentIndex + 1) <= (availableItens.length -1)){
+        dadosGlobais.setCurrentItem(availableItens[currentIndex + 1])
+        console.log(dadosGlobais.getCurrentItem());
+      }else{
+        dadosGlobais.setCurrentItem(availableItens[0])
+        console.log(dadosGlobais.getCurrentItem());
+      }
 
-  async listSceneWithItems() {
-    
+    }else if(operation === 'previous'){
+
+      if((currentIndex - 1) < 0){
+        dadosGlobais.setCurrentItem(availableItens[(availableItens.length -1)])
+        console.log(dadosGlobais.getCurrentItem());
+      }else{
+        dadosGlobais.setCurrentItem(availableItens[currentIndex - 1])
+        console.log(dadosGlobais.getCurrentItem());
+      }
+
+    }
   }
 
 }
+
+const gameController = new ControlGame()
+
+export {gameController}
