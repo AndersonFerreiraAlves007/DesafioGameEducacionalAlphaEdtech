@@ -29,6 +29,7 @@ const router = makeRouter('resources/users/database.json', {
         bodyValidate: body
       }
     }
+    const salt = bcrypt.genSaltSync(10);
     return body.password ? {
       status: true,
       message: 'Sucesso',
