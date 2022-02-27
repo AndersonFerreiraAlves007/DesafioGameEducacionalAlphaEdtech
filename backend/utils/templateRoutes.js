@@ -83,6 +83,17 @@ function makeRouter(pathDatabase, propsInitial = defaultProps) {
     })
   })
 
+  router.put('/truncate', middlewareId, async (req, res) => {
+    const database = new Database(pathDatabase)
+    await database.truncate()
+
+    res.json({
+      status: true,
+      data: '',
+      message: "Sucesso"
+    })
+  })
+
   router.put('/:id', middlewareId, async (req, res) => {
     const database = new Database(pathDatabase, props)
     const id = parseInt(req.params.id, 10)
@@ -97,17 +108,6 @@ function makeRouter(pathDatabase, propsInitial = defaultProps) {
       status: false,
       data: null,
       message: message
-    })
-  })
-
-  router.put('/truncate', middlewareId, async (req, res) => {
-    const database = new Database(pathDatabase)
-    await database.truncate()
-
-    res.json({
-      status: true,
-      data: '',
-      message: "Sucesso"
     })
   })
 
