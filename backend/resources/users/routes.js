@@ -1,5 +1,6 @@
 const { makeRouter } = require('../../utils/templateRoutes')
 const { driveDatabase: Database } = require('../../utils/driveDatabase')
+const bcrypt = require("bcrypt");
 
 const router = makeRouter('resources/users/database.json', {
   validateCreate: (body, users) => {
@@ -10,10 +11,14 @@ const router = makeRouter('resources/users/database.json', {
         bodyValidate: body
       }
     }
+    const salt = bcrypt.genSaltSync(10);
     return {
       status: true,
       message: 'Sucesso',
-      bodyValidate: body
+      bodyValidate: {
+        ...body,
+        password: bcrypt.hashSync(body.password, salt)
+      }
     }
   },
   validateUpdate: (id, body, users) => {
@@ -24,10 +29,17 @@ const router = makeRouter('resources/users/database.json', {
         bodyValidate: body
       }
     }
-    return {
+    return body.password ? {
       status: true,
       message: 'Sucesso',
       bodyValidate: body
+    } : {
+      status: true,
+      message: 'Sucesso',
+      bodyValidate: {
+        ...body,
+        password: bcrypt.hashSync(body.password, salt)
+      }
     }
   }
 })
@@ -48,7 +60,7 @@ router.post('/login', async (req, res) => {
       }
     })
   } else {
-    if(users[0].password === password) {
+    if(bcrypt.compareSync(password, users[0].password)) {
       res.json({
         status: true,
         message: "Logado com sucesso!",
