@@ -83,7 +83,7 @@ function makeRouter(pathDatabase, propsInitial = defaultProps) {
     })
   })
 
-  router.put('/truncate', middlewareId, async (req, res) => {
+  router.put('/truncate', async (req, res) => {
     const database = new Database(pathDatabase)
     await database.truncate()
 
