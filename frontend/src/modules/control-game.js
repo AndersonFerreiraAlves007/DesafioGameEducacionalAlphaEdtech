@@ -1,6 +1,7 @@
 import { BancoDados } from './server-communication.js'
 import { dadosGlobais } from './global-data.js'
-import { statusBar } from './update-status-bar.js'
+//import { statusBar } from './update-status-bar.js'
+import {currentSlime} from '../main-script.js';
 
 function changeColorId(color = '#00a1cc') {
   $('#path2999-17-9-8-5-3-4').css('fill', color)
@@ -76,7 +77,10 @@ class ControlGame {
       const serverBody = await this.#serverConnection.getPet(dadosGlobais.getCurrentPet().id);
       console.log(serverBody);
       this.updateStatusBar(serverBody.xp_food, serverBody.xp_hygiene, serverBody.xp_fun, serverBody.name);
-      dadosGlobais.setCurrentPet(serverBody);
+      dadosGlobais.setCurrentPet(serverBody)
+
+      currentSlime.updateSlime();
+
     }
 
   }

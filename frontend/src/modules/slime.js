@@ -580,7 +580,10 @@ class Slime {
         this.xpFood = food.xp_food_change;
         this.xpFun = food.xp_fun_change;
 
-        gameController.updatePet(this.#id, newStatus);
+        gameController.updatePet(this.#id, newStatus).
+        then(()=>{
+            this.updateSlime();
+        });
 
         this.#sound = new Audio();
         this.#sound.src = '/assets/audios/that-nice-bite.mp3';
