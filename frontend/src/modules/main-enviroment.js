@@ -42,27 +42,27 @@ function loadEnvironment (){
 
 }
 
+// COMPUTER ENVIRONMENT INTERACTION
 async function computerEnvironment(){
 
     // set current scene
     setCurrentScene();
 
+    //kitchen logic
     if(dadosGlobais.getCurrentScene().id === 1){
        
         console.log('tá na cozinha')
 
-        const indexScene = 0;
-
         $('#item-box').draggable({ 
             containment: $('body'), // prevents page from scrolling when something is dragged to the edge of the screen
-            revert: "valid"
+            revert: true
         })
 
         $('#guti').droppable({
             drop: async function (event, ui) {
                 
 
-                $('#current-item').animate({width: 0, height: 0}, 100)
+                $('#current-item').animate({width: 0, height: 0}, 250)
                 setTimeout(() => ui.draggable.remove(), 50)
                 
                 const currentItem = dadosGlobais.getCurrentItem();
@@ -71,20 +71,27 @@ async function computerEnvironment(){
                 $('<div id="item-box"><img id="current-item" src="" alt=""></div>').insertAfter('#previous-item');
                 $('#item-box').draggable({ 
                     containment: $('body'), // prevents page from scrolling when something is dragged to the edge of the screen
-                    revert: "valid"
+                    revert: true
                 })
 
                 setTimeout(() => {
                     $('#current-item').attr('src', dadosGlobais.getCurrentItem().url_image)
-                }, 50);
+                }, 260);
 
             }
 
             
         })
     }
+
+    //game  room logic
+    if(dadosGlobais.getCurrentScene().id === 2){
+
+    }
 }
 
+
+// SCENE SCREEN RENDERER FUNCTION
 function setCurrentScene(){
 
     const currentScene = dadosGlobais.getCurrentScene()
