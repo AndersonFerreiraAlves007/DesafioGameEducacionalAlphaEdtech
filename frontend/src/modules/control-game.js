@@ -65,12 +65,9 @@ class ControlGame {
   async updatePet(petId, body) {
 
     if(body){
-      this.#serverConnection.updatePet(petId, body);
+      await this.#serverConnection.updatePet(petId, body);
 
-      //statusBar.updateInfoPet();
-      const newPetData = dadosGlobais.getCurrentPet();
-      newPetData.xp_food = body.xp_food;
-      newPetData.xp_fun = body.xp_fun;
+      const newPetData = await this.#serverConnection.getPet(dadosGlobais.getCurrentPet().id);
       dadosGlobais.setCurrentPet(newPetData);
       this.updateStatusBar(dadosGlobais.getCurrentPet().xp_food, dadosGlobais.getCurrentPet().xp_hygiene, dadosGlobais.getCurrentPet().xp_fun, dadosGlobais.getCurrentPet().name);
 
