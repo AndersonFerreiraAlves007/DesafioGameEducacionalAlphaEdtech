@@ -2,6 +2,8 @@ import {dadosGlobais} from './global-data.js';
 import {gameController} from './control-game.js';
 import { currentSlime } from '../main-script.js';
 
+let currentEnvironment;
+
 //audio controls
 const allAudios = [
     './assets/audios/washing-machine-selector-switch-one.mp3',
@@ -32,9 +34,11 @@ function loadEnvironment (){
         if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
             // true for mobile device
             console.log("mobile device: " + navigator.userAgent);
+            currentEnvironment = 'mobile';
         }else{
             // false for not mobile device
             console.log("not mobile device: " + navigator.userAgent);
+            currentEnvironment = 'computer';
             computerEnvironment()
         }
     });
@@ -55,7 +59,8 @@ async function computerEnvironment(){
 
         $('#item-box').draggable({ 
             containment: $('body'), // prevents page from scrolling when something is dragged to the edge of the screen
-            revert: true
+            revert: true,
+            disabled: false
         })
 
         $('#guti').droppable({
@@ -86,7 +91,9 @@ async function computerEnvironment(){
 
     //game  room logic
     if(dadosGlobais.getCurrentScene().id === 2){
-
+        $('#item-box').draggable({
+            disabled: true
+        })
     }
 }
 
@@ -108,7 +115,11 @@ $('#next-button').on('click', () => {
 
     gameController.changeCurrentScene(currentSceneIndex)
     .then(()=>{
-        setCurrentScene();
+        if(currentEnvironment === 'mobile'){
+
+        }else{
+            computerEnvironment();
+        }
         playAudio(allAudios[1]);
     }) ;
 
@@ -120,7 +131,11 @@ $('#previous-button').on('click', () => {
 
     gameController.changeCurrentScene(currentSceneIndex)
     .then(()=>{
-        setCurrentScene();
+        if(currentEnvironment === 'mobile'){
+
+        }else{
+            computerEnvironment();
+        }
         playAudio(allAudios[1]);
     }) ;
 
