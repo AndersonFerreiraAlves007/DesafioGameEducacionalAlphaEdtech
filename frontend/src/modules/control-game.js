@@ -72,6 +72,8 @@ class ControlGame {
       dadosGlobais.setCurrentPet(newPetData);
       this.updateStatusBar(dadosGlobais.getCurrentPet().xp_food, dadosGlobais.getCurrentPet().xp_hygiene, dadosGlobais.getCurrentPet().xp_fun, dadosGlobais.getCurrentPet().name);
 
+      currentSlime.updateSlime();
+
     }else{
       //case no body is passed, a server side update is assumed
       const serverBody = await this.#serverConnection.getPet(dadosGlobais.getCurrentPet().id);

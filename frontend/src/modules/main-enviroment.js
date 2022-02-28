@@ -1,6 +1,8 @@
 import {dadosGlobais} from './global-data.js';
 import {gameController} from './control-game.js';
 import { currentSlime } from '../main-script.js';
+import {colorGameStart} from './mini-games/colors-game.js';
+import { agoraVai } from './mini-games/jokenpo.js';
 
 let currentEnvironment;
 
@@ -63,6 +65,8 @@ async function computerEnvironment(){
             disabled: false
         })
 
+        $('#item-box').off('click')
+
         $('#guti').droppable({
             drop: async function (event, ui) {
                 
@@ -93,6 +97,22 @@ async function computerEnvironment(){
     if(dadosGlobais.getCurrentScene().id === 2){
         $('#item-box').draggable({
             disabled: true
+        });
+
+        $('#item-box').on('click', (event)=>{
+            const currentGame = dadosGlobais.getCurrentItem().name;
+
+            switch (currentGame){
+                case 'rock-paper-scissors':
+                    agoraVai();
+                    break;
+                case 'memory-game':
+                    document.getElementById('minigame-remember').style.display = 'flex'
+                    break;
+                case 'colors-game':
+                    colorGameStart()
+                    break;
+            }
         })
     }
 }
