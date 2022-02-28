@@ -13,6 +13,12 @@ module.exports = {
             'node_modules', 
             '.git'
          ],
+         env: {
+            "NODE_ENV": "development",
+         },
+         env_production: {
+            "NODE_ENV": "production",
+        }
       },
       {
          script: "server.js",
@@ -20,6 +26,14 @@ module.exports = {
          watch: true,
          name: "Frontend Game Educacional",
          ignore_watch: ['node_modules', '.git'],
+         env: {
+            "NODE_ENV": "development",
+            "HOST_API": "http://localhost:3333"
+         },
+         env_production: {
+            "NODE_ENV": "production",
+            "HOST_API": "https://apigameeducacional.andersonferreiraalves.com"
+        }
       }
    ]
 }

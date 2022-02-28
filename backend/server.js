@@ -48,7 +48,7 @@ const io = new Server(server, {
 dadosGlobais.io = io
 
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true })) // saber o que é
 app.use(cors(configCors))
 
 app.use('/items', itemsRouter)
