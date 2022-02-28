@@ -28,7 +28,7 @@ module.exports = {
          ignore_watch: ['node_modules', '.git'],
          env: {
             "NODE_ENV": "development",
-            "HOST_API": "htpp://localhost:3333"
+            "HOST_API": "http://localhost:3333"
          },
          env_production: {
             "NODE_ENV": "production",
