@@ -2,13 +2,26 @@ import {dadosGlobais} from './global-data.js';
 import {gameController} from './control-game.js';
 import { currentSlime } from '../main-script.js';
 
-//global variables
+//audio controls
 const allAudios = [
-    "/assets/audios/that-nice-bite.mp3",
-    "/assets/audios/469163__hawkeye-sprout__child-hum-02.wav",
-    "/assets/audios/535255__yetcop__shower-bath-bucket-being-dragged-cut.wav"
-]
-const audio = new Audio()
+    './assets/audios/washing-machine-selector-switch-one.mp3',
+    './assets/audios/door-front-opening-shorter.mp3'
+];
+
+const fxAudio = new Audio();
+
+function playAudio(audioSrc){
+
+    fxAudio.src = audioSrc;
+
+    if(fxAudio.paused){
+        fxAudio.play();
+    }else{
+        fxAudio.currentTime = 0;
+    }
+
+}
+
 //
 
 function loadEnvironment (){
@@ -87,7 +100,10 @@ $('#next-button').on('click', () => {
     console.log(currentSceneIndex)
 
     gameController.changeCurrentScene(currentSceneIndex)
-    .then(()=>{setCurrentScene()}) ;
+    .then(()=>{
+        setCurrentScene();
+        playAudio(allAudios[1]);
+    }) ;
 
 })
 
@@ -96,7 +112,10 @@ $('#previous-button').on('click', () => {
     console.log(currentSceneIndex)
 
     gameController.changeCurrentScene(currentSceneIndex)
-    .then(()=>{setCurrentScene()}) ;
+    .then(()=>{
+        setCurrentScene();
+        playAudio(allAudios[1]);
+    }) ;
 
 })
 
@@ -104,15 +123,18 @@ $('#previous-button').on('click', () => {
 $('#next-item').on('click', () => {
     gameController.changeCurrentItem(dadosGlobais.getCurrentItem().id, 'next')
     .then(()=>{
-        $('#current-item').attr('src', dadosGlobais.getCurrentItem().url_image)
+        $('#current-item').attr('src', dadosGlobais.getCurrentItem().url_image);
+        playAudio(allAudios[0]);
     });
 })
 
 $('#previous-item').on('click', () => {
     gameController.changeCurrentItem(dadosGlobais.getCurrentItem().id, 'previous')
     .then(()=>{
-        $('#current-item').attr('src', dadosGlobais.getCurrentItem().url_image)
+        $('#current-item').attr('src', dadosGlobais.getCurrentItem().url_image);
+        playAudio(allAudios[0]);
     });
 })
+
 
 export {loadEnvironment};
