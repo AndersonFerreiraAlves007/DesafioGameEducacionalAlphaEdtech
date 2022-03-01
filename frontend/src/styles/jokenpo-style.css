@@ -12,13 +12,17 @@
     --background-transparent: #ffffff00;
     --background-white: #dddddd;
     --background-full-white: #ffffff;
+
+    --background-rock: #ff2222cc;
+    --background-paper: #22ff22cc;
+    --background-scissors: #2222ffcc;
     
 
     --background-image-game: url('../assets/background-images/vector-cartoon-illustration-of-empty-kindergarten-room-with-furniture-and-toys-for-young-children-n/1926.jpg');
     --background-image-close: url("../assets/images/game/jokenpo/botao-x.png");
 
     --slime-image: url("../assets/images/game/jokenpo/slime-02.svg");
-    --slime-diameter: 150px;
+    --slime-diameter: 150px; 
 
     --button-close-width: 10vw;
     
@@ -27,7 +31,7 @@
     --button-height: 50px;
 }
 
-/* .jokenpo__background{
+ .jokenpo__background{
     width: 100vw;
     height: 100vh;
 
@@ -36,15 +40,17 @@
     top: 0px;
     z-index: 1000;
     background-color: var(--background-black-transparent);
-} */
+} 
 
 .jokenpo__main{
     position: fixed;
     top: 12vh;
-    left: 0vw;
-    height: 88vh;
-    /* height: 78vh; */
-    width: 100vw;
+    left: 5vw;
+    /*width: 100vw;
+    height: 88vh;*/
+    width: 90vw;
+    height: 78vh; 
+    
     z-index: 2000;
 
     display: flex;
@@ -129,7 +135,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    background-color: #ff2222cc;
+    background-color: var(--background-rock);
 }
 
 .jokenpo__paper{
@@ -137,7 +143,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    background-color: #22ff22cc;
+    background-color: var(--background-paper);
 }
 
 .jokenpo__scissors{
@@ -145,5 +151,5 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    background-color: #2222ffcc;
+    background-color: var(--background-scissors);
 }
