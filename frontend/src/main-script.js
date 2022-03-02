@@ -46,11 +46,7 @@ async function getUser() {
 
 if (loggedUserId) {
     getUser(); 
-} else {
-    window.location.replace('/login');
 }
-
-
 
 optionMenu();
 

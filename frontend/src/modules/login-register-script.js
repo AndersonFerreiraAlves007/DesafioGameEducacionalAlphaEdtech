@@ -1,5 +1,21 @@
 import {serverConnection} from './server-communication.js';
 import { dadosGlobais } from './global-data.js'
+import { sendNotification } from './notification.js'
+
+const loggedUserId = localStorage.getItem('user_id');
+
+if (loggedUserId) {
+    window.location.replace('/game.html');
+}
+
+async function login() {
+    const {user, pet} = await serverConnection.login($("#username_log").val(), $("#password_log").val());
+    localStorage.setItem('user_id', String(user.id));
+    localStorage.setItem('pet_id', String(pet.id));
+    dadosGlobais.setCurrentPet(pet)
+    dadosGlobais.setCurrentUser(user)
+    window.location.replace('/game.html');
+}
 
 $(document).ready(function(){
     let usernameRegisterError = false;
@@ -130,12 +146,13 @@ $(document).ready(function(){
         if ((usernameRegisterError == false) && (passwordRegisterError == false) && (namepetRegisterError == false)){
             try{
                 await serverConnection.register($("#username_reg").val(), $("#password_reg").val(), $("#namepet_reg").val());
-                alert("Usuário cadastrado.")
+                login()
+                sendNotification('success', "Usuário cadastrado.")
             }catch(e){
-                alert(e);
+                sendNotification('error', e)
             }
         }else{
-            alert("Por favor verifique os campos.");
+            sendNotification('warning', 'Por favor verifique os campos.')
         } 
     });
     $("#btn_login").click(async function(){
@@ -143,17 +160,12 @@ $(document).ready(function(){
         validatePasswordLogin();
         if((usernameLoginError == false) && (passwordLoginError == false)){
             try{
-                const {user, pet} = await serverConnection.login($("#username_log").val(), $("#password_log").val());
-                localStorage.setItem('user_id', String(user.id));
-                localStorage.setItem('pet_id', String(pet.id));
-                dadosGlobais.setCurrentPet(pet)
-                dadosGlobais.setCurrentUser(user)
-                window.location.replace('/');
+                login()
             }catch(e){
-                alert(e);
+                sendNotification('error', e)
             }
         }else{
-            alert("Por favor verifique os campos.");
+            sendNotification('warning', 'Por favor verifique os campos.')
         } 
     });
 });

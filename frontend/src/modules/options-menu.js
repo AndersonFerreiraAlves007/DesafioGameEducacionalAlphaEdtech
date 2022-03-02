@@ -158,7 +158,7 @@ function optionMenu(){
 
     buttonLogout.addEventListener('click', () => {
         localStorage.clear();
-        window.location.replace('/login');
+        window.location.replace('/');
     })
 
 }
