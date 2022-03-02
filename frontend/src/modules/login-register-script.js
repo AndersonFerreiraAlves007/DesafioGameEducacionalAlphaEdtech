@@ -8,8 +8,8 @@ if (loggedUserId) {
     window.location.replace('/game.html');
 }
 
-async function login() {
-    const {user, pet} = await serverConnection.login($("#username_log").val(), $("#password_log").val());
+async function login(login, password) {
+    const {user, pet} = await serverConnection.login(login, password);
     localStorage.setItem('user_id', String(user.id));
     localStorage.setItem('pet_id', String(pet.id));
     dadosGlobais.setCurrentPet(pet)
@@ -146,7 +146,7 @@ $(document).ready(function(){
         if ((usernameRegisterError == false) && (passwordRegisterError == false) && (namepetRegisterError == false)){
             try{
                 await serverConnection.register($("#username_reg").val(), $("#password_reg").val(), $("#namepet_reg").val());
-                login()
+                login($("#username_reg").val(), $("#password_reg").val())
                 sendNotification('success', "Usuário cadastrado.")
             }catch(e){
                 sendNotification('error', e)
@@ -160,7 +160,7 @@ $(document).ready(function(){
         validatePasswordLogin();
         if((usernameLoginError == false) && (passwordLoginError == false)){
             try{
-                login()
+                login($("#username_log").val(), $("#password_log").val())
             }catch(e){
                 sendNotification('error', e)
             }
