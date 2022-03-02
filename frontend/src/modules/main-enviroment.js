@@ -59,13 +59,18 @@ async function computerEnvironment(){
        
         console.log('tá na cozinha')
 
+        //remove game room behavior
+        $('#item-box').off('click');
+        $('#item-box').off('dragstart');
+        $('#guti').droppable({
+            disabled: false
+        })
+
         $('#item-box').draggable({ 
             containment: $('body'), // prevents page from scrolling when something is dragged to the edge of the screen
             revert: true,
             disabled: false
         })
-
-        $('#item-box').off('click')
 
         $('#guti').droppable({
             drop: async function (event, ui) {
@@ -95,9 +100,20 @@ async function computerEnvironment(){
 
     //game  room logic
     if(dadosGlobais.getCurrentScene().id === 2){
+        
+        //disable dragging effects
         $('#item-box').draggable({
             disabled: true
         });
+
+        //disable dragging behavior
+        $('#item-box').on('dragstart', (event)=>{
+            event.preventDefault();
+        })
+
+        $('#guti').droppable({
+            disabled: true
+        })
 
         $('#item-box').on('click', (event)=>{
             const currentGame = dadosGlobais.getCurrentItem().name;
