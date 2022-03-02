@@ -5,6 +5,7 @@ import {colorGameStart} from './mini-games/colors-game.js';
 import { agoraVai } from './mini-games/jokenpo.js';
 
 let currentEnvironment;
+let soapLevel = 0;
 
 //audio controls
 const allAudios = [
@@ -80,6 +81,7 @@ async function computerEnvironment(){
                 setTimeout(() => ui.draggable.remove(), 50)
                 
                 const currentItem = dadosGlobais.getCurrentItem();
+
                 currentSlime.feed(currentItem);
 
                 $('<div id="item-box"><img id="current-item" src="" alt=""></div>').insertAfter('#previous-item');
@@ -115,6 +117,7 @@ async function computerEnvironment(){
             disabled: true
         })
 
+        //Mini-game picker
         $('#item-box').on('click', (event)=>{
             const currentGame = dadosGlobais.getCurrentItem().name;
 
@@ -128,6 +131,48 @@ async function computerEnvironment(){
                 case 'colors-game':
                     colorGameStart()
                     break;
+            }
+        })
+    }
+
+    //bathroom logic
+    if(dadosGlobais.getCurrentScene().id === 3){
+
+
+
+        //remove game room behavior
+        $('#item-box').off('click');
+        $('#item-box').off('dragstart');
+        $('#guti').droppable("destroy");
+        $('#item-box').draggable({
+            disabled: false
+        });
+
+        $('#guti').droppable({
+            drop: async function (event, ui) {},
+            over: async function(event, ui){
+
+                const currentPet = dadosGlobais.getCurrentPet()
+    
+                let internalItem = $('img', ui.draggable[0]).attr('src')
+
+                if(internalItem.includes('soap')){
+                    soapLevel++;
+                    currentSlime.addBubbles(soapLevel);
+
+                }else if(soapLevel > 0){
+
+                    const newStatus = {
+                        xp_hygiene: ((currentPet.xp_hygiene + (soapLevel*15)) < 100) ? (currentPet.xp_hygiene + (soapLevel*15)) : 100
+                    }
+                    
+                    gameController.updatePet(dadosGlobais.getCurrentPet().id, newStatus);
+
+                    soapLevel = 0;
+
+                    currentSlime.addBubbles(soapLevel);
+                }
+
             }
         })
     }
