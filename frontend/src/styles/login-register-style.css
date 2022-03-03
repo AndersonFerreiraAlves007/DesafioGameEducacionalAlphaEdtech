@@ -114,6 +114,10 @@ body{
   font-size: 14px;
 }
 
+.wrapper .right .btn:focus-within , .wrapper .right .btn:hover {
+  box-shadow: 1px 1px 3px black;
+}
+
 .btn {
   cursor: pointer;
 }

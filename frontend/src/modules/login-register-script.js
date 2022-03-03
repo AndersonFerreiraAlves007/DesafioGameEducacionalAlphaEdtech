@@ -122,6 +122,14 @@ $(document).ready(function(){
     $("#namepet_reg").keyup(function () {
         validateNamepetRegister();
     });
+    // add enter button functionality
+    document.body.addEventListener('keypress', function(event) {
+        if (event.key == 'Enter' && $(".login_li").hasClass("active")) {
+            $("#btn_login").click();
+        } else if (event.key == 'Enter' && $(".register_li").hasClass("active")) {
+            $("#btn_register").click()
+        }
+    });
 
     $("#btn_register").click(async function(){
         validateUsernameRegister();
