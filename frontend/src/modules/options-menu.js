@@ -140,6 +140,8 @@ function optionMenu(){
     })
 
     buttonCancelDialogCreatePet.addEventListener('click', () => {
+        inputNamePetCreate.attr('placeholder', 'Nome do pet');
+        inputNamePetCreate.css({'border': 'none'});
         $('#dialog-create-pet').hide()
     })
 
