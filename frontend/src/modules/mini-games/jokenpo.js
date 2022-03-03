@@ -103,11 +103,11 @@ export function agoraVai() {
         }
 
         $(".jokenpo__player-choice").css({
+            "background-color": "#ff5353af",
             "background-image": `url(${imagePlayerChoice})`,
             "background-size": "contain",
             "background-repeat": "no-repeat",
             "background-position": "center",
-            "background-color": "#ffffff",
         });
 
         $(".jokenpo__result").html(`
@@ -138,39 +138,43 @@ export function agoraVai() {
             if (playerChoice == 1) {
                 switch (machineChoice) {
                     case 2:
-                        result = "maquina vence";
+                        result = "guti-guti venceu";
                         break;
                     case 3:
-                        result = "jogador vence";
+                        result = "eba! você venceu";
                         break;
                     default:
-                        result = "erro no switch para ej == 1";
+                        result = "ops, algo deu errado no nosso sistema";
+                        console.log("erro no switch para ej == 1")
                 }
             }
             // player = paper
             else if (playerChoice == 2) {
                 switch (machineChoice) {
                     case 1:
-                        result = "jogador vence";
+                        result = "eba! você venceu";
                         break;
                     case 3:
-                        result = "maquina vence";
+                        result = "guti-guti venceu";
                         break;
                     default:
-                        result = "erro no switch para ej == 2";
+                        result = "ops, algo deu errado no nosso sistema";
+                        console.log("erro no switch para ej == 2");
                 }
             }
             // player = scissors
             else if (playerChoice == 3) {
                 switch (machineChoice) {
                     case 1:
-                        result = "maquina vence";
+                        // colocar nome dinamico do backend
+                        result = "guti-guti venceu";
                         break;
                     case 2:
-                        result = "jogador vence";
+                        result = "eba! você venceu";
                         break;
                     default:
-                        result = "erro no switch para ej == 3";
+                        result = "ops, algo deu errado em nosso sistema";
+                        console.log('erro no switch para ej == 3');
                 }
             }
         }
@@ -188,7 +192,8 @@ export function agoraVai() {
                 playerChoiceText = "tesoura";
                 break;
             default:
-                "erro in switch the clientChoiceText";
+                "ops, algo deu errado no nosso sistema";
+                console.log("erro in switch the clientChoiceText");
         }
         switch (machineChoice) {
             case 1:
@@ -201,7 +206,8 @@ export function agoraVai() {
                 machineChoiceText = "tesoura";
                 break;
             default:
-                "erro no switch de machineChoiceTexto";
+                "ops, algo deu errado no nosso sistema";
+                console.log("erro no switch de machineChoiceTexto");
         }
 
         return {
