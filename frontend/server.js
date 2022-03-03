@@ -23,11 +23,7 @@ app.get('/utils/constants.js', (req, res) => {
     )
 })
 
-app.use(express.static('src'))
-
-app.use('/login', express.static('src/pages/login-register.html'))
-
-
+app.use('/', express.static('src'))
 
 app.listen(PORT, () => {
     console.log(`linten => http://localhost:${PORT}`);

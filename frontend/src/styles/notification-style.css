@@ -1,0 +1,23 @@
+.notification {
+  width: 30vw;
+  padding: 15px;
+  border-radius: 10px;
+  position: fixed;
+  left: 50px;
+  bottom: 50px;
+  box-shadow:  rgba(0, 0, 0, 0.55) 0px 5px 15px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  opacity: 0.7;
+
+}
+
+.notification__title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.notification__body {
+
+}

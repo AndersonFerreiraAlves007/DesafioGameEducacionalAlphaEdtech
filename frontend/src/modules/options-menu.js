@@ -1,6 +1,7 @@
 import {dadosGlobais} from './global-data.js';
 import { serverConnection } from './server-communication.js';
 import {currentSlime} from '../main-script.js';
+import {gameController} from './control-game.js';
 
 function optionMenu(){
 
@@ -146,19 +147,25 @@ function optionMenu(){
         const user_id = dadosGlobais.getCurrentUser().id
         const namePetValue = inputNamePetCreate.val()
         const colorValue = document.querySelector('#content-dialog-create-pet-select .colorOption').style.backgroundColor
-        /* dadosGlobais.setCurrentPet(await serverConnection.updatePet(dadosGlobais.getCurrentPet().id, {
-            name: namePetValue,
-            color: colorValue
-        })) */
-        await serverConnection.createPet(user_id, namePetValue, colorValue)
-        $('#dialog-create-pet').hide()
+
+        if(namePetValue === ''){
+            inputNamePetCreate.attr('placeholder', 'INSIRA UM NOME!!!');
+            inputNamePetCreate.css({'border-width': '1px', 'border-color': 'red', 'border-style': 'solid'});
+        }else{
+            inputNamePetCreate.attr('placeholder', 'Nome do pet');
+            inputNamePetCreate.css({'border': 'none'});
+            await gameController.createPet(user_id, namePetValue, colorValue);
+            $('#dialog-create-pet').hide()
+        }
+
+
     })
 
     const buttonLogout = document.getElementById('btn-logout')
 
     buttonLogout.addEventListener('click', () => {
         localStorage.clear();
-        window.location.replace('/login');
+        window.location.replace('/');
     })
 
 }

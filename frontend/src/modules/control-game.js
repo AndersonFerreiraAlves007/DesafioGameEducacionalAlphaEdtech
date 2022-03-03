@@ -32,9 +32,9 @@ class ControlGame {
     
   // }
 
-  // async createPet(user_id, name, color) {
-    
-  // }
+  async createPet(user_id, name, color) {
+    await this.#serverConnection.createPet(user_id, name, color);
+  }
 
   // async getUserWithPets(id) {
     
