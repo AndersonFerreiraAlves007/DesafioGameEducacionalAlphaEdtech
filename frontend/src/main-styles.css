@@ -6,6 +6,8 @@ html {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-transform: uppercase;
+  font-family: var(--childish-cursive-font-02);
 /* makes all text on page not selectable */
   user-select: none;
   -webkit-user-select: none;
@@ -173,12 +175,16 @@ main {
 
 #environment-text {
   font-size: 60px;
-  width: 180px;
+  width: 350px;
   text-align: center;
 }
 
 #previous-item, #next-item, #previous-button, #next-button {
   cursor: pointer;
+  /* new button style below */
+  border-radius: 20px;
+  border: 5px solid black;
+  backdrop-filter: blur(10px);
 }
 
 #item-box:active {
