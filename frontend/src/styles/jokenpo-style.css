@@ -13,45 +13,93 @@
     --background-white: #dddddd;
     --background-full-white: #ffffff;
 
-    --background-rock: #ff5353af;
-    --background-paper: #4bff4bbd;
-    --background-scissors: #5683ffc4;
+    --background-rock: #FBD165;
+    --background-paper: #F4B0BF;
+    --background-scissors: #A9CC8A;
     
-
-    --background-image-game: url('../assets/background-images/vector-cartoon-illustration-of-empty-kindergarten-room-with-furniture-and-toys-for-young-children-n/1926.jpg');
+    --background-image-game: url('../assets/images/game/jokenpo/background-infantil-02.jpg');
     --background-image-close: url("../assets/images/game/jokenpo/botao-x.png");
 
     --slime-image: url("../assets/images/game/jokenpo/slime-02.svg");
     --slime-diameter: 150px; 
 
-    --button-close-width: 10vw;
+    --button-close-width: 5vw;
     
     /* size buttons */
     --button-width: 50px;
     --button-height: 50px;
+
+    /* ################################################## */
+    /*background of mine-game*/
+    --game-bottom-width: 100vw;
+    --game-bottom-height: 100vh;
+    
+    --game-bottom-position: fixed;
+    --game-bottom-top: 0px;
+    --game-bottom-left: 0px;
+    --game-bottom-z-index: 1000;
+    
+    --game-bottom-background-color: #22222277;
+    
+    /*content of mine-game*/
+    --game-width: 90vw;
+    --game-height: 76vh;
+    
+    --game-position: fixed;
+    --game-top: 12vh;
+    --game-left: 5vw;
+    --game-z-index: 2000;
+    
+    --game-display: flex;
+    --game-flex-flow: column nowrap;
+    --game-justify-content: flex-start;
+    --game-align-items: center;
+    
+    --game-background-image: url('../assets/background-images/vector-cartoon-illustration-of-empty-kindergarten-room-with-furniture-and-toys-for-young-children-n/1926.jpg');
+    --game-background-size: cover;
+    --game-background-repeat: no-repeat;
+    --game-background-position: center;
+    
+    --game-border-radius: 2vw;
+    --game-box-shadow: 1vw 1vw 10px rgba(0, 0, 0, 0.5);
+    
+    /*close button*/
+    --close-button-width: var(--button-close-width);
+    --close-button-height: var(--button-close-width);
+    
+    --close-button-position: fixed;
+    --close-button-top: 6.5vh;
+    --close-button-right: 1.5vw;
+        
+    --close-button-background-color: #ffffff00;
+    --close-button-background-image: url("../assets/images/game/jokenpo/botao-x.png");
+    --close-button-background-size: contain;
+    --close-button-background-repeat: no-repeat;
+    --close-button-background-position: center;
+    --close-button-border: none;
+    --close-button-z-index: 3000;
+    --close-button-cursor: pointer;
 }
 
  .jokenpo__background{
-    width: 100vw;
-    height: 100vh;
-
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    z-index: 1000;
-    background-color: var(--background-black-transparent);
+    position: var(--game-bottom-position);
+    top: var(--game-bottom-top);
+    left: var(--game-bottom-left);
+    width: var(--game-bottom-width);
+    height: var(--game-bottom-height);
+    z-index: var(--game-bottom-z-index);
+    background-color: var(--game-bottom-background-color);
 } 
 
 .jokenpo__main{
-    position: fixed;
-    top: 12vh;
-    left: 5vw;
-    /*width: 100vw;
-    height: 88vh;*/
-    width: 90vw;
-    height: 78vh; 
-    
-    z-index: 2000;
+    width: var(--game-width);
+    height: var(--game-height);
+    position: var(--game-position);
+    top: var(--game-top);
+    left: var(--game-left);
+    z-index: var(--game-z-index);
+    border-radius: var(--game-border-radius);
+    box-shadow: var(--game-box-shadow);
 
     display: flex;
     flex-flow: column nowrap;
@@ -59,28 +107,28 @@
     align-items: center;
 
     background-image: var(--background-image-game);
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size: contain;
+    background-repeat: repeat;
     background-position: center;
-
-    /* border: 5px solid blue;
-    border-radius: 20px;
-    padding: 0px; */
-    /* margin: 0px 10px 100px 10px; */
 }
 
 .jokenpo__closed{
     width: var(--button-close-width);
     height: var(--button-close-width);
 
-    align-self: flex-end;
-      
-    background-color: var(--background-transparent);
-    background-image: var(--background-image-close);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    border: none;
+    position: var(--close-button-position);
+    top: var(--close-button-top);
+    right: var(--close-button-right);
+        
+    background-color: var(--close-button-background-color);
+    background-image: var(--close-button-background-image);
+    background-size: var(--close-button-background-size);
+    background-repeat: var(--close-button-background-repeat);
+    background-position: var(--close-button-position);
+    border: var(--close-button-border);
+    z-index: var(--close-button-z-index);
+
+    cursor: var(--close-button-cursor);
 } 
 
 .jokenpo__slime-image{

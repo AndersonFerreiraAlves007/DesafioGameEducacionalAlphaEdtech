@@ -68,12 +68,21 @@ export function agoraVai() {
         switch (result.machineChoice) {
             case "pedra":
                 imageSlimeChoice = imageRock;
+                $('.jokenpo__slime-choice').css({
+                    'background-color': '#FBD165',
+                });
                 break;
             case "papel":
                 imageSlimeChoice = imagePaper;
+                $('.jokenpo__slime-choice').css({
+                    'background-color': '#F4B0BF',
+                });
                 break;
             case "tesoura":
                 imageSlimeChoice = imageScissors;
+                $('.jokenpo__slime-choice').css({
+                    'background-color': '#A9CC8A',
+                });
                 break;
             default:
                 "erro in siwtch of result.machineChoice"
@@ -84,30 +93,39 @@ export function agoraVai() {
             "background-size": "contain",
             "background-repeat": "no-repeat",
             "background-position": "center",
-            "background-color": "#ffffff",
+            // "background-color": "#ffffff",
         });
 
         let imagePlayerChoice = "";
         switch (result.playerChoice) {
             case "pedra":
                 imagePlayerChoice = imageRock;
+                $('.jokenpo__player-choice').css({
+                    'background': '#FBD165',
+                });
                 break;
             case "papel":
                 imagePlayerChoice = imagePaper;
+                $('.jokenpo__player-choice').css({
+                    'background': '#F4B0BF',
+                });
                 break;
             case "tesoura":
                 imagePlayerChoice = imageScissors;
+                $('.jokenpo__player-choice').css({
+                    'background': '#A9CC8A',
+                });
                 break;
             default:
                 "erro in siwtch of result.machineChoice"
         }
 
         $(".jokenpo__player-choice").css({
-            "background-color": "#ff5353af",
             "background-image": `url(${imagePlayerChoice})`,
             "background-size": "contain",
             "background-repeat": "no-repeat",
             "background-position": "center",
+            // "background-color": "#ffffff",
         });
 
         $(".jokenpo__result").html(`

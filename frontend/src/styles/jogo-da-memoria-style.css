@@ -1,4 +1,56 @@
-#minigame-remember {
+:root{
+  /*background of mine-game*/
+  --game-bottom-width: 100vw;
+  --game-bottom-height: 100vh;
+
+  --game-bottom-position: fixed;
+  --game-bottom-top: 0px;
+  --game-bottom-left: 0px;
+  --game-bottom-z-index: 1000;
+
+  --game-bottom-background-color: #22222277;
+
+  /*content of mine-game*/
+  --game-width: 90vw;
+  --game-height: 76vh;
+
+  --game-position: fixed;
+  --game-top: 12vh;
+  --game-left: 5vw;
+  --game-z-index: 2000;
+  
+  --game-display: flex;
+  --game-flex-flow: column nowrap;
+  --game-justify-content: flex-start;
+  --game-align-items: center;
+
+  --game-background-image: url('../assets/background-images/vector-cartoon-illustration-of-empty-kindergarten-room-with-furniture-and-toys-for-young-children-n/1926.jpg');
+  --game-background-size: cover;
+  --game-background-repeat: no-repeat;
+  --game-background-position: center;
+
+  --game-border-radius: 2vw;
+  --game-box-shadow: 1vw 1vw 10px rgba(0, 0, 0, 0.5);
+
+  /*close button*/
+  --close-button-width: var(--button-close-width);
+  --close-button-height: var(--button-close-width);
+
+  --close-button-position: fixed;
+  --close-button-top: 6.5vh;
+  --close-button-right: 1.5vw;
+    
+  --close-button-background-color: #ffffff00;
+  --close-button-background-image: url("../assets/images/game/jokenpo/botao-x.png");
+  --close-button-background-size: contain;
+  --close-button-background-repeat: no-repeat;
+  --close-button-background-position: center;
+  --close-button-border: none;
+  --close-button-z-index: 3000;
+  --close-button-cursor: pointer;
+}
+
+/* #minigame-remember {
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -11,9 +63,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+} */
+#minigame-remember {
+  position: var(--game-bottom-position);
+  top: var(--game-bottom-top);
+  left: var(--game-bottom-left);
+  width: var(--game-bottom-width);
+  height: var(--game-bottom-height);
+  z-index: var(--game-bottom-z-index);
+  background-color: var(--game-bottom-background-color);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#content-minigame-remember {
+/* #content-minigame-remember {
   width: 80%;
   height: 80%;
   background-color: white;
@@ -22,6 +87,46 @@
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
+} */
+#content-minigame-remember {
+  width: var(--game-width);
+  height: var(--game-height);
+  position: var(--game-position);
+  top: var(--game-top);
+  left: var(--game-left);
+  z-index: var(--game-z-index);
+  border-radius: var(--game-border-radius);
+  box-shadow: var(--game-box-shadow);
+
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* #btn-close-game-memoria {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+} */
+#btn-close-game-memoria {
+  width: var(--button-close-width);
+  height: var(--button-close-width);
+
+  position: var(--close-button-position);
+  top: var(--close-button-top);
+  right: var(--close-button-right);
+    
+  background-color: var(--close-button-background-color);
+  background-image: var(--close-button-background-image);
+  background-size: var(--close-button-background-size);
+  background-repeat: var(--close-button-background-repeat);
+  background-position: var(--close-button-position);
+  border: var(--close-button-border);
+  z-index: var(--close-button-z-index);
+
+  cursor: var(--close-button-cursor);
 }
 
 .card {
@@ -86,12 +191,5 @@ h2 {
   transform: rotateY(180deg);
   background-color: black;
   border-radius: 20px;
-  cursor: pointer;
-}
-
-#btn-close-game-memoria {
-  position: fixed;
-  right: 10px;
-  top: 10px;
   cursor: pointer;
 }
