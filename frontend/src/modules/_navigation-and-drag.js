@@ -10,8 +10,6 @@ let loggedPetId;
 
 
 export async function updatePetStatus(loggedPetId, currentItem) {
-    /* const currentPet = await serverConnection.getPet(loggedPetId) */
-    console.log(currentItem)
     const currentPet = dadosGlobais.getCurrentPet()
 
     const newStatus = {
@@ -39,25 +37,17 @@ async function navigationButtonsAndDragEvents() {
         drop: async function (event, ui) {
             
             if(indexScene !== 2){
-                await updatePetStatus(dadosGlobais.getCurrentPet().id, dadosGlobais.getCurrentItem())
 
                 // Get adequate audio for the scene and play it
                 audio.src = allAudios[indexScene]
                 audio.play()
 
                 if (indexScene === 0) {
+                    $('#current-item').animate({width: 0, height: 0}, 100)
+                    setTimeout(() => ui.draggable.remove(), 50)
+                    
                     const currentItem = dadosGlobais.getCurrentItem();
                     await updatePetStatus(dadosGlobais.getCurrentPet().id, currentItem)
-
-                    // Get adequate audio for the scene and play it
-                    audio.src = allAudios[indexScene]
-                    audio.play()
-
-                
-                    // smother animation bite in this 2 lines below
-                    // $('#current-item').animate({width: 0, height: 0}, 100)
-                    // setTimeout(() => ui.draggable.remove(), 100)
-                    ui.draggable.remove()
 
                     $('<div id="item-box"><img id="current-item" src="" alt=""></div>').insertAfter('#previous-item');
                     $('#item-box').draggable({ 
@@ -67,12 +57,7 @@ async function navigationButtonsAndDragEvents() {
 
                     setTimeout(() => {
                         $('#current-item').attr('src', allScenesWithItems[indexScene].items[indexItem].url_image)
-                    }, 250);
-
-                    // diferent animation solution
-                    // $('#item-box').width(100)
-                    // $('#current-item').animate({width: 0, height: 0}, 100)
-                    // $('#current-item').animate({width: '100px', height: '100px'}, 300)
+                    }, 50);
 
                 }
             
@@ -92,27 +77,22 @@ async function navigationButtonsAndDragEvents() {
                             break;
                     }
                 }
+                
+                await updatePetStatus(dadosGlobais.getCurrentPet().id, dadosGlobais.getCurrentItem())
             }
 
         },
         over: async function(event, ui){
 
-            /* const currentPet = await serverConnection.getPet(loggedPetId) */
-
             const currentPet = dadosGlobais.getCurrentPet()
 
             if(indexScene === 2){
-                //console.log(ui)
-                //console.log(ui.draggable[0])
                 let internalItem = $('img', ui.draggable[0]).attr('src')
-                //console.log(internalItem)
 
                 if(internalItem.includes('soap')){
                     soapLevel++;
                     addBubbles(soapLevel);
                 }else if(soapLevel > 0){
-                    //console.log('lavando');
-                    //console.log(soapLevel)
 
                     const newStatus = {
                         xp_hygiene: ((currentPet.xp_hygiene + (soapLevel*15)) < 100) ? (currentPet.xp_hygiene + (soapLevel*15)) : 100
@@ -134,8 +114,6 @@ async function navigationButtonsAndDragEvents() {
     })
 
     // Onload scene initial status
-/*     let currentScene
-    let currentItem */
     let indexScene = 0
     let indexItem = 0
     const allAudios = [
@@ -208,7 +186,7 @@ async function navigationButtonsAndDragEvents() {
         }
         dadosGlobais.setCurrentItem(currentScene.items[indexItem])
         const currentItem = dadosGlobais.getCurrentItem()
-        // $('#item-box').html(currentItem.name)
+        
         $('#current-item').attr('src', currentItem.url_image)
         itemSelectorAudio.play()
         resetItemPosition()
@@ -223,7 +201,7 @@ async function navigationButtonsAndDragEvents() {
         }
         dadosGlobais.setCurrentItem(currentScene.items[indexItem])
         const currentItem = dadosGlobais.getCurrentItem()
-        // $('#item-box').html(currentItem.name)
+        
         $('#current-item').attr('src', currentItem.url_image)
         itemSelectorAudio.play()
         resetItemPosition()

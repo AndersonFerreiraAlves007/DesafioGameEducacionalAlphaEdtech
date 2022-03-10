@@ -6,6 +6,8 @@ html {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-transform: uppercase;
+  font-family: var(--childish-cursive-font-02);
 /* makes all text on page not selectable */
   user-select: none;
   -webkit-user-select: none;
@@ -112,7 +114,6 @@ header {
   font-family: var(--childish-cursive-font-02);
   font-size: 24px;
   color: var(--light-font-color);
-  
 }
 
 .status-container{
@@ -122,11 +123,10 @@ header {
 }
 
 #pet-name {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  color: var(--pet-name-font-color);
+  color: var(--header-background);
   font-weight: bold;
+  font-size: 30px;
+  margin: 5px 0px;
   text-transform: capitalize
 }
 
@@ -175,10 +175,16 @@ main {
 
 #environment-text {
   font-size: 60px;
+  width: 350px;
+  text-align: center;
 }
 
 #previous-item, #next-item, #previous-button, #next-button {
   cursor: pointer;
+  /* new button style below */
+  border-radius: 20px;
+  border: 5px solid black;
+  backdrop-filter: blur(10px);
 }
 
 #item-box:active {
@@ -207,7 +213,14 @@ main {
 }
 @media (max-width: 1060px){
   #progressbar, #hygienebar, #funbar {
-    width: 100%;
+    flex: 1;
+  }
+  .status-container {
+    display: flex;
+    align-items: center;
+  }
+  .status-container p {
+    width: 180px;
   }
 }
 
@@ -486,9 +499,9 @@ text-transform: capitalize;
 #options-menu-button {
   max-width: 64px;
   cursor: pointer;
-  position: relative;
-  bottom: 20px;
-  left: 45%;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
 @media (max-width: 550px){
   #options-menu-button{
