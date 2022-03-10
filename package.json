@@ -1,0 +1,25 @@
+{
+  "name": "desafiogameeducacionalalphaedtech",
+  "version": "1.0.0",
+  "description": "Versão inicial do projeto de classe que visa atender a seguinte demanda:",
+  "main": "ecosystem.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "pm2 start ecosystem.config.js",
+    "delete": "pm2 delete ecosystem.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/AndersonFerreiraAlves007/DesafioGameEducacionalAlphaEdtech.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndersonFerreiraAlves007/DesafioGameEducacionalAlphaEdtech/issues"
+  },
+  "homepage": "https://github.com/AndersonFerreiraAlves007/DesafioGameEducacionalAlphaEdtech#readme",
+  "devDependencies": {
+    "pm2": "^5.2.0"
+  }
+}
