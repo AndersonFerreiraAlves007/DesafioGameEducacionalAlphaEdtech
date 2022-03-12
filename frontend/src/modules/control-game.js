@@ -2,6 +2,7 @@ import { BancoDados } from './server-communication.js'
 import { dadosGlobais } from './global-data.js'
 //import { statusBar } from './update-status-bar.js'
 import {currentSlime} from '../main-script.js';
+import { HOST_API } from '../utils/constants.js'
 
 function changeColorId(color = '#00a1cc') {
   $('#path2999-17-9-8-5-3-4').css('fill', color)
@@ -11,7 +12,7 @@ class ControlGame {
   #serverConnection
 
   constructor() {
-    this.#serverConnection = new BancoDados('http://localhost:3333');
+    this.#serverConnection = new BancoDados(HOST_API);
   }
 
   // async login(username, password) {

@@ -1,3 +1,6 @@
 node_modules
 
-resources/*.json
+resources/items/database.json
+resources/pets/database.json
+resources/scenes/database.json
+resources/users/database.json

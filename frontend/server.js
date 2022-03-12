@@ -26,5 +26,5 @@ app.get('/utils/constants.js', (req, res) => {
 app.use('/', express.static('src'))
 
 app.listen(PORT, () => {
-    console.log(`linten => http://localhost:${PORT}`);
+    console.log(`linten => ${process.env.HOST_API}`);
 })
