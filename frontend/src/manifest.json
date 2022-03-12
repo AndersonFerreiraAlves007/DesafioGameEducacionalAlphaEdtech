@@ -18,5 +18,6 @@
     ],
     "theme_color": "#9932cc",
     "background_color": "#9932cc",
-    "display": "standalone"
+    "display": "standalone",
+    "prefer_related_applications": false
 }
