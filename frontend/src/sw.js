@@ -6,7 +6,7 @@ self.addEventListener('install', e => {
       // adicione todas as URLs de recursos que queremos armazenar em cache
       return cache.addAll([
         '/',
-        '/index.html'
+        '/index.html',
       ]);
     })
   );

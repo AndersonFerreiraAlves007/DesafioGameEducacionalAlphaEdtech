@@ -1,6 +1,7 @@
 {
     "name": "Guti Guti",
     "short_name": "Guti Guti",
+    "start_url": "/",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
