@@ -2,6 +2,7 @@ import {dadosGlobais} from './global-data.js';
 import { serverConnection } from './server-communication.js';
 import {currentSlime} from '../main-script.js';
 import {gameController} from './control-game.js';
+import { sendNotification } from './notification.js'
 
 function optionMenu(){
 
@@ -89,15 +90,23 @@ function optionMenu(){
         $('#dialog-edit-pet').hide()
     })
 
+    function validateNamepet(namePet) {
+        return /^[a-zA-Z]\w{2,14}$/.test(namePet)
+    }
+
     buttonConfirmDialogEditPet.addEventListener('click', async () => {
-        $('#dialog-edit-pet').hide()
-        const namePetValue = inputNamePet.val()
-        const colorValue = document.querySelector('#content-dialog-edit-pet-select .colorOption').style.backgroundColor
-        dadosGlobais.setCurrentPet(await serverConnection.updatePet(dadosGlobais.getCurrentPet().id, {
-            name: namePetValue,
-            color: colorValue
-        }))
-        currentSlime.color = colorValue
+        if(validateNamepet(inputNamePet.val())) {
+            $('#dialog-edit-pet').hide()
+            const namePetValue = inputNamePet.val()
+            const colorValue = document.querySelector('#content-dialog-edit-pet-select .colorOption').style.backgroundColor
+            dadosGlobais.setCurrentPet(await serverConnection.updatePet(dadosGlobais.getCurrentPet().id, {
+                name: namePetValue,
+                color: colorValue
+            }))
+            currentSlime.color = colorValue
+        } else {
+            sendNotification('error', 'Nome do pet inválido, deve conter pelo menos 3 letras ou números e deve começar por uma letra!')
+        }
     })
 
     // CREATE PET MENU
@@ -150,16 +159,14 @@ function optionMenu(){
         const namePetValue = inputNamePetCreate.val()
         const colorValue = document.querySelector('#content-dialog-create-pet-select .colorOption').style.backgroundColor
 
-        if(namePetValue === ''){
-            inputNamePetCreate.attr('placeholder', 'INSIRA UM NOME!!!');
-            inputNamePetCreate.css({'border-width': '1px', 'border-color': 'red', 'border-style': 'solid'});
-        }else{
+        if(validateNamepet(inputNamePetCreate.val())) {
             inputNamePetCreate.attr('placeholder', 'Nome do pet');
             inputNamePetCreate.css({'border': 'none'});
             await gameController.createPet(user_id, namePetValue, colorValue);
             $('#dialog-create-pet').hide()
+        } else {
+            sendNotification('error', 'Nome do pet inválido, deve conter pelo menos 3 letras ou números e deve começar por uma letra!')
         }
-
 
     })
 

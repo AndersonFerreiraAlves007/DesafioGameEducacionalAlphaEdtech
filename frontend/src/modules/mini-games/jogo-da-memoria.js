@@ -1,6 +1,7 @@
 import { serverConnection } from '../server-communication.js';
 import { dadosGlobais } from '../global-data.js'
 import { statusBar } from '../update-status-bar.js'
+import { sendNotification } from '../notification.js'
 
 function makeSlime(id, nome, color, onClick) {
   const slime = document.createElement('div')
@@ -267,7 +268,7 @@ function makeCardItem(index, cardItem) {
       const flips = contFlips()
       if(flips === 16) {
         resetarBaralhos()
-        alert('Parabéns você conseguiu terminar o jogo!!!')
+        sendNotification('success', 'Parabéns você conseguiu terminar o jogo!!!')
       }
     }
   })

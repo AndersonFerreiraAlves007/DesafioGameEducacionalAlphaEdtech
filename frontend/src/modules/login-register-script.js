@@ -154,7 +154,7 @@ $(document).ready(function(){
         if ((usernameRegisterError == false) && (passwordRegisterError == false) && (namepetRegisterError == false)){
             try{
                 await serverConnection.register($("#username_reg").val(), $("#password_reg").val(), $("#namepet_reg").val());
-                login($("#username_reg").val(), $("#password_reg").val())
+                await login($("#username_reg").val(), $("#password_reg").val())
                 sendNotification('success', "Usuário cadastrado.")
             }catch(e){
                 sendNotification('error', e)
@@ -168,7 +168,7 @@ $(document).ready(function(){
         validatePasswordLogin();
         if((usernameLoginError == false) && (passwordLoginError == false)){
             try{
-                login($("#username_log").val(), $("#password_log").val())
+                await login($("#username_log").val(), $("#password_log").val())
             }catch(e){
                 sendNotification('error', e)
             }
