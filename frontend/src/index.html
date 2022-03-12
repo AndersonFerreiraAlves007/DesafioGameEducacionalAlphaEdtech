@@ -8,7 +8,6 @@
     <title>Register-login</title>
     <link rel="stylesheet" href="./styles/login-register-style.css">
     <link rel="stylesheet" href="./styles/notification-style.css">
-    <script type="module" src="/pwabuilder-sw-register.js"></script>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -64,6 +63,16 @@
         </div>
         <section class="notification" id="dialog-notification" style="display: none">
         </section>
+        <script>
+            // registrando o service worker para navegadores com suporte
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js', { scope: '/' }).then(() => {
+                    console.log('Service Worker registrado com sucesso.');
+                }).catch(error => {
+                    console.log('Service Worker falhou:', error);
+                });
+            }
+        </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="./modules/login-register-script.js" type="module" charset="utf-8"></script>
 </body>
