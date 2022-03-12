@@ -1,0 +1,19 @@
+{
+    "name": "Guti Guti",
+    "short_name": "Guti Guti",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#9932cc",
+    "background_color": "#9932cc",
+    "display": "standalone"
+}
