@@ -16,9 +16,10 @@ const PORT = 3333
 const tasksExecute = Object.values(tasks)
 
 console.log('Frontend: ' + process.env.HOST_FRONTEND)
+console.log('Env: ' + process.env.NODE_ENV)
 
 const configCors = {
-  origin: process.env.HOST_FRONTEND,
+  origin: "https://gameeducacional.andersonferreiraalves.com",
   credentials: true,
   optionSuccessStatus: 200,
 }
