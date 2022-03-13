@@ -15,9 +15,11 @@ module.exports = {
          ],
          env: {
             "NODE_ENV": "development",
+            "HOST_FRONTEND": "http://localhost:3334"
          },
          env_production: {
             "NODE_ENV": "production",
+            "HOST_FRONTEND": "https://gameeducacional.andersonferreiraalves.com"
         }
       },
       {

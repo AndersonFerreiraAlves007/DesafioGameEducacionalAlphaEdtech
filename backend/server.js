@@ -16,7 +16,7 @@ const PORT = 3333
 const tasksExecute = Object.values(tasks)
 
 const configCors = {
-  origin: 'http://localhost:3334',
+  origin: process.env.HOST_FRONTEND,
   credentials: true,
   optionSuccessStatus: 200,
 }
@@ -28,7 +28,7 @@ tasksExecute.forEach(({ task, time }) => {
 const app = express()
 
 app.get('/', (req, res) => {
-  res.send('API GAME EDUCACIONA VERSÃO: 2.0.9')
+  res.send('API GAME EDUCACIONA VERSÃO: 2.0.10')
 })
 
 const server = http.createServer(app);
