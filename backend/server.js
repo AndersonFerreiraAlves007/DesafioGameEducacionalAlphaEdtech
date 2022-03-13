@@ -30,6 +30,7 @@ tasksExecute.forEach(({ task, time }) => {
 const app = express()
 
 app.get('/', (req, res) => {
+  process.env.HOST_FRONTEND,
   res.send('API GAME EDUCACIONA VERSÃO: 2.0.10')
 })
 
