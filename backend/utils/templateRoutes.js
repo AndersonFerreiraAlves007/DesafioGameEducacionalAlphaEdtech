@@ -5,6 +5,10 @@ const { driveDatabase: Database } = require('./driveDatabase')
 const middlewareId = require('../middleware/validateId')
 const authorization = require('../middleware/authorization')
 
+const authorizationNeutro = (req, res, next) => {
+  next()
+};
+
 function validateCreate(body) {
   return {
     status: true,
@@ -48,7 +52,8 @@ const defaultProps = {
   middlewareAutorizationCreate,
   middlewareAutorizationUpdate,
   middlewareAutorizationDelete,
-  middlewareAutorizationTruncate
+  middlewareAutorizationTruncate,
+  isAutorizationCreate: true
 }
 
 function makeRouter(pathDatabase, propsInitial = defaultProps) { 
@@ -88,7 +93,7 @@ function makeRouter(pathDatabase, propsInitial = defaultProps) {
     })
   })
 
-  router.post('/', authorization, async (req, res) => {
+  router.post('/',  props.isAutorizationCreate ? authorization : authorizationNeutro, async (req, res) => {
     if(middlewareAutorizationCreate(req.body, req.user_id, req.cargo)) { 
       const database = new Database(pathDatabase, props)
       const { resource, message } = await database.addResource(req.body)

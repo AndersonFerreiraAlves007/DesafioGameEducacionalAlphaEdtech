@@ -50,11 +50,7 @@ const router = makeRouter('resources/users/database.json', {
     if(cargo === cargo_admin) {
       return true
     } else {
-      if(user_id === body.id) {
-        return true
-      } else {
-        return false
-      }
+      return true
     }
   },
   middlewareAutorizationUpdate: (resource, user_id, cargo) => {
@@ -70,6 +66,7 @@ const router = makeRouter('resources/users/database.json', {
   },
   middlewareAutorizationDelete: (resource, user_id, cargo) => cargo === cargo_admin,
   middlewareAutorizationTruncate: (user_id, cargo) => cargo === cargo_admin,
+  isAutorizationCreate: false
 })
 
 router.post('/login', async (req, res) => {
