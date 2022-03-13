@@ -3,6 +3,7 @@ import { serverConnection } from './server-communication.js';
 import {currentSlime} from '../main-script.js';
 import {gameController} from './control-game.js';
 import { sendNotification } from './notification.js'
+import { deleteCookies } from '../utils/cookies.js'
 
 function optionMenu(){
 
@@ -174,6 +175,7 @@ function optionMenu(){
 
     buttonLogout.addEventListener('click', () => {
         localStorage.clear();
+        deleteCookies()
         window.location.replace('/');
     })
 

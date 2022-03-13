@@ -1,6 +1,7 @@
 const express = require('express')
 const http = require('http');
 const cors = require('cors')
+const cookieParser = require("cookie-parser");
 const { Server } = require("socket.io");
 const itemsRouter = require('./resources/items/routes')
 const petsRouter = require('./resources/pets/routes')    
@@ -15,7 +16,7 @@ const PORT = 3333
 const tasksExecute = Object.values(tasks)
 
 const configCors = {
-  origin: '*',
+  origin: 'http://localhost:3334',
   credentials: true,
   optionSuccessStatus: 200,
 }
@@ -26,12 +27,6 @@ tasksExecute.forEach(({ task, time }) => {
 
 const app = express()
 
-/* app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', "*");
-  res.header('Access-Control-Allow-Headers', "*");
-  next();
-})  */
-
 app.get('/', (req, res) => {
   res.send('API GAME EDUCACIONA VERSÃO: 2.0.9')
 })
@@ -41,7 +36,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: "*",
-    methods: ["GET", "POST"]
+    methods: ["GET", "POST"],
   }
 });
 
@@ -50,6 +45,7 @@ dadosGlobais.io = io
 app.use(express.json())
 app.use(express.urlencoded({ extended: true })) // saber o que é
 app.use(cors(configCors))
+app.use(cookieParser());
 
 app.use('/items', itemsRouter)
 app.use('/pets', petsRouter)

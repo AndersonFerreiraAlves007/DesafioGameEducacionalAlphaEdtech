@@ -1,5 +1,6 @@
 const { makeRouter } = require('../../utils/templateRoutes')
 const { driveDatabase: Database } = require('../../utils/driveDatabase')
+const { cargo_admin, cargo_user } = require('../../utils/constants')
 
 const router = makeRouter('resources/scenes/database.json', {
   validateCreate: (body, scenes) => {
@@ -29,7 +30,11 @@ const router = makeRouter('resources/scenes/database.json', {
       message: 'Sucesso',
       bodyValidate: body
     }
-  }
+  },
+  middlewareAutorizationCreate: (body, user_id, cargo) => cargo === cargo_admin,
+  middlewareAutorizationUpdate: (resource, user_id, cargo) => cargo === cargo_admin,
+  middlewareAutorizationDelete: (resource, user_id, cargo) => cargo === cargo_admin,
+  middlewareAutorizationTruncate: (user_id, cargo) => cargo === cargo_admin,
 })
 
 router.get('/:id/items', async (req, res) => {

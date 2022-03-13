@@ -1,4 +1,5 @@
 import { HOST_API } from '../utils/constants.js'
+import { deleteCookies } from '../utils/cookies.js'
 
 async function request(url, method = 'GET', body = null) {
   try {
@@ -10,7 +11,9 @@ async function request(url, method = 'GET', body = null) {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': HOST_API,
+          'Access-Control-Allow-Credentials': true
         },
+        credentials: "include",
         body: JSON.stringify(body)
       }
     } else {
@@ -18,16 +21,24 @@ async function request(url, method = 'GET', body = null) {
         method,
         headers: {
           'Accept': 'application/json',
-          'Access-Control-Allow-Origin': HOST_API
+          'Access-Control-Allow-Origin': HOST_API,
+          'Access-Control-Allow-Credentials': true
         },
+        credentials: "include",
       }
     }
     const data = await fetch(url, options)
-    const dados = await data.json()
-    if(dados.status) {
-      return dados.data
+    if(data.status !== 403 && data.status !== 404) {
+      const dados = await data.json()
+      if(dados.status) {
+        return dados.data
+      } else {
+        throw dados.message
+      }
     } else {
-      throw dados.message
+      localStorage.clear();
+      deleteCookies()
+      window.location.replace('/');
     }
   } catch(e) {
     throw e

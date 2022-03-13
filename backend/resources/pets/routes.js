@@ -1,4 +1,5 @@
 const { makeRouter } = require('../../utils/templateRoutes')
+const { cargo_admin, cargo_user } = require('../../utils/constants')
 
 const {
   xp_food_initial,
@@ -26,15 +27,36 @@ const router = makeRouter('resources/pets/database.json',
       }
     },
     validateUpdate: (id, body, pets) => {
-      console.log('UIUIU 1')
-      console.log(body)
-      console.log('UIUIU 2')
       return {
         status: true,
         message: 'Sucesso',
         bodyValidate: body
       }
-    }
+    }, 
+    middlewareAutorizationCreate: (body, user_id, cargo) => {
+      if(cargo === cargo_admin) {
+        return true
+      } else {
+        if(user_id === body.user_id) {
+          return true
+        } else {
+          return false
+        }
+      }
+    },
+    middlewareAutorizationUpdate: (resource, user_id, cargo) => {
+      if(cargo === cargo_admin) {
+        return true
+      } else {
+        if(user_id === resource.user_id) {
+          return true
+        } else {
+          return false
+        }
+      }
+    },
+    middlewareAutorizationDelete: (resource, user_id, cargo) => cargo === cargo_admin,
+    middlewareAutorizationTruncate: (user_id, cargo) => cargo === cargo_admin,
   }
 )
 

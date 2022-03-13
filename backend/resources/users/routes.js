@@ -1,6 +1,8 @@
 const { makeRouter } = require('../../utils/templateRoutes')
 const { driveDatabase: Database } = require('../../utils/driveDatabase')
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const { secret_jwt_access_token, expire_in_jwt_access_token, cargo_user, cargo_admin } = require('../../utils/constants');
 
 const router = makeRouter('resources/users/database.json', {
   validateCreate: (body, users) => {
@@ -17,7 +19,8 @@ const router = makeRouter('resources/users/database.json', {
       message: 'Sucesso',
       bodyValidate: {
         ...body,
-        password: bcrypt.hashSync(body.password, salt)
+        password: bcrypt.hashSync(body.password, salt),
+        cargo: cargo_user
       }
     }
   },
@@ -42,7 +45,31 @@ const router = makeRouter('resources/users/database.json', {
         password: bcrypt.hashSync(body.password, salt)
       }
     }
-  }
+  },
+  middlewareAutorizationCreate: (body, user_id, cargo) => {
+    if(cargo === cargo_admin) {
+      return true
+    } else {
+      if(user_id === body.id) {
+        return true
+      } else {
+        return false
+      }
+    }
+  },
+  middlewareAutorizationUpdate: (resource, user_id, cargo) => {
+    if(cargo === cargo_admin) {
+      return true
+    } else {
+      if(user_id === resource.id) {
+        return true
+      } else {
+        return false
+      }
+    }
+  },
+  middlewareAutorizationDelete: (resource, user_id, cargo) => cargo === cargo_admin,
+  middlewareAutorizationTruncate: (user_id, cargo) => cargo === cargo_admin,
 })
 
 router.post('/login', async (req, res) => {
@@ -62,13 +89,21 @@ router.post('/login', async (req, res) => {
     })
   } else {
     if(bcrypt.compareSync(password, users[0].password)) {
-      res.json({
-        status: true,
-        message: "Logado com sucesso!",
-        data: {
-          user_id: users[0].id
-        }
-      })
+      const token = jwt.sign({ user_id: users[0].id, cargo: users[0].cargo ? users[0].cargo : cargo_user }, secret_jwt_access_token, { expiresIn: expire_in_jwt_access_token });
+      console.log('lalalala')
+      res
+        .cookie("access_token", token, {
+          httpOnly: true,
+          secure: true,
+        })
+        .status(200)
+        .json({
+          status: true,
+          message: "Logado com sucesso!",
+          data: {
+            user_id: users[0].id
+          }
+        })
     } else {
       res.json({
         status: false,
