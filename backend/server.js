@@ -15,6 +15,8 @@ const PORT = 3333
 
 const tasksExecute = Object.values(tasks)
 
+console.log('Frontend: ' + process.env.HOST_FRONTEND)
+
 const configCors = {
   origin: process.env.HOST_FRONTEND,
   credentials: true,
