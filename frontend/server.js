@@ -14,10 +14,12 @@ app.get('/utils/constants.js', (req, res) => {
     //res.type('application/json')
     res.send(
         `
-            const HOST_API = "${process.env.HOST_API}"
+            const HOST_API = "${process.env.HOST_API}";
+            const HOST_FRONTEND = "${process.env.HOST_FRONTEND}";
 
             export {
-                HOST_API
+                HOST_API,
+                HOST_FRONTEND
             }
         `
     )

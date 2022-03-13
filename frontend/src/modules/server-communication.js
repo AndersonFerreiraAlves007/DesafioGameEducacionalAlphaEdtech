@@ -1,4 +1,4 @@
-import { HOST_API } from '../utils/constants.js'
+import { HOST_API, HOST_FRONTEND } from '../utils/constants.js'
 import { deleteCookies } from '../utils/cookies.js'
 
 async function request(url, method = 'GET', body = null) {
@@ -10,7 +10,7 @@ async function request(url, method = 'GET', body = null) {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': HOST_API,
+          'Access-Control-Allow-Origin': HOST_FRONTEND,
           'Access-Control-Allow-Credentials': true
         },
         credentials: "include",
@@ -21,7 +21,7 @@ async function request(url, method = 'GET', body = null) {
         method,
         headers: {
           'Accept': 'application/json',
-          'Access-Control-Allow-Origin': HOST_API,
+          'Access-Control-Allow-Origin': HOST_FRONTEND,
           'Access-Control-Allow-Credentials': true
         },
         credentials: "include",
