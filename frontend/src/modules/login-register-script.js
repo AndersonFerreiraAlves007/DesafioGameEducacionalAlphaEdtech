@@ -1,6 +1,7 @@
 import {serverConnection} from './server-communication.js';
 import { dadosGlobais } from './global-data.js'
 import { sendNotification } from './notification.js'
+import { setCookie } from '../utils/cookies.js'
 
 const loggedUserId = localStorage.getItem('user_id');
 
@@ -9,11 +10,12 @@ if (loggedUserId) {
 }
 
 async function login(login, password) {
-    const {user, pet} = await serverConnection.login(login, password);
+    const {user, pet, token} = await serverConnection.login(login, password);
     localStorage.setItem('user_id', String(user.id));
     localStorage.setItem('pet_id', String(pet.id));
     dadosGlobais.setCurrentPet(pet)
     dadosGlobais.setCurrentUser(user)
+    setCookie('access_token', token, 1)
     window.location.replace('/game.html');
 }
 

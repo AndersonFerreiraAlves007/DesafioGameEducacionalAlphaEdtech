@@ -3,6 +3,70 @@ const { driveDatabase: Database } = require('../../utils/driveDatabase')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { secret_jwt_access_token, expire_in_jwt_access_token, cargo_user, cargo_admin } = require('../../utils/constants');
+const {
+  xp_food_initial,
+  xp_fun_initial,
+  xp_hygiene_initial
+} = require('../../utils/constants')
+
+function validateCreate(body, users) {
+  for(let i = 0; i < users.length; i+=1) {
+    if(users[i].username === body.username) return {
+      status: false,
+      message: `Username ${body.username} já está cadastrado!`,
+      bodyValidate: body
+    }
+  }
+  const salt = bcrypt.genSaltSync(10);
+  return {
+    status: true,
+    message: 'Sucesso',
+    bodyValidate: {
+      ...body,
+      password: bcrypt.hashSync(body.password, salt),
+      cargo: cargo_user
+    }
+  }
+}
+
+function validateUpdate(id, body) {
+  return {
+    status: true,
+    message: '',
+    bodyValidate: body
+  }
+}
+
+function middlewareAdd(resourceAdd) {
+  return resourceAdd
+}
+
+function middlewareAutorizationCreate(body, user_id, cargo) {
+  return true
+}
+
+function middlewareAutorizationUpdate(resource, user_id, cargo) {
+  return true
+}
+
+function middlewareAutorizationDelete(resource, user_id, cargo) {
+  return true
+}
+
+function middlewareAutorizationTruncate(user_id, cargo) {
+  return true
+}
+
+const defaultProps = {
+  validateCreate,
+  validateUpdate,
+  middlewareAdd,
+  middlewareAutorizationCreate,
+  middlewareAutorizationUpdate,
+  middlewareAutorizationDelete,
+  middlewareAutorizationTruncate,
+  isAutorizationCreate: true
+}
 
 const router = makeRouter('resources/users/database.json', {
   validateCreate: (body, users) => {
@@ -66,7 +130,44 @@ const router = makeRouter('resources/users/database.json', {
   },
   middlewareAutorizationDelete: (resource, user_id, cargo) => cargo === cargo_admin,
   middlewareAutorizationTruncate: (user_id, cargo) => cargo === cargo_admin,
-  isAutorizationCreate: false
+  //isAutorizationCreate: false
+})
+
+router.post('/register', async (req, res) => {
+  const { username, password, namePet } = req.body
+
+  const databaseUser = new Database('resources/users/database.json', defaultProps)
+
+  const databasePets = new Database('resources/pets/database.json')
+
+  const { resource: user, message: messageUser } = await databaseUser.addResource({ username, password })
+
+  const { resource: pet, message: messagePet } = await databasePets.addResource({ 
+    name: namePet, 
+    user_id: user.id, 
+    color: '#00a1cc',
+    xp_food: xp_food_initial,
+    xp_fun: xp_fun_initial,
+    xp_hygiene: xp_hygiene_initial, 
+  })
+
+  console.log(user)
+  console.log(pet)
+
+  if(user) 
+    res.json({
+      status: true,
+      data: { user, pet },
+      message: "Sucesso"
+    }) 
+  else {
+    res.json({
+      status: false,
+      data: null,
+      message: messageUser
+    })
+  }
+  
 })
 
 router.post('/login', async (req, res) => {
@@ -98,7 +199,8 @@ router.post('/login', async (req, res) => {
           status: true,
           message: "Logado com sucesso!",
           data: {
-            user_id: users[0].id
+            user_id: users[0].id,
+            token
           }
         })
     } else {

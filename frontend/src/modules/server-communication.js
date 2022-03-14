@@ -55,7 +55,7 @@ class BancoDados {
   }
 
   async login(username, password) {
-    const { user_id } = await request(`${this.host}/users/login`, 'POST',{
+    const { user_id, token } = await request(`${this.host}/users/login`, 'POST',{
       username,
       password
     })
@@ -67,18 +67,24 @@ class BancoDados {
 
     return {
       user,
-      pet: pets[0]
+      pet: pets[0],
+      token
     }
   }
 
   async register(username, password, namePet) {
-    const user = await request(`${this.host}/users`, 'POST', {
+    /* const user = await request(`${this.host}/users`, 'POST', {
       username,
       password
     })
     const pet = await request(`${this.host}/pets`, 'POST', {
       user_id: user.id,
       name: namePet
+    }) */
+    const { user, pet } = await request(`${this.host}/users/register`, 'POST', {
+      username,
+      password,
+      namePet,
     })
     return {
       user,
