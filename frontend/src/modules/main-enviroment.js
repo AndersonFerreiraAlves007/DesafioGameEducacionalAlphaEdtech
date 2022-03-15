@@ -188,7 +188,8 @@ async function mobileEnvironment() {
 
     const itemElement = document.getElementById('item-box');
 
-    screen.orientation.lock('portrait-primary') //MUST BE TESTED ON DEVICE!!!
+    //screen.orientation.lock('portrait-primary') //não funciona e gera erro no console, tratar com um evento e mensagem
+    if(screen.orientation.angle > 0 ){console.log('favor usar o celular no modo retrato')}
 
     // set current scene
     setCurrentScene();
@@ -285,9 +286,21 @@ async function mobileEnvironment() {
     function dragFoodHandler(event) {
 
         let touchPosition = event.targetTouches[0];
-        itemElement.style.left = touchPosition.pageX + 'px';
+        let maxRange = {
+            x: window.screen.availWidth,
+            y: window.screen.availHeight
+        }
+
+        if(touchPosition.pageX <= (maxRange.x - 100)){
+            itemElement.style.left = touchPosition.pageX + 'px';
+        }
+        
         console.log(touchPosition)
-        itemElement.style.top = touchPosition.pageY + 'px';
+
+        if(touchPosition.pageY <= (maxRange.y - 107)){
+            itemElement.style.top = touchPosition.pageY + 'px';
+        }
+        
     }
 
     function releaseFoodHandler(event){
@@ -346,10 +359,22 @@ async function mobileEnvironment() {
             }
         }
 
+        let maxRange = {
+            x: window.screen.availWidth,
+            y: window.screen.availHeight
+        }
+        
         let touchPosition = event.targetTouches[0];
-        itemElement.style.left = touchPosition.pageX + 'px';
+
+        if(touchPosition.pageX <= (maxRange.x - 100)){
+            itemElement.style.left = touchPosition.pageX + 'px';
+        }
+        
         console.log(touchPosition)
-        itemElement.style.top = touchPosition.pageY + 'px';
+
+        if(touchPosition.pageY <= (maxRange.y - 107)){
+            itemElement.style.top = touchPosition.pageY + 'px';
+        }
 
         
     }

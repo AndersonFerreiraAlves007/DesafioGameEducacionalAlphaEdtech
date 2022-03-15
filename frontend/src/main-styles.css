@@ -89,8 +89,10 @@ body{
   padding: 0;
   width: 70vw;
   height: 100vh;
+  max-height: 100vh;
   background-size: cover;
   overflow-x: hidden;
+  overflow-y: hidden;
   /* border: 4px solid darkorchid; */
   border-radius: 8px;
   box-shadow: var(--round-edge-shadow-effect);
@@ -100,7 +102,7 @@ body{
 header {
   /* backdrop-filter: blur(50px); */
   width: 100%;
-  min-height: 12vh;
+  min-height: 122px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -132,7 +134,7 @@ header {
 
 main {
   background-size: cover;
-  height: 95vh;
+  height: 87vh;
   width: 70vw;
   display: flex;
   flex-direction: column;
