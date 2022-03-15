@@ -201,6 +201,7 @@ main {
 }
 
 #current-item {
+  width: 100px;
   height: 100px;
 }
 
@@ -564,4 +565,14 @@ text-transform: capitalize;
   max-width: none;
   max-height: 80vh;
   overflow-y: auto;
+}
+
+/* MOBILE RULES */
+   
+.feedAnimation{
+  animation: feedMe 0.5s;
+}
+@keyframes feedMe {
+  0%   {transform:scale(1);}
+  100% {transform:scale(0);}
 }

@@ -7,6 +7,8 @@ import { agoraVai } from './mini-games/jokenpo.js';
 let currentEnvironment;
 let soapLevel = 0;
 
+let soapMobileIncrement = 0;
+
 //audio controls
 const allAudios = [
     './assets/audios/washing-machine-selector-switch-one.mp3',
@@ -38,6 +40,7 @@ function loadEnvironment (){
             // true for mobile device
             console.log("mobile device: " + navigator.userAgent);
             currentEnvironment = 'mobile';
+            mobileEnvironment();
         }else{
             // false for not mobile device
             console.log("not mobile device: " + navigator.userAgent);
@@ -178,6 +181,216 @@ async function computerEnvironment(){
     }
 }
 
+////
+
+// MOBILE ENVIRONMENT INTERACTION
+async function mobileEnvironment() {
+
+    const itemElement = document.getElementById('item-box');
+
+    screen.orientation.lock('portrait-primary') //MUST BE TESTED ON DEVICE!!!
+
+    // set current scene
+    setCurrentScene();
+
+    // MUST BE TREATED IN CSS!!!!!!
+    document.getElementById('environment-text').style.fontSize = '32px';
+    document.getElementById('environment-text').style.width = '200px';
+
+
+
+
+    //get item start position in the main page flow
+    const itemStartPosition = itemElement.getBoundingClientRect();
+    //console.log(itemStartPosition);
+
+    //get slime coordinates
+    const slimeCoordinates = document.getElementById('slime-body').getBoundingClientRect();
+    //console.log(slimeCoordinates)
+    const slimeXPosition = [slimeCoordinates.x, slimeCoordinates.x + slimeCoordinates.width]
+    const slimeYPosition = [slimeCoordinates.y, slimeCoordinates.y + slimeCoordinates.height]
+
+    
+
+    //kitchen logic
+    if (dadosGlobais.getCurrentScene().id === 1) {
+        
+        itemElement.onclick = '';
+        itemElement.ontouchmove = ''
+        itemElement.ontouchend = ''
+
+        //change the display of the item to absolute
+        itemElement.style.position = 'absolute';
+        itemElement.style.left = (itemStartPosition.x) + 'px';
+        itemElement.style.top = itemStartPosition.y + 'px';
+        itemElement.style.zIndex = 3000;
+
+        //fixes the item selector position
+        document.getElementById('previous-item').style.marginRight = '100px';
+
+        itemElement.ontouchmove = dragFoodHandler
+        itemElement.ontouchend = releaseFoodHandler
+
+    }
+
+    //game room logic
+    if (dadosGlobais.getCurrentScene().id === 2) {
+
+        //disable dragging behavior
+        itemElement.ontouchmove = ''
+        itemElement.ontouchend = ''
+
+
+        //Mini-game picker
+        itemElement.onclick = function(){
+            const currentGame = dadosGlobais.getCurrentItem().name;
+
+            switch (currentGame) {
+                case 'rock-paper-scissors':
+                    agoraVai();
+                    break;
+                case 'memory-game':
+                    document.getElementById('minigame-remember').style.display = 'flex'
+                    break;
+                case 'colors-game':
+                    colorGameStart()
+                    break;
+            }
+        }
+    }
+
+    //bathroom logic
+    if (dadosGlobais.getCurrentScene().id === 3) {
+
+        itemElement.onclick = '';
+        itemElement.ontouchmove = ''
+        itemElement.ontouchend = ''
+
+        //change the display of the item to absolute
+        itemElement.style.position = 'absolute';
+        itemElement.style.left = (itemStartPosition.x) + 'px';
+        itemElement.style.top = itemStartPosition.y + 'px';
+        itemElement.style.zIndex = 3000;
+
+        //fixes the item selector position
+        document.getElementById('previous-item').style.marginRight = '100px';
+
+        itemElement.ontouchmove = dragBathHandler
+        itemElement.ontouchend = releaseBathHandler
+
+    }
+
+    // drag and drop handlers
+    
+    function dragFoodHandler(event) {
+
+        let touchPosition = event.targetTouches[0];
+        itemElement.style.left = touchPosition.pageX + 'px';
+        console.log(touchPosition)
+        itemElement.style.top = touchPosition.pageY + 'px';
+    }
+
+    function releaseFoodHandler(event){
+        const releasePosition = {x: parseInt(itemElement.style.left), y: parseInt(itemElement.style.top) };
+        //console.log(releasePosition)
+
+        //console.log(slimeXPosition)
+        //console.log(slimeYPosition)
+
+        const currentItem = dadosGlobais.getCurrentItem();
+
+        if(releasePosition.x >= slimeXPosition[0] && releasePosition.x <= slimeXPosition[1] 
+        && releasePosition.y >= slimeYPosition[0] && releasePosition.y <= slimeYPosition[1]){
+
+            console.log('papou!!!')
+
+            currentSlime.feed(currentItem)
+
+            itemElement.className = 'feedAnimation';
+
+            setTimeout(()=>{
+                itemElement.style.top = itemStartPosition.y + 'px';
+                itemElement.style.left = itemStartPosition.x + 'px';
+                itemElement.className = '';
+            },500)
+
+
+        } else {
+            itemElement.style.top = itemStartPosition.y + 'px';
+            itemElement.style.left = itemStartPosition.x + 'px';
+        }
+
+    }
+
+    function dragBathHandler(event) {
+
+        const currentShowerItem = document.getElementById('current-item').getAttribute('src');
+
+        console.log(currentShowerItem)
+        console.log(event)
+
+        const currentPosition = {x: parseInt(itemElement.style.left), y: parseInt(itemElement.style.top) };
+
+        if(currentShowerItem.includes('soap')){
+            console.log('sabão bão bão')
+            if(currentPosition.x >= slimeXPosition[0] && currentPosition.x <= slimeXPosition[1] 
+            && currentPosition.y >= slimeYPosition[0] && currentPosition.y <= slimeYPosition[1]){
+                console.log('ensaboando')
+                soapMobileIncrement ++
+                console.log(soapMobileIncrement)
+                if(soapMobileIncrement === 80){
+                    soapLevel++
+                    currentSlime.addBubbles(soapLevel);
+                    soapMobileIncrement = 0;
+                }
+            }
+        }
+
+        let touchPosition = event.targetTouches[0];
+        itemElement.style.left = touchPosition.pageX + 'px';
+        console.log(touchPosition)
+        itemElement.style.top = touchPosition.pageY + 'px';
+
+        
+    }
+
+    function releaseBathHandler(event) {
+
+        const currentShowerItem = document.getElementById('current-item').getAttribute('src');
+
+        console.log(currentShowerItem)
+        console.log(event)
+
+        const currentPosition = {x: parseInt(itemElement.style.left), y: parseInt(itemElement.style.top) };
+
+        if(currentShowerItem.includes('shower')){
+            console.log('chuveirinho chua!!!')
+            if(currentPosition.x >= slimeXPosition[0] && currentPosition.x <= slimeXPosition[1] 
+            && currentPosition.y >= slimeYPosition[0] && currentPosition.y <= slimeYPosition[1]
+            && soapLevel > 0){
+                console.log('lavando tudo')
+
+                const currentPet = dadosGlobais.getCurrentPet()
+
+                const newStatus = {
+                    xp_hygiene: ((currentPet.xp_hygiene + (soapLevel * 15)) < 100) ? (currentPet.xp_hygiene + (soapLevel * 15)) : 100
+                }
+                gameController.updatePet(dadosGlobais.getCurrentPet().id, newStatus);
+
+                soapLevel = 0;
+
+                currentSlime.addBubbles(soapLevel);
+            }
+        }
+        
+        itemElement.style.top = itemStartPosition.y + 'px';
+        itemElement.style.left = itemStartPosition.x + 'px';
+        
+
+        
+    }
+}
+
 
 // SCENE SCREEN RENDERER FUNCTION
 function setCurrentScene(){
@@ -197,7 +410,7 @@ $('#next-button').on('click', () => {
     gameController.changeCurrentScene(currentSceneIndex)
     .then(()=>{
         if(currentEnvironment === 'mobile'){
-
+            mobileEnvironment()
         }else{
             computerEnvironment();
         }
@@ -213,7 +426,7 @@ $('#previous-button').on('click', () => {
     gameController.changeCurrentScene(currentSceneIndex)
     .then(()=>{
         if(currentEnvironment === 'mobile'){
-
+            mobileEnvironment()
         }else{
             computerEnvironment();
         }
