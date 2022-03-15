@@ -338,7 +338,7 @@ async function mobileEnvironment() {
                 console.log('ensaboando')
                 soapMobileIncrement ++
                 console.log(soapMobileIncrement)
-                if(soapMobileIncrement === 80){
+                if(soapMobileIncrement === 10){
                     soapLevel++
                     currentSlime.addBubbles(soapLevel);
                     soapMobileIncrement = 0;
