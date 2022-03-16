@@ -589,7 +589,8 @@ text-transform: capitalize;
 }
 
 #dialog-credits .submenu-title {
-  margin-bottom: 3rem;
+  line-height: 2rem;
+  margin: 2rem;
 }
 
 /* MOBILE RULES */
