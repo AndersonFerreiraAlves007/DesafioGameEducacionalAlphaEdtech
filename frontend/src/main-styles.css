@@ -579,6 +579,19 @@ text-transform: capitalize;
   overflow-y: auto;
 }
 
+#dialog-credits dt {
+  margin-bottom: 3rem;
+}
+
+#dialog-credits ul {
+  list-style: none;
+  line-height: 3rem;
+}
+
+#dialog-credits .submenu-title {
+  margin-bottom: 3rem;
+}
+
 /* MOBILE RULES */
    
 .feedAnimation{
