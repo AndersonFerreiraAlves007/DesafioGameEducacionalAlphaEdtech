@@ -211,6 +211,10 @@ main {
   align-items: center;
 }
 
+#items {
+  height: 105px;
+}
+
 #current-item {
   width: 100px;
   height: 100px;
