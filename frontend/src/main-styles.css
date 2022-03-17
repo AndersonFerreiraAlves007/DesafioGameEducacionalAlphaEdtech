@@ -176,7 +176,7 @@ main {
 /* CONTEXT NAVIGATION AND ITEM CHOOSER */
 
 #environment-text {
-  font-size: 60px;
+  font-size: 3.8rem;
   width: 350px;
   text-align: center;
 }
@@ -184,9 +184,18 @@ main {
 #previous-item, #next-item, #previous-button, #next-button {
   cursor: pointer;
   /* new button style below */
-  border-radius: 20px;
-  border: 5px solid black;
+  border-radius: 15px;
+  border: 0.15rem solid black;
+  padding: 0.3rem;
+  width: 3.8rem;
   backdrop-filter: blur(10px);
+  /* make image inside buttons not draggable by accident */
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 #item-box:active {
@@ -205,6 +214,7 @@ main {
 #current-item {
   width: 100px;
   height: 100px;
+  margin: 0px 25px;
 }
 
 
@@ -567,6 +577,20 @@ text-transform: capitalize;
   max-width: none;
   max-height: 80vh;
   overflow-y: auto;
+}
+
+#dialog-credits dt {
+  margin-bottom: 3rem;
+}
+
+#dialog-credits ul {
+  list-style: none;
+  line-height: 3rem;
+}
+
+#dialog-credits .submenu-title {
+  line-height: 2rem;
+  margin: 2rem;
 }
 
 /* MOBILE RULES */
