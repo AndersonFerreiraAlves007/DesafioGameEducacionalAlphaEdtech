@@ -79,19 +79,21 @@ async function computerEnvironment(){
         $('#guti').droppable({
             drop: async function (event, ui) {
                 
-
+                $('#item-box').draggable({ revert: false})
                 $('#current-item').animate({width: 0, height: 0}, 250)
-                setTimeout(() => ui.draggable.remove(), 50)
-                
-                const currentItem = dadosGlobais.getCurrentItem();
+            
+                setTimeout(() =>{
+                    ui.draggable.remove()
+                    const currentItem = dadosGlobais.getCurrentItem();
 
-                currentSlime.feed(currentItem);
-
-                $('<div id="item-box"><img id="current-item" src="" alt=""></div>').insertAfter('#previous-item');
-                $('#item-box').draggable({ 
-                    containment: $('body'), // prevents page from scrolling when something is dragged to the edge of the screen
-                    revert: true
-                })
+                    currentSlime.feed(currentItem);
+    
+                    $('<div id="item-box"><img id="current-item" src="" alt=""></div>').insertAfter('#previous-item');
+                    $('#item-box').draggable({ 
+                        containment: $('body'), // prevents page from scrolling when something is dragged to the edge of the screen
+                        revert: true
+                    })
+                }, 250)
 
                 setTimeout(() => {
                     $('#current-item').attr('src', dadosGlobais.getCurrentItem().url_image)
