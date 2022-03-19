@@ -17,5 +17,5 @@ jobs:
           script: |
             cd ${{ secrets.PROJECT_PATH_ALPHA }} 
             git pull
-            pm2 delete ecosystem.config.js
-            pm2 start ecosystem.config.js --env production
+            npm run delete
+            npm run start-production-alpha
