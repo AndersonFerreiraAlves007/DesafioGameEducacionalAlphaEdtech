@@ -1,0 +1,21 @@
+name: CI-ALPHA
+
+on: [push]
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Push to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_IP_ALPHA }}
+          username: ${{ secrets.SERVER_USERNAME_ALPHA }}
+          password: ${{ secrets.SERVER_PASSWORD_ALPHA }}
+          script: |
+            cd ${{ secrets.PROJECT_PATH_ALPHA }} 
+            git pull
+            pm2 delete ecosystem.config.js
+            pm2 start ecosystem.config.js --env production
