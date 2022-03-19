@@ -20,6 +20,10 @@ module.exports = {
          env_production: {
             "NODE_ENV": "production",
             "HOST_FRONTEND": "https://gameeducacional.andersonferreiraalves.com"
+        },
+         env_production_alpha: {
+            "NODE_ENV": "production",
+            "HOST_FRONTEND": "https://gutiguti.andersonferreiraalves.com"
         }
       },
       {
@@ -37,6 +41,11 @@ module.exports = {
             "NODE_ENV": "production",
             "HOST_API": "https://apigameeducacional.andersonferreiraalves.com",
             "HOST_FRONTEND": "https://gameeducacional.andersonferreiraalves.com"
+        },
+         env_production_alpha: {
+            "NODE_ENV": "production",
+            "HOST_API": "https://apigutiguti.andersonferreiraalves.com",
+            "HOST_FRONTEND": "https://gutiguti.andersonferreiraalves.com"
         }
       }
    ]
