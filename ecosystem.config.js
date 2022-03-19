@@ -23,7 +23,7 @@ module.exports = {
         },
          env_production_alpha: {
             "NODE_ENV": "production",
-            "HOST_FRONTEND": "https://gutiguti.andersonferreiraalves.com"
+            "HOST_FRONTEND": "https://gutiguti.alphaedtechprojects.website"
         }
       },
       {
@@ -44,8 +44,8 @@ module.exports = {
         },
          env_production_alpha: {
             "NODE_ENV": "production",
-            "HOST_API": "https://apigutiguti.andersonferreiraalves.com",
-            "HOST_FRONTEND": "https://gutiguti.andersonferreiraalves.com"
+            "HOST_API": "https://apigutiguti.alphaedtechprojects.website",
+            "HOST_FRONTEND": "https://gutiguti.alphaedtechprojects.website"
         }
       }
    ]

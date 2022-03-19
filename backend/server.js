@@ -19,7 +19,7 @@ console.log('Frontend: ' + process.env.HOST_FRONTEND)
 console.log('Env: ' + process.env.NODE_ENV)
 
 const configCors = {
-  origin: ["http://localhost:3334", "https://gameeducacional.andersonferreiraalves.com", "http://gutiguti.andersonferreiraalves.com"],
+  origin: ["http://localhost:3334", "https://gameeducacional.andersonferreiraalves.com", "https://gutiguti.alphaedtechprojects.website"],
   credentials: true,
   optionSuccessStatus: 200,
 }
