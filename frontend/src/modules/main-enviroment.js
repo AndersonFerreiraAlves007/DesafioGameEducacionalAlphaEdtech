@@ -40,6 +40,18 @@ function loadEnvironment (){
             // true for mobile device
             console.log("mobile device: " + navigator.userAgent);
             currentEnvironment = 'mobile';
+
+            //screen.orientation.lock('portrait-primary') //não funciona e gera erro no console, tratar com um evento e mensagem
+            if(screen.orientation.angle > 0 ){console.log('favor usar o celular no modo retrato')}
+
+            // prevents opening the context menu on long touch - view: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/oncontextmenu
+            window.oncontextmenu = (event)=>{
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            document.addEventListener('touchmove', (event)=>{event.preventDefault()})
+
             mobileEnvironment();
         }else{
             // false for not mobile device
@@ -190,9 +202,6 @@ async function mobileEnvironment() {
 
     const itemElement = document.getElementById('item-box');
 
-    //screen.orientation.lock('portrait-primary') //não funciona e gera erro no console, tratar com um evento e mensagem
-    if(screen.orientation.angle > 0 ){console.log('favor usar o celular no modo retrato')}
-
     // set current scene
     setCurrentScene();
 
@@ -287,6 +296,9 @@ async function mobileEnvironment() {
     
     function dragFoodHandler(event) {
 
+        // prevent scrolling while dragging item
+        event.preventDefault();
+
         let touchPosition = event.targetTouches[0];
         let maxRange = {
             x: window.screen.availWidth,
@@ -338,6 +350,9 @@ async function mobileEnvironment() {
     }
 
     function dragBathHandler(event) {
+
+        // prevent scrolling while dragging item
+        event.preventDefault();
 
         const currentShowerItem = document.getElementById('current-item').getAttribute('src');
 
