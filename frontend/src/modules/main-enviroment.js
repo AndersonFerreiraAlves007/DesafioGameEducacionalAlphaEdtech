@@ -210,8 +210,6 @@ async function mobileEnvironment() {
     document.getElementById('environment-text').style.width = '200px';
 
 
-
-
     //get item start position in the main page flow
     const itemStartPosition = itemElement.getBoundingClientRect();
     //console.log(itemStartPosition);

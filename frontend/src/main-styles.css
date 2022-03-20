@@ -221,7 +221,9 @@ main {
   margin: 0px 25px;
 }
 
-
+.interface-icon {
+  width: 32px;
+}
 /* STATUS BARS */
 
 #progressbar, #hygienebar, #funbar {
@@ -237,7 +239,7 @@ main {
     align-items: center;
   }
   .status-container p {
-    width: 180px;
+    width: 100px;
   }
 }
 
