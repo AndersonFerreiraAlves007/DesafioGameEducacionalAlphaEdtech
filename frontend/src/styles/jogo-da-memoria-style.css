@@ -33,8 +33,8 @@
   --game-box-shadow: 1vw 1vw 10px rgba(0, 0, 0, 0.5);
 
   /*close button*/
-  --close-button-width: var(--button-close-width);
-  --close-button-height: var(--button-close-width);
+  --close-button-width: 5vw;
+  --close-button-height: 5vw;
 
   --close-button-position: fixed;
   --close-button-top: 6.5vh;
@@ -111,8 +111,8 @@
   cursor: pointer;
 } */
 #btn-close-game-memoria {
-  width: var(--button-close-width);
-  height: var(--button-close-width);
+  width: var(--close-button-width);
+  height: var(--close-button-height);
 
   position: var(--close-button-position);
   top: var(--close-button-top);
