@@ -81,6 +81,7 @@ async function computerEnvironment(){
         $('#guti').droppable({
             disabled: false
         })
+        $('#item-box').css({'cursor': 'grab'})
 
         $('#item-box').draggable({ 
             containment: $('body'), // prevents page from scrolling when something is dragged to the edge of the screen
@@ -134,6 +135,8 @@ async function computerEnvironment(){
             disabled: true
         })
 
+        $('#item-box').css({'cursor': 'pointer'})
+
         //Mini-game picker
         $('#item-box').on('click', (event)=>{
             const currentGame = dadosGlobais.getCurrentItem().name;
@@ -164,6 +167,7 @@ async function computerEnvironment(){
         $('#item-box').draggable({
             disabled: false
         });
+        $('#item-box').css({'cursor': 'grab'})
 
         $('#guti').droppable({
             drop: async function (event, ui) {},
