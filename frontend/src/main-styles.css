@@ -435,7 +435,7 @@ main {
 .slime-item {
   display: flex;
   flex-direction: column;
-  width: 25%;
+  min-width: 25%;
   cursor: pointer;
   justify-content: center;
   align-items: center;
