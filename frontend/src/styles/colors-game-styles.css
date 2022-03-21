@@ -33,8 +33,8 @@
     --game-box-shadow: 1vw 1vw 10px rgba(0, 0, 0, 0.5);
 
     /*close button*/
-    --close-button-width: var(--button-close-width);
-    --close-button-height: var(--button-close-width);
+    --close-button-width: 5vw;
+    --close-button-height: 5vw;
 
     --close-button-position: fixed;
     --close-button-top: 6.5vh;
@@ -124,8 +124,8 @@ section.colors-game  {
 } */
 
 #button-close-game {
-    width: var(--button-close-width);
-    height: var(--button-close-width);
+    width: var(--close-button-width);
+    height: var(--close-button-height);
 
     position: var(--close-button-position);
     top: var(--close-button-top);
@@ -185,7 +185,14 @@ section.colors-game  {
 
 #endScreen {
     display: none;
-    position: absolute;
+    /* position: absolute; */
+    /* add for gabriel */
+    position: fixed;
+    left: 30vw;
+    top: 30vh;
+    width: 40vw;
+    height: 40vh;
+    /* add for gabriel */
     z-index: 100000;
     background-color: lightcoral;
     padding: 5rem;

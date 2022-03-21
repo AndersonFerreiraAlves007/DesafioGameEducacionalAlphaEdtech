@@ -13,17 +13,10 @@ export function agoraVai() {
         $(".jokenpo").hide();
     }
 
-    // $(".jokenpo__closed").on("click", jokenpoClosed);
-    // function jokenpoClosed() {
-    //     $("./jokenpo").modal({ show: false })
-    // }
-
-
-
     // move buttons in screan
-    $(".jokenpo__rock").draggable({ revert: "valid" });
-    $(".jokenpo__paper").draggable({ revert: "valid" });
-    $(".jokenpo__scissors").draggable({ revert: "valid" });
+    $(".jokenpo__rock").draggable({ revert: true });
+    $(".jokenpo__paper").draggable({ revert: true });
+    $(".jokenpo__scissors").draggable({ revert: true });
 
     $(".jokenpo__player-choice").droppable({
         classes: {
