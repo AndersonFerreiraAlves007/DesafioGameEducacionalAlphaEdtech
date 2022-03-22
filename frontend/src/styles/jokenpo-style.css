@@ -1,11 +1,11 @@
 :root{
-    /* trocar px por rem ou */
     --text-color-black: #444444;
     --text-color-white: #dddddd;
+    --text-color-blue: rgba(30,70,220,0.75);
     
-    --text-size-low: 14px;
-    --text-size-median: 21px;
-    --text-size-high: 38px;
+    --text-size-low: 1rem;
+    --text-size-median: 1.1rem;
+    --text-size-high: 2.1rem;
 
     --background-black: #333333;
     --background-black-transparent: #22222277;
@@ -16,56 +16,36 @@
     --background-rock: #FBD165;
     --background-paper: #F4B0BF;
     --background-scissors: #A9CC8A;
-    
-    --background-image-game: url('../assets/images/game/jokenpo/background-infantil-02.jpg');
-    --background-image-close: url("../assets/images/game/jokenpo/botao-x.png");
 
     --slime-image: url("../assets/images/game/jokenpo/slime-02.svg");
-    --slime-diameter: 150px; 
-
-    --button-close-width: 5vw;
+    --slime-diameter: 10vw; 
     
     /* size buttons */
-    --button-width: 50px;
-    --button-height: 50px;
+    --button: 4vw;
 
     /* ################################################## */
     /*background of mine-game*/
     --game-bottom-width: 100vw;
     --game-bottom-height: 100vh;
-    
     --game-bottom-position: fixed;
     --game-bottom-top: 0px;
     --game-bottom-left: 0px;
     --game-bottom-z-index: 1000;
-    
     --game-bottom-background-color: #22222277;
     
     /*content of mine-game*/
-    --game-width: 90vw;
-    --game-height: 76vh;
-    
+    --background-image-game: url('../assets/images/game/jokenpo/background-infantil-02.jpg');
+    --game-width: 95vw;
+    --game-height: 83vh;
     --game-position: fixed;
     --game-top: 12vh;
     --game-left: 5vw;
-    --game-z-index: 2000;
-    
-    --game-display: flex;
-    --game-flex-flow: column nowrap;
-    --game-justify-content: flex-start;
-    --game-align-items: center;
-    
-    --game-background-image: url('../assets/background-images/vector-cartoon-illustration-of-empty-kindergarten-room-with-furniture-and-toys-for-young-children-n/1926.jpg');
-    --game-background-size: cover;
-    --game-background-repeat: no-repeat;
-    --game-background-position: center;
-    
+    --game-z-index: 2000;    
     --game-border-radius: 2vw;
     --game-box-shadow: 1vw 1vw 10px rgba(0, 0, 0, 0.5);
     
     /*close button*/
-    --close-button-width: var(--button-close-width);
-    --close-button-height: var(--button-close-width);
+    --close-button: 5vw;
     
     --close-button-position: fixed;
     --close-button-top: 6.5vh;
@@ -89,7 +69,35 @@
     height: var(--game-bottom-height);
     z-index: var(--game-bottom-z-index);
     background-color: var(--game-bottom-background-color);
-} 
+}
+
+/* para gerar background suavizado */
+.jokenpo__main-background{
+    width: var(--game-width);
+    height: var(--game-height);
+    position: var(--game-position);
+    top: var(--game-top);
+    left: var(--game-left);
+    z-index: 1100;
+    border-radius: var(--game-border-radius);
+
+    background-image: var(--background-image-game);    
+    background-size: contain;
+    background-repeat: repeat;
+    background-position: center;
+}
+
+.jokenpo__main-background--filter{
+    width: var(--game-width);
+    height: var(--game-height);
+    position: var(--game-position);
+    top: var(--game-top);
+    left: var(--game-left);
+    z-index: 1200;
+    border-radius: var(--game-border-radius);
+
+    background-color: rgba(0,0,0,0.3);
+}
 
 .jokenpo__main{
     width: var(--game-width);
@@ -105,16 +113,14 @@
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
-
-    background-image: var(--background-image-game);
-    background-size: contain;
-    background-repeat: repeat;
-    background-position: center;
 }
 
 .jokenpo__closed{
-    width: var(--button-close-width);
-    height: var(--button-close-width);
+    /* width: var(--close-button-width);
+    height: var(--close-button-height); */
+
+    width: var(--close-button);
+    height: var(--close-button);
 
     position: var(--close-button-position);
     top: var(--close-button-top);
@@ -122,6 +128,7 @@
         
     background-color: var(--close-button-background-color);
     background-image: var(--close-button-background-image);
+
     background-size: var(--close-button-background-size);
     background-repeat: var(--close-button-background-repeat);
     background-position: var(--close-button-position);
@@ -137,19 +144,42 @@
 }
 
 /* talvez padronizar como container-choice */
+.jokenpo__choice-container{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
 .jokenpo__choice-container div{
-    width: 150px;
-    height: 150px;
-    background-color: var(--background-black-transparent);
+    width: 8vw;
+    height: 8vw;
+    /* background-color: var(--background-black-transparent); */
     margin: 5px;
     border-radius: 50%;
+}
+.jokenpo__choice-container .jokenpo__slime-choice{
+    background-color:rgba(15, 235, 235, 0.719);
+}
+
+.jokenpo__choice-container .jokenpo__player-choice{
+    background-color: rgba(220, 50, 50, 0.685);
+}
+
+.jokenpo__choice-container .jokenpo__player-choice-text{
+    /* color: var(--text-color-black); */
+    margin-top: 13px;
+    color: rgb(230,40,40);
+    font-weight: bold;
+    font-size: var(--text-size-median);
+    text-align: center;
+    align-self: center;
 }
 
 .jokenpo__list-button{
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
-    align-items: flex-end;
+    align-items: center;
 
     margin: 0px;
     padding: 0px;
@@ -161,20 +191,38 @@
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    margin: 10px;
+    padding: 10px;
+
+    width: 10vw;
+    height: 10vw;
 }
 
 .jokenpo__list-button div{
-    margin: 10px;
-    padding: 10px;
-    width: var(--button-width);
-    height: var(--button-height);
+    width: var(--button);
+    height: var(--button);
     border-radius: 50%;
 }
 
 .jokenpo__list-button label{
-    margin-bottom: 10px;
-    color: var(--text-color-black);
-    font-size: var(--text-size-median);
+    /* color: var(--text-color-black); */
+    color: var(--text-color-blue);
+    font-size: var(--text-size-low);
+    font-weight: bold;
+}
+
+.jokenpo__result{
+    width: 20vw;
+    height: 8vw;
+    
+    background-color: rgba(15, 235, 235, 0.507);
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+    
+    font-weight: bolder;
+    color: var(--text-color-blue);
+    text-align: center;
+    
 }
 
 /* alterar cores */

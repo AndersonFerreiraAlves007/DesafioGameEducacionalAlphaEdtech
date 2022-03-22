@@ -13,7 +13,11 @@ self.addEventListener('install',  function (e) {
       console.log("CACHING /INDEX.HTML");
       return cache.addAll(
         [
-          '/index.html' // == https://legends.io
+          '/index.html',
+          '/game.html',
+          '/assets/background-images/cartoon-set-of-kitchen-counter-with-appliances-fridge-microwave-oven-kettle-blender/1819.jpg',
+          '/assets/background-images/modern-bathroom-interior-with-furniture-cartoon/304.jpg',
+          '/assets/background-images/vector-cartoon-illustration-of-empty-kindergarten-room-with-furniture-and-toys-for-young-children-n/1926.jpg',
         ]
       );
     })
