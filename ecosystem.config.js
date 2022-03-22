@@ -15,15 +15,36 @@ module.exports = {
          ],
          env: {
             "NODE_ENV": "development",
-            "HOST_FRONTEND": "http://localhost:3334"
+            "HOST_FRONTEND": "http://localhost:3334",
+            "DRIVE_DATABASE": "json",
+            "VERSION": "3.0.0",
+            "USER_DB": "postgres",
+            "HOST_DB": "localhost",
+            "NAME_DB": "gutiguti_db",
+            "PASSWORD_DB": "58310502",
+            "PORT_DB": 5432
          },
          env_production: {
             "NODE_ENV": "production",
-            "HOST_FRONTEND": "https://gameeducacional.andersonferreiraalves.com"
+            "HOST_FRONTEND": "https://gameeducacional.andersonferreiraalves.com",
+            "DRIVE_DATABASE": "json",
+            "VERSION": "3.0.0",
+            "USER_DB": "postgres",
+            "HOST_DB": "localhost",
+            "NAME_DB": "gutiguti_db",
+            "PASSWORD_DB": "58310502",
+            "PORT_DB": 5432
         },
          env_production_alpha: {
             "NODE_ENV": "production",
-            "HOST_FRONTEND": "https://gutiguti.alphaedtechprojects.website"
+            "HOST_FRONTEND": "https://gutiguti.alphaedtechprojects.website",
+            "DRIVE_DATABASE": "json",
+            "VERSION": "3.0.0",
+            "USER_DB": "postgres",
+            "HOST_DB": "localhost",
+            "NAME_DB": "gutiguti_db",
+            "PASSWORD_DB": "gutiguti",
+            "PORT_DB": 5432
         }
       },
       {

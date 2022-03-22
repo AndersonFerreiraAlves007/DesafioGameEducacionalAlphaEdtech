@@ -8,7 +8,6 @@ const petsRouter = require('./resources/pets/routes')
 const scenesRouter = require('./resources/scenes/routes')    
 const usersRouter = require('./resources/users/routes')  
 const tasks = require('./tasks')
-const { driveDatabase: Database  } = require('./utils/driveDatabase')
 const { dadosGlobais } = require('./dados-globais')
 
 const PORT = 3333
@@ -32,7 +31,7 @@ const app = express()
 
 app.get('/', (req, res) => {
   process.env.HOST_FRONTEND,
-  res.send('API GAME EDUCACIONA VERSÃO: 2.0.10')
+  res.send(`API GAME EDUCACIONA VERSÃO: ${process.env.VERSION}`)
 })
 
 const server = http.createServer(app);
@@ -47,7 +46,7 @@ const io = new Server(server, {
 dadosGlobais.io = io
 
 app.use(express.json())
-app.use(express.urlencoded({ extended: true })) // saber o que é
+app.use(express.urlencoded({ extended: true })) 
 app.use(cors(configCors))
 app.use(cookieParser());
 
@@ -55,23 +54,6 @@ app.use('/items', itemsRouter)
 app.use('/pets', petsRouter)
 app.use('/scenes', scenesRouter)
 app.use('/users', usersRouter)
-
-app.put('/truncate', async (req, res) => {
-
-  const databaseUsers = new Database('resources/users/database.json')
-  await databaseUsers.truncate()
-  const databasePets = new Database('resources/pets/database.json')
-  await databasePets.truncate()
-  const databaseScenes = new Database('resources/scenes/database.json')
-  await databaseScenes.truncate()
-  const databaseItems = new Database('resources/items/database.json')
-  await databaseItems.truncate()
-
-  res.json({
-    status: true,
-    message: 'Banco de dados resetado'
-  })
-})
 
 server.listen(PORT)
 

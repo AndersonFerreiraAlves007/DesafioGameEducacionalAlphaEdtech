@@ -1,6 +1,4 @@
-const fsPromises = require("fs").promises;
 const { listQuery, createQuery, updateQuery, truncateQuery, deleteQuery } = require('../db/queries.js')
-const path = require('path')
 
 function validateCreate(body) {
   return {
@@ -74,14 +72,6 @@ class driveDatabase {
       })
 
       const resource = await createQuery(this.table, resourceNew)
-
-      // await writeDatabase({
-      //   autoIncrement: database.autoIncrement + 1,
-      //   rows: [
-      //     ...database.rows,
-      //     resourceNew
-      //   ]
-      // }, this.pathDatabase);
 
       return {
         resource: resource.length > 0 ? resource[0] : null,

@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { driveDatabase: Database } = require('./driveDatabasePG')
+const { driveDatabase: Database } = require('./driveDatabase')
 
 const middlewareId = require('../middleware/validateId')
 const authorization = require('../middleware/authorization')
