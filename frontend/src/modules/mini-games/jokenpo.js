@@ -1,8 +1,9 @@
+
+
+//################ testando com click de botão
 import { serverConnection } from '../server-communication.js';
 import { dadosGlobais } from '../global-data.js'
 import { statusBar } from '../update-status-bar.js'
-
-
 export function agoraVai() {
     $(".jokenpo").show();
 
@@ -14,21 +15,32 @@ export function agoraVai() {
     }
 
     // move buttons in screan
-    $(".jokenpo__rock").draggable({ revert: true });
-    $(".jokenpo__paper").draggable({ revert: true });
-    $(".jokenpo__scissors").draggable({ revert: true });
+    // $(".jokenpo__rock").draggable({ revert: true });
+    // $(".jokenpo__paper").draggable({ revert: true });
+    // $(".jokenpo__scissors").draggable({ revert: true });
 
-    $(".jokenpo__player-choice").droppable({
-        classes: {
-            "ui-droppable-active": "ui-state-active",
-        },
-        drop: async function (event, ui) {
-            $(this)
-            // .addClass("ui-state-highlight")
-            let valueChoice = ui.draggable.attr("value");
-            await choicePlayer(valueChoice);
-        }
-    });
+    $(".jokenpo__rock").on("click", mostrarEscolha);
+    $(".jokenpo__paper").on("click", mostrarEscolha);
+    $(".jokenpo__scissors").on("click", mostrarEscolha);
+
+    async function mostrarEscolha() {
+        console.log("o elemento clicado foi = ");
+        const valueChoice = this.getAttribute("value");
+        // console.log(event.target.getAttribute("value")); // tambem funciona
+        await choicePlayer(valueChoice);
+    }
+
+    // $(".jokenpo__player-choice").droppable({
+    //     classes: {
+    //         "ui-droppable-active": "ui-state-active",
+    //     },
+    //     drop: async function (event, ui) {
+    //         $(this)
+    //         // .addClass("ui-state-highlight")
+    //         let valueChoice = ui.draggable.attr("value");
+    //         await choicePlayer(valueChoice);
+    //     }
+    // });
 
     // image path
     const imageRock = "../../assets/images/game/jokenpo/rock-02.png";
@@ -37,8 +49,6 @@ export function agoraVai() {
 
     // call the function jokenpo, change background of div ("jokenpo__player-choice")
     async function choicePlayer(number) {
-        /* const petId = parseInt(localStorage.getItem("pet_id"), 10);
-        const currentPet = await serverConnection.getPet(petId); */
         const currentPet = dadosGlobais.getCurrentPet()
 
         const xp_fun_change = 10;
