@@ -1,5 +1,5 @@
 const { makeRouter } = require('../../utils/templateRoutes')
-const { driveDatabase: Database } = require('../../utils/driveDatabase')
+const { driveDatabase: Database } = require('../../utils/driveDatabasePG')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { secret_jwt_access_token, expire_in_jwt_access_token, cargo_user, cargo_admin } = require('../../utils/constants');
@@ -128,19 +128,25 @@ const router = makeRouter('resources/users/database.json', {
       }
     }
   },
-  middlewareAutorizationDelete: (resource, user_id, cargo) => cargo === cargo_admin,
+  middlewareAutorizationDelete: (resource, user_id, cargo) => true,
   middlewareAutorizationTruncate: (user_id, cargo) => cargo === cargo_admin,
   //isAutorizationCreate: false
 })
 
 router.post('/register', async (req, res) => {
   const { username, password, namePet } = req.body
+  console.log('estou vivo')
 
   const databaseUser = new Database('resources/users/database.json', defaultProps)
+  console.log('acabei dever um database')
 
   const databasePets = new Database('resources/pets/database.json')
 
+  console.log('etapa 3')
+
   const { resource: user, message: messageUser } = await databaseUser.addResource({ username, password })
+  console.log('etapa 4')
+  console.log(user)
 
   const { resource: pet, message: messagePet } = await databasePets.addResource({ 
     name: namePet, 
@@ -153,6 +159,7 @@ router.post('/register', async (req, res) => {
 
   console.log(user)
   console.log(pet)
+  console.log('etapa 5')
 
   if(user) 
     res.json({
@@ -167,6 +174,7 @@ router.post('/register', async (req, res) => {
       message: messageUser
     })
   }
+  console.log('etapa final')
   
 })
 

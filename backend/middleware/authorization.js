@@ -5,7 +5,7 @@ const authorization = (req, res, next) => {
   const token = req.cookies.access_token;
   console.log(req.cookies)
   if (!token) {
-    return res.sendStatus(403);
+    return res.sendStatus(404);
   }
   try {
     const data = jwt.verify(token, secret_jwt_access_token);
