@@ -155,11 +155,23 @@ h2 {
   align-items: center;
 }
 
+
+
 .flip-container {
   width: 25%;
   height: 25%;
   perspective: 1000px;
   padding: 10px;
+}
+
+@media (max-width: 550px){
+  .flip-container {
+    padding: 5px;
+  }
+
+  #content-minigame-remember {
+    padding: 10px;
+  }
 }
 
 .flipper {

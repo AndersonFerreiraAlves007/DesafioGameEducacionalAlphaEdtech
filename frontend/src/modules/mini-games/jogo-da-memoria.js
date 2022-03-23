@@ -10,8 +10,8 @@ function makeSlime(id, nome, color, onClick) {
 
   slime.innerHTML = `
     <svg
-      width="128"
-      height="64"
+      width="100"
+      height="50"
       viewBox="0 0 15 15"
       version="1.1"
       id="${id}"
@@ -54,7 +54,7 @@ function makeSlime(id, nome, color, onClick) {
         <g
           id="g1777"
           inkscape:label="slime-complete"
-          transform="translate(2, 2)">
+          transform="translate(1, 2)">
           <path
             style="display:inline;fill:${color};fill-opacity:1;stroke:#004c64;stroke-width:0.648978;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
             d="m -3.1800741,8.007151 c 0,5.017889 5.0412708,5.191824 10.059159,5.191824 5.0178881,0 9.4749041,-0.113125 9.4749041,-5.1310139 0,-5.0178882 -4.701846,-8.04309862 -9.7197343,-8.04309862 -5.0178882,0 -9.8143288,2.96440032 -9.8143288,7.98228852 z"
@@ -194,15 +194,12 @@ const cards = cardsInit.slice()
 function embaralha(lista) {
   for (let indice = lista.length; indice; indice--) {
       const indiceAleatorio = Math.floor(Math.random() * indice);
-      // atribuição via destructuring
       [lista[indice - 1], lista[indiceAleatorio]] = 
           [lista[indiceAleatorio], lista[indice - 1]];
   }
 }
 
 embaralha(cards)
-
-//console.log(cards)
 
 function makeTimeout() {
   clearTimeout(idTimeout)
@@ -225,10 +222,6 @@ async function aumentaStatus() {
 }
 
 function makeCardItem(index, cardItem) {
-  /* const card = document.createElement('div')
-  card.classList.add('card')
-  card.append(makeSlime(`card-${index}`, 'lala', 'red', () => {})) */
-
   const card = document.createElement('div')
   
   card.classList.add('flip-container')
@@ -243,10 +236,6 @@ function makeCardItem(index, cardItem) {
       if(cont % 2 === 0) {
         indexAnterior = index
       }
-/* 
-      if(cont % 2 === 0 && cont !== 0) {
-        
-      } */
 
       virarCards()
 
@@ -261,9 +250,7 @@ function makeCardItem(index, cardItem) {
         indexAnterior = -1
       }
       flipper.style.transform = 'rotateY(180deg)'
-      //if(index !== indexAnterior) {
-        cont+=1
-      //}
+      cont+=1
 
       const flips = contFlips()
       if(flips === 16) {
@@ -312,11 +299,11 @@ function resetarBaralhos() {
 
   cards.forEach((item, index) => {
     const flipper =  document.getElementById(`card-flipper-${index}`)
+    const cardSlime =  document.getElementById(`path2999-17-9-8-5-3-4-${`card-slime-${index}`}`)
+    cardSlime.style.fill = item.color
     flipper.style.transform = 'rotateY(0deg)'
     cards[index].flip = false
   })
-
-  console.log(cards)
 
   cont = 0;
   indexAnterior = -1;
@@ -341,14 +328,6 @@ function virarCards() {
   })
 }
 
-
-// document.getElementById('btn-jogo-da-memoria').addEventListener('click', () => {
-//   //resetarBaralhos()
-//   document.getElementById('minigame-remember').style.display = 'flex'
-// })
-
 document.getElementById('btn-close-game-memoria').addEventListener('click', () => {
   document.getElementById('minigame-remember').style.display = 'none'
 })
-
-

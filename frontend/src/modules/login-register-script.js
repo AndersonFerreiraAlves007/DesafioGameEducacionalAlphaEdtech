@@ -45,7 +45,6 @@ $(document).ready(function(){
 
 
     if(safariAgent){
-        console.log(navigator.userAgent)
         $(`
             <div style="width:100%; height:100vh; z-index:3000; background:#FFB100; position: absolute; padding-top: 25vh">
                 <p style="text-align: center; text-transform: uppercase; font-family: 'Bubblegum Sans', cursive;
@@ -77,13 +76,13 @@ $(document).ready(function(){
         let namepetRegisterError = false;
 
         function validateUsernameRegister() {
-            const usernameValue = $('#username_reg').val();
+            const usernameValue = $('#username_reg').val().trim().replace(/\s+/, ' ');
             if (usernameValue.length == '') {
                 $('#usercheckregister').show();
                 usernameRegisterError = true;
             } else if(!(/^[a-zA-Z]\w{2,14}$/.test(usernameValue))) {
                 $('#usercheckregister').show();
-                $('#usercheckregister').html("**Os usuários devem ter no mínimo 3 caracteres e no máximo 15 caracteres.");
+                $('#usercheckregister').html("Mín 3, máx 15 caracteres alfanuméricos, e deve começar com uma letra.");
                 usernameRegisterError = true;
             } else {
                 usernameRegisterError = false;
@@ -92,13 +91,13 @@ $(document).ready(function(){
             return false;
         }
         function validatePasswordRegister() {
-            const passwordValue = $('#password_reg').val();
+            const passwordValue = $('#password_reg').val().trim().replace(/\s+/, ' ');
             if (passwordValue.length == '') {
                 $('#passcheckregister').show();
                 passwordRegisterError = true;
-            } else if(!(/^[a-zA-z0-9]{3,8}$/.test(passwordValue))){
+            } else if(!(/^[a-zA-z0-9]{3,10}$/.test(passwordValue))){
                 $('#passcheckregister').show();
-                $('#passcheckregister').html("**As senhas devem ter no mínimo 3 caracteres e no máximo 8 caracteres.");
+                $('#passcheckregister').html("Mín 3, máx 10 caracteres alfanuméricos.");
                 $('#passcheckregister').css("color", "red");
                 passwordRegisterError = true;
             } else {
@@ -108,13 +107,13 @@ $(document).ready(function(){
             return false;
         }
         function validateNamepetRegister() {
-            const namepetValue = $("#namepet_reg").val();
+            const namepetValue = $("#namepet_reg").val().trim().replace(/\s+/, ' ');
             if (namepetValue.length == '') {
                 $('#namecheckregister').show();
                 namepetRegisterError = true;
-            } else if(!(/^[a-zA-Z]\w{2,14}$/.test(namepetValue))) {
+            } else if(!(/^[a-zA-Z][\w ]{2,49}$/.test(namepetValue))) {
                 $('#namecheckregister').show();
-                $('#namecheckregister').html("**Os pets devem ter no mínimo 3 caracteres e no máximo 15 caracteres.");
+                $('#namecheckregister').html("Mín 3, máx 50 caracteres alfanuméricos ou espaços, e deve começar com uma letra).");
                 $('#namecheckregister').css("color", "red");
                 namepetRegisterError = true;
             } else {
@@ -124,13 +123,13 @@ $(document).ready(function(){
             return false;
         }
         function validateUsernameLogin() {
-            const usernameValue = $('#username_log').val();
+            const usernameValue = $('#username_log').val().trim().replace(/\s+/, ' ');
             if (usernameValue.length == '') {
                 $('#userchecklogin').show();
                 usernameLoginError = true;
             } else if(!(/^[a-zA-Z]\w{2,14}$/.test(usernameValue))) {
                 $('#userchecklogin').show();
-                $('#userchecklogin').html("**Os usuários devem ter no mínimo 3 caracteres e no máximo 15 caracteres.");
+                $('#userchecklogin').html("Mín 3, máx 15 caracteres alfanuméricos, e deve começar com uma letra.");
                 usernameLoginError = true;
             } else {
                 usernameLoginError = false;
@@ -139,13 +138,13 @@ $(document).ready(function(){
             return false;
         }
         function validatePasswordLogin() {
-            const passwordValue = $('#password_log').val();
+            const passwordValue = $('#password_log').val().trim().replace(/\s+/, ' ');
             if (passwordValue.length == '') {
                 $('#passchecklogin').show();
                 passwordLoginError = true;
-            }  else if(!(/^[a-zA-z0-9]{3,8}$/.test(passwordValue))) {
+            }  else if(!(/^[a-zA-z0-9]{3,10}$/.test(passwordValue))) {
                 $('#passchecklogin').show();
-                $('#passchecklogin').html("**As senhas devem ter no mínimo 3 caracteres e no máximo 8 caracteres.");
+                $('#passchecklogin').html("Mín 3, máx 10 caracteres alfanuméricos.");
                 $('#passchecklogin').css("color", "red");
                 passwordLoginError = true;
             } else {
@@ -205,14 +204,14 @@ $(document).ready(function(){
             validateNamepetRegister();
             if ((usernameRegisterError == false) && (passwordRegisterError == false) && (namepetRegisterError == false)){
                 try{
-                    await serverConnection.register($("#username_reg").val(), $("#password_reg").val(), $("#namepet_reg").val());
-                    await login($("#username_reg").val(), $("#password_reg").val())
-                    sendNotification('success', "Usuário cadastrado.")
+                    await serverConnection.register($("#username_reg").val().trim().replace(/\s+/, ' '), $("#password_reg").val().trim().replace(/\s+/, ' '), $("#namepet_reg").val().trim().replace(/\s+/, ' '));
+                    await login($("#username_reg").val().trim().replace(/\s+/, ' '), $("#password_reg").val().trim().replace(/\s+/, ' '))
+                    sendNotification('success', "Usuário cadastrado.", 3)
                 }catch(e){
-                    sendNotification('error', e)
+                    sendNotification('error', e, 3)
                 }
             }else{
-                sendNotification('warning', 'Por favor verifique os campos.')
+                sendNotification('warning', 'Por favor verifique os campos.', 3)
             } 
         });
         $("#btn_login").click(async function(){
@@ -220,12 +219,12 @@ $(document).ready(function(){
             validatePasswordLogin();
             if((usernameLoginError == false) && (passwordLoginError == false)){
                 try{
-                    await login($("#username_log").val(), $("#password_log").val())
+                    await login($("#username_log").val().trim().replace(/\s+/, ' '), $("#password_log").val().trim().replace(/\s+/, ' '))
                 }catch(e){
-                    sendNotification('error', e)
+                    sendNotification('error', e, 3)
                 }
             }else{
-                sendNotification('warning', 'Por favor verifique os campos.')
+                sendNotification('warning', 'Por favor verifique os campos.', 3)
             } 
         });
     }

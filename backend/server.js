@@ -14,9 +14,6 @@ const PORT = 3333
 
 const tasksExecute = Object.values(tasks)
 
-console.log('Frontend: ' + process.env.HOST_FRONTEND)
-console.log('Env: ' + process.env.NODE_ENV)
-
 const configCors = {
   origin: ["http://localhost:3334", "https://gameeducacional.andersonferreiraalves.com", "https://gutiguti.alphaedtechprojects.website"],
   credentials: true,

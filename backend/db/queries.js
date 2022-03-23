@@ -1,12 +1,10 @@
 const { connection } = require('./connection.js')
 
-// Provides a more debugable connection method
 async function getClient() {
     try {
         const client = await connection.connect();
 
 
-        // store the original form for the methods we are going to patch
         const query = client.query;
         const release = client.release;
 
@@ -15,19 +13,14 @@ async function getClient() {
             console.log(`The last executed query on this client was: ${client.lastQuery}`);
         }, 5000);
 
-        // monkey patch the query method, by adding a lastQuery property to the current connection,
-        //to keep track of the last query executed
         client.query = (...args) => {
             client.lastQuery = args;
             return query.apply(client, args);
         }
 
-        // monkey patch the release method so that it "unmonckey patch" both, himself and the query methods
         client.release = () => {
-            // clear our timeout
             clearTimeout(timeoutId);
 
-            // set the methods back to their old un-monkey-patched version
             client.query = query;
             client.release = release;
 
@@ -42,14 +35,9 @@ async function getClient() {
 
 }
 
-// method that takes any query string and optional query parameters
-// and returns an array with the query result
 async function query(queryString, parameters) {
     const client = await getClient();
-    // const start = Date.now();
     const response = await client.query(queryString, parameters);
-    // const duration = Date.now() - start;
-    // console.log('Query executada!', {queryString, duration, rows: response.rowCount});
     client.release();
     return response.rows;
 }

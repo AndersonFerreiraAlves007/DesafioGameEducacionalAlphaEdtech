@@ -10,8 +10,6 @@ const app = express()
 
 app.get('/utils/constants.js', (req, res) => {
     res.append('Content-Type', 'application/javascript; charset=UTF-8');
-    //res.header("Content-Type", "application/javascript")
-    //res.type('application/json')
     res.send(
         `
             const HOST_API = "${process.env.HOST_API}";

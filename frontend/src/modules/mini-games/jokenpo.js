@@ -24,9 +24,7 @@ export function agoraVai() {
     $(".jokenpo__scissors").on("click", mostrarEscolha);
 
     async function mostrarEscolha() {
-        console.log("o elemento clicado foi = ");
         const valueChoice = this.getAttribute("value");
-        // console.log(event.target.getAttribute("value")); // tambem funciona
         await choicePlayer(valueChoice);
     }
 
@@ -166,7 +164,6 @@ export function agoraVai() {
                         break;
                     default:
                         result = "ops, algo deu errado no nosso sistema";
-                        console.log("erro no switch para ej == 1")
                 }
             }
             // player = paper
@@ -180,7 +177,6 @@ export function agoraVai() {
                         break;
                     default:
                         result = "ops, algo deu errado no nosso sistema";
-                        console.log("erro no switch para ej == 2");
                 }
             }
             // player = scissors
@@ -195,7 +191,6 @@ export function agoraVai() {
                         break;
                     default:
                         result = "ops, algo deu errado em nosso sistema";
-                        console.log('erro no switch para ej == 3');
                 }
             }
         }
@@ -214,7 +209,6 @@ export function agoraVai() {
                 break;
             default:
                 "ops, algo deu errado no nosso sistema";
-                console.log("erro in switch the clientChoiceText");
         }
         switch (machineChoice) {
             case 1:
@@ -228,7 +222,6 @@ export function agoraVai() {
                 break;
             default:
                 "ops, algo deu errado no nosso sistema";
-                console.log("erro no switch de machineChoiceTexto");
         }
 
         return {

@@ -183,7 +183,6 @@ router.post('/login', async (req, res) => {
   } else {
     if(bcrypt.compareSync(password, users[0].password)) {
       const token = jwt.sign({ user_id: users[0].id, cargo: users[0].cargo ? users[0].cargo : cargo_user }, secret_jwt_access_token, { expiresIn: expire_in_jwt_access_token });
-      console.log('lalalala')
       res
         .cookie("access_token", token, {
           httpOnly: true,

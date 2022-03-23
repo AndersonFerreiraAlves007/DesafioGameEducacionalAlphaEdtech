@@ -78,7 +78,6 @@ class ControlGame {
     }else{
       //case no body is passed, a server side update is assumed
       const serverBody = await this.#serverConnection.getPet(dadosGlobais.getCurrentPet().id);
-      console.log(serverBody);
       this.updateStatusBar(serverBody.xp_food, serverBody.xp_hygiene, serverBody.xp_fun, serverBody.name);
       dadosGlobais.setCurrentPet(serverBody)
 
@@ -108,7 +107,6 @@ class ControlGame {
 
     
     const currentScene = allScenes[sceneIndex];
-    //console.log(currentScene)
     dadosGlobais.setCurrentScene(currentScene)
     dadosGlobais.setCurrentItem(currentScene.items[0])
 
@@ -117,9 +115,7 @@ class ControlGame {
   async changeCurrentItem (currentId, operation){
     const allScenes = await this.#serverConnection.listSceneWithItems();
     const currentScene = allScenes[dadosGlobais.getCurrentScene().id - 1];
-    //console.log(currentScene)
     const availableItens = currentScene.items;
-    console.log(availableItens);
 
     let currentIndex;
 
@@ -133,20 +129,16 @@ class ControlGame {
 
       if((currentIndex + 1) <= (availableItens.length -1)){
         dadosGlobais.setCurrentItem(availableItens[currentIndex + 1])
-        console.log(dadosGlobais.getCurrentItem());
       }else{
         dadosGlobais.setCurrentItem(availableItens[0])
-        console.log(dadosGlobais.getCurrentItem());
       }
 
     }else if(operation === 'previous'){
 
       if((currentIndex - 1) < 0){
         dadosGlobais.setCurrentItem(availableItens[(availableItens.length -1)])
-        console.log(dadosGlobais.getCurrentItem());
       }else{
         dadosGlobais.setCurrentItem(availableItens[currentIndex - 1])
-        console.log(dadosGlobais.getCurrentItem());
       }
 
     }

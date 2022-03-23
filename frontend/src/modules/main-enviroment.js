@@ -35,14 +35,12 @@ function loadEnvironment (){
     
     gameController.changeCurrentScene(0)
     .then(()=>{
-        console.log(dadosGlobais.getCurrentScene());
         if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
             // true for mobile device
-            console.log("mobile device: " + navigator.userAgent);
             currentEnvironment = 'mobile';
 
             //screen.orientation.lock('portrait-primary') //não funciona e gera erro no console, tratar com um evento e mensagem
-            if(screen.orientation.angle > 0 ){console.log('favor usar o celular no modo retrato')}
+            //if(screen.orientation.angle > 0 ){console.log('favor usar o celular no modo retrato')}
 
             // prevents opening the context menu on long touch - view: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/oncontextmenu
             window.oncontextmenu = (event)=>{
@@ -53,7 +51,7 @@ function loadEnvironment (){
             mobileEnvironment();
         }else{
             // false for not mobile device
-            console.log("not mobile device: " + navigator.userAgent);
+            //console.log("not mobile device: " + navigator.userAgent);
             currentEnvironment = 'computer';
             computerEnvironment()
         }
@@ -71,7 +69,6 @@ async function computerEnvironment(){
     //kitchen logic
     if(dadosGlobais.getCurrentScene().id === 1){
        
-        console.log('tá na cozinha')
 
         //remove game room behavior
         $('#item-box').off('click');
@@ -209,12 +206,10 @@ async function mobileEnvironment() {
 
     //get item start position in the main page flow
     const itemStartPosition = itemElement.getBoundingClientRect();
-    //console.log(itemStartPosition);
     const itemDimensions = {width: itemElement.getBoundingClientRect().width, height: itemElement.getBoundingClientRect().height}
 
     //get slime coordinates
     const slimeCoordinates = document.getElementById('slime-body').getBoundingClientRect();
-    //console.log(slimeCoordinates)
     const slimeXPosition = [slimeCoordinates.x, slimeCoordinates.x + slimeCoordinates.width]
     const slimeYPosition = [slimeCoordinates.y, slimeCoordinates.y + slimeCoordinates.height]
 
@@ -231,7 +226,7 @@ async function mobileEnvironment() {
         itemElement.style.position = 'absolute';
         itemElement.style.left = (itemStartPosition.x) + 'px';
         itemElement.style.top = itemStartPosition.y + 'px';
-        itemElement.style.zIndex = 3000;
+        itemElement.style.zIndex = 900;
 
         //fixes the item selector position
         document.getElementById('previous-item').classList.add('item-selector-arrows');
@@ -247,6 +242,8 @@ async function mobileEnvironment() {
         //disable dragging behavior
         itemElement.ontouchmove = ''
         itemElement.ontouchend = ''
+
+        itemElement.style.zIndex = 900;
 
 
         //Mini-game picker
@@ -278,7 +275,7 @@ async function mobileEnvironment() {
         itemElement.style.position = 'absolute';
         itemElement.style.left = (itemStartPosition.x) + 'px';
         itemElement.style.top = itemStartPosition.y + 'px';
-        itemElement.style.zIndex = 3000;
+        itemElement.style.zIndex = 900;
 
         //fixes the item selector position
         document.getElementById('previous-item').classList.add('item-selector-arrows');
@@ -305,8 +302,6 @@ async function mobileEnvironment() {
             itemElement.style.left = (touchPosition.pageX - itemDimensions.width/2) + 'px';
         }
         
-        console.log(touchPosition)
-
         if(touchPosition.pageY <= (maxRange.y - itemDimensions.height/2)){
             itemElement.style.top = (touchPosition.pageY - itemDimensions.height/2 ) + 'px';
         }
@@ -315,17 +310,11 @@ async function mobileEnvironment() {
 
     function releaseFoodHandler(event){
         const releasePosition = {x: parseInt(itemElement.style.left) + (itemDimensions.width/2), y: parseInt(itemElement.style.top) + (itemDimensions.height/2) };
-        //console.log(releasePosition)
-
-        //console.log(slimeXPosition)
-        //console.log(slimeYPosition)
-
+        
         const currentItem = dadosGlobais.getCurrentItem();
 
         if(releasePosition.x >= slimeXPosition[0] && releasePosition.x <= slimeXPosition[1] 
         && releasePosition.y >= slimeYPosition[0] && releasePosition.y <= slimeYPosition[1]){
-
-            console.log('papou!!!')
 
             currentSlime.feed(currentItem)
 
@@ -352,18 +341,12 @@ async function mobileEnvironment() {
 
         const currentShowerItem = document.getElementById('current-item').getAttribute('src');
 
-        console.log(currentShowerItem)
-        console.log(event)
-
         const currentPosition = {x: parseInt(itemElement.style.left), y: parseInt(itemElement.style.top) };
 
         if(currentShowerItem.includes('soap')){
-            //console.log('sabão bão bão')
             if(currentPosition.x >= slimeXPosition[0] && currentPosition.x <= slimeXPosition[1] 
             && currentPosition.y >= slimeYPosition[0] && currentPosition.y <= slimeYPosition[1]){
-                //console.log('ensaboando')
                 soapMobileIncrement ++
-                //console.log(soapMobileIncrement)
                 if(soapMobileIncrement === 10){
                     soapLevel++
                     currentSlime.addBubbles(soapLevel);
@@ -383,8 +366,6 @@ async function mobileEnvironment() {
             itemElement.style.left = touchPosition.pageX - itemDimensions.width/2 + 'px';
         }
         
-        console.log(touchPosition)
-
         if(touchPosition.pageY <= (maxRange.y - itemDimensions.height/2)){
             itemElement.style.top = touchPosition.pageY - itemDimensions.height/2 + 'px';
         }
@@ -396,17 +377,12 @@ async function mobileEnvironment() {
 
         const currentShowerItem = document.getElementById('current-item').getAttribute('src');
 
-        console.log(currentShowerItem)
-        console.log(event)
-
         const currentPosition = {x: parseInt(itemElement.style.left) + itemDimensions.width/2, y: parseInt(itemElement.style.top) + itemDimensions.height/2};
 
         if(currentShowerItem.includes('shower')){
-            console.log('chuveirinho chua!!!')
             if(currentPosition.x >= slimeXPosition[0] && currentPosition.x <= slimeXPosition[1] 
             && currentPosition.y >= slimeYPosition[0] && currentPosition.y <= slimeYPosition[1]
             && soapLevel > 0){
-                console.log('lavando tudo')
 
                 const currentPet = dadosGlobais.getCurrentPet()
 
@@ -443,7 +419,6 @@ function setCurrentScene(){
 // SCENES NAVIGATION
 $('#next-button').on('click', () => {
     const currentSceneIndex = dadosGlobais.getCurrentScene().id
-    console.log(currentSceneIndex)
 
     gameController.changeCurrentScene(currentSceneIndex)
     .then(()=>{
@@ -459,7 +434,6 @@ $('#next-button').on('click', () => {
 
 $('#previous-button').on('click', () => {
     const currentSceneIndex = dadosGlobais.getCurrentScene().id -2
-    console.log(currentSceneIndex)
 
     gameController.changeCurrentScene(currentSceneIndex)
     .then(()=>{

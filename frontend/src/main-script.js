@@ -28,13 +28,11 @@ const loggedUserId = localStorage.getItem('user_id');
 async function getUser() {
 
     const dataUsers = await serverConnection.getUserWithPets(Number(loggedUserId));
-    console.log(dataUsers)
 
     currentSlime = new Slime(dataUsers.pet.name, dataUsers.pet.user_id, dataUsers.pet.id, dataUsers.pet.xp_food, dataUsers.pet.xp_fun, dataUsers.pet.xp_hygiene, dataUsers.pet.color);
 
     dadosGlobais.setCurrentPet(dataUsers.pet)
     dadosGlobais.setCurrentUser(dataUsers.user)
-    console.log(dadosGlobais)
 
     localStorage.setItem("pet_id", String(dataUsers.pet.id));
 
