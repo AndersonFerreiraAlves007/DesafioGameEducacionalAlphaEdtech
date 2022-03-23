@@ -16,7 +16,7 @@ module.exports = {
          env: {
             "NODE_ENV": "development",
             "HOST_FRONTEND": "http://localhost:3334",
-            "DRIVE_DATABASE": "pg",
+            "DRIVE_DATABASE": "json",
             "VERSION": "3.0.0",
             "USER_DB": "postgres",
             "HOST_DB": "localhost",

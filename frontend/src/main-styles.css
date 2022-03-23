@@ -32,7 +32,8 @@ html {
   --hygiene-bar-full-color: cyan;
   --fun-bar-empty-color: lightgoldenrodyellow;
   --fun-bar-full-color: rgb(255, 255, 110);
-  --main-menu-background-color: aquamarine;
+  /* --main-menu-background-color: aquamarine; */
+  --main-menu-background-color: rgb(187, 96, 233);
   --submenus-buttons-color: brown;
   --submenus-buttons-text-color: white;
   --menu-buttons-hover-background: rgb(176, 212, 243);
