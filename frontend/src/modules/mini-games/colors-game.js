@@ -218,14 +218,20 @@ function colorGameStart() {
           continue
         } else {
           repeatColor = false
-          const randomWidth = Math.ceil(Math.random() * 400)
-          const randomHeight = Math.ceil(Math.random() * 300)
+
+          const maxDimensions = {
+            x: document.getElementById('container').getBoundingClientRect().width - 128,
+            y: document.getElementById('container').getBoundingClientRect().height -64
+          };
+
+          const randomWidth = (Math.floor(Math.random() * maxDimensions.x))
+          const randomHeight = (Math.floor(Math.random() * maxDimensions.y)) 
           currentRound.push(currentColor)
           $(`#${option}`).show('fast')
           $(`#${option}`).css('top', randomHeight)
           $(`#${option}`).css('left', randomWidth)
           $(`#${option}`).addClass(currentColor)
-          $(`path2999-17-9-8-5-3-4-${option}`).addClass(currentColor)
+          // $(`path2999-17-9-8-5-3-4-${option}`).addClass(currentColor)
         }
       }
     });
