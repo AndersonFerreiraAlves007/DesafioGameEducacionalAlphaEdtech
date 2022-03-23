@@ -643,6 +643,10 @@ text-transform: capitalize;
   line-height: 3rem;
 }
 
+#dialog-credits ul a:visited {
+  color: yellow;
+}
+
 #dialog-credits .submenu-title {
   line-height: 2rem;
   margin: 2rem;

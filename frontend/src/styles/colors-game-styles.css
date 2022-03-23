@@ -105,7 +105,8 @@ section.colors-game  {
     
     display: flex;
     flex-direction: column;
-    justify-content: space-between;    
+    justify-content: stretch;
+    align-items: stretch;   
 
     background-color: white;
     background-image: url(../assets/game-icons/cartoon-landscape-vector.jpg);
@@ -165,17 +166,20 @@ section.colors-game  {
 #start {
     cursor: pointer;
     width: 150px;
-    height: 150px;
+    height: 50px;
     background-image: url(../assets/game-icons/hot-air-balloon.png);
     background-repeat: no-repeat;
     background-size: contain;
+    flex-grow: 1;
+    align-self: center;
 }
 
 #colors-game-main-area {
     display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+    height: 75vh;
 }
 
 #color__colors-game {
@@ -195,23 +199,26 @@ section.colors-game  {
     /* add for gabriel */
     z-index: 100000;
     background-color: lightcoral;
-    padding: 5rem;
+    padding: 5px;
     border-radius: 20px;
     text-align: center;
     box-shadow: 1px 1px 5px black;
 }
 
 #container {
-    width: 420px;
-    height: 420px;
+    
+    flex-grow: 2;
+    
 }
 
 #droppable {
     width: 150px;
-    height: 150px;
+    height: 50px;
     background-image: url(../assets/game-icons/—Pngtree—single\ cartoon\ house_5714612.png);
     background-repeat: no-repeat;
     background-size: contain;
+    flex-grow: 1;
+    align-self: center;
 }
 
 .red *{
