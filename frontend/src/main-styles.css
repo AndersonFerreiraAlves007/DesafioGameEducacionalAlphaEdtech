@@ -528,6 +528,10 @@ text-transform: capitalize;
   #options-menu-button{
     bottom: 130px;
   }
+  #environment-text {
+    font-size: 32px;
+    width: 200px;
+  }
 }
 
 #menu-area {
@@ -609,4 +613,8 @@ text-transform: capitalize;
 @keyframes feedMe {
   0%   {transform:scale(1);}
   100% {transform:scale(0);}
+}
+
+.item-selector-arrows {
+  margin-right: 130px;
 }

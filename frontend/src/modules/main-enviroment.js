@@ -50,8 +50,6 @@ function loadEnvironment (){
                 event.stopPropagation();
             }
 
-            document.addEventListener('touchmove', (event)=>{event.preventDefault()})
-
             mobileEnvironment();
         }else{
             // false for not mobile device
@@ -209,14 +207,10 @@ async function mobileEnvironment() {
     // set current scene
     setCurrentScene();
 
-    // MUST BE TREATED IN CSS!!!!!!
-    document.getElementById('environment-text').style.fontSize = '32px';
-    document.getElementById('environment-text').style.width = '200px';
-
-
     //get item start position in the main page flow
     const itemStartPosition = itemElement.getBoundingClientRect();
     //console.log(itemStartPosition);
+    const itemDimensions = {width: itemElement.getBoundingClientRect().width, height: itemElement.getBoundingClientRect().height}
 
     //get slime coordinates
     const slimeCoordinates = document.getElementById('slime-body').getBoundingClientRect();
@@ -240,7 +234,7 @@ async function mobileEnvironment() {
         itemElement.style.zIndex = 3000;
 
         //fixes the item selector position
-        document.getElementById('previous-item').style.marginRight = '100px';
+        document.getElementById('previous-item').classList.add('item-selector-arrows');
 
         itemElement.ontouchmove = dragFoodHandler
         itemElement.ontouchend = releaseFoodHandler
@@ -287,7 +281,7 @@ async function mobileEnvironment() {
         itemElement.style.zIndex = 3000;
 
         //fixes the item selector position
-        document.getElementById('previous-item').style.marginRight = '100px';
+        document.getElementById('previous-item').classList.add('item-selector-arrows');
 
         itemElement.ontouchmove = dragBathHandler
         itemElement.ontouchend = releaseBathHandler
@@ -307,20 +301,20 @@ async function mobileEnvironment() {
             y: window.screen.availHeight
         }
 
-        if(touchPosition.pageX <= (maxRange.x - 100)){
-            itemElement.style.left = touchPosition.pageX + 'px';
+        if(touchPosition.pageX <= (maxRange.x - itemDimensions.width/4)){
+            itemElement.style.left = (touchPosition.pageX - itemDimensions.width/2) + 'px';
         }
         
         console.log(touchPosition)
 
-        if(touchPosition.pageY <= (maxRange.y - 107)){
-            itemElement.style.top = touchPosition.pageY + 'px';
+        if(touchPosition.pageY <= (maxRange.y - itemDimensions.height/2)){
+            itemElement.style.top = (touchPosition.pageY - itemDimensions.height/2 ) + 'px';
         }
         
     }
 
     function releaseFoodHandler(event){
-        const releasePosition = {x: parseInt(itemElement.style.left), y: parseInt(itemElement.style.top) };
+        const releasePosition = {x: parseInt(itemElement.style.left) + (itemDimensions.width/2), y: parseInt(itemElement.style.top) + (itemDimensions.height/2) };
         //console.log(releasePosition)
 
         //console.log(slimeXPosition)
@@ -364,12 +358,12 @@ async function mobileEnvironment() {
         const currentPosition = {x: parseInt(itemElement.style.left), y: parseInt(itemElement.style.top) };
 
         if(currentShowerItem.includes('soap')){
-            console.log('sabão bão bão')
+            //console.log('sabão bão bão')
             if(currentPosition.x >= slimeXPosition[0] && currentPosition.x <= slimeXPosition[1] 
             && currentPosition.y >= slimeYPosition[0] && currentPosition.y <= slimeYPosition[1]){
-                console.log('ensaboando')
+                //console.log('ensaboando')
                 soapMobileIncrement ++
-                console.log(soapMobileIncrement)
+                //console.log(soapMobileIncrement)
                 if(soapMobileIncrement === 10){
                     soapLevel++
                     currentSlime.addBubbles(soapLevel);
@@ -385,14 +379,14 @@ async function mobileEnvironment() {
         
         let touchPosition = event.targetTouches[0];
 
-        if(touchPosition.pageX <= (maxRange.x - 100)){
-            itemElement.style.left = touchPosition.pageX + 'px';
+        if(touchPosition.pageX <= (maxRange.x - itemDimensions.width/3)){
+            itemElement.style.left = touchPosition.pageX - itemDimensions.width/2 + 'px';
         }
         
         console.log(touchPosition)
 
-        if(touchPosition.pageY <= (maxRange.y - 107)){
-            itemElement.style.top = touchPosition.pageY + 'px';
+        if(touchPosition.pageY <= (maxRange.y - itemDimensions.height/2)){
+            itemElement.style.top = touchPosition.pageY - itemDimensions.height/2 + 'px';
         }
 
         
@@ -405,7 +399,7 @@ async function mobileEnvironment() {
         console.log(currentShowerItem)
         console.log(event)
 
-        const currentPosition = {x: parseInt(itemElement.style.left), y: parseInt(itemElement.style.top) };
+        const currentPosition = {x: parseInt(itemElement.style.left) + itemDimensions.width/2, y: parseInt(itemElement.style.top) + itemDimensions.height/2};
 
         if(currentShowerItem.includes('shower')){
             console.log('chuveirinho chua!!!')
