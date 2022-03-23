@@ -16,12 +16,12 @@ module.exports = {
          env: {
             "NODE_ENV": "development",
             "HOST_FRONTEND": "http://localhost:3334",
-            "DRIVE_DATABASE": "pg",
+            "DRIVE_DATABASE": "json", // use "pg" for postgresql or "json" for local db files
             "VERSION": "3.0.0",
             "USER_DB": "postgres",
-            "HOST_DB": "localhost",
+            "HOST_DB": "192.168.0.105",
             "NAME_DB": "gutiguti_db",
-            "PASSWORD_DB": "58310502",
+            "PASSWORD_DB": "",
             "PORT_DB": 5432
          },
          env_production: {
