@@ -23,6 +23,7 @@
     <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"
         integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H"
         crossorigin="anonymous"></script>
+    <script type="module" src="./modules/sound-control.js" charset="utf-8"></script>
     <script type="module" src="./modules/notification.js" charset="utf-8"></script>
     <script type="module" src="./main-script.js" charset="utf-8"></script>
     <script type="module" src="./modules/list-slimes.js" charset="utf-8"></script>
@@ -40,10 +41,13 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#9932cc">
     <meta name="theme-color" content="#9932cc">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
     <div id="game-body">
+
+        
 
         <header>
             <!-- STATUS BAR -->
@@ -179,6 +183,8 @@
         <button type="button" class="menu-buttons" id="btn-create-pet">Criar Pet</button>
         <button type="button" class="menu-buttons" id="btn-select-pet">Selecionar Pet</button>
         <button type="button" class="menu-buttons" id="btn-credits">Créditos</button>
+        <button type="button" class="menu-buttons" id="btn-agradecimentos">Agradecimentos</button>
+        <button type="button" class="menu-buttons" id="btn-manual">Manual</button>
         <button type="button" class="menu-buttons" id="btn-logout">Sair</button>
 
     </section>
@@ -299,6 +305,29 @@
             <img id="btn-close-credits" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu"
                 class="btn-close-menu-geral" />
 
+        </div>
+    </section>
+
+
+    <section id="dialog-agradecimentos" style="display: none">
+        <div id="container-colors" class="credits-display">
+            <h2 class="submenu-title">Agradecimentos</h2>
+           
+            <img id="btn-close-agradecimentos" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu"
+            class="btn-close-menu-geral" />
+        </div>
+    </section>
+
+    <section id="dialog-manual" style="display: none">
+        <div id="container-colors" class="credits-display">
+            <h2 class="submenu-title">Manual</h2>
+            <div id="player">
+                <i class="fa fa-volume-down"></i>
+                <div id="volume"></div>
+                <i class="fa fa-volume-up"></i>
+            </div>
+            <img id="btn-close-manual" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu"
+            class="btn-close-menu-geral" />
         </div>
     </section>
 

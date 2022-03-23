@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:500);
+
 html {
   font-size: 100%;
 }
@@ -556,7 +558,7 @@ text-transform: capitalize;
 }
 
 .menu-buttons {
-  width: 12.5rem;
+  width: 13.5rem;
   height: 50px;
   margin: 10px;
   font-size: 1.3125rem;
@@ -583,6 +585,46 @@ text-transform: capitalize;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+#dialog-manual {
+  position: absolute;
+  z-index: 500000000000;
+  left: 0;
+  top: 0;
+  background-color: var(--main-menu-background-color);
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#dialog-manual .credits-display {
+  width: 90%;
+  max-width: none;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+#dialog-agradecimentos {
+  position: absolute;
+  z-index: 500000000000;
+  left: 0;
+  top: 0;
+  background-color: var(--main-menu-background-color);
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#dialog-agradecimentos .credits-display {
+  width: 90%;
+  max-width: none;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 #dialog-credits .credits-display {
@@ -618,4 +660,89 @@ text-transform: capitalize;
 
 .item-selector-arrows {
   margin-right: 130px;
+}
+
+
+/* player sound */
+
+/* h1 {
+	text-align: center;
+	font-size: 34px;
+	padding-top: 40px;
+	color: #FFF;
+}
+	
+p {
+	color: #999;
+	text-align: center;
+	font-size: 15px;
+
+}
+
+p a {
+  color: '#2ecc71';
+  text-decoration: none;
+  padding: 1px 2px 0px 2px;
+  border-bottom: 2px solid rgba(0, 0, 0, .0);
+  transition: all .1s ease;
+}
+
+p a:hover {
+  padding: 1px 2px 1px 2px;
+  border-bottom: 2px solid #555;
+} */
+
+#player {
+	width: 350px;
+	height: 50px;
+	position: relative;
+	margin: 0 auto;
+	top: 80px;
+}
+
+#player i {
+  position: absolute;
+  margin-top: -6px;
+  color: #666;
+}
+
+#player i.fa-volume-down {
+  margin-left: -8px;
+}
+
+#player i.fa-volume-up {
+  margin-right: -8px;
+		right: 0;
+}
+
+#volume {
+	position: absolute;
+	left: 24px;
+	margin: 0 auto;
+	height: 5px;
+	width: 300px;
+	background: #555;
+	border-radius: 15px;
+}
+
+#volume .ui-slider-range-min {
+  height: 5px;
+  width: 300px;
+  position: absolute;
+  background: ' #2ecc71';
+  border: none;
+  border-radius: 10px;
+  outline: none;
+}
+
+#volume .ui-slider-handle {
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background: #FFF;
+  position: absolute;
+  margin-left: -8px;
+  margin-top: -8px;
+  cursor: pointer;
+  outline: none;
 }

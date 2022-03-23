@@ -40,6 +40,7 @@ async function navigationButtonsAndDragEvents() {
 
                 // Get adequate audio for the scene and play it
                 audio.src = allAudios[indexScene]
+                audio.volume = dadosGlobais.getVolumeAudio();
                 audio.play()
 
                 if (indexScene === 0) {
@@ -101,6 +102,7 @@ async function navigationButtonsAndDragEvents() {
                     dadosGlobais.setCurrentPet(await serverConnection.updatePet(dadosGlobais.getCurrentPet().id, newStatus))
                     await statusBar.updateInfoPet()
                     audio.src = allAudios[indexScene]
+                    audio.volume = dadosGlobais.getVolumeAudio();
                     audio.play()
 
                     soapLevel = 0;
@@ -142,6 +144,7 @@ async function navigationButtonsAndDragEvents() {
         resetItemPosition()
        
         // catch autoplay error on page load
+        transitionAudio.volume = dadosGlobais.getVolumeAudio();
         const playOnPageChange = transitionAudio.play();
         playOnPageChange.then(()=>{}).catch(error=>{})
         
@@ -188,6 +191,7 @@ async function navigationButtonsAndDragEvents() {
         const currentItem = dadosGlobais.getCurrentItem()
         
         $('#current-item').attr('src', currentItem.url_image)
+        itemSelectorAudio.volume = dadosGlobais.getVolumeAudio();
         itemSelectorAudio.play()
         resetItemPosition()
     })
@@ -203,6 +207,7 @@ async function navigationButtonsAndDragEvents() {
         const currentItem = dadosGlobais.getCurrentItem()
         
         $('#current-item').attr('src', currentItem.url_image)
+        itemSelectorAudio.volume = dadosGlobais.getVolumeAudio();
         itemSelectorAudio.play()
         resetItemPosition()
     })

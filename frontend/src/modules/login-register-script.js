@@ -205,6 +205,7 @@ $(document).ready(function(){
             if ((usernameRegisterError == false) && (passwordRegisterError == false) && (namepetRegisterError == false)){
                 try{
                     await serverConnection.register($("#username_reg").val().trim().replace(/\s+/, ' '), $("#password_reg").val().trim().replace(/\s+/, ' '), $("#namepet_reg").val().trim().replace(/\s+/, ' '));
+                    localStorage.setItem('pos-registro', 'sim')
                     await login($("#username_reg").val().trim().replace(/\s+/, ' '), $("#password_reg").val().trim().replace(/\s+/, ' '))
                     sendNotification('success', "Usuário cadastrado.", 3)
                 }catch(e){

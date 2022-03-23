@@ -8,6 +8,11 @@ import { HOST_API } from './utils/constants.js'
 import { loadEnvironment } from './modules/main-enviroment.js';
 import { gameController } from './modules/control-game.js';
 
+if(localStorage.getItem('pos-registro')) {
+    document.getElementById('dialog-manual').style.display = 'flex';
+    localStorage.removeItem('pos-registro')
+}
+
 const socket = io(HOST_API, { transports : ['websocket'] });
 
 let currentSlime;

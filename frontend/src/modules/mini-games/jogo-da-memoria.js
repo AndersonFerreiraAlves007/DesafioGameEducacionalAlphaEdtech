@@ -231,6 +231,7 @@ function makeCardItem(index, cardItem) {
   flipper.id = `card-flipper-${index}`
 
   card.addEventListener('click', () => {
+    flipSound.volume = dadosGlobais.getVolumeAudio();
     flipSound.play()
     if(index !== indexAnterior) {
       if(cont % 2 === 0) {

@@ -180,6 +180,39 @@ function optionMenu(){
         window.location.replace('/');
     })
 
+    // AGRADECIMENTOS MENU
+
+    const buttonShowAgradecimentos = document.getElementById('btn-agradecimentos');
+
+    const buttonCloseAgradecimentos = document.getElementById('btn-close-agradecimentos');
+
+    buttonCloseAgradecimentos.addEventListener('click', ()=>{document.getElementById('dialog-agradecimentos').style.display = 'none'});
+
+    buttonShowAgradecimentos.addEventListener('click', showAgradecimentosWindow);
+
+    function showAgradecimentosWindow(event) {
+        const agradecimentosWindow = document.getElementById('dialog-agradecimentos');
+
+        agradecimentosWindow.style.display = 'flex';
+    }
+
+    
+    // MANUAL MENU
+
+    const buttonShowManual = document.getElementById('btn-manual');
+
+    const buttonCloseManual = document.getElementById('btn-close-manual');
+
+    buttonCloseManual.addEventListener('click', ()=>{document.getElementById('dialog-manual').style.display = 'none'});
+
+    buttonShowManual.addEventListener('click', showManualWindow);
+
+    function showManualWindow(event) {
+        const manualWindow = document.getElementById('dialog-manual');
+
+        manualWindow.style.display = 'flex';
+    }
+
 }
 
 export {optionMenu}

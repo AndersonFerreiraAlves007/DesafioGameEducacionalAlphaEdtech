@@ -22,6 +22,7 @@ function playAudio(audioSrc){
     fxAudio.src = audioSrc;
 
     if(fxAudio.paused){
+        fxAudio.volume = dadosGlobais.getVolumeAudio();
         fxAudio.play();
     }else{
         fxAudio.currentTime = 0;

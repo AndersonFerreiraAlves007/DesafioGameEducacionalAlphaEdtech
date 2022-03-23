@@ -589,6 +589,7 @@ class Slime {
         this.#sound.src = '/assets/audios/that-nice-bite.mp3';
 
         if(this.#sound.paused){
+            this.#sound.volume = dadosGlobais.getVolumeAudio();
             this.#sound.play();
         }else{
             this.#sound.currentTime = 0;
@@ -613,6 +614,7 @@ class Slime {
             fxAudio.src = '../assets/audios/535255__yetcop__shower-bath-bucket-being-dragged-cut.wav';
 
             if(fxAudio.paused){
+                fxAudio.volume = dadosGlobais.getVolumeAudio();
                 fxAudio.play();
             }else{
                 fxAudio.currentTime = 0;

@@ -4,7 +4,8 @@ class DadosGlobais {
       currentItem: null,
       currentScene: null,
       currentUser: null,
-      currentPet: null
+      currentPet: null,
+      volumeAudio: 1,
     };
   }
 
@@ -28,6 +29,10 @@ class DadosGlobais {
 
   getCurrentPet() {
     return this.dados.currentPet
+  }
+
+  getVolumeAudio() {
+    return this.dados.volumeAudio
   }
 
   // setters
@@ -64,6 +69,13 @@ class DadosGlobais {
     this.dados = {
       ...this.dados,
       currentPet: value
+    }
+  }
+
+  setVolumeAudio(value) {
+    this.dados = {
+      ...this.dados,
+      volumeAudio: value
     }
   }
 

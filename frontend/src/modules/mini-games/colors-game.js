@@ -162,10 +162,12 @@ function colorGameStart() {
     drop: function (event, ui) {
       if (ui.draggable.hasClass(currentColor)) {
         const winSound = new Audio('../../assets/audios/game-audios/476713__ddmyzik__happy-harp-sound.wav')
+        winSound.volume = dadosGlobais.getVolumeAudio();
         winSound.play()
         score += 1
       } else {
         const failSound = new Audio('../../assets/audios/game-audios/327738__distillerystudio__error-01.wav')
+        failSound.volume = dadosGlobais.getVolumeAudio();
         failSound.play()
       }
       $('#option1, #option2, #option3').removeClass(allColors)
