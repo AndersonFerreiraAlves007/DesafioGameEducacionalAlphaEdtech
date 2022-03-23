@@ -204,6 +204,7 @@ function colorGameStart() {
         $('#option1, #option2, #option3').removeClass(allColors)
         $('.slime').hide()
         $('#endScreen').show()
+        $('#endScreen').css({'display': 'flex', 'align-items': 'center', 'justify-content': 'center'})
         $('#final-score').html(score)
       }
     }, 1000);

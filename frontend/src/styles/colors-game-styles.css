@@ -199,7 +199,7 @@ section.colors-game  {
     /* add for gabriel */
     z-index: 100000;
     background-color: lightcoral;
-    padding: 5rem;
+    padding: 5px;
     border-radius: 20px;
     text-align: center;
     box-shadow: 1px 1px 5px black;
