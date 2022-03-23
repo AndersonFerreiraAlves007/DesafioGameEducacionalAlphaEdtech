@@ -18,10 +18,10 @@
     --background-scissors: #A9CC8A;
 
     --slime-image: url("../assets/images/game/jokenpo/slime-02.svg");
-    --slime-diameter: 10vw; 
+    --slime-diameter: 166px; 
     
     /* size buttons */
-    --button: 4vw;
+    --button: 66px;
 
     /* ################################################## */
     /*background of mine-game*/
@@ -96,7 +96,7 @@
     z-index: 1200;
     border-radius: var(--game-border-radius);
 
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(255,255,255,0.3);
 }
 
 .jokenpo__main{
@@ -111,7 +111,7 @@
 
     display: flex;
     flex-flow: column nowrap;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -151,8 +151,8 @@
     align-items: center;
 }
 .jokenpo__choice-container div{
-    width: 8vw;
-    height: 8vw;
+    width: 66px;
+    height: 66px;
     /* background-color: var(--background-black-transparent); */
     margin: 5px;
     border-radius: 50%;
@@ -194,8 +194,6 @@
     margin: 10px;
     padding: 10px;
 
-    width: 10vw;
-    height: 10vw;
 }
 
 .jokenpo__list-button div{
@@ -212,16 +210,14 @@
 }
 
 .jokenpo__result{
-    width: 20vw;
-    height: 8vw;
-    
-    background-color: rgba(15, 235, 235, 0.507);
-    border-radius: 10px;
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
     
     font-weight: bolder;
     color: var(--text-color-blue);
     text-align: center;
+    font-size: 24px;
+
+    margin-top: 15px;
+    margin-bottom: 15px;
     
 }
 
@@ -232,6 +228,7 @@
     background-position: center;
     background-size: contain;
     background-color: var(--background-rock);
+    cursor: pointer;
 }
 
 .jokenpo__paper{
@@ -240,6 +237,7 @@
     background-position: center;
     background-size: contain;
     background-color: var(--background-paper);
+    cursor: pointer;
 }
 
 .jokenpo__scissors{
@@ -248,4 +246,5 @@
     background-position: center;
     background-size: contain;
     background-color: var(--background-scissors);
+    cursor: pointer;
 }
