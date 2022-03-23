@@ -146,6 +146,7 @@ function colorGameStart() {
 
   const allSlimes = ['option1', 'option2', 'option3']
 
+  // Create slimes and add them to the container
   allSlimes.forEach(option => {
     const slimy = makeSlime(option, '', '', () => { })
     $('#container').append(slimy)
@@ -153,27 +154,35 @@ function colorGameStart() {
 
   // no slime will appear when the game launch
   $('.slime').hide()
+  let itsMobileDevice = false
 
-  $('#option1').draggable()
-  $('#option2').draggable()
-  $('#option3').draggable()
+  // Check whether its a mobile device or PC 
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    itsMobileDevice = true
+  } else {
+    // false for not mobile device
+    console.log("not mobile device: " + navigator.userAgent);
+    $('#option1').draggable()
+    $('#option2').draggable()
+    $('#option3').draggable()
 
-  $('#droppable').droppable({
-    drop: function (event, ui) {
-      if (ui.draggable.hasClass(currentColor)) {
-        const winSound = new Audio('../../assets/audios/game-audios/476713__ddmyzik__happy-harp-sound.wav')
-        winSound.play()
-        score += 1
-      } else {
-        const failSound = new Audio('../../assets/audios/game-audios/327738__distillerystudio__error-01.wav')
-        failSound.play()
+    $('#droppable').droppable({
+      drop: function (event, ui) {
+        if (ui.draggable.hasClass(currentColor)) {
+          const winSound = new Audio('../../assets/audios/game-audios/476713__ddmyzik__happy-harp-sound.wav')
+          winSound.play()
+          score += 1
+        } else {
+          const failSound = new Audio('../../assets/audios/game-audios/327738__distillerystudio__error-01.wav')
+          failSound.play()
+        }
+        $('#option1, #option2, #option3').removeClass(allColors)
+        $('.slime').hide()
+        $('#score').html(`SCORE: ${score}`)
+        startRound()
       }
-      $('#option1, #option2, #option3').removeClass(allColors)
-      $('.slime').hide()
-      $('#score').html(`SCORE: ${score}`)
-      startRound()
-    }
-  })
+    })
+  }
 
   const allColors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple']
   let currentColor
@@ -198,7 +207,6 @@ function colorGameStart() {
         $('#final-score').html(score)
       }
     }, 1000);
-
   }
 
   function startRound() {
@@ -207,8 +215,11 @@ function colorGameStart() {
       roundHasEnded = false
       initializeTimer()
     }
+    
+    // Reset slimes colors
     $('#option1, #option2, #option3').removeClass(allColors)
 
+    // Get random colors and positions and attributes them to the slimes
     let currentRound = []
     allSlimes.forEach(option => {
       let repeatColor = true
@@ -221,11 +232,11 @@ function colorGameStart() {
 
           const maxDimensions = {
             x: document.getElementById('container').getBoundingClientRect().width - 128,
-            y: document.getElementById('container').getBoundingClientRect().height -64
+            y: document.getElementById('container').getBoundingClientRect().height - 64
           };
 
           const randomWidth = (Math.floor(Math.random() * maxDimensions.x))
-          const randomHeight = (Math.floor(Math.random() * maxDimensions.y)) 
+          const randomHeight = (Math.floor(Math.random() * maxDimensions.y))
           currentRound.push(currentColor)
           $(`#${option}`).show('fast')
           $(`#${option}`).css('top', randomHeight)
@@ -236,6 +247,101 @@ function colorGameStart() {
       }
     });
     $('#color__colors-game').html(currentColor.toUpperCase())
+
+    // Use touch controls
+    if (itsMobileDevice) {
+      mobileEnvironment('option1', 'droppable')
+      mobileEnvironment('option2', 'droppable')
+      mobileEnvironment('option3', 'droppable')
+    }
+
+    async function mobileEnvironment(option, droppable) {
+
+      const itemElement = document.getElementById(option);
+
+      //get item start position in the main page flow
+      const itemStartPosition = itemElement.getBoundingClientRect();
+      //console.log(itemStartPosition);
+      const itemDimensions = { width: itemElement.getBoundingClientRect().width, height: itemElement.getBoundingClientRect().height }
+
+      //get slime coordinates
+      const droppableCoordinates = document.getElementById(droppable).getBoundingClientRect();
+      //console.log(droppableCoordinates)
+      const slimeXPosition = [droppableCoordinates.x, droppableCoordinates.x + droppableCoordinates.width]
+      const slimeYPosition = [droppableCoordinates.y, droppableCoordinates.y + droppableCoordinates.height]
+
+
+      //Slimeroom logic
+
+      itemElement.onclick = '';
+      itemElement.ontouchmove = ''
+      itemElement.ontouchend = ''
+
+      //change the display of the item to absolute
+      itemElement.style.position = 'absolute';
+      itemElement.style.left = (itemStartPosition.x) + 'px';
+      itemElement.style.top = itemStartPosition.y + 'px';
+      itemElement.style.zIndex = 3000;
+
+
+      itemElement.ontouchmove = dragSlimeHandler
+      itemElement.ontouchend = releaseSlimeHandler
+
+
+      function dragSlimeHandler(event) {
+
+        // prevent scrolling while dragging item
+        event.preventDefault();
+
+
+        console.log(event)
+
+        const currentPosition = { x: parseInt(itemElement.style.left), y: parseInt(itemElement.style.top) };
+
+        let maxRange = {
+          x: window.screen.availWidth,
+          y: window.screen.availHeight
+        }
+
+        let touchPosition = event.targetTouches[0];
+
+        if (touchPosition.pageX <= (maxRange.x - itemDimensions.width / 3)) {
+          itemElement.style.left = touchPosition.pageX - itemDimensions.width / 2 - 64 + 'px';
+        }
+
+        console.log(touchPosition)
+
+        if (touchPosition.pageY <= (maxRange.y - itemDimensions.height / 2)) {
+          itemElement.style.top = touchPosition.pageY - itemDimensions.height / 2 -100+ 'px';
+        }
+      }
+
+      function releaseSlimeHandler(event) {
+
+        console.log(event)
+
+        const currentPosition = { x: parseInt(itemElement.style.left) + itemDimensions.width / 2 + 64, y: parseInt(itemElement.style.top) + itemDimensions.height / 2 + 100};
+
+        if (currentPosition.x >= slimeXPosition[0] && currentPosition.x <= slimeXPosition[1]
+          && currentPosition.y >= slimeYPosition[0] && currentPosition.y <= slimeYPosition[1]) {
+          console.log('chuveirinho chua!!!')
+
+          // Check whether the color chosen is correct
+          if (itemElement.classList.contains(currentColor)) {
+            const winSound = new Audio('../../assets/audios/game-audios/476713__ddmyzik__happy-harp-sound.wav')
+            winSound.play()
+            score += 1
+          } else {
+            const failSound = new Audio('../../assets/audios/game-audios/327738__distillerystudio__error-01.wav')
+            failSound.play()
+          }
+          $('#option1, #option2, #option3').removeClass(allColors)
+          $('.slime').hide()
+          $('#score').html(`SCORE: ${score}`)
+          startRound()
+        }
+      }
+    }
   }
 
   initializeTimer()
