@@ -121,3 +121,12 @@ body{
 .btn {
   cursor: pointer;
 }
+
+.register {
+  display: none;
+}
+
+#usercheckregister, #passcheckregister, #namecheckregister, #userchecklogin, #passchecklogin {
+  display: none;
+  color: red;
+}
