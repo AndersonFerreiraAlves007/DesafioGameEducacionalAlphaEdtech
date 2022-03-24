@@ -12,7 +12,7 @@ function colorGameStart() {
   async function updateScore() {
     const currentPet = dadosGlobais.getCurrentPet()
 
-    const xp_fun_change = score * 2;
+    const xp_fun_change = score * 3;
     const xp_hygiene_change = -10;
     const xp_food_change = -10;
 
@@ -189,6 +189,7 @@ function colorGameStart() {
   const allColors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple']
   let currentColor
   let score = 0
+  $('#final-score').html(score)
   let roundHasEnded = false
   let ticket
 
@@ -198,7 +199,7 @@ function colorGameStart() {
     ticket = setInterval(function () {
       seconds += 1;
       $('#timer').html(`TEMPO: ${seconds}`);
-      if (seconds == 25) {
+      if (seconds == 20) {
         roundHasEnded = true
         clearInterval(ticket)
         updateScore()
