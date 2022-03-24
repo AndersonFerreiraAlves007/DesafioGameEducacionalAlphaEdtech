@@ -203,9 +203,14 @@ function optionMenu(){
 
     const buttonShowManual = document.getElementById('btn-manual');
 
+    const videoArea = document.getElementById('video-manual');
+
     const buttonCloseManual = document.getElementById('btn-close-manual');
 
-    buttonCloseManual.addEventListener('click', ()=>{document.getElementById('dialog-manual').style.display = 'none'});
+    buttonCloseManual.addEventListener('click', ()=>{
+        document.getElementById('dialog-manual').style.display = 'none'
+        document.querySelector('video').remove();
+    });
 
     buttonShowManual.addEventListener('click', showManualWindow);
 
@@ -213,6 +218,10 @@ function optionMenu(){
         const manualWindow = document.getElementById('dialog-manual');
 
         manualWindow.style.display = 'flex';
+
+        videoArea.insertAdjacentHTML('beforeend',`
+        <video src="./assets/videos/manual/manual.mp4" controls autoplay></video>
+        `)
     }
 
 }

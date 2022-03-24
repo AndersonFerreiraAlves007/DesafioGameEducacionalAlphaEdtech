@@ -767,3 +767,8 @@ p a:hover {
   margin: 25px 0 15px 0;
   line-height: 1.8;
 }
+
+#dialog-manual .submenu-title {
+  line-height: 2rem;
+  margin: 0.3rem;
+}
