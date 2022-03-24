@@ -164,7 +164,9 @@ function optionMenu(){
         if(validateNamepet(inputNamePetCreate.val().trim().replace(/\s+/, ' '))) {
             inputNamePetCreate.attr('placeholder', 'Nome do pet');
             inputNamePetCreate.css({'border': 'none'});
-            await gameController.createPet(user_id, namePetValue, colorValue);
+            dadosGlobais.setCurrentPet(await gameController.createPet(user_id, namePetValue, colorValue));
+            await statusBar.updateInfoPet();
+            currentSlime.color = dadosGlobais.getCurrentPet().color;
             $('#dialog-create-pet').hide()
         } else {
             sendNotification('error', 'Mín 3, máx 50 caracteres alfanuméricos ou espaços, e deve começar com uma letra).')

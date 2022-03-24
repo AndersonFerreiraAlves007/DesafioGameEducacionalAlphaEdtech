@@ -197,7 +197,7 @@ async function computerEnvironment(){
                     soapLevel++;
                     currentSlime.addBubbles(soapLevel);
 
-                }else if(soapLevel > 0){
+                }else if(internalItem.includes('shower') && soapLevel > 0){
 
                     const newStatus = {
                         xp_hygiene: ((currentPet.xp_hygiene + (soapLevel*15)) < 100) ? (currentPet.xp_hygiene + (soapLevel*15)) : 100
@@ -208,7 +208,7 @@ async function computerEnvironment(){
                     soapLevel = 0;
 
                     currentSlime.addBubbles(soapLevel);
-                }else{
+                }else if(internalItem.includes('shower')){
                     sendNotification('warning','E o sabão?', 3)
                 }
 
