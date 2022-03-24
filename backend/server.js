@@ -28,7 +28,7 @@ const app = express()
 
 app.get('/', (req, res) => {
   process.env.HOST_FRONTEND,
-  res.send(`API GAME EDUCACIONA VERSÃO: ${process.env.VERSION}`)
+  res.send(`API GAME EDUCACIONAL VERSÃO: ${process.env.VERSION}`)
 })
 
 const server = http.createServer(app);
