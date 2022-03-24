@@ -181,11 +181,25 @@
 
         <img id="button-close-menu" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu" />
 
+        <div id="player">
+            <i id="mute-button" class="fa fa-volume-down"></i>
+            <div id="volume"></div>
+            <i id ="max-volume-button" class="fa fa-volume-up"></i>
+        </div>
+
         <button type="button" class="menu-buttons" id="btn-edit-pet">Editar Pet</button>
         <button type="button" class="menu-buttons" id="btn-create-pet">Criar Pet</button>
         <button type="button" class="menu-buttons" id="btn-select-pet">Selecionar Pet</button>
         <button type="button" class="menu-buttons" id="btn-credits">Créditos</button>
-        <button type="button" class="menu-buttons" id="btn-agradecimentos">Agradecimentos</button>
+        
+        <!--REMOVE STYLE-->
+        <button type="button"
+            style="display: none;"
+            class="menu-buttons glow-button"
+            id="btn-agradecimentos">
+            Agradecimentos
+        </button>
+        
         <button type="button" class="menu-buttons" id="btn-manual">Manual</button>
         <button type="button" class="menu-buttons" id="btn-logout">Sair</button>
 
@@ -314,7 +328,14 @@
     <section id="dialog-agradecimentos" style="display: none">
         <div id="container-colors" class="credits-display">
             <h2 class="submenu-title">Agradecimentos</h2>
-           
+            <p class="tks">
+                Agradecemos à equipe pedagógica do Alpha Edtech e
+                às empresas parceiras por tudo o que têm nos proporcionado em nossa jornada de aprendizado.
+            </p>
+            <p class="tks">
+                Agradecemos também aos nossos colegas de turma, pelo coleguismo e pelas incontáveis
+                horas de Discord :)
+            </p>
             <img id="btn-close-agradecimentos" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu"
             class="btn-close-menu-geral" />
         </div>
@@ -323,13 +344,13 @@
     <section id="dialog-manual" style="display: none">
         <div id="container-colors" class="credits-display">
             <h2 class="submenu-title">Manual</h2>
-            <div id="player">
-                <i class="fa fa-volume-down"></i>
-                <div id="volume"></div>
-                <i class="fa fa-volume-up"></i>
-            </div>
             <img id="btn-close-manual" src="./assets/button-icons/close-button.svg" alt="fechar tela de menu"
-            class="btn-close-menu-geral" />
+                class="btn-close-menu-geral" 
+            />
+
+            <div id="video-manual">
+                
+            </div>
         </div>
     </section>
 

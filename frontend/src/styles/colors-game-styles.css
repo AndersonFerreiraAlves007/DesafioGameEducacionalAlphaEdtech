@@ -93,11 +93,6 @@ section.colors-game  {
     background-position: bottom;
     background-attachment: fixed;
 } */
-@media (max-width: 550px){
-    #endScreen {
-        width: 80vw;
-    }
-}
 #content-colors-game {
     width: var(--game-width);
     height: var(--game-height);

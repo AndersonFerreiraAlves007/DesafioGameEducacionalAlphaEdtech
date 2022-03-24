@@ -12,9 +12,11 @@ function colorGameStart() {
   async function updateScore() {
     const currentPet = dadosGlobais.getCurrentPet()
 
+    const currentItem = dadosGlobais.getCurrentItem()
+
     const xp_fun_change = score * 3;
-    const xp_hygiene_change = -10;
-    const xp_food_change = -10;
+    const xp_hygiene_change = currentItem.xp_hygiene_change;
+    const xp_food_change = currentItem.xp_food_change;
 
     const objectPet = {
       xp_food: ((currentPet.xp_food + xp_food_change) > 0) ? (currentPet.xp_food + xp_food_change) : 0,

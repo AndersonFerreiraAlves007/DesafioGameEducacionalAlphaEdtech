@@ -266,9 +266,9 @@ class Slime {
         
         let dirtLevel;
 
-        if(dirtValue >= 80){
+        if(dirtValue >= 70){
             dirtLevel = 0;
-        }else if(dirtValue >= 60){
+        }else if(dirtValue >= 50){
             dirtLevel = 1;
         } else {
             dirtLevel = 2;
@@ -541,7 +541,7 @@ class Slime {
         ];
     
     
-        if(xp_food >= 80){
+        if(xp_food >= 50){
             if(document.contains(document.getElementById(`food-complain`))){
                 document.getElementById(`food-complain`).remove()
             };

@@ -10,6 +10,16 @@ $("#volume").slider({
   }
 });
 
+$('#mute-button').on('click', ()=>{
+  setVolume(0);
+  $("#volume").slider({value:0})
+})
+
+$('#max-volume-button').on('click', ()=>{
+  setVolume(1);
+  $("#volume").slider({value:100})
+})
+
 function setVolume(myVolume) {
   dadosGlobais.setVolumeAudio(myVolume)
 }

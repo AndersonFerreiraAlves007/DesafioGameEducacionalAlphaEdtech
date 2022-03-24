@@ -164,7 +164,9 @@ function optionMenu(){
         if(validateNamepet(inputNamePetCreate.val().trim().replace(/\s+/, ' '))) {
             inputNamePetCreate.attr('placeholder', 'Nome do pet');
             inputNamePetCreate.css({'border': 'none'});
-            await gameController.createPet(user_id, namePetValue, colorValue);
+            dadosGlobais.setCurrentPet(await gameController.createPet(user_id, namePetValue, colorValue));
+            await statusBar.updateInfoPet();
+            currentSlime.color = dadosGlobais.getCurrentPet().color;
             $('#dialog-create-pet').hide()
         } else {
             sendNotification('error', 'Mín 3, máx 50 caracteres alfanuméricos ou espaços, e deve começar com uma letra).')
@@ -201,9 +203,14 @@ function optionMenu(){
 
     const buttonShowManual = document.getElementById('btn-manual');
 
+    const videoArea = document.getElementById('video-manual');
+
     const buttonCloseManual = document.getElementById('btn-close-manual');
 
-    buttonCloseManual.addEventListener('click', ()=>{document.getElementById('dialog-manual').style.display = 'none'});
+    buttonCloseManual.addEventListener('click', ()=>{
+        document.getElementById('dialog-manual').style.display = 'none'
+        document.querySelector('video').remove();
+    });
 
     buttonShowManual.addEventListener('click', showManualWindow);
 
@@ -211,6 +218,15 @@ function optionMenu(){
         const manualWindow = document.getElementById('dialog-manual');
 
         manualWindow.style.display = 'flex';
+
+        videoArea.insertAdjacentHTML('beforeend',`
+            <video src="./assets/videos/manual/manual.mp4" controls></video>
+        `)
+
+        const video = document.querySelector('video');
+
+        video.volume = dadosGlobais.getVolumeAudio();
+        video.play();
     }
 
 }
