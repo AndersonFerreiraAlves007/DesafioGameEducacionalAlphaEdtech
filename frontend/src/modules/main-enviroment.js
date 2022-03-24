@@ -3,6 +3,7 @@ import {gameController} from './control-game.js';
 import { currentSlime } from '../main-script.js';
 import {colorGameStart} from './mini-games/colors-game.js';
 import { agoraVai } from './mini-games/jokenpo.js';
+import { sendNotification } from './notification.js';
 
 let currentEnvironment;
 let soapLevel = 0;
@@ -88,25 +89,34 @@ async function computerEnvironment(){
         $('#guti').droppable({
             drop: async function (event, ui) {
                 
-                $('#item-box').draggable({ revert: false})
-                $('#current-item').animate({width: 0, height: 0}, 250)
+                if(dadosGlobais.getCurrentPet().xp_hygiene <= 40){
+                    sendNotification('warning','Estou muito sujo para comer!', 3)
+                }else{
+                    if(dadosGlobais.getCurrentPet().xp_food < 100){
+                        $('#item-box').draggable({ revert: false})
+                        $('#current-item').animate({width: 0, height: 0}, 250)
+                    
+                        setTimeout(() =>{
+                            ui.draggable.remove()
+                            const currentItem = dadosGlobais.getCurrentItem();
+        
+                            currentSlime.feed(currentItem);
             
-                setTimeout(() =>{
-                    ui.draggable.remove()
-                    const currentItem = dadosGlobais.getCurrentItem();
+                            $('<div id="item-box"><img id="current-item" src="" alt=""></div>').insertAfter('#previous-item');
+                            $('#item-box').draggable({ 
+                                containment: $('body'), // prevents page from scrolling when something is dragged to the edge of the screen
+                                revert: true
+                            })
+                        }, 250)
+        
+                        setTimeout(() => {
+                            $('#current-item').attr('src', dadosGlobais.getCurrentItem().url_image)
+                        }, 260);
+                    }else{
+                        sendNotification('warning','Estou satisfeito!', 3)
+                    }
+                }
 
-                    currentSlime.feed(currentItem);
-    
-                    $('<div id="item-box"><img id="current-item" src="" alt=""></div>').insertAfter('#previous-item');
-                    $('#item-box').draggable({ 
-                        containment: $('body'), // prevents page from scrolling when something is dragged to the edge of the screen
-                        revert: true
-                    })
-                }, 250)
-
-                setTimeout(() => {
-                    $('#current-item').attr('src', dadosGlobais.getCurrentItem().url_image)
-                }, 260);
 
             }
 
@@ -135,19 +145,29 @@ async function computerEnvironment(){
 
         //Mini-game picker
         $('#item-box').on('click', (event)=>{
-            const currentGame = dadosGlobais.getCurrentItem().name;
+            
+            if(dadosGlobais.getCurrentPet().xp_food < 50 && dadosGlobais.getCurrentPet().xp_hygiene < 50){
+                sendNotification('warning','Estou sujo e com fome!', 3)
+            }else if(dadosGlobais.getCurrentPet().xp_food < 50){
+                sendNotification('warning','Estou com fome!', 3)
+            }else if(dadosGlobais.getCurrentPet().xp_hygiene < 50){
+                sendNotification('warning','Estou muito sujo para brincar!', 3)
+            }else{
+                const currentGame = dadosGlobais.getCurrentItem().name;
 
-            switch (currentGame){
-                case 'rock-paper-scissors':
-                    agoraVai();
-                    break;
-                case 'memory-game':
-                    document.getElementById('minigame-remember').style.display = 'flex'
-                    break;
-                case 'colors-game':
-                    colorGameStart()
-                    break;
+                switch (currentGame){
+                    case 'rock-paper-scissors':
+                        agoraVai();
+                        break;
+                    case 'memory-game':
+                        document.getElementById('minigame-remember').style.display = 'flex'
+                        break;
+                    case 'colors-game':
+                        colorGameStart()
+                        break;
+                }
             }
+
         })
     }
 
@@ -188,6 +208,8 @@ async function computerEnvironment(){
                     soapLevel = 0;
 
                     currentSlime.addBubbles(soapLevel);
+                }else{
+                    sendNotification('warning','E o sabão?', 3)
                 }
 
             }
@@ -247,22 +269,33 @@ async function mobileEnvironment() {
         itemElement.style.zIndex = 900;
 
 
+
         //Mini-game picker
         itemElement.onclick = function(){
-            const currentGame = dadosGlobais.getCurrentItem().name;
 
-            switch (currentGame) {
-                case 'rock-paper-scissors':
-                    agoraVai();
-                    break;
-                case 'memory-game':
-                    document.getElementById('minigame-remember').style.display = 'flex'
-                    break;
-                case 'colors-game':
-                    colorGameStart()
-                    break;
+            if(dadosGlobais.getCurrentPet().xp_food < 50 && dadosGlobais.getCurrentPet().xp_hygiene < 50){
+                sendNotification('warning','Estou sujo e com fome!', 3)
+            }else if(dadosGlobais.getCurrentPet().xp_food < 50){
+                sendNotification('warning','Estou com fome!', 3)
+            }else if(dadosGlobais.getCurrentPet().xp_hygiene < 50){
+                sendNotification('warning','Estou muito sujo para brincar!', 3)
+            }else{
+                const currentGame = dadosGlobais.getCurrentItem().name;
+
+                switch (currentGame) {
+                    case 'rock-paper-scissors':
+                        agoraVai();
+                        break;
+                    case 'memory-game':
+                        document.getElementById('minigame-remember').style.display = 'flex'
+                        break;
+                    case 'colors-game':
+                        colorGameStart()
+                        break;
+                }
             }
         }
+        
     }
 
     //bathroom logic
@@ -317,15 +350,27 @@ async function mobileEnvironment() {
         if(releasePosition.x >= slimeXPosition[0] && releasePosition.x <= slimeXPosition[1] 
         && releasePosition.y >= slimeYPosition[0] && releasePosition.y <= slimeYPosition[1]){
 
-            currentSlime.feed(currentItem)
-
-            itemElement.className = 'feedAnimation';
-
-            setTimeout(()=>{
+            if(dadosGlobais.getCurrentPet().xp_hygiene <= 40){
+                sendNotification('warning','Estou muito sujo para comer!', 3)
                 itemElement.style.top = itemStartPosition.y + 'px';
                 itemElement.style.left = itemStartPosition.x + 'px';
-                itemElement.className = '';
-            },500)
+            }else{
+                if(dadosGlobais.getCurrentPet().xp_food < 100){
+                    currentSlime.feed(currentItem)
+
+                    itemElement.className = 'feedAnimation';
+        
+                    setTimeout(()=>{
+                        itemElement.style.top = itemStartPosition.y + 'px';
+                        itemElement.style.left = itemStartPosition.x + 'px';
+                        itemElement.className = '';
+                    },500)
+                }else{
+                    sendNotification('warning','Estou satisfeito!', 3)
+                    itemElement.style.top = itemStartPosition.y + 'px';
+                    itemElement.style.left = itemStartPosition.x + 'px';
+                }
+            }
 
 
         } else {
@@ -383,18 +428,23 @@ async function mobileEnvironment() {
         if(currentShowerItem.includes('shower')){
             if(currentPosition.x >= slimeXPosition[0] && currentPosition.x <= slimeXPosition[1] 
             && currentPosition.y >= slimeYPosition[0] && currentPosition.y <= slimeYPosition[1]
-            && soapLevel > 0){
+            ){
+                if(soapLevel > 0){
+                    const currentPet = dadosGlobais.getCurrentPet()
 
-                const currentPet = dadosGlobais.getCurrentPet()
-
-                const newStatus = {
-                    xp_hygiene: ((currentPet.xp_hygiene + (soapLevel * 15)) < 100) ? (currentPet.xp_hygiene + (soapLevel * 15)) : 100
+                    const newStatus = {
+                        xp_hygiene: ((currentPet.xp_hygiene + (soapLevel * 15)) < 100) ? (currentPet.xp_hygiene + (soapLevel * 15)) : 100
+                    }
+                    gameController.updatePet(dadosGlobais.getCurrentPet().id, newStatus);
+    
+                    soapLevel = 0;
+    
+                    currentSlime.addBubbles(soapLevel);
+                }else{
+                    sendNotification('warning','E o sabão?', 3)
                 }
-                gameController.updatePet(dadosGlobais.getCurrentPet().id, newStatus);
 
-                soapLevel = 0;
 
-                currentSlime.addBubbles(soapLevel);
             }
         }
         
