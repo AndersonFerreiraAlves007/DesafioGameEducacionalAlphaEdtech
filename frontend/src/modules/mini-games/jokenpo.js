@@ -48,10 +48,11 @@ export function agoraVai() {
     // call the function jokenpo, change background of div ("jokenpo__player-choice")
     async function choicePlayer(number) {
         const currentPet = dadosGlobais.getCurrentPet()
+        const currentItem = dadosGlobais.getCurrentItem()
 
-        const xp_fun_change = 10;
-        const xp_hygiene_change = -10;
-        const xp_food_change = -10;
+        const xp_fun_change = currentItem.xp_fun_change;
+        const xp_hygiene_change = currentItem.xp_hygiene_change;
+        const xp_food_change = currentItem.xp_food_change;
 
         const objectPet = {
             xp_food: ((currentPet.xp_food + xp_food_change) > 0) ? (currentPet.xp_food + xp_food_change) : 0,

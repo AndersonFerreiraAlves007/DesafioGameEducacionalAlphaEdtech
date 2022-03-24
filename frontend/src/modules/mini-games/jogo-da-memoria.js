@@ -208,9 +208,11 @@ function makeTimeout() {
 
 async function aumentaStatus() {
   const currentPet = dadosGlobais.getCurrentPet()
-  const xp_fun_change = 5;
-  const xp_hygiene_change = -5;
-  const xp_food_change = -5;
+  const currentItem = dadosGlobais.getCurrentItem()
+
+    const xp_fun_change = currentItem.xp_fun_change;
+    const xp_hygiene_change = currentItem.xp_hygiene_change;
+    const xp_food_change = currentItem.xp_food_change;
 
   const objectPet = {
       xp_food: ((currentPet.xp_food + xp_food_change) > 0) ? (currentPet.xp_food + xp_food_change) : 0,

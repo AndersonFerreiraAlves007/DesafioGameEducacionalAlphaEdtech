@@ -220,8 +220,13 @@ function optionMenu(){
         manualWindow.style.display = 'flex';
 
         videoArea.insertAdjacentHTML('beforeend',`
-        <video src="./assets/videos/manual/manual.mp4" controls autoplay></video>
+            <video src="./assets/videos/manual/manual.mp4" controls></video>
         `)
+
+        const video = document.querySelector('video');
+
+        video.volume = dadosGlobais.getVolumeAudio();
+        video.play();
     }
 
 }
