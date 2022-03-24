@@ -93,6 +93,11 @@ section.colors-game  {
     background-position: bottom;
     background-attachment: fixed;
 } */
+@media (max-width: 550px){
+    #endScreen {
+        width: 80vw;
+    }
+}
 #content-colors-game {
     width: var(--game-width);
     height: var(--game-height);
@@ -165,7 +170,7 @@ section.colors-game  {
 
 #start {
     cursor: pointer;
-    width: 150px;
+    width: 80px;
     height: 50px;
     background-image: url(../assets/game-icons/hot-air-balloon.png);
     background-repeat: no-repeat;
@@ -212,12 +217,12 @@ section.colors-game  {
 }
 
 #droppable {
-    width: 150px;
-    height: 50px;
+    width: 110px;
+    height: 100px;
     background-image: url(../assets/game-icons/—Pngtree—single\ cartoon\ house_5714612.png);
     background-repeat: no-repeat;
     background-size: contain;
-    flex-grow: 1;
+    flex-grow: 0;
     align-self: center;
 }
 
