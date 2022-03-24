@@ -697,26 +697,29 @@ p a:hover {
 } */
 
 #player {
-	width: 350px;
+	width: 200px;
 	height: 50px;
 	position: relative;
 	margin: 0 auto;
-	top: 80px;
 }
 
 #player i {
   position: absolute;
   margin-top: -6px;
-  color: #666;
+  color: gold;
 }
 
 #player i.fa-volume-down {
-  margin-left: -8px;
+  margin-left: -18px;
+  margin-top: -10px;
+  cursor: pointer;
 }
 
 #player i.fa-volume-up {
-  margin-right: -8px;
-		right: 0;
+  margin-right: -28px;
+	right: 0;
+  margin-top: -10px;
+  cursor: pointer;
 }
 
 #volume {
@@ -724,7 +727,7 @@ p a:hover {
 	left: 24px;
 	margin: 0 auto;
 	height: 5px;
-	width: 300px;
+	width: 150px;
 	background: #555;
 	border-radius: 15px;
 }
@@ -746,7 +749,21 @@ p a:hover {
   background: #FFF;
   position: absolute;
   margin-left: -8px;
-  margin-top: -8px;
-  cursor: pointer;
+  margin-top: -4.2px;
+  cursor: grab;
   outline: none;
+}
+
+.fa-volume-up:before, .fa-volume-down:before {
+  font-size: 24px;
+}
+
+.glow-button {
+  background-color: yellow;
+}
+
+.tks {
+  text-align: center;
+  margin: 25px 0 15px 0;
+  line-height: 1.8;
 }
