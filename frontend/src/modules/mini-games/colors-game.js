@@ -201,7 +201,7 @@ function colorGameStart() {
     ticket = setInterval(function () {
       seconds += 1;
       $('#timer').html(`TEMPO: ${seconds}`);
-      if (seconds == 20) {
+      if (seconds == 25) {
         roundHasEnded = true
         clearInterval(ticket)
         updateScore()
