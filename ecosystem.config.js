@@ -35,7 +35,7 @@ module.exports = {
             "NAME_DB": "gutiguti_db",
             "PASSWORD_DB": "58310502",
             "PORT_DB": 5432,
-            "TIME_UPDATE_STATUS_IN_SECONDS": 30
+            "TIME_UPDATE_STATUS_IN_SECONDS": 100
         },
          env_production_alpha: {
             "NODE_ENV": "production",
@@ -47,7 +47,7 @@ module.exports = {
             "NAME_DB": "gutiguti_db",
             "PASSWORD_DB": "gutiguti",
             "PORT_DB": 5432,
-            "TIME_UPDATE_STATUS_IN_SECONDS": 30
+            "TIME_UPDATE_STATUS_IN_SECONDS": 45
         }
       },
       {
