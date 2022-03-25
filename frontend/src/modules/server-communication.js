@@ -10,7 +10,7 @@ async function request(url, method = 'GET', body = null) {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': HOST_FRONTEND,
+          'Access-Control-Allow-Origin':  [HOST_FRONTEND, 'http://45.76.3.107'],
           'Access-Control-Allow-Credentials': true
         },
         credentials: "include",
