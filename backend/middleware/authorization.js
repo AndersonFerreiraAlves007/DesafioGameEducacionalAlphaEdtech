@@ -5,8 +5,8 @@ const authorization = (req, res, next) => {
   let token = req.cookies.access_token;
   if (!token) {
     token = req.headers['our-custom-header']
-    console('USANDO HEADER')
-    console(token)
+    console.log('USANDO HEADER')
+    console.log(token)
   }
   console.log('REQuistion')
   console.log(req.cookies)
