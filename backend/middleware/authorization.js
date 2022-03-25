@@ -3,15 +3,21 @@ const jwt = require("jsonwebtoken");
 
 const authorization = (req, res, next) => {
   const token = req.cookies.access_token;
+  console.log('REQuistion')
+  console.log(req.cookies)
   if (!token) {
     return res.sendStatus(404);
   }
   try {
+    console.log('TRY')
     const data = jwt.verify(token, secret_jwt_access_token);
+    console.log(data)
     req.user_id = data.user_id;
     req.cargo = data.cargo;
     return next();
-  } catch {
+  } catch (error) {
+    console.log('CATCH')
+    console.log(error)
     return res.sendStatus(403);
   }
 };
