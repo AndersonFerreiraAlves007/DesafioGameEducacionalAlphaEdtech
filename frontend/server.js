@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const express = require('express')
 
-const PORT = 3334
+const PORT = parseInt(process.env.HOST_FRONTEND_PORT, 10)
 
 const app = express()
 
