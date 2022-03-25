@@ -2,7 +2,12 @@ const { secret_jwt_access_token } = require("../utils/constants");
 const jwt = require("jsonwebtoken");
 
 const authorization = (req, res, next) => {
-  const token = req.cookies.access_token;
+  let token = req.cookies.access_token;
+  if (!token) {
+    token = req.headers['our-custom-header']
+    console('USANDO HEADER')
+    console(token)
+  }
   console.log('REQuistion')
   console.log(req.cookies)
   if (!token) {
