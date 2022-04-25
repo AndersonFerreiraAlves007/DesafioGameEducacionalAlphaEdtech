@@ -1,5 +1,5 @@
 import { HOST_API, HOST_FRONTEND } from '../utils/constants.js'
-import { deleteCookies } from '../utils/cookies.js'
+import { deleteCookies, getCookie } from '../utils/cookies.js'
 
 async function request(url, method = 'GET', body = null) {
   try {
@@ -11,7 +11,8 @@ async function request(url, method = 'GET', body = null) {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': HOST_FRONTEND,
-          'Access-Control-Allow-Credentials': true
+          'Access-Control-Allow-Credentials': true,
+          'our-custom-header': getCookie('access_token')
         },
         credentials: "include",
         body: JSON.stringify(body)
@@ -22,7 +23,8 @@ async function request(url, method = 'GET', body = null) {
         headers: {
           'Accept': 'application/json',
           'Access-Control-Allow-Origin': HOST_FRONTEND,
-          'Access-Control-Allow-Credentials': true
+          'Access-Control-Allow-Credentials': true,
+          'our-custom-header': getCookie('access_token')
         },
         credentials: "include",
       }
