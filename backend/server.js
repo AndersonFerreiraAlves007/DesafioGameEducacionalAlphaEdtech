@@ -15,7 +15,7 @@ const PORT = 3333
 const tasksExecute = Object.values(tasks)
 
 const configCors = {
-  origin: ["http://localhost:3334", "https://gameeducacional.andersonferreiraalves.com", "https://gutiguti.alphaedtechprojects.website", "http://45.76.3.107"],
+  origin: ["http://localhost:3334", "https://gameeducacional.andersonferreiraalves.com", "https://gutiguti.alphaedtechprojects.website", "http://45.76.3.107", "http://78.141.224.27"],
   credentials: true,
   optionSuccessStatus: 200,
 }
